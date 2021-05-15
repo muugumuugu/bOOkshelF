@@ -1,0 +1,202 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-seven.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-sevense5.html" >next</A>] [<A 
+ HREF="theory-bk-sevense3.html" >prev</A>] [<A 
+ HREF="theory-bk-sevense3.html#tailtheory-bk-sevense3.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-sevense4.html">tail</A>] [<A 
+ HREF="theory-bk-seven.html#theory-bk-sevense4.html" >up</A>]
+<H3>7.4 <A 
+   NAME="80004-70007.4"> </A><A 
+ HREF="theory-bk.html#Q2-80004-7"  NAME="Q1-80004-7">Uniform Families of Circuits</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-80004-8"  NAME="Q2-80004-8">&#34;Table Look-Up&#34; Circuits</A>
+<BR>         <A 
+ HREF="#Q1-80004-9"  NAME="Q2-80004-9">&#34;Unrolled Hardware&#34; Circuits</A>
+<BR>         <A 
+ HREF="#Q1-80004-10"  NAME="Q2-80004-10">Uniform Families of Circuits</A>
+   <P ><EM><A 
+   NAME="80004-8000"> </A><A 
+ HREF="#Q2-80004-8"  NAME="Q1-80004-8">&#34;Table Look-Up&#34; Circuits</A></EM>
+   <P >Families of circuits were introduced to help characterize the resources that problems
+require from parallel machines. The following theorem implies that the families cannot
+serve such a purpose in their general form, because they can recognize languages that are
+not recursively enumerable.
+   <P ><STRONG>Theorem 7.4.1</STRONG> <A 
+   NAME="80004-8001t7.4.1"> </A> 
+Each language L in {0, 1}* is decidable by a family of circuits.<A NAME="80004-8002"> </A>
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="80004-8003t"> </A> 
+Consider any language L in {0, 1}*, and any natural number n. Let L<SUB>n</SUB> denote the set
+L <FONT FACE="SYMBOL">Ç</FONT> {0, 1}<SUP>n</SUP>. That is, L<SUB>n</SUB> denotes the set of all the binary strings of length n in
+L.
+   <P >For any given string w in L<SUB>n</SUB>, a subcircuit c<SUB>w</SUB> with n input nodes can be constructed
+that accepts a given input if and only if the input is equal to w. The language L<SUB>n</SUB> is
+finite. As a result, the subcircuits c<SUB>w</SUB> that correspond to the strings w in L<SUB>n</SUB> can
+be merged, by letting them share the input nodes and by OR ing their outputs.
+The obtained circuit c<SUB>n</SUB> determines the membership in L<SUB>n</SUB> by a table look-up
+technique.
+   <P >Consequently, L is decidable by the family (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) of circuits. <IMG 
+SRC="theory-bk-seven15x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><STRONG>Example 7.4.1</STRONG> <A 
+   NAME="80004-8004t7.4.1"> </A> 
+The circuit c<SUB>3</SUB> in Figure <A 
+ HREF="#80004-8005r7.4.1">7.4.1</A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="80004-8005r7.4.1"> </A>
+<A 
+   NAME="80004-8005r7.4.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-seven-7-4-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 7.4.1 </STRONG></NOBR></TD><TD  
+>A &#34;table look-up&#34; circuit for the language L<SUB>3</SUB> = {011, 100, 101}.                             </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>decides the language L<SUB>3</SUB> = {011, 100, 101} by a table look-up approach. For each string w
+in L<SUB>3</SUB>, the circuit has a corresponding subcircuit c<SUB>w</SUB> that decides just the membership of the
+string. <IMG 
+SRC="theory-bk-seven15x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >The families of table look-up circuits in the proof of Theorem <A 
+ HREF="#80004-8001t7.4.1">7.4.1</A> have size
+complexity 2<SUP>O(n)</SUP> and depth complexity O(n). These families do not reflect the
+complexity of deciding the languages, because they assume the knowledge of which
+strings are in a given language and which are not. That is, the complexity involved in
+deciding the languages is shifted into the complexity of constructing the corresponding
+families of circuits.
+   <P ><EM><A 
+   NAME="80004-9000"> </A><A 
+ HREF="#Q2-80004-9"  NAME="Q1-80004-9">&#34;Unrolled Hardware&#34; Circuits</A></EM>
+   <P >A circuit can be obtained to characterize a halting computation of a parallel machine
+<IMG 
+SRC="theory-bk-seven37x.gif" ALT=" ^
+M"> by laying down the portion of the hardware of <IMG 
+SRC="theory-bk-seven38x.gif" ALT=" ^
+M"> that is involved in the computation.
+During the laying down of the hardware, cycles can be avoided by unrolling the hardware.
+The depth of such a circuit provides a measurement for the time that the computation
+requires, and the circuits size provides an upper bound on the space the computation
+requires.
+   <P ><STRONG>Example 7.4.2</STRONG> <A 
+   NAME="80004-9001t7.4.2"> </A> 
+The circuit in Figure <A 
+ HREF="#80004-9002r7.4.2">7.4.2</A>(b)
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="80004-9002r7.4.2"> </A>
+<A 
+   NAME="80004-9002r7.4.2"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-seven-7-4-2.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 7.4.2 </STRONG></NOBR></TD><TD  
+>(a) &#34;Hardware.&#34; (b) Corresponding &#34;unrolled hardware.&#34;                                           </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>computes the function that the hardware of Figure <A 
+ HREF="#80004-9002r7.4.2">7.4.2</A>(a) computes in three units of time.
+It is assumed that initially each input to a gate is either an input value or the constant 0. <IMG 
+SRC="theory-bk-seven15x.gif" ALT="
+*** " 
+ >
+   <P >
+   <P >In a similar way, one can also obtain a circuit c<SUB>n</SUB> that corresponds to all the halting
+computations of <IMG 
+SRC="theory-bk-seven39x.gif" ALT="M^"> on instances of length n,  n <FONT FACE="SYMBOL">³</FONT> 0. (The outputs for the inputs of a
+given length n are assumed to be appended by a string of the form 10 · · · 0 to let
+them all have identical lengths.) Consequently, the approach implies a family
+C = (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) of circuits for each parallel machine <IMG 
+SRC="theory-bk-seven40x.gif" ALT="M^"> that halts on all inputs.
+Moreover, the families of circuits faithfully reflect the complexity of the parallel
+computations and can be effectively obtained from each such parallel machine
+<IMG 
+SRC="theory-bk-seven41x.gif" ALT="M^">.
+   <P ><EM><A 
+   NAME="80004-10000"> </A><A 
+ HREF="#Q2-80004-10"  NAME="Q1-80004-10">Uniform Families of Circuits</A></EM>
+   <P >By the previous discussion, from each parallel machine <IMG 
+SRC="theory-bk-seven42x.gif" ALT="^M"> that halts on all inputs,
+a circuits constructor can be obtained to compute { (1<SUP>n</SUP>, c<SUB>n</SUB>) | n <FONT FACE="SYMBOL">³</FONT> 0 }, where
+C = (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) is a family of circuits that computes the same function as <IMG 
+SRC="theory-bk-seven43x.gif" ALT="M^">. The circuits
+constructor can be one that provides families of table look-up, unrolled hardware, or other
+types of circuits.
+   <P >The interest here is in circuits constructors that preserve, in the families of circuits that
+they construct, the complexity of the given parallel machines. Such constructors do not
+allow the shift of complexity from the constructed families of circuits to the constructors.
+Moreover, they also do not allow an unrealistic increase in the complexity of the
+constructed families of circuits. Circuits constructors with such characteristics are said
+to be uniform circuits constructors. A family C = (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) of circuits<A NAME="80004-10001"> </A> is
+said to be uniform if a uniform circuits constructor can compute the function
+{ (1<SUP>n</SUP>, c<SUB>n</SUB>) | n <FONT FACE="SYMBOL">³</FONT> 0 }.
+   <P >Many characterizations have been offered for the uniform circuits constructors. The
+characterization used here, which has been widely accepted, defines these conditions in
+terms of a class of deterministic Turing transducers.
+   <P ><STRONG>Definition </STRONG> <A 
+   NAME="80004-10002t"> </A> 
+A Turing transducer is said to be a <I>uniform circuits constructor</I> if it is an O(log Z(n))
+space-bounded, deterministic Turing transducer that computes { (1<SUP>n</SUP>, c<SUB>n</SUB>) | n <FONT FACE="SYMBOL">³</FONT> 0 },
+where C = (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) is a family of circuits of size complexity Z(n). A family
+C = (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) of circuits of size complexity Z(n) is said to be a <I>uniform<A NAME="80004-10003"> </A> family of
+circuits</I> if an O(log Z(n)) space-bounded, deterministic Turing transducer can compute
+{ (1<SUP>n</SUP>, c<SUB>n</SUB>) | n <FONT FACE="SYMBOL">³</FONT> 0 }.
+   <P >The characterization of uniform families of circuits is motivated by the unrolled
+hardware approach. With such an approach the circuits constructor needs
+O(log H(n) + log T(n)) = O(log (H(n)T(n))) space, if the parallel machine
+has size complexity H(n) and time complexity T(n). O(log H(n)) space is
+used for tracing through the hardware, and O(log T(n)) space is used for tracing
+through time. H(n)T(n) is of a similar order of magnitude to the size Z(n) of the
+circuits.
+   <P ><STRONG>Example 7.4.3</STRONG> <A 
+   NAME="80004-10004t7.4.3"> </A> 
+Consider the language L = { uu | u is in {0, 1}* }. Let L<SUB>n</SUB> = L <FONT FACE="SYMBOL">Ç</FONT> {0, 1}<SUP>n</SUP> for n <FONT FACE="SYMBOL">³</FONT> 0, that is,
+L<SUB>n</SUB> denotes the set of all the binary strings of length n in L. The language L<SUB>n</SUB> is decided by
+the circuit c<SUB>n</SUB> in Figure <A 
+ HREF="#80004-10005r7.4.3">7.4.3</A>(a)
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="80004-10005r7.4.3"> </A>
+<A 
+   NAME="80004-10005r7.4.3"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-seven-7-4-3.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 7.4.3 </STRONG></NOBR></TD><TD  
+>A circuit c<SUB>n</SUB> that, according to the case, checks whether an input of length n is of the
+form uu. (a) n<IMG 
+SRC="theory-bk-seven44x.gif" ALT="/="ALIGN="MIDDLE" > 0, and n is even. (b) n is odd. (c) n = 0.                                         </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>if n is a nonzero even integer, by the circuit c<SUB>n</SUB> in Figure <A 
+ HREF="#80004-10005r7.4.3">7.4.3</A>(b) if n is an odd integer, and
+by the circuit c<SUB>n</SUB> in Figure <A 
+ HREF="#80004-10005r7.4.3">7.4.3</A>(c) if n = 0.
+   <P >The family (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) of circuits is of depth complexity D(n) = O(log n) and size
+complexity Z(n) = O(n/2 + n/4 + · · · + 1) = O(n). The family is uniform because the
+function { (1<SUP>n</SUP>, c<SUB>n</SUB>) | n <FONT FACE="SYMBOL">³</FONT> 0 } is computable by a log Z(n) = O(log n) space-bounded,
+deterministic Turing transducer. <IMG 
+SRC="theory-bk-seven15x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >The following thesis for parallel computations is stated in terms of uniform
+families of circuits. As in the previous theses for sequential and probabilistic
+computations, only supportive evidences can be provided to exhibit the correctness of the
+thesis.
+   <P ><STRONG>The Parallel Computation Thesis </STRONG> <A 
+   NAME="80004-10006t"> </A> 
+<A NAME="80004-10007"> </A>
+A function can be mechanically computed by a parallel machine of size complexity
+H(n) and time complexity T(n) only if it has a uniform family of circuits of size
+complexity p(H(n)T(n)) and depth complexity p(T(n)), for some polynomial
+p(·).
+   <P >
+   <P >[<A 
+ HREF="theory-bk-sevense5.html" >next</A>] [<A 
+ HREF="theory-bk-sevense3.html" >prev</A>] [<A 
+ HREF="theory-bk-sevense3.html#tailtheory-bk-sevense3.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-sevense4.html" >front</A>] [<A 
+ HREF="theory-bk-seven.html#theory-bk-sevense4.html" >up</A>] <A 
+   NAME="tailtheory-bk-sevense4.html"> </A></BODY></HTML>

@@ -1,0 +1,411 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-two.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-twoli2.html" >next</A>] [<A 
+ HREF="theory-bk-twose6.html" >prev</A>] [<A 
+ HREF="theory-bk-twose6.html#tailtheory-bk-twose6.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-twoli1.html">tail</A>] [<A 
+ HREF="theory-bk-two.html#theory-bk-twoli1.html" >up</A>]
+<H3><A 
+   NAME="30007-23000"> </A><A 
+ HREF="theory-bk.html#Q2-30007-23"  NAME="Q1-30007-23">Exercises</A></H3>
+<A 
+   NAME="30007-23001r2.1"> </A><A 
+   NAME="30007-23002r2.2"> </A><A 
+   NAME="30007-23003r2.2.1"> </A>
+     <DL><DT><STRONG>
+2.2.1 </STRONG><DD 
+>Let P be a program with k instruction segments and a domain of variables of
+     cardinality m. Determine an upper bound on the number of states of P, and an
+     upper bound on the number of possible transitions between these states.
+<A 
+   NAME="30007-23004r2.2.2"> </A>
+     <DT><STRONG>
+2.2.2 </STRONG><DD 
+>Determine the diagram representation of a finite-state transducer that models the
+     computations of the program in Figure <A 
+ HREF="#30007-23005r2.E.1">2.E.1</A>.
+     <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="30007-23005r2.E.1"> </A>
+                        <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE><TT>x</TT> := ?
+<B>do</B>
+    <B>read</B> <TT>y</TT>
+<B>until</B> <TT>y</TT><IMG 
+SRC="theory-bk-two27x.gif" ALT="/="ALIGN="MIDDLE" > <TT>x</TT>
+<B>do</B>
+    <TT>y</TT> := <TT>y</TT> + <TT>x</TT>
+    <B>write</B> <TT>y</TT>
+<B>or</B>
+    <B>if</B> <I>eof</I> <B>then accept</B>
+    <B>reject</B>
+<B>until</B> false            </PRE></TD></TR></TABLE>
+<A 
+   NAME="30007-23005r2.E.1"> </A>
+                          <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 2.E.1  </STRONG></NOBR></TD><TD  
+></TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>     Assume that the domain of the variables is {0, 1}, and that 0 is the initial value in
+     the domain. Denote each node in the transition diagram with the corresponding state
+     of the program.<A 
+   NAME="30007-23006r2.2.3"> </A>
+     <DT><STRONG>
+2.2.3 </STRONG><DD 
+>For each of the following relations give a finite-state transducer that computes the
+     relation.
+         <OL TYPE="a" 
+>
+         <LI><A 
+   NAME="30007-23007xa"> </A>{ (x#y, a<SUP>i</SUP>b<SUP>j</SUP>) | x and y are in {a, b}*, i = (number of a's in x), and j =
+         (number of b's in y) }
+         <LI><A 
+   NAME="30007-23008xb"> </A>{ (x, c<SUP>i</SUP>)  |  x is in {a, b}*, and i = (number of appearances of the
+         substring abb's in x) }
+         <LI><A 
+   NAME="30007-23009xc"> </A>{ (x, c<SUP>i</SUP>)  |  x is in {a, b}*, and i = (number of appearances of the
+         substring aba's in x) }
+         <LI><A 
+   NAME="30007-23010xd"> </A>{ (1<SUP>i</SUP>, 1<SUP>j</SUP>) | i and j are natural numbers and i <FONT FACE="SYMBOL">³</FONT> j }
+         <LI><A 
+   NAME="30007-23011xe"> </A>{ (x, a) | x is in {0, 1}*, a is in {0, 1}, and a appears at least twice in
+         the string x }
+         <LI><A 
+   NAME="30007-23012xf"> </A>{ (xy, a<SUP>i</SUP>b<SUP>j</SUP>) | x and y are in {a, b}*, i = (the number of a's in x), and
+         j = (the number of b's in y) }
+         <LI><A 
+   NAME="30007-23013xg"> </A>{ (x, y) | x and y are in {a, b}*, and either x is a substring of y or y is a
+         substring of x }
+         <LI><A 
+   NAME="30007-23014xh"> </A>{ (x, y)  |  x is in {a, b}*, y is a substring of x, and the first and last
+         symbols in y are of distinct values }
+         <LI><A 
+   NAME="30007-23015xi"> </A>{ (x, y)  |  x and y are in {a, b}*, and the substring ab has the same
+         number of appearances in x and y }
+         <LI><A 
+   NAME="30007-23016xj"> </A>{ (1<SUP>i</SUP>, 1<SUP>j</SUP>) | i = 2j or i = 3j }
+         <LI><A 
+   NAME="30007-23017xk"> </A>{ (1<SUP>i</SUP>, 1<SUP>j</SUP>) | i<IMG 
+SRC="theory-bk-two28x.gif" ALT="/="ALIGN="MIDDLE" > 2j }
+         <LI><A 
+   NAME="30007-23018xl"> </A>{ (x, y) | x and y are in {a, b}*, and the number of a's in x differs from
+         the number of b's in y }
+         <LI><A 
+   NAME="30007-23019xm"> </A>{ (x, y) | x and y are in {0, 1}*, and (the natural number represented by
+         y) = 3(the natural number represented by x) }
+         <LI><A 
+   NAME="30007-23020xn"> </A>{ (<IMG 
+SRC="theory-bk-two29x.gif" ALT="(x1)
+y1"ALIGN="MIDDLE" > · · · <IMG 
+SRC="theory-bk-two30x.gif" ALT="(xn)
+ yn"ALIGN="MIDDLE" > , z<SUB>1</SUB> · · · z<SUB>n</SUB>)  |  x<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , x<SUB>n</SUB>,  y<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , y<SUB>n</SUB>,  z<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , z<SUB>n</SUB>  are  in  {0, 1},
+         and   (the   natural   number   represented   by   x<SUB>1</SUB> · · · x<SUB>n</SUB>) -  (the  natural
+         number represented by y<SUB>1</SUB> · · · y<SUB>n</SUB>) = (the natural number represented by
+         z<SUB>1</SUB> · · · z<SUB>n</SUB>) }</OL>
+<A 
+   NAME="30007-23021r2.2.4"> </A>
+     <DT><STRONG>
+2.2.4 </STRONG><DD 
+>Let M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, F&gt; be the deterministic finite-state transducer whose
+     transition diagram is given in Figure <A 
+ HREF="#30007-23022r2.E.2">2.E.2</A>.
+     <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="30007-23022r2.E.2"> </A>
+<A 
+   NAME="30007-23022r2.E.2"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-two-2-E-2.jpg" ALT="[PICT]" 
+>
+                          <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 2.E.2  </STRONG></NOBR></TD><TD  
+></TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>     For each of the following relations find a finite-state transducer that computes the
+     relation.
+         <OL TYPE="a" 
+>
+         <LI><A 
+   NAME="30007-23023xa"> </A>{ (x, y) | x is in L(M), and y is in <FONT FACE="SYMBOL">D</FONT>* }.
+         <LI><A 
+   NAME="30007-23024xb"> </A>{ (x, y) | x is in L(M), y is in <FONT FACE="SYMBOL">D</FONT>*, and (x, y) is not in R(M) }.</OL>
+<A 
+   NAME="30007-23025r2.2.5"> </A>
+     <DT><STRONG>
+2.2.5 </STRONG><DD 
+>Show that if a deterministic finite-state transducer M accepts inputs x<SUB>1</SUB> and x<SUB>2</SUB> such
+     that x<SUB>1</SUB> is a prefix of x<SUB>2</SUB>, then on these inputs M outputs y<SUB>1</SUB> and y<SUB>2</SUB>, respectively, such
+     that y<SUB>1</SUB> is a prefix of y<SUB>2</SUB>.
+<A 
+   NAME="30007-23026r2.2.6"> </A>
+     <DT><STRONG>
+2.2.6 </STRONG><DD 
+>Determine the sequence of configurations in the computation that the finite-state transducer
+     &lt;{q<SUB>0</SUB>, q<SUB>1</SUB>, q<SUB>2</SUB>}, {0, 1}, {a, b}, {(q<SUB>0</SUB>, 0, q<SUB>1</SUB>, a), (q<SUB>1</SUB>, 1, q<SUB>0</SUB>, a), (q<SUB>1</SUB>, 1, q<SUB>2</SUB>, <FONT FACE="SYMBOL">e</FONT>), (q<SUB>2</SUB>, <FONT FACE="SYMBOL">e</FONT>, q<SUB>1</SUB>, b)}, q<SUB>0</SUB>, {q<SUB>2</SUB>}&gt;
+     has on input 0101.
+<A 
+   NAME="30007-23027r2.2.7"> </A>
+     <DT><STRONG>
+2.2.7 </STRONG><DD 
+>Modify Example <A 
+ HREF="theory-bk-twose2.html#30002-10002t2.2.16">2.2.16</A> for the case that M is the finite-state transducer whose
+     transition diagram is given in Figure <A 
+ HREF="theory-bk-twose2.html#30002-5013r2.2.2">2.2.2</A>.
+<A 
+   NAME="30007-23028r2.3"> </A><A 
+   NAME="30007-23029r2.3.1"> </A>
+     <DT><STRONG>
+2.3.1 </STRONG><DD 
+>For each of the following languages construct a finite-state automaton that accepts
+     the language.
+         <OL TYPE="a" 
+>
+         <LI><A 
+   NAME="30007-23030xa"> </A>{ x | x is in {0, 1}*, and no two 0's are adjacent in x }
+         <LI><A 
+   NAME="30007-23031xb"> </A>{ x | x is in {a, b, c}*, and none of the adjacent symbols in x are equal }
+         <LI><A 
+   NAME="30007-23032xc"> </A>{ x | x is in {0, 1}*, and each substring of length 3 in x contains at least
+         two 1's }
+         <LI><A 
+   NAME="30007-23033xd"> </A>{ 1<SUP>z</SUP> | z = 3x + 5y for some natural numbers x and y }
+         <LI><A 
+   NAME="30007-23034xe"> </A>{ x | x is in {a, b}*, and x contains an even number of a's and an even
+         number of b's }
+         <LI><A 
+   NAME="30007-23035xf"> </A>{ x | x is in {0, 1}*, and the number of 1's between every two 0's in x
+         is even }
+         <LI><A 
+   NAME="30007-23036xg"> </A>{ x | x is in {0, 1}*, and the number of 1's between every two substrings
+         of the form 00 in x is even }
+         <LI><A 
+   NAME="30007-23037xh"> </A>{ x | x is in {0, 1}*, but not in {10, 01}* }
+         <LI><A 
+   NAME="30007-23038xi"> </A>{ x | x is in {a, b, c}*, and a substring of x is accepted by the finite-state
+         automaton of Figure <A 
+ HREF="theory-bk-twose4.html#30004-18005r2.4.1">2.4.1</A> }</OL>
+<A 
+   NAME="30007-23039r2.3.2"> </A>
+     <DT><STRONG>
+2.3.2 </STRONG><DD 
+>Find a deterministic finite-state automaton that is equivalent to the finite-state
+     automaton whose transition diagram is given in Figure <A 
+ HREF="#30007-23040r2.E.3">2.E.3</A>.
+     <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="30007-23040r2.E.3"> </A>
+<A 
+   NAME="30007-23040r2.E.3"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-two-2-E-3.jpg" ALT="[PICT]" 
+>
+                          <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 2.E.3  </STRONG></NOBR></TD><TD  
+></TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR><A 
+   NAME="30007-23041r2.3.3"> </A>
+     <DT><STRONG>
+2.3.3 </STRONG><DD 
+>Find a Type 3 grammar that generates the language accepted by the finite-state
+     automaton whose transition diagram is given in Figure <A 
+ HREF="#30007-23042r2.E.4">2.E.4</A>.
+     <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="30007-23042r2.E.4"> </A>
+<A 
+   NAME="30007-23042r2.E.4"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-two-2-E-4.jpg" ALT="[PICT]" 
+>
+                          <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 2.E.4  </STRONG></NOBR></TD><TD  
+></TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR><A 
+   NAME="30007-23043r2.3.4"> </A>
+     <DT><STRONG>
+2.3.4 </STRONG><DD 
+>Find a finite-state automaton that accepts the language L(G), for the case that
+     G = &lt;N, <FONT FACE="SYMBOL">S</FONT>, P, S&gt; is the Type 3 grammar whose production rules are listed
+     below.
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-two31x.gif" ALT="  S  ®   aA
+    ®   bB
+    ®   b
+ A  ®   aS
+    ®   bC
+B   ®   bS
+    ®   aC
+    ®   bA
+C   ®   aB"></PRE></CENTER>
+<A 
+   NAME="30007-23044r2.3.5"> </A>
+     <DT><STRONG>
+2.3.5 </STRONG><DD 
+>Show that a language is generated by a Type 3 grammar if and only if it is generated
+     by a right-linear grammar, and if and only if it is generated by a left-linear grammar.
+<A 
+   NAME="30007-23045r2.3.6"> </A>
+     <DT><STRONG>
+2.3.6 </STRONG><DD 
+>Prove that a set is regular if and only if it is accepted by a finite-state automaton.
+<A 
+   NAME="30007-23046r2.4"> </A><A 
+   NAME="30007-23047r2.4.1"> </A>
+     <DT><STRONG>
+2.4.1 </STRONG><DD 
+>Let M be the finite-state automaton whose transition diagram is given in
+     Figure <A 
+ HREF="#30007-23048r2.E.5">2.E.5</A>.
+     <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="30007-23048r2.E.5"> </A>
+<A 
+   NAME="30007-23048r2.E.5"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-two-2-E-5.jpg" ALT="[PICT]" 
+>
+                          <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 2.E.5  </STRONG></NOBR></TD><TD  
+></TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>     Using the notation of the proof of the pumping lemma for regular languages
+     (Theorem <A 
+ HREF="theory-bk-twose4.html#30004-18001t2.4.1">2.4.1</A>), what are the possible values of m, x, and y for each w in
+     L(M)?
+<A 
+   NAME="30007-23049r2.4.2"> </A>
+     <DT><STRONG>
+2.4.2 </STRONG><DD 
+>Use the pumping lemma for regular languages to show that none of the following
+     languages is regular.
+         <OL TYPE="a" 
+>
+         <LI><A 
+   NAME="30007-23050xa"> </A>{ a<SUP>n</SUP>b<SUP>t</SUP> | n &gt; t }
+         <LI><A 
+   NAME="30007-23051xb"> </A>{ v | v is in {a, b}*, and v has fewer a's than b's }
+         <LI><A 
+   NAME="30007-23052xc"> </A>{ x | x is in {a, b}*, and x = x<SUP>rev</SUP> }
+         <LI><A 
+   NAME="30007-23053xd"> </A>{ vv<SUP>rev</SUP> | v is accepted by the finite-state automaton of Figure <A 
+ HREF="#30007-23054r2.E.6">2.E.6</A> }
+         <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="30007-23054r2.E.6"> </A>
+<A 
+   NAME="30007-23054r2.E.6"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-two-2-E-6.jpg" ALT="[PICT]" 
+>
+                          <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 2.E.6  </STRONG></NOBR></TD><TD  
+></TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>
+         <LI><A 
+   NAME="30007-23055xe"> </A>{ a<SUP>n<SUP>2</SUP>
+    </SUP> | n <FONT FACE="SYMBOL">³</FONT> 1 }
+         <LI><A 
+   NAME="30007-23056xf"> </A>{ a<SUP>n</SUP>b<SUP>t</SUP> | n<IMG 
+SRC="theory-bk-two32x.gif" ALT="/="ALIGN="MIDDLE" > t }
+         <LI><A 
+   NAME="30007-23057xg"> </A>{ x | x is in {a, b}*, and x<IMG 
+SRC="theory-bk-two33x.gif" ALT="/="ALIGN="MIDDLE" > x<SUP>rev</SUP> }</OL>
+<A 
+   NAME="30007-23058r2.4.3"> </A>
+     <DT><STRONG>
+2.4.3 </STRONG><DD 
+>Show that each relation R computable by a finite-state transducer has a fixed integer
+     m such that the following holds for all (v, w) in R. If |w| &gt; m · max(1, |v|), then
+     w = xyz for some x, y, z such that (v, xy<SUP>k</SUP>z) is in R for all k <FONT FACE="SYMBOL">³</FONT> 0. Moreover,
+     0 &lt; |y| <FONT FACE="SYMBOL">£</FONT> m.
+<A 
+   NAME="30007-23059r2.4.4"> </A>
+     <DT><STRONG>
+2.4.4 </STRONG><DD 
+>Prove that the relation { (a<SUP>i</SUP>b<SUP>j</SUP>, c<SUP>k</SUP>) | i and j are natural numbers and k = i · j } is not
+     computable by a finite-state transducer.
+<A 
+   NAME="30007-23060r2.5"> </A><A 
+   NAME="30007-23061r2.5.1"> </A>
+     <DT><STRONG>
+2.5.1 </STRONG><DD 
+>Let M<SUB>1</SUB> be the finite-state automaton given in Figure <A 
+ HREF="#30007-23040r2.E.3">2.E.3</A>, and M<SUB>2</SUB> be the
+     finite-state automaton given in Figure <A 
+ HREF="#30007-23054r2.E.6">2.E.6</A>. Give a finite-state automaton that
+     accepts the relation R(M<SUB>1</SUB>) <FONT FACE="SYMBOL">Ç</FONT> R(M<SUB>2</SUB>).
+<A 
+   NAME="30007-23062r2.5.2"> </A>
+     <DT><STRONG>
+2.5.2 </STRONG><DD 
+>For each of the following cases show that regular sets are closed under the operation
+     <FONT FACE="SYMBOL">Y</FONT>. <A NAME="30007-23063"> </A>
+         <OL TYPE="a" 
+>
+         <LI><A 
+   NAME="30007-23064xa"> </A><FONT FACE="SYMBOL">Y</FONT>(L) = { x | x is in L, and a proper prefix of L is in L }.
+         <LI><A 
+   NAME="30007-23065xb"> </A><FONT FACE="SYMBOL">Y</FONT>(L<SUB>1</SUB>, L<SUB>2</SUB>) = { xyzw | xz is in L<SUB>1</SUB>, and yw is in L<SUB>2</SUB> }.</OL>
+<A 
+   NAME="30007-23066r2.5.3"> </A>
+     <DT><STRONG>
+2.5.3 </STRONG><DD 
+>Let <FONT FACE="SYMBOL">Y</FONT> be a permutation operation on languages defined as <FONT FACE="SYMBOL">Y</FONT>(L) = { x | x is a
+     permutation of some y in L }. Show that regular sets are not closed under
+     <FONT FACE="SYMBOL">Y</FONT>.
+<A 
+   NAME="30007-23067r2.5.4"> </A>
+     <DT><STRONG>
+2.5.4 </STRONG><DD 
+>Show that the set of relations that finite-state transducers compute is closed under
+     each of the following operations <FONT FACE="SYMBOL">Y</FONT>.
+         <OL TYPE="a" 
+>
+         <LI><A 
+   NAME="30007-23068xa"> </A>Inverse, that is, <FONT FACE="SYMBOL">Y</FONT>(R) = R<SUP>-1</SUP> = { (y, x) | (x, y) is in R }.
+         <LI><A 
+   NAME="30007-23069xb"> </A>Closure, that is, <FONT FACE="SYMBOL">Y</FONT>(R) = <FONT FACE="SYMBOL">È</FONT><SUB>i<FONT FACE="SYMBOL">³</FONT>0</SUB>R<SUP>i</SUP>.
+         <LI><A 
+   NAME="30007-23070xc"> </A>Composition<A NAME="30007-23071"> </A>, that is, <FONT FACE="SYMBOL">Y</FONT>(R<SUB>1</SUB>, R<SUB>2</SUB>) = { (x, y) | x = x<SUB>1</SUB>x<SUB>2</SUB> and y = y<SUB>1</SUB>y<SUB>2</SUB> for
+         some (x<SUB>1</SUB>, y<SUB>1</SUB>) in R<SUB>1</SUB>, and some (x<SUB>2</SUB>, y<SUB>2</SUB>) in R<SUB>2</SUB> }.
+         <LI><A 
+   NAME="30007-23072xd"> </A>Cascade<A NAME="30007-23073"> </A> composition, that is, <FONT FACE="SYMBOL">Y</FONT>(R<SUB>1</SUB>, R<SUB>2</SUB>) = { (x, z) | (x, y) is in R<SUB>1</SUB> and
+         (y, z) is in R<SUB>2</SUB> for some y }.</OL>
+<A 
+   NAME="30007-23074r2.5.5"> </A>
+     <DT><STRONG>
+2.5.5 </STRONG><DD 
+>Show that the set of the relations computed by deterministic finite-state transducers
+     is not closed under composition.<A NAME="30007-23075"> </A> <A NAME="30007-23076"> </A>
+<A 
+   NAME="30007-23077r2.5.6"> </A>
+     <DT><STRONG>
+2.5.6 </STRONG><DD 
+>Let M be the finite-state automaton whose transition diagram is given in
+     Figure <A 
+ HREF="#30007-23040r2.E.3">2.E.3</A>. Give a finite-state automaton that accepts the complementation of
+     L(M).
+<A 
+   NAME="30007-23078r2.5.7"> </A>
+     <DT><STRONG>
+2.5.7 </STRONG><DD 
+>Show that the complementation of a relation computable by a deterministic
+     finite-state transducer, is computable by a finite-state transducer.
+<A 
+   NAME="30007-23079r2.6"> </A><A 
+   NAME="30007-23080r2.6.1"> </A>
+     <DT><STRONG>
+2.6.1 </STRONG><DD 
+>Show that the problem defined by the following pair is decidable.
+          <DL><DT><STRONG>
+       <STRONG>Domain:  </STRONG> </STRONG><DD 
+>{ M | M is a finite-state automaton }
+          <DT><STRONG>
+       <STRONG>Question:</STRONG> </STRONG><DD 
+>Is L(M) a set of infinite cardinality for the given instance M?</DL>
+     </DL>
+   <P >
+   <P >
+   <P >[<A 
+ HREF="theory-bk-twoli2.html" >next</A>] [<A 
+ HREF="theory-bk-twose6.html" >prev</A>] [<A 
+ HREF="theory-bk-twose6.html#tailtheory-bk-twose6.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-twoli1.html" >front</A>] [<A 
+ HREF="theory-bk-two.html#theory-bk-twoli1.html" >up</A>] <A 
+   NAME="tailtheory-bk-twoli1.html"> </A></BODY></HTML>

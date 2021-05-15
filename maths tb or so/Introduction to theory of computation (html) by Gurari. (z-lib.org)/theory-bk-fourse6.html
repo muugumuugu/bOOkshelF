@@ -1,0 +1,464 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-four.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-fourse5.html" >prev</A>] [<A 
+ HREF="theory-bk-fourse5.html#tailtheory-bk-fourse5.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-fourse6.html">tail</A>] [<A 
+ HREF="theory-bk-four.html#theory-bk-fourse6.html" >up</A>]
+<H3>4.6 <A 
+   NAME="50006-210004.6"> </A><A 
+ HREF="theory-bk.html#Q2-50006-21"  NAME="Q1-50006-21">Turing Machines and Type 0 Languages</A></H3>
+   <P >
+   <P >The classes of languages that are accepted by finite-state automata on the one hand and
+pushdown automata on the other hand were shown earlier to be the classes of
+Type 3 and Type 2 languages, respectively. The following two theorems show
+that the class of languages accepted by Turing machines is the class of Type 0<A NAME="50006-21001"> </A>
+languages.
+   <P ><STRONG>Theorem 4.6.1</STRONG> <A 
+   NAME="50006-21002t4.6.1"> </A> 
+Each Type 0 language is a recursively<A NAME="50006-21003"> </A> enumerable language.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="50006-21004t"> </A> 
+Consider any Type 0 grammar G = &lt;N, <FONT FACE="SYMBOL">S</FONT>, P, S&gt;. From G construct a two
+auxiliary-work-tape Turing machine M<SUB>G</SUB> that on a given input x nondeterministically
+generates some string w in L(G), and then accepts x if and only if x = w.
+   <P >The Turing machine M<SUB>G</SUB> generates the string w by tracing a derivation in G of w from
+S. M<SUB>G</SUB> starts by placing the sentential form S in the first auxiliary work tape. Then M<SUB>G</SUB>
+repeatedly replaces the sentential form stored on the first auxiliary work tape with the
+one that succeeds it in the derivation. The second auxiliary work tape is used as
+an intermediate memory, while deriving the successor of each of the sentential
+forms.
+   <P >The successor of each sentential form <FONT FACE="SYMBOL">g</FONT> is obtained by nondeterministically searching
+<FONT FACE="SYMBOL">g</FONT> for a substring <FONT FACE="SYMBOL">a</FONT>, such that <FONT FACE="SYMBOL">a</FONT> <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">b</FONT> is a production rule in G, and then replacing <FONT FACE="SYMBOL">a</FONT> by <FONT FACE="SYMBOL">b</FONT>
+in <FONT FACE="SYMBOL">g</FONT>.
+   <P >M<SUB>G</SUB> uses a subcomponent M<SUB>1</SUB> to copy the prefix of <FONT FACE="SYMBOL">g</FONT> that precedes <FONT FACE="SYMBOL">a</FONT> onto the second
+auxiliary work tape.
+   <P >M<SUB>G</SUB> uses a subcomponent M<SUB>2</SUB> to read <FONT FACE="SYMBOL">a</FONT> from the first auxiliary work tape and replace
+it by <FONT FACE="SYMBOL">b</FONT> on the second.
+   <P >M<SUB>G</SUB> uses a subcomponent M<SUB>3</SUB> to copy the suffix of <FONT FACE="SYMBOL">g</FONT> that succeeds <FONT FACE="SYMBOL">a</FONT> onto the second
+auxiliary work tape.
+   <P >M<SUB>G</SUB> uses a subcomponent M<SUB>4</SUB> to copy the sentential form created on the
+second auxiliary work tape onto the first. In addition, M<SUB>G</SUB> uses M<SUB>4</SUB> to determine
+whether the new sentential form is a string in L(G). If w is in L(G), then the
+control is passed to a subcomponent M<SUB>5</SUB>. Otherwise, the control is passed to
+M<SUB>1</SUB>.
+   <P >M<SUB>G</SUB> uses the subcomponent M<SUB>5</SUB> to determine whether the input string x is equal to the
+string w stored on the first auxiliary work tape. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><STRONG>Example 4.6.1</STRONG> <A 
+   NAME="50006-21005t4.6.1"> </A> 
+Consider the grammar G which has the following production rules.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four26x.gif" ALT="  S  ®   aSbS
+Sb  ®   e"></PRE></CENTER>
+   <P >The language L(G) is accepted by the Turing machine M<SUB>G</SUB>, whose transition diagram
+is given in Figure <A 
+ HREF="#50006-21006r4.6.1">4.6.1</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50006-21006r4.6.1"> </A>
+<A 
+   NAME="50006-21006r4.6.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-6-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 4.6.1 </STRONG></NOBR></TD><TD  
+>A Turing machine M<SUB>G</SUB> for simulating the grammar G that has the production rules
+S <FONT FACE="SYMBOL">®</FONT> aSbS and Sb <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">e</FONT>.                                                                                               </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >The components M<SUB>1</SUB>, M<SUB>2</SUB>, and M<SUB>3</SUB> scan from left to right the sentential form stored
+on the first auxiliary work tape. As the components scan the tape they erase its
+content.
+   <P >The component M<SUB>2</SUB> of M<SUB>G</SUB> uses two different sequences of transition rules for the first
+and second production rules: S <FONT FACE="SYMBOL">®</FONT> aSbS and Sb <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">e</FONT>. The sequence of transition rules that
+corresponds to S <FONT FACE="SYMBOL">®</FONT> aSbS removes S from the first auxiliary work tape and
+stores aSbS on the second. The sequence of transition rules that corresponds to
+Sb <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">e</FONT> removes Sb from the first auxiliary work tape and stores nothing on the
+second.
+   <P >The component M<SUB>4</SUB> scans from right to left the sentential form in the second auxiliary
+work tape, erasing the content of the tape during the scanning. M<SUB>4</SUB> starts scanning the
+sentential form in its first state, determining that the sentential form is a string of terminal
+symbols if it reaches the blank symbol B while in the first state. In such a case, M<SUB>4</SUB>
+transfers the control to M<SUB>5</SUB>. M<SUB>4</SUB> determines that the sentential form is not a string of
+terminal symbols if it reaches a nonterminal symbol. In this case, M<SUB>4</SUB> switches from its
+first to its second state. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><STRONG>Theorem 4.6.2</STRONG> <A 
+   NAME="50006-21007t4.6.2"> </A> 
+Each recursively enumerable<A NAME="50006-21008"> </A> language is a Type 0 language.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="50006-21009t"> </A> 
+The proof consists of constructing from a given Turing machine M a grammar that can
+simulate the computations of M. The constructed grammar G consists of three groups of
+production rules.
+   <P >The purpose of the first group is to determine the following three items.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="50006-21010xa"> </A>An initial configuration of M on some input.
+     <LI><A 
+   NAME="50006-21011xb"> </A>Some segment for each auxiliary work tape of M. Each segment must include
+     the location under the head of the corresponding tape.
+     <LI><A 
+   NAME="50006-21012xc"> </A>Some sequence of transition rules of M. The sequence of transition rules must
+     start at the initial state, end at an accepting state, and be compatible in the
+     transitions that it allows between the states.</OL>
+The group of production rules can specify any initial configuration of M, any segment of
+an auxiliary work tape that satisfies the above conditions, and any sequence of transition
+rules that satisfies the above conditions.
+   <P >The purpose of the second group of production rules is to simulate a computation of
+M. The simulation must start at the configuration determined by the first group. In
+addition, the simulation must be in accordance with the sequence of transition
+rules, and within the segments of the auxiliary work tapes determined by the first
+group.
+   <P >The purpose of the third group of production rules is to extract the input whenever an
+accepting computation has been simulated, and to leave nonterminal symbols in the
+sentential form in the other cases. Consequently, the grammar can generate a given
+string if and only if the Turing machine M has an accepting computation on the
+string.
+   <P >Consider any Turing machine M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt;. With no loss of generality
+it can be assumed that M is a two auxiliary-work-tape Turing machine (see Theorem <A 
+ HREF="theory-bk-fourse3.html#50003-13001t4.3.1">4.3.1</A>
+and Proposition <A 
+ HREF="theory-bk-fourse3.html#50003-14001t4.3.1">4.3.1</A>), that no transition rule originates at an accepting state, and that
+N = <FONT FACE="SYMBOL">G</FONT> <FONT FACE="SYMBOL">È</FONT> { <FONT FACE="SYMBOL">t</FONT> | <FONT FACE="SYMBOL">t</FONT> is in <FONT FACE="SYMBOL">d</FONT> } <FONT FACE="SYMBOL">È</FONT> { [q] | q is in Q } <FONT FACE="SYMBOL">È</FONT> {¢, $, <IMG 
+SRC="theory-bk-four27x.gif" ALT="PICT" >, <IMG 
+SRC="theory-bk-four28x.gif" ALT="PICT" >, <IMG 
+SRC="theory-bk-four29x.gif" ALT="PICT" >, #, S, A, C, D, E, F, K} is
+a multiset whose symbols are all distinct.
+   <P >From M construct a grammar G = &lt;N, <FONT FACE="SYMBOL">S</FONT>, P, S&gt; that generates L(M), by tracing in
+its derivations the configurations that M goes through in its accepting computations. The
+production rules in P are of the following form.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="50006-21013xa"> </A>Production  rules  for  generating  any  sentential  form  that  has  the  following
+     pattern.
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four30x.gif" ALT=" | 0              1|             2 |
+c--a1··· an$B ···B --B···B#B  ···B --B ···B#ti1 ··· tit"></PRE></CENTER>
+     <P >Each    such    sentential    form    corresponds    to    an    initial    configuration
+     (¢q<SUB>0</SUB>a<SUB>1</SUB> · · · a<SUB>n</SUB>$, q<SUB>0</SUB>, q<SUB>0</SUB>) of M, and a sequence of transition rules <FONT FACE="SYMBOL">t</FONT><SUB>i<SUB>1</SUB></SUB> · · · <FONT FACE="SYMBOL">t</FONT><SUB>i<SUB>t</SUB></SUB>. The
+     transition rules define a sequence of compatible states that starts at the initial
+     state and ends at an accepting state. <IMG 
+SRC="theory-bk-four31x.gif" ALT="PICT" > represents the input head, <IMG 
+SRC="theory-bk-four32x.gif" ALT="PICT" > represents
+     the head of the first auxiliary work tape, and <IMG 
+SRC="theory-bk-four33x.gif" ALT="PICT" >  represents the head of the
+     second  auxiliary  work  tape.  The  string  B · · · B<IMG 
+SRC="theory-bk-four34x.gif" ALT="PICT" >B · · · B corresponds  to  a
+     segment of the first auxiliary work tape, and the string B · · · B<IMG 
+SRC="theory-bk-four35x.gif" ALT="PICT" >B · · · B to a
+     segment of the second.
+     <P >A string in the language is derivable from the sentential form if and only if the
+     following three conditions hold.
+         <OL TYPE="1" 
+>
+         <LI><A 
+   NAME="50006-21014xa1"> </A>The string is equal to a<SUB>1</SUB> · · · a<SUB>n</SUB>.
+         <LI><A 
+   NAME="50006-21015xa2"> </A>M  accepts  a<SUB>1</SUB> · · · a<SUB>n</SUB>  in  a  computation  that  uses  the  sequence  of
+         transition rules <FONT FACE="SYMBOL">t</FONT><SUB>i<SUB>1</SUB></SUB> · · · <FONT FACE="SYMBOL">t</FONT><SUB>i<SUB>t</SUB></SUB>.
+         <LI><A 
+   NAME="50006-21016xa3"> </A>B · · · B<IMG 
+SRC="theory-bk-four36x.gif" ALT="PICT" >B · · · B corresponds to a segment of the <I>i</I>th auxiliary work
+         tape  that  is  sufficiently  large  for  the  considered  computation  of  M,
+         1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> 2. The position of <IMG 
+SRC="theory-bk-four37x.gif" ALT="PICT" > in the segment indicates the initial location
+         of the corresponding auxiliary work-tape head in the segment.</OL>
+     The production rules are of the following form.
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four38x.gif" ALT="  S  ®   c|0 A
+ A  ®   aA      Foreachinputsymbol ainS.
+    ®   $C
+ C  ®   BC
+    ®   |1 D
+ D  ®   BD
+    ®   #E
+ E  ®   BE
+    ®   |2 F
+ F  ®   BF
+    ®   #[q ]   Fortheinitialstateq .
+[q] ®   t[p0]    For each pair q and 0p of states, and for each
+                transition rulet,suchthatt leavesstate qand
+                entersstatep.
+[q ] ®   e       Foreachacceptingstateq .
+ f                                  f"></PRE></CENTER>
+     <P >The production rules for the nonterminal symbols S and A can generate a
+     string of the form ¢<IMG 
+SRC="theory-bk-four39x.gif" ALT="PICT" >a<SUB>1</SUB> · · · a<SUB>n</SUB>$C for each possible input a<SUB>1</SUB> · · · a<SUB>n</SUB> of M. The
+     production rules for the nonterminal symbols C and D can generate a string of
+     the form B · · · B<IMG 
+SRC="theory-bk-four40x.gif" ALT="PICT" >B · · · B#E for each possible segment B · · · B<IMG 
+SRC="theory-bk-four41x.gif" ALT="PICT" >B · · · B
+     of the first auxiliary work tape that contains the corresponding head location.
+     The  production  rules  for  E  and  F  can  generate  a  string  of  the  form
+     B · · · B<IMG 
+SRC="theory-bk-four42x.gif" ALT="PICT" >B · · · B#[q<SUB>0</SUB>] for each possible segment B · · · B<IMG 
+SRC="theory-bk-four43x.gif" ALT="PICT" >B · · · B of the
+     second  tape  that  contains  the  corresponding  head  location.  The  production
+     rules  for  the  nonterminal  symbols  that  correspond  to  the  states  of  M  can
+     generate any sequence <FONT FACE="SYMBOL">t</FONT><SUB>i<SUB>1</SUB></SUB> · · · <FONT FACE="SYMBOL">t</FONT><SUB>i<SUB>t</SUB></SUB>  of  transition  rules  of  M that  starts  at  the
+     initial  state,  ends  at  an  accepting  state,  and  is  compatible  in  the  transition
+     between the states.
+     <LI><A 
+   NAME="50006-21017xb"> </A>Production rules for deriving from a sentential form
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four44x.gif" ALT=" ti1 ···tij- 1u 0 v$B ···Bu1|1 v1B ···B#B ···Bu2|2 v2B ···B#tij ···tit,"></PRE></CENTER>
+     <P >which corresponds to configuration <FONT FACE="SYMBOL">g</FONT>  = (uqv$, u<SUB>1</SUB>qv<SUB>1</SUB>, u<SUB>2</SUB>qv<SUB>2</SUB>), a sentential
+     form
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four45x.gif" ALT="          | |         ||                 ||
+ti1 ··· tij^u0-^v$B ···B ^u11v^1B ···B#B  ···B ^u22v^2B ···B#tij+1··· tit,"></PRE></CENTER>
+     <P >which  corresponds  to  configuration  <IMG 
+SRC="theory-bk-four46x.gif" ALT="^g">  =  (û<IMG 
+SRC="theory-bk-four47x.gif" ALT="^q"><IMG 
+SRC="theory-bk-four48x.gif" ALT="^v">$, û<SUB>1</SUB><IMG 
+SRC="theory-bk-four49x.gif" ALT="^q"><IMG 
+SRC="theory-bk-four50x.gif" ALT="^v"><SUB>1</SUB>, û<SUB>2</SUB><IMG 
+SRC="theory-bk-four51x.gif" ALT="^q"><IMG 
+SRC="theory-bk-four52x.gif" ALT="^v"><SUB>2</SUB>).  <FONT FACE="SYMBOL">g</FONT>  and  <IMG 
+SRC="theory-bk-four53x.gif" ALT="^g"> are
+     assumed to be two configurations of M such that <IMG 
+SRC="theory-bk-four54x.gif" ALT="g^"> is reachable from <FONT FACE="SYMBOL">g</FONT> by a
+     move that uses the transition rule <FONT FACE="SYMBOL">t</FONT><SUB>i<SUB>j</SUB></SUB>.
+     <P >For each transition rule <FONT FACE="SYMBOL">t</FONT> the set of production rules have
+         <OL TYPE="1" 
+>
+         <LI><A 
+   NAME="50006-21018xb1"> </A>A production rule of the form X<FONT FACE="SYMBOL">t</FONT> <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">t</FONT>X for each X in <FONT FACE="SYMBOL">S</FONT><FONT FACE="SYMBOL">È</FONT><FONT FACE="SYMBOL">G</FONT><FONT FACE="SYMBOL">È</FONT>{¢, $, #}.
+         <LI><A 
+   NAME="50006-21019xb2"> </A>A  production  rule  of  the  form  <IMG 
+SRC="theory-bk-four55x.gif" ALT="PICT" ><FONT FACE="SYMBOL">t</FONT>a  <FONT FACE="SYMBOL">®</FONT>  <FONT FACE="SYMBOL">t</FONT><IMG 
+SRC="theory-bk-four56x.gif" ALT="PICT" >a,  for  each  symbol  a  in
+         <FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> {¢, $} that satisfies the following condition: <FONT FACE="SYMBOL">t</FONT> is a transition rule that
+         scans the symbol a on the input tape without moving the input head.
+         <LI><A 
+   NAME="50006-21020xb3"> </A>A  production  rule  of  the  form  <IMG 
+SRC="theory-bk-four57x.gif" ALT="PICT" ><FONT FACE="SYMBOL">t</FONT>a  <FONT FACE="SYMBOL">®</FONT>  <FONT FACE="SYMBOL">t</FONT>a<IMG 
+SRC="theory-bk-four58x.gif" ALT="PICT" >,  for  each  symbol  a  in
+         <FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> {¢, $} that satisfies the following condition: <FONT FACE="SYMBOL">t</FONT> is a transition rule that
+         scans the symbol a in the input tape while moving the input head one
+         position to the right.
+         <LI><A 
+   NAME="50006-21021xb4"> </A>A production rule of the form a<IMG 
+SRC="theory-bk-four59x.gif" ALT="PICT" ><FONT FACE="SYMBOL">t</FONT>b <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">t</FONT><IMG 
+SRC="theory-bk-four60x.gif" ALT="PICT" >ab, for each pair of symbols
+         a and b in <FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> {¢, $} that satisfy the following condition: <FONT FACE="SYMBOL">t</FONT> is a transition
+         rule that scans the symbol b in the input tape while moving the input
+         head one position to the left.
+         <LI><A 
+   NAME="50006-21022xb5"> </A>A production rule of the form <IMG 
+SRC="theory-bk-four61x.gif" ALT="PICT" ><FONT FACE="SYMBOL">t</FONT>X  <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">t</FONT><IMG 
+SRC="theory-bk-four62x.gif" ALT="PICT" >Y  for each 1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> 2,
+         and for each pair of symbols X and Y  in <FONT FACE="SYMBOL">G</FONT> that satisfy the following
+         condition: <FONT FACE="SYMBOL">t</FONT> is a transition rule that replaces X with Y in the <I>i</I>th auxiliary
+         work tape without changing the head position.
+         <LI><A 
+   NAME="50006-21023xb6"> </A>A production rule of the form <IMG 
+SRC="theory-bk-four63x.gif" ALT="PICT" ><FONT FACE="SYMBOL">t</FONT>X  <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">t</FONT>Y <IMG 
+SRC="theory-bk-four64x.gif" ALT="PICT" >  for each 1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> 2,
+         and for each pair of symbols X and Y  in <FONT FACE="SYMBOL">G</FONT> that satisfy the following
+         condition: <FONT FACE="SYMBOL">t</FONT> is a transition rule that replaces X with Y in the <I>i</I>th auxiliary
+         work tape while moving the corresponding head one position to the right.
+         <LI><A 
+   NAME="50006-21024xb7"> </A>A production rule of the form X<IMG 
+SRC="theory-bk-four65x.gif" ALT="PICT" ><FONT FACE="SYMBOL">t</FONT>Y  <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">t</FONT><IMG 
+SRC="theory-bk-four66x.gif" ALT="PICT" >XZ for each 1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> 2,
+         and for each triplet of symbols X, Y, and Z in <FONT FACE="SYMBOL">G</FONT> that satisfy the following
+         condition: <FONT FACE="SYMBOL">t</FONT> is a transition rule that replaces the symbol Y  with Z in
+         the <I>i</I>th auxiliary work tape while moving the corresponding head one
+         position to the left.</OL>
+     The purpose of the production rules in (1) is to transport <FONT FACE="SYMBOL">t</FONT> from right to left
+     over the nonhead symbols in {<IMG 
+SRC="theory-bk-four67x.gif" ALT="PICT" >, <IMG 
+SRC="theory-bk-four68x.gif" ALT="PICT" >, <IMG 
+SRC="theory-bk-four69x.gif" ALT="PICT" >}, across a representation
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four70x.gif" ALT=" u 0-v$B ···Bu  1|vB ···B#B ···Bu   2|vB ···B#
+            1  1               2  2"></PRE></CENTER>
+     <P >of  a  configuration  of  M.  <FONT FACE="SYMBOL">t</FONT>  gets  across  the  head  symbols  <IMG 
+SRC="theory-bk-four71x.gif" ALT="PICT" >,  <IMG 
+SRC="theory-bk-four72x.gif" ALT="PICT" >,  and  <IMG 
+SRC="theory-bk-four73x.gif" ALT="PICT" >
+     by using the production rules in (2) through (7). As <FONT FACE="SYMBOL">t</FONT> gets across the head
+     symbols, the production rules in (2) through (7) &#34;simulate&#34; the changes in the
+     tapes of M, and the corresponding heads position, because of the transition
+     rule <FONT FACE="SYMBOL">t</FONT>.
+     <LI><A 
+   NAME="50006-21025xc"> </A>Production rules for extracting from a sentential form
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four74x.gif" ALT="   ||         | |                | |
+u 0-v$B ···Bu1 1 v1B ···B#B ···Bu2 2 v2B ···B#,"></PRE></CENTER>
+     <P >which  corresponds  to  an  accepting  configuration  of  M,  the  input  that  M
+     accepts. The production rules are as follows.
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four75x.gif" ALT="    |
+ tfc  ®   K   For each transition rule t that enters an accepting
+              state.
+ tK   ®   K   For each transition rule t that does not enter an
+              acceptingstate.
+ Ka   ®   aK  Foreachinputsymbol ainS. |||| |
+KX    ®   K   ForeachsymbolX  in GÈ {0-,1-,2 ,$,#}.
+  K   ®   e"></PRE></CENTER>
+     <P >                                                                                           <IMG 
+SRC="theory-bk-four76x.gif" ALT="PICT" >
+                                                                                              </OL>
+   <P >
+   <P ><STRONG>Example 4.6.2</STRONG> <A 
+   NAME="50006-21026t4.6.2"> </A> 
+Let M be the Turing machine whose transition diagram is given in Figure <A 
+ HREF="theory-bk-fourse5.html#50005-20020r4.5.6">4.5.6</A>(a).
+L(M) is generated by the grammar G that consists of the following production
+rules.
+     <OL TYPE="A" 
+>
+     <LI><A 
+   NAME="50006-21027xa"> </A>Production  rules  that  find  a  sentential  form  that  corresponds  to  the  initial
+     configuration of M, according to (a) in the proof of Theorem <A 
+ HREF="#50006-21007t4.6.2">4.6.2</A>.
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four77x.gif" ALT="        || |
+S  ®   c-0 A          D  ®   BD             [q0] ®   t1[q0]
+A  ®   aA                ®   #E                 ®   t2[q0]
+   ®   bA             E  ®   BE|                ®   t3[q1]
+   ®   cA                ®   -2 F           [q1] ®   t4[q1]
+   ®   $C             F  ®   BF                 ®   t5[q2]
+C  ®   BC|               ®   #[q0]          [q2] ®   e
+   ®   -1 D"></PRE></CENTER>
+     <LI><A 
+   NAME="50006-21028xb"> </A>&#34;Transporting&#34;  production  rules  that  correspond  to  (b.1)  in  the  proof  of
+     Theorem <A 
+ HREF="#50006-21007t4.6.2">4.6.2</A>, 1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> 5.
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four78x.gif" ALT=" ati  ®  tia                   Bti  ®   tiB
+bti  ®  tib                    cti ®   tic
+cti  ®  tic                    $ti ®   ti$
+dti  ®  tid                    #ti ®   ti#"></PRE></CENTER>
+     <LI><A 
+   NAME="50006-21029xc"> </A>&#34;Simulating&#34;  production  rules  that  correspond  to  (b.2-b.4)  in  the  proof  of
+     Theorem <A 
+ HREF="#50006-21007t4.6.2">4.6.2</A>.
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four79x.gif" ALT=" |0 t1a ®  t1a 0       0|t2b  ®  t2b 0|      0 t3c ®  t3 0|c
+ 0 t4c ®  t4c 0       0|t5$  ®  t5|0 $"></PRE></CENTER>
+     <LI><A 
+   NAME="50006-21030xd"> </A>&#34;Simulating&#34;  production  rules  that  correspond  to  (b.5-b.7)  in  the  proof  of
+     Theorem <A 
+ HREF="#50006-21007t4.6.2">4.6.2</A>.
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four80x.gif" ALT="   ||           ||      | |         | |      ||          ||
+  1|t1B   ®  t1d1-      -1 t2B ®  t2|1 B    d1-t3B   ®  t31|dB
+B 1|t3B   ®  t31|BB     d1 t4d ®  t4-1 dd   B-1 t4d ®  t41-Bd
+  1|t5B   ®  t51|B      | |          | |     ||          ||
+  2|t1B   ®  t12|B      -2 t2B ®  t2d-2     d2-t3B   ®  t32|dB
+B 2|t3B   ®  t32|BB     d2 t4d ®  t4-2 dd   B-2 t4d ®  t42-Bd
+  2-t5B   ®  t52-B"></PRE></CENTER>
+     <LI><A 
+   NAME="50006-21031xe"> </A>&#34;Extracting&#34;   production   rules   that   correspond   to   (c)   in   the   proof   of
+     Theorem <A 
+ HREF="#50006-21007t4.6.2">4.6.2</A>.
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-four81x.gif" ALT="  t5c  ®   K
+ tiK   ®   K    Fori = 1,...,4.
+ Ka   ®   aK
+ Kb   ®   bK
+ Kc   ®   cK
+ Kd   ®   K
+ KB   ®   K
+K |i| ®   K    Fori = 0,1,2.
+ K$   ®   K
+ K#   ®   K
+  K   ®   e"></PRE></CENTER>
+     </OL>
+   <P >
+The string abc has a leftmost derivation of the following form in G.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four82x.gif" ALT=" S  Þ    c|0 A
+   Þ *  c|0 abc$C
+   Þ *  c|0 abc$B 1|BB#E
+   Þ *  c|0 abc$B 1|BB#B 2|BB#[q0]
+   Þ *  c|0 abc$B 1|BB#B 2|BB#t1t2t3t4t5 The sententialforms
+   Þ *   t1ca|0 bc$Bd|1 B#B 2-BB#t2t3t4t5 inthederivation,
+   Þ *   t1t2cab 0|c$Bd|1 B#Bd 2 B#t3t4t5  thatcorrespond to
+   Þ *   t1t2t3cab 0 c$B 1|dB#B|2 dB#t4t5 theconfigurations
+   Þ *   tt t tcabc|0 $ 1-BdB#|2 BdB#t   inthesimulated
+   Þ *   1tt2t34tt cabc 0|$ 1 BdB#|2 BdB# 5 computationof M.
+   Þ *   1tt2t34tK5abc 0|$ 1|BdB#|2 BdB#
+   Þ *   1Ka2bc340 $ 1-BdB#|2 BdB#
+   Þ *   abcK |1 BdB# 2 BdB#
+   Þ *   abcK |2 BdB#
+   Þ *   abcK
+   Þ     abc"></PRE></CENTER>
+   <P >                                                                                              <IMG 
+SRC="theory-bk-four83x.gif" ALT="PICT" >
+   <P >
+   <P >Theorem <A 
+ HREF="#50006-21007t4.6.2">4.6.2</A>, together with Theorem <A 
+ HREF="theory-bk-fourse5.html#50005-20003t4.5.3">4.5.3</A>, implies the following result.
+   <P ><STRONG>Corollary 4.6.1</STRONG> <A 
+   NAME="50006-21032t4.6.1"> </A> 
+The membership problem is undecidable for Type 0 grammars<A NAME="50006-21033"> </A> or, equivalently, for
+{ (G, x) | G is a Type 0 grammar, and x is in L(G) }.<A NAME="50006-21034"> </A>
+   <P >
+   <P >A <I>context-sensitive<A NAME="50006-21035"> </A> grammar</I> is a Type 1 grammar in which each production rule has
+the form <FONT FACE="SYMBOL">g</FONT><SUB>1</SUB>A<FONT FACE="SYMBOL">g</FONT><SUB>2</SUB> <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">g</FONT><SUB>1</SUB><FONT FACE="SYMBOL">a</FONT><FONT FACE="SYMBOL">g</FONT><SUB>2</SUB> for some nonterminal symbol A. Intuitively, a production rule
+of the form <FONT FACE="SYMBOL">g</FONT><SUB>1</SUB>A<FONT FACE="SYMBOL">g</FONT><SUB>2</SUB> <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">g</FONT><SUB>1</SUB><FONT FACE="SYMBOL">a</FONT><FONT FACE="SYMBOL">g</FONT><SUB>2</SUB> indicates that A <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">a</FONT> can be used only if it is
+within the left context of <FONT FACE="SYMBOL">g</FONT><SUB>1</SUB> and the right context of <FONT FACE="SYMBOL">g</FONT><SUB>2</SUB>. A language is said to
+be a <I>context-sensitive language</I>, if it can be generated by a context-sensitive
+grammar.
+   <P >A language is context-sensitive if and only if it is a Type 1<A NAME="50006-21036"> </A> language (Exercise <A 
+ HREF="theory-bk-fourli1.html#50008-25084r4.6.4">4.6.4</A>),
+and if and only if it is accepted by a linear bounded automaton (Exercise <A 
+ HREF="theory-bk-fourli1.html#50008-25085r4.6.5">4.6.5</A>). By
+definition and Theorem <A 
+ HREF="theory-bk-threese3.html#40003-12001t3.3.1">3.3.1</A>, each context-free<A NAME="50006-21037"> </A> language is also context-sensitive, but
+the converse is false because the non-context-free language { a<SUP>i</SUP>b<SUP>i</SUP>c<SUP>i</SUP> | i <FONT FACE="SYMBOL">³</FONT> 0 } is
+context-sensitive. It can also be shown that each context-sensitive language is recursive
+(Exercise <A 
+ HREF="theory-bk-oneli1.html#20007-25103r1.4.4">1.4.4</A>), and that the recursive language L<SUB>LBA_reject</SUB> = { x | x = x<SUB>i</SUB> and M<SUB>i</SUB> does
+not have accepting computations on input x<SUB>i</SUB> in which at most |x<SUB>i</SUB>| locations are visited in
+each auxiliary work tape } is not context-sensitive (Exercise <A 
+ HREF="theory-bk-fourli1.html#50008-25065r4.5.6">4.5.6</A>).<A NAME="50006-21038"> </A>
+   <P >Figure <A 
+ HREF="#50006-21039r4.6.2">4.6.2</A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50006-21039r4.6.2"> </A>
+<A 
+   NAME="50006-21039r4.6.2"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-6-2.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 4.6.2 </STRONG></NOBR></TD><TD  
+>Hierarchy of some classes of languages. Each of the indicated<A NAME="50006-21040"> </A> languages belongs to
+the corresponding class but not to the class just below it in the hierarchy.                  </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>gives the hierarchy of some classes of languages. All the inclusions in the hierarchy are
+proper.
+   <P >
+   <P >[<A 
+ HREF="theory-bk-fourse5.html" >prev</A>] [<A 
+ HREF="theory-bk-fourse5.html#tailtheory-bk-fourse5.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-fourse6.html" >front</A>] [<A 
+ HREF="theory-bk-four.html#theory-bk-fourse6.html" >up</A>] <A 
+   NAME="tailtheory-bk-fourse6.html"> </A></BODY></HTML>

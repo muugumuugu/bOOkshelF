@@ -1,0 +1,715 @@
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-four.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-fourse2.html" >next</A>] [<A 
+ HREF="#tailtheory-bk-fourse1.html">tail</A>] [<A 
+ HREF="theory-bk-four.html#theory-bk-fourse1.html" >up</A>]
+<H3>4.1 <A 
+   NAME="50001-20004.1"> </A><A 
+ HREF="theory-bk.html#Q2-50001-2"  NAME="Q1-50001-2">Turing Transducers</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-50001-3"  NAME="Q2-50001-3">Turing Transducers</A>
+<BR>         <A 
+ HREF="#Q1-50001-4"  NAME="Q2-50001-4">Configurations and Moves of Turing Transducers</A>
+<BR>         <A 
+ HREF="#Q1-50001-5"  NAME="Q2-50001-5">Determinism and Nondeterminism in Turing Transducers</A>
+<BR>         <A 
+ HREF="#Q1-50001-6"  NAME="Q2-50001-6">Computations of Turing Transducers</A>
+<BR>         <A 
+ HREF="#Q1-50001-7"  NAME="Q2-50001-7">Turing Machines</A>
+<BR>         <A 
+ HREF="#Q1-50001-8"  NAME="Q2-50001-8">Church's Thesis</A>
+   <P >The study of finite-memory programs and recursive finite-domain programs benefited
+considerably from the introduction of the mathematical systems of finite-state
+transducers and pushdown transducers, respectively. The usefulness of these
+mathematical systems stemmed from the abstraction they lend to the primitive
+computing machines that simulate the behavior of the programs. With this in mind it is
+only natural to try to follow a similar approach in studying the general class of
+programs.
+   <P >Recursive finite-domain programs have been introduced as a generalization of
+finite-memory programs. In parallel, pushdown transducers have been introduced as
+a generalization of finite-state transducers. Going to the most general class of
+programs, therefore, suggests trying a similar generalization to the corresponding
+transducers.
+   <P ><EM><A 
+   NAME="50001-3000"> </A><A 
+ HREF="#Q2-50001-3"  NAME="Q1-50001-3">Turing Transducers</A></EM>
+<A NAME="50001-3001"> </A>
+   <P >Among the most general models of transducers that come to mind are probably those
+that allow more than one auxiliary work tape, unrestricted auxiliary work tapes, two-way
+input heads, inputs enclosed between endmarkers, and acceptance anywhere
+in the inputs. A class of such models, called Turing transducers, is introduced
+below.
+   <P >Each Turing transducer M can be viewed as an abstract computing machine
+that consists of a <I>finite-state<A NAME="50001-3002"> </A> control</I>, an <I>input<A NAME="50001-3003"> </A> tape</I>, a read-only <I>input<A NAME="50001-3004"> </A> head</I>, m
+<I>auxiliary<A NAME="50001-3005"> </A> work tapes</I> for some m <FONT FACE="SYMBOL">³</FONT> 0, a read-write <I>auxiliary<A NAME="50001-3006"> </A> work-tape head</I>
+for each auxiliary work tape, an <I>output<A NAME="50001-3007"> </A> tape</I>, and a write-only <I>output<A NAME="50001-3008"> </A> head</I> (see
+Figure <A 
+ HREF="#50001-3009r4.1.1">4.1.1</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50001-3009r4.1.1"> </A>
+<A 
+   NAME="50001-3009r4.1.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-1-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 4.1.1 </STRONG></NOBR></TD><TD  
+>Schema of a Turing transducer.                                                                                    </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >Each move of M is determined by the state of M, the symbol under the input head, and
+the symbols under the heads of the auxiliary work tapes. Each move of M consists of
+changing the state of M, changing the symbol under the head of each auxiliary work tape,
+relocating each head by at most one position in any direction, and writing at most one
+symbol onto the output tape.
+   <P >Initially M is assumed to have its input a<SUB>1</SUB> · · · a<SUB>n</SUB> stored on the input tape
+between a left endmarker ¢ and a right endmarker $. In addition, the input head
+is assumed to be located at the start of the input, the auxiliary work tapes are
+assumed to contain just blank symbols B, and the output tape is assumed to be
+empty.
+   <P ><STRONG>Example 4.1.1</STRONG> <A 
+   NAME="50001-3010t4.1.1"> </A> 
+A one auxiliary-work-tape Turing transducer M can compute the relation { (x, x<SUP>rev</SUP>) | x is
+in {a, b}* and x = x<SUP>rev</SUP> } by checking that each input a<SUB>1</SUB> · · · a<SUB>n</SUB> satisfies the equality
+a<SUB>1</SUB> · · · a<SUB>n</SUB> = a<SUB>n</SUB> · · · a<SUB>1</SUB>. The computations of M can be in the following manner (see
+Figure <A 
+ HREF="#50001-3011r4.1.2">4.1.2</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50001-3011r4.1.2"> </A>
+<A 
+   NAME="50001-3011r4.1.2"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-1-2.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 4.1.2 </STRONG></NOBR></TD><TD  
+>A description of how a Turing transducer computes the relation { (x, x<SUP>rev</SUP>) | x is in
+{a, b}* and x = x<SUP>rev</SUP> }.                                                                                                </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >M starts each computation by moving forward along the input tape and the auxiliary
+work tape simultaneously, one location at the time until the right endmarker $ is
+encountered on the input tape. As M moves along the tapes it copies onto the auxiliary
+work tape the symbols being read from the input. Then M scans the auxiliary work tape
+backward, and locates the first nonblank symbol. Finally, M scans the input tape
+backward, and the auxiliary work tape forward simultaneously, symbol by symbol. As M
+scans the two tapes it checks for the equality of the symbols being read at each move. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" *** ">
+   <P >
+   <P >Formally, a mathematical system M consisting of an eight-tuple &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt;
+is called an <I>m auxiliary-work-tape Turing transducer</I> for m <FONT FACE="SYMBOL">³</FONT> 0 if the following
+conditions hold.
+     <DL><DT><STRONG>
+Q </STRONG><DD 
+>is a finite set, and the elements of Q are called the <I>states</I><A NAME="50001-3012"> </A> of M.
+     <DT><STRONG>
+<FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT> </STRONG><DD 
+>are alphabets that do not include the symbols ¢ and $. <FONT FACE="SYMBOL">S</FONT> is called the <I>input<A NAME="50001-3013"> </A>
+     alphabet</I> of M, and the elements of <FONT FACE="SYMBOL">S</FONT> are called the <I>input symbols</I> of M. <FONT FACE="SYMBOL">G</FONT> is
+     called the <I>auxiliary<A NAME="50001-3014"> </A> work-tape alphabet</I> of M, and the elements of <FONT FACE="SYMBOL">G</FONT> are called
+     the <I>auxiliary work-tape symbols</I> of M. <FONT FACE="SYMBOL">D</FONT> is called the <I>output<A NAME="50001-3015"> </A> alphabet</I> of M,
+     and the elements of <FONT FACE="SYMBOL">D</FONT> are called the <I>output symbols</I> of M.
+     <DT><STRONG>
+<FONT FACE="SYMBOL">d</FONT> </STRONG><DD 
+>is  a  relation  from  Q × (<FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> {¢, $}) × <FONT FACE="SYMBOL">G</FONT><SUP>m</SUP>     to     Q × {-1, 0, +1} × (<FONT FACE="SYMBOL">G</FONT> ×
+     {-1, 0, +1})<SUP>m</SUP>  ×  (<FONT FACE="SYMBOL">D</FONT>  <FONT FACE="SYMBOL">È</FONT>  {<FONT FACE="SYMBOL">e</FONT>}).  <FONT FACE="SYMBOL">d</FONT>  is  called  the  <I>transition<A NAME="50001-3016"> </A>  table</I>  of  M,  and
+     the  elements  (q, a, b<SUB>1</SUB>, b<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>, (p, d<SUB>0</SUB>, c<SUB>1</SUB>, d<SUB>1</SUB>, c<SUB>2</SUB>, d<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, c<SUB>m</SUB>, d<SUB>m</SUB>, <FONT FACE="SYMBOL">r</FONT>)),  or  simply
+     (q, a, b<SUB>1</SUB>, b<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>, p, d<SUB>0</SUB>, c<SUB>1</SUB>, d<SUB>1</SUB>, c<SUB>2</SUB>, d<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, c<SUB>m</SUB>, d<SUB>m</SUB>, <FONT FACE="SYMBOL">r</FONT>), of the transition table <FONT FACE="SYMBOL">d</FONT> are
+     called the <I>transition<A NAME="50001-3017"> </A> rules</I> of M.
+     <DT><STRONG>
+q<SUB>0</SUB> </STRONG><DD 
+>is an element in Q, called the <I>initial<A NAME="50001-3018"> </A> state</I> of M.
+     <DT><STRONG>
+B </STRONG><DD 
+>is a symbol in <FONT FACE="SYMBOL">G</FONT>, called the <I>blank<A NAME="50001-3019"> </A> symbol</I> of M.
+     <DT><STRONG>
+F </STRONG><DD 
+>is a subset of Q, and the states in F are called the <I>accepting</I><A NAME="50001-3020"> </A>, or <I>final</I>, <I>states</I> of M.</DL>
+¢ is a symbol called <I>left<A NAME="50001-3021"> </A> endmarker</I>, and $ is a symbol called <I>right endmarker</I>.
+   <P ><STRONG>Example 4.1.2</STRONG> <A 
+   NAME="50001-3022t4.1.2"> </A> 
+M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt; is a one auxiliary-work-tape Turing transducer
+if Q = {q<SUB>0</SUB>, q<SUB>1</SUB>, q<SUB>2</SUB>, q<SUB>3</SUB>, q<SUB>4</SUB>}, <FONT FACE="SYMBOL">S</FONT> = <FONT FACE="SYMBOL">D</FONT> = {a, b}, <FONT FACE="SYMBOL">G</FONT> = {a, b, B}, F = {q<SUB>4</SUB>}, and
+<FONT FACE="SYMBOL">d</FONT> = {(q<SUB>0</SUB>, a, B, q<SUB>1</SUB>, +1, a, +1, a), (q<SUB>0</SUB>, b, B, q<SUB>1</SUB>, +1, b, +1, b),
+(q<SUB>0</SUB>, $, B, q<SUB>4</SUB>, 0, B, 0, <FONT FACE="SYMBOL">e</FONT>),   (q<SUB>1</SUB>, a, B, q<SUB>1</SUB>, +1, a, +1, a),   (q<SUB>1</SUB>, b, B, q<SUB>1</SUB>, +1, b, +1, b),
+(q<SUB>1</SUB>, a, B, q<SUB>2</SUB>, 0, B, -1, <FONT FACE="SYMBOL">e</FONT>),  (q<SUB>1</SUB>, b, B, q<SUB>2</SUB>, 0, B, -1, <FONT FACE="SYMBOL">e</FONT>),        (q<SUB>2</SUB>, a, a, q<SUB>2</SUB>, 0, a, -1, <FONT FACE="SYMBOL">e</FONT>),
+(q<SUB>2</SUB>, b, a, q<SUB>2</SUB>, 0, a, -1, <FONT FACE="SYMBOL">e</FONT>),    (q<SUB>2</SUB>, a, b, q<SUB>2</SUB>, 0, b, -1, <FONT FACE="SYMBOL">e</FONT>),           (q<SUB>2</SUB>, b, b, q<SUB>2</SUB>, 0, b, -1, <FONT FACE="SYMBOL">e</FONT>),
+(q<SUB>2</SUB>, a, B, q<SUB>3</SUB>, 0, B, +1, <FONT FACE="SYMBOL">e</FONT>),  (q<SUB>2</SUB>, b, B, q<SUB>3</SUB>, 0, B, +1, <FONT FACE="SYMBOL">e</FONT>),     (q<SUB>3</SUB>, a, a, q<SUB>3</SUB>, +1, a, +1, <FONT FACE="SYMBOL">e</FONT>),
+(q<SUB>3</SUB>, b, b, q<SUB>3</SUB>, +1, b, +1, <FONT FACE="SYMBOL">e</FONT>), (q<SUB>3</SUB>, $, B, q<SUB>4</SUB>, 0, B, 0, <FONT FACE="SYMBOL">e</FONT>)}.
+   <P >The Turing transducer M has five states and 16 transition rules. M uses the state q<SUB>0</SUB> as
+an initial state, and the state q<SUB>4</SUB> as an accepting state. The symbol B is considered to be the
+blank symbol of M. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >A mathematical system M is called a <I>Turing transducer</I> if it is an m auxiliary-work-tape
+Turing transducer for some m <FONT FACE="SYMBOL">³</FONT> 0.
+   <P >Each Turing transducer M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt; can be graphically
+represented by a <I>transition<A NAME="50001-3023"> </A> diagram</I> of the following form. For each state in Q the
+transition diagram has a corresponding node drawn as a circle. The initial state is identified
+by an arrow from nowhere that points to the node. Each accepting state is identified by a
+double circle. Each transition rule (q, a, b<SUB>1</SUB>, b<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>, p, d<SUB>0</SUB>, c<SUB>1</SUB>, d<SUB>1</SUB>, c<SUB>2</SUB>, d<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, c<SUB>m</SUB>, d<SUB>m</SUB>, <FONT FACE="SYMBOL">r</FONT>)
+in <FONT FACE="SYMBOL">d</FONT> is represented by an edge from the node that corresponds to state q to the
+node that corresponds to state p, where the edge carries a label of the following
+form.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four1x.gif" ALT="     a/ d0
+  ..b1./...c1,d1
+bm /cm,dm
+  /r"></PRE></CENTER>
+   <P >In the label the top row &#34;a/d<SUB>0</SUB>&#34; corresponds to the input tape, the bottom row &#34;/<FONT FACE="SYMBOL">r</FONT>&#34;
+corresponds to the output tape, and row &#34;b<SUB>i</SUB>/c<SUB>i</SUB>, d<SUB>i</SUB>&#34; corresponds to the <I>i</I>th auxiliary work
+tape.
+   <P >For notational convenience, edges that agree in their origin and destination are merged,
+and their labels are separated by commas.
+   <P ><STRONG>Example 4.1.3</STRONG> <A 
+   NAME="50001-3024t4.1.3"> </A> 
+The transition diagram in Figure <A 
+ HREF="#50001-3025r4.1.3">4.1.3</A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50001-3025r4.1.3"> </A>
+<A 
+   NAME="50001-3025r4.1.3"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-1-3.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 4.1.3 </STRONG></NOBR></TD><TD  
+>An one auxiliary-work-tape Turing transducer.                                                           </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>is a representation of the Turing transducer of Example <A 
+ HREF="#50001-3022t4.1.2">4.1.2</A>. The transition rule
+(q<SUB>0</SUB>, a, B, q<SUB>1</SUB>, +1, a, +1, a) of M is represented in the transition diagram by an edge from
+state q<SUB>0</SUB> to state q<SUB>1</SUB> that carries the label
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four2x.gif" ALT=" a +1
+/B/ aa,+1."></PRE></CENTER>
+   <P >The transition rule (q<SUB>1</SUB>, a, B, q<SUB>1</SUB>, +1, a, +1, a) of M is represented in the transition
+diagram by an edge that starts and ends at state q<SUB>1</SUB> and carries a similar label. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="50001-4000"> </A><A 
+ HREF="#Q2-50001-4"  NAME="Q1-50001-4">Configurations and Moves of Turing Transducers</A></EM>
+   <P >On each input x from <FONT FACE="SYMBOL">S</FONT>* the Turing transducer M has some set of possible
+configurations. Each <I>configuration</I><A NAME="50001-4001"> </A>, or <I>instantaneous description</I>, of the Turing transducer
+M is an (m + 2)-tuple (uqv, u<SUB>1</SUB>qv<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, u<SUB>m</SUB>qv<SUB>m</SUB>, w), where q is a state of M, uv = ¢x$, u<SUB>i</SUB>v<SUB>i</SUB>
+is a string in <FONT FACE="SYMBOL">G</FONT>* for each 1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> m, and w is a string in <FONT FACE="SYMBOL">D</FONT>*. Intuitively, we see that a
+configuration (uqv, u<SUB>1</SUB>qv<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, u<SUB>m</SUB>qv<SUB>m</SUB>, w) says that M is in state q, with the input head at
+the first symbol of v, with the <I>i</I>th auxiliary work tape holding · · · Bu<SUB>i</SUB>v<SUB>i</SUB>B · · · , with the <I>i</I>th
+auxiliary work-tape head at the first symbol of v<SUB>i</SUB>B, and with the output tape holding w
+(see Figure <A 
+ HREF="#50001-4002r4.1.4">4.1.4</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50001-4002r4.1.4"> </A>
+<A 
+   NAME="50001-4002r4.1.4"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-1-4.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 4.1.4 </STRONG></NOBR></TD><TD  
+>A configuration of a Turing transducer.                                                                       </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>With no loss of generality it is assumed that Q and <FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">G</FONT> <FONT FACE="SYMBOL">È</FONT> {¢, $} are mutually
+disjoint.
+   <P >The configuration is said to be an <I>initial<A NAME="50001-4003"> </A> configuration</I> if q = q<SUB>0</SUB>, u = ¢, w = <FONT FACE="SYMBOL">e</FONT>, and
+u<SUB>i</SUB>v<SUB>i</SUB> = <FONT FACE="SYMBOL">e</FONT> for each 1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> m. The initial configuration says that at the start of a
+computation the input is stored on the input tape, delimited by the endmarker ¢ at its
+left and the endmarker $ at its right. The input head is placed on the symbol to
+the right of ¢, that is, on the leftmost symbol of the input when the input is not
+empty, and on the right endmarker $ when the input is empty. The auxiliary work
+tapes are set to contain B's only, and the finite-state control is set at the initial
+state.
+   <P >The configuration is said to be an <I>accepting<A NAME="50001-4004"> </A> configuration</I> if q is an accepting state in
+F.
+   <P ><STRONG>Example 4.1.4</STRONG> <A 
+   NAME="50001-4005t4.1.4"> </A> 
+Let M<SUB>1</SUB> be the one auxiliary-work-tape Turing transducer of Figure <A 
+ HREF="#50001-3025r4.1.3">4.1.3</A>. (¢q<SUB>0</SUB>aabaab$, q<SUB>0</SUB>, <FONT FACE="SYMBOL">e</FONT>)
+is the initial configuration of M<SUB>1</SUB> on input aabaab. On such an input M<SUB>1</SUB> also has
+the configuration (¢aabq<SUB>2</SUB>aab$, aq<SUB>2</SUB>ab, aab). The configurations are shown in
+Figure <A 
+ HREF="#50001-4006r4.1.5">4.1.5</A>(a)
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50001-4006r4.1.5"> </A>
+<A 
+   NAME="50001-4006r4.1.5"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-1-5.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 4.1.5 </STRONG></NOBR></TD><TD  
+>Configurations of Turing transducers.                                                                          </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>and Figure <A 
+ HREF="#50001-4006r4.1.5">4.1.5</A>(b), respectively.
+   <P >Let M<SUB>2</SUB> be the two auxiliary-work-tape Turing transducer of Figure <A 
+ HREF="#50001-4007r4.1.6">4.1.6</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50001-4007r4.1.6"> </A>
+<A 
+   NAME="50001-4007r4.1.6"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-1-6.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 4.1.6 </STRONG></NOBR></TD><TD  
+>A two auxiliary-work-tape Turing transducer.                                                             </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>On input aabaab the Turing transducer has the initial configuration (¢q<SUB>0</SUB>aabaab$, q<SUB>0</SUB>, q<SUB>0</SUB>, <FONT FACE="SYMBOL">e</FONT>).
+Similarly, (q<SUB>3</SUB>¢aabaab$, aq<SUB>3</SUB>ab, q<SUB>3</SUB>Baab, a) is also a configuration of M<SUB>2</SUB> on such an input.
+The configurations are shown in Figure <A 
+ HREF="#50001-4006r4.1.5">4.1.5</A>(c) and Figure <A 
+ HREF="#50001-4006r4.1.5">4.1.5</A>(d), respectively. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >The transition rules of the Turing transducer M are used for defining the possible
+moves of M. Each move is in accordance with some transition rule. A <I>move</I><A NAME="50001-4008"> </A> on transition
+rule (q, a, b<SUB>1</SUB>, b<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>, p, d<SUB>0</SUB>, c<SUB>1</SUB>, d<SUB>1</SUB>, c<SUB>2</SUB>, d<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, c<SUB>m</SUB>, d<SUB>m</SUB>, <FONT FACE="SYMBOL">r</FONT>) changes the state of the finite-state
+control from q to p, scans a in the input tape, moves the input head d<SUB>0</SUB> positions to
+the right, writes <FONT FACE="SYMBOL">r</FONT> on the output tape, moves the output head |<FONT FACE="SYMBOL">r</FONT>| positions to the
+right, scans the symbol b<SUB>i</SUB> on the <I>i</I>th auxiliary work tape, replaces b<SUB>i</SUB> with the
+symbol c<SUB>i</SUB>, and moves the <I>i</I>th auxiliary work-tape head d<SUB>i</SUB> positions to the right, for
+1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> m.
+   <P >A move of M from configuration C<SUB>1</SUB> to configuration C<SUB>2</SUB> is denoted C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "><SUB> M </SUB>C<SUB>2</SUB>, or
+simply C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB>2</SUB> if M is understood. A sequence of zero or more moves of M from
+configuration C<SUB>1</SUB> to configuration C<SUB>2</SUB> is denoted C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "><SUB> M </SUB>* C<SUB>2</SUB>, or simply C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- ">* C<SUB>2</SUB>, if M is
+understood.
+   <P ><STRONG>Example 4.1.5</STRONG> <A 
+   NAME="50001-4009t4.1.5"> </A> 
+The Turing transducer whose transition diagram is given in Figure <A 
+ HREF="#50001-3025r4.1.3">4.1.3</A>, on input aabaab
+has the following sequence of moves between configurations (see Figure <A 
+ HREF="#50001-4010r4.1.7">4.1.7</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50001-4010r4.1.7"> </A>
+<A 
+   NAME="50001-4010r4.1.7"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-1-7.jpg" ALT="[PICT]" 
+>
+<BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure                                                                                                                  4.1.7
+</STRONG></NOBR></TD><TD  
+>A   sequence   of   moves   between   configurations   of   the   Turing   transducer   of
+Figure <A 
+ HREF="#50001-3025r4.1.3">4.1.3</A>.                                                      </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P ><CENTER>
+            <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>(¢q<SUB>0</SUB>aabaab$, q<SUB>0</SUB>, <FONT FACE="SYMBOL">e</FONT>)</TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aq<SUB>1</SUB>abaab$, aq<SUB>1</SUB>, a)</TD>                 <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aaq<SUB>1</SUB>baab$, aaq<SUB>1</SUB>, aa)</TD>               <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aabq<SUB>1</SUB>aab$, aabq<SUB>1</SUB>, aab)</TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aabq<SUB>2</SUB>aab$, aaq<SUB>2</SUB>b, aab)</TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aabq<SUB>2</SUB>aab$, aq<SUB>2</SUB>ab, aab)</TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aabq<SUB>2</SUB>aab$, q<SUB>2</SUB>aab, aab)</TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aabq<SUB>2</SUB>aab$, q<SUB>2</SUB>Baab, aab)</TD>            <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aabq<SUB>3</SUB>aab$, q<SUB>3</SUB>aab, aab)</TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aabaq<SUB>3</SUB>ab$, aq<SUB>3</SUB>ab, aab)</TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aabaaq<SUB>3</SUB>b$, aaq<SUB>3</SUB>b, aab)</TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aabaabq<SUB>3</SUB>$, aabq<SUB>3</SUB>, aab)</TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                          </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(¢aabaabq<SUB>4</SUB>$, aabq<SUB>4</SUB>, aab).</TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>
+   <P >The sequence is the only one that can start at the initial configuration and end at an
+accepting configuration for the input aabaab.<A NAME="50001-4011"> </A> <IMG 
+SRC="theory-bk-four0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="50001-5000"> </A><A 
+ HREF="#Q2-50001-5"  NAME="Q1-50001-5">Determinism and Nondeterminism in Turing Transducers</A></EM>
+   <P >The nature of determinism and nondeterminism in Turing transducers is similar to that
+in pushdown transducers and in finite-state transducers. However, defining these
+properties is simpler for Turing transducers, because the transition rules scan exactly
+one symbol in each tape at each move. In the case of the finite-state transducers
+and the pushdown transducers, the heads can scan zero or one symbols in each
+move.
+   <P >Intuitively, we say that a Turing transducer is deterministic if each pair of transition
+rules that originate at the same state do not agree on the symbols they scan in the tapes. On
+the other hand, a Turing transducer is nondeterministic if it has a pair of transition rules
+that originate at the same state and that agree on the symbols they scan in the
+corresponding tapes.
+   <P >Formally, a Turing transducer M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt; is said to be
+<I>deterministic</I><A NAME="50001-5001"> </A> if there is no pair of transition rules
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four3x.gif" ALT=" (q,a,b1,...,bm,p,d0,c1,d1,...,cm,dm,r)"></PRE></CENTER>
+   <P >and
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four4x.gif" ALT=" (q',a',b'1,...,b'm,p',d'0,c'1,d'1,...,c'm, d'm,r')"></PRE></CENTER>
+   <P >in <FONT FACE="SYMBOL">d</FONT> such that (q, a, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>) = (q', a', b'<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b'<SUB>m</SUB>). A Turing transducer is said to be
+<I>nondeterministic</I><A NAME="50001-5002"> </A> if it is not a deterministic Turing transducer.
+   <P ><STRONG>Example 4.1.6</STRONG> <A 
+   NAME="50001-5003t4.1.6"> </A> 
+The Turing transducer of Example <A 
+ HREF="#50001-3022t4.1.2">4.1.2</A> (see Figure <A 
+ HREF="#50001-3025r4.1.3">4.1.3</A>) is a nondeterministic Turing
+transducer. The pair of transition rules
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four5x.gif" ALT=" (q1,a,B, q1,+1, a,+1, a) and  (q1,a,B, q2,0,B,- 1,e)"></PRE></CENTER>
+   <P >and the pair
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four6x.gif" ALT=" (q ,b,B,q ,+1, b,+1, b) and  (q,b,B,q ,0,B,-1,e),
+ 1      1                  1      2"></PRE></CENTER>
+   <P >are the cause for the nondeterminism of the Turing transducer. The first pair of
+transition rules agree in the prefix (q, a, B), and the second pair agree in the prefix
+(q, b, B).
+   <P >However, the Turing transducer in Figure <A 
+ HREF="#50001-4007r4.1.6">4.1.6</A> is deterministic. None of the transition
+rules that originate at the same state agree in the symbols that they scan under the
+corresponding heads. For instance, the pair
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four7x.gif" ALT=" (q0,a,B,B, q1,+1,B, 0,B,0,e) and  (q0,b,B,B, q1,+1,B, 0,B,0,e)"></PRE></CENTER>
+   <P >of transition rules disagree in the symbols that they scan in the input tape, and the
+pair
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four8x.gif" ALT=" (q ,c,a,a,q ,0,b,+1, b,+1, b) and  (q,c,b,b,q ,0,a,+1, a,+1,a)
+ 3       3                      3       3"></PRE></CENTER>
+   <P >of transition rules disagree in the symbols that they scan in their auxiliary work tapes. <IMG 
+SRC="theory-bk-four0x.gif" ALT="
+*** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="50001-6000"> </A><A 
+ HREF="#Q2-50001-6"  NAME="Q1-50001-6">Computations of Turing Transducers</A></EM>
+   <P >The definitions of computations for finite-state transducers and pushdown transducers
+also apply for Turing transducers. Specifically, an <I>accepting<A NAME="50001-6001"> </A> computation</I> of a Turing
+transducer M is a sequence of moves of M that starts at an initial configuration and
+ends at an accepting configuration. A <I>nonaccepting</I><A NAME="50001-6002"> </A>, or <I>rejecting</I>, <I>computation</I> of
+M is a sequence of moves on an input x for which the following conditions
+hold.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="50001-6003xa"> </A>The sequence starts from the initial configuration of M on input x.
+     <LI><A 
+   NAME="50001-6004xb"> </A>If the sequence is finite, then it ends at a configuration from which no move is
+     possible.
+     <LI><A 
+   NAME="50001-6005xc"> </A>M has no accepting computation on input x.</OL>
+Each accepting computation and each nonaccepting computation of M is said to be a
+<I>computation</I><A NAME="50001-6006"> </A> of M.
+   <P >A computation is said to be a <I>halting computation</I> if it consists of a finite number of
+moves.
+   <P ><STRONG>Example 4.1.7</STRONG> <A 
+   NAME="50001-6007t4.1.7"> </A> 
+Consider the deterministic Turing transducer whose transition diagram is given in
+Figure <A 
+ HREF="#50001-4007r4.1.6">4.1.6</A>. The Turing transducer has an accepting computation on a given input
+if and only if the input is of the form ww for some string w in {a, b}*. On an
+input of the form ww the Turing transducer writes the string w onto the output
+tape.
+   <P >Each computation of the Turing transducer starts by reading the input. Upon reading
+the odd symbols from the input, it moves from state q<SUB>0</SUB> to state q<SUB>1</SUB>, while leaving the
+auxiliary work tapes unchanged. Upon reading the even symbols from the input, the
+Turing transducer moves from state q<SUB>1</SUB> to state q<SUB>0</SUB>, while writing c in the first auxiliary
+work tape.
+   <P >On inputs of odd length the Turing transducer halts in state q<SUB>1</SUB> when it reaches the right
+endmarker $. On the other hand, on inputs of even length the Turing transducer enters state
+q<SUB>2</SUB> when it reaches the right endmarker $. On moving from state q<SUB>0</SUB> to state q<SUB>2</SUB> the
+number of c's in the second auxiliary work tape equals half of the length of the
+input.
+   <P >In state q<SUB>2</SUB>, the Turing transducer reads backward an input of the form xy which
+satisfies |x| = |y|. As the Turing transducer reads y backward it replaces the content c<SUP>|y|</SUP> of
+the first auxiliary work tape with the string y. Then the Turing transducer reads x
+backward and writes it onto the second auxiliary work tape.
+   <P >Upon reaching the left endmarker ¢, the Turing transducer makes a transition from state
+q<SUB>2</SUB> to state q<SUB>3</SUB>. In state q<SUB>3</SUB> it scans the two auxiliary work tapes to check that x = y. If the
+equality holds then the Turing transducer moves from state q<SUB>3</SUB> to state q<SUB>4</SUB>. Otherwise, it
+halts in state q<SUB>3</SUB>.
+   <P >The computation that the Turing transducer has on input aabaab is shown in
+Figure <A 
+ HREF="#50001-6008r4.1.8">4.1.8</A>. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" *** " 
+ >
+   <P >
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50001-6008r4.1.8"> </A>
+<A 
+   NAME="50001-6008r4.1.8"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-1-8.jpg" ALT="[PICT]" 
+>
+<BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure                                                                                                                  4.1.8
+</STRONG></NOBR></TD><TD  
+>A computation of the Turing transducer of Figure <A 
+ HREF="#50001-4007r4.1.6">4.1.6</A>.                      </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >By definition, each move in each computation must be on a transition rule that
+eventually causes the computation to halt in an accepting state. Whenever more than one
+such transition rule is possible for a given move, any of the alternatives can be chosen.
+Similarly, whenever none of the feasible transition rules for a given move can lead the
+computation to halt in an accepting state, then again any of the feasible transition rules can
+be chosen.<A NAME="50001-6009"> </A>
+   <P >An input x is said to be <I>accepted</I><A NAME="50001-6010"> </A>, or <I>recognized</I>, by a Turing transducer M if M has an
+accepting computation on input x. An accepting computation on input x that
+terminates in a configuration of the form (uqv, u<SUB>1</SUB>qv<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, u<SUB>m</SUB>qv<SUB>m</SUB>, w) is said to
+have an <I>output</I><A NAME="50001-6011"> </A> w. The output of a nonaccepting computation is assumed to be
+undefined.<A NAME="50001-6012"> </A>
+   <P >As in the cases of finite-state transducers and pushdown transducers, a Turing
+transducer may have sequences of moves on inputs that are accepted that are not
+considered to be computations.
+   <P ><STRONG>Example 4.1.8</STRONG> <A 
+   NAME="50001-6013t4.1.8"> </A> 
+Consider the nondeterministic Turing transducer whose transition diagram is
+given in Figure <A 
+ HREF="#50001-3025r4.1.3">4.1.3</A>. The Turing transducer accepts an input if and only if it
+is of the form ww for some w in {a, b}*. On such an input ww it provides the
+output w.
+   <P >Each computation of M<SUB>1</SUB> on a nonempty input xy starts by reading x. As M<SUB>1</SUB> reads x
+from the input tape it writes the string onto the auxiliary work tape. At the end
+of x, which is found nondeterministically, M<SUB>1</SUB> switches from state q<SUB>1</SUB> to state
+q<SUB>2</SUB>.
+   <P >In state q<SUB>2</SUB>, the Turing transducer M<SUB>1</SUB> moves backward across the copy of x that is
+stored in the auxiliary work tape until it locates the first symbol in the string. Then M<SUB>1</SUB>
+switches to state q<SUB>3</SUB>.
+   <P >In state q<SUB>3</SUB>, M<SUB>1</SUB> checks that the remainder y of the input is equal to the string x stored
+on the auxiliary work tape. The Turing transducer accepts the input if and only if it
+determines that x = y. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >Other definitions, such as the relations that Turing transducers compute, the languages
+accepted by them, and the languages decidable by them, are similar to those
+given for finite-state transducers in Section 2.2, and for pushdown transducers in
+Section 3.2.
+   <P ><STRONG>Example 4.1.9</STRONG> <A 
+   NAME="50001-6014t4.1.9"> </A> 
+The nondeterministic Turing transducer M<SUB>1</SUB>, whose transition diagram is given in
+Figure <A 
+ HREF="#50001-3025r4.1.3">4.1.3</A>, and the deterministic Turing transducer M<SUB>2</SUB>, whose transition diagram is
+given in Figure <A 
+ HREF="#50001-4007r4.1.6">4.1.6</A>, compute the relation { (ww, w) | w is in {a, b}* }. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >A language is said to be a <I>recursively<A NAME="50001-6015"> </A> enumerable language</I> if it is acceptable by a
+Turing transducer. The language is said to be <I>recursive</I><A NAME="50001-6016"> </A> if it is decidable by a Turing
+transducer.
+   <P ><EM><A 
+   NAME="50001-7000"> </A><A 
+ HREF="#Q2-50001-7"  NAME="Q1-50001-7">Turing Machines</A></EM>
+   <P >Turing transducers whose output components are ignored are called Turing<A NAME="50001-7001"> </A>
+machines. Formally, for m <FONT FACE="SYMBOL">³</FONT> 0 an <I>m auxiliary-work-tape Turing machine</I> is a
+seven-tuple &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt;, where Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, q<SUB>0</SUB>, B, and F are defined
+as for Turing transducers, and <FONT FACE="SYMBOL">d</FONT> is a relation from Q × (<FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> {¢, $}) × <FONT FACE="SYMBOL">G</FONT><SUP>m</SUP> to
+Q × {-1, 0, +1} × (<FONT FACE="SYMBOL">G</FONT> × {-1, 0, +1})<SUP>m</SUP>. A mathematical system M is said to be
+a <I>Turing machine</I> if it is an m auxiliary-work-tape Turing machine for some
+m.
+   <P >Transition diagrams similar to those used for representing Turing transducers can also
+be used to represent Turing machines. The only difference is that the labels of the edges do
+not contain entries for outputs.
+   <P ><STRONG>Example 4.1.10</STRONG> <A 
+   NAME="50001-7002t4.1.10"> </A> 
+The Turing machine that is induced from the Turing transducer of Figure <A 
+ HREF="#50001-3025r4.1.3">4.1.3</A> is shown in
+Figure <A 
+ HREF="#50001-7003r4.1.9">4.1.9</A>. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" *** " 
+ >
+   <P >
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50001-7003r4.1.9"> </A>
+<A 
+   NAME="50001-7003r4.1.9"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-1-9.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 4.1.9 </STRONG></NOBR></TD><TD  
+>An one auxiliary-work-tape Turing machine.                                                              </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >A Turing machine is called a <I>linear bounded<A NAME="50001-7004"> </A> automaton</I> or just an LBA, if for each
+given input x the Turing machine visits at most max(|x|, 1) locations in each of the
+auxiliary work tapes.
+   <P >Other definitions, such as those for deterministic and nondeterministic Turing
+machines, their configurations, and the moves between these configurations, are similar to
+those given for Turing transducers.
+   <P ><EM><A 
+   NAME="50001-8000"> </A><A 
+ HREF="#Q2-50001-8"  NAME="Q1-50001-8">Church's Thesis</A></EM>
+   <P >Over the years, various characterizations have been offered to describe the concept of
+computability. These characterizations were derived using different approaches, including
+the models of deterministic Turing transducers. However, it turned out that all these
+characterizations are equivalent in the sense that one can effectively go from one
+characterization to another. The equivalency of the different characterizations
+suggests the following conjecture (which traditionally is stated in terms of Turing
+transducers).
+   <P ><STRONG>Church's<A NAME="50001-8001"> </A> Thesis </STRONG> <A 
+   NAME="50001-8002t"> </A> 
+A function is computable (respectively, partially computable) if and only if it is
+computable (respectively, partially computable) by a deterministic Turing transducer.
+   <P >One cannot expect to be able to prove the correctness of Church's thesis, because of
+the lack of a precise specification for the intuitive notion of computability. The best
+one can expect is an increase in confidence, due to the failure of finding counter
+examples.
+   <P >
+   <P >[<A 
+ HREF="theory-bk-fourse2.html" >next</A>] [<A 
+ HREF="theory-bk-fourse1.html" >front</A>] [<A 
+ HREF="theory-bk-four.html#theory-bk-fourse1.html" >up</A>] <A 
+   NAME="tailtheory-bk-fourse1.html"> </A></BODY></HTML>

@@ -1,0 +1,248 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-three.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-threese5.html" >next</A>] [<A 
+ HREF="theory-bk-threese3.html" >prev</A>] [<A 
+ HREF="theory-bk-threese3.html#tailtheory-bk-threese3.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-threese4.html">tail</A>] [<A 
+ HREF="theory-bk-three.html#theory-bk-threese4.html" >up</A>]
+<H3>3.4 <A 
+   NAME="40004-200003.4"> </A><A 
+ HREF="theory-bk.html#Q2-40004-20"  NAME="Q1-40004-20">Limitations of Recursive Finite-Domain Programs</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-40004-21"  NAME="Q2-40004-21">A Pumping Lemma for Context-Free Languages</A>
+<BR>         <A 
+ HREF="#Q1-40004-22"  NAME="Q2-40004-22">Applications of the Pumping Lemma</A>
+<BR>         <A 
+ HREF="#Q1-40004-23"  NAME="Q2-40004-23">A Generalization for the Pumping Lemma</A>
+   <P >The study of the limitations of finite-memory programs in Section 2.4 relied on
+the following observation: A subcomputation of an accepting computation of a
+finite-memory program can be pumped to obtain new accepting computations if the
+subcomputation starts and ends at the same state. For recursive finite-domain programs
+similar, but somewhat more complex, conditions are needed to allow pumping of
+subcomputations.
+   <P ><EM><A 
+   NAME="40004-21000"> </A><A 
+ HREF="#Q2-40004-21"  NAME="Q1-40004-21">A Pumping Lemma for Context-Free Languages</A></EM>
+<A NAME="40004-21001"> </A>
+   <P >The proof of the following theorem uses the abstraction of context-free grammars to
+provide conditions under which subcomputations of recursive finite-domain programs can
+be pumped. The corresponding theorem for the degenerated case of finite-memory
+programs is implied by the choice of u = v = <FONT FACE="SYMBOL">e</FONT>.
+   <P ><STRONG>Theorem 3.4.1</STRONG> <A 
+   NAME="40004-21002t3.4.1"> </A> 
+(Pumping lemma for context-free languages) Every context-free language L has a positive
+integer constant m with the following property. If w is in L and |w| <FONT FACE="SYMBOL">³</FONT> m, then w can be
+written as uvxyz, where uv<SUP>k</SUP>xy<SUP>k</SUP>z is in L for each k <FONT FACE="SYMBOL">³</FONT> 0. Moreover, |vxy| <FONT FACE="SYMBOL">£</FONT> m and
+|vy| &gt; 0.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="40004-21003t"> </A> 
+Let G = &lt;N, <FONT FACE="SYMBOL">S</FONT>, P, S&gt; be any context-free grammar. Use t to denote the number of
+symbols in the longest right-hand side of the production rules of G. With no loss of
+generality assume that t <FONT FACE="SYMBOL">³</FONT> 2. Use |N| to denote the number of nonterminal symbols in N.
+Choose m to equal t<SUP>|N|+1</SUP>.
+   <P >Consider any w in L(G) such that |w| <FONT FACE="SYMBOL">³</FONT> m. Let T denote a derivation tree for w that is
+minimal for w in the number of nodes. Let <FONT FACE="SYMBOL">p</FONT> be a longest path from the root to a leaf in T.
+Let n denote the number of nodes in <FONT FACE="SYMBOL">p</FONT>.
+   <P >The number of leaves in T is at most t<SUP>n-1</SUP>. Thus, t<SUP>n-1</SUP> <FONT FACE="SYMBOL">³</FONT> |w| and |w| <FONT FACE="SYMBOL">³</FONT> m = t<SUP>|N|+1</SUP>
+imply that n <FONT FACE="SYMBOL">³</FONT> |N| + 2. That is, the path <FONT FACE="SYMBOL">p</FONT> must have two nodes whose corresponding
+nonterminal symbols, say E and F, are equal. As a result, w can be written as uvxyz,
+where vxy and x are the strings that correspond to the leaves of the subtrees of T with
+roots E and F, respectively (see Figure <A 
+ HREF="#40004-21004r3.4.1">3.4.1</A>(a)).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40004-21004r3.4.1"> </A>
+<A 
+   NAME="40004-21004r3.4.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-4-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.4.1 </STRONG></NOBR></TD><TD  
+>(a) A derivation tree T with E = F. (b) The derivation tree T<SUB>k</SUB>.                                </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >Let T<SUB>k</SUB> be the derivation tree T modified so that the subtree of E, excluding the subtree
+of F, is pumped k times (see Figure <A 
+ HREF="#40004-21004r3.4.1">3.4.1</A>(b)). Then T<SUB>k</SUB> is also a derivation tree in G for
+each k <FONT FACE="SYMBOL">³</FONT> 0. It follows that uv<SUP>k</SUP>xy<SUP>k</SUP>z, which corresponds to the leaves of T<SUB>k</SUB>, is also in
+L(G) for each k <FONT FACE="SYMBOL">³</FONT> 0.
+   <P >A choice of E and F from the last |N| + 1 nonterminal symbols in the path <FONT FACE="SYMBOL">p</FONT> implies
+that |vxy| <FONT FACE="SYMBOL">£</FONT> t<SUP>|N|+1</SUP> = m, because each path from E to a leaf contains at most |N| + 2
+nodes. However, |vy|<IMG 
+SRC="theory-bk-three38x.gif" ALT="/="ALIGN="MIDDLE" > 0, because otherwise T<SUB>0</SUB> would also be a derivation tree for
+w, contradicting the assumption that T is a minimal derivation tree for w. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><STRONG>Example 3.4.1</STRONG> <A 
+   NAME="40004-21005t3.4.1"> </A> 
+Let G = &lt;N, <FONT FACE="SYMBOL">S</FONT>, P, S&gt; be the context-free grammar whose production rules are listed
+below.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-three39x.gif" ALT=" S  ®   AA
+   ®   ab
+A  ®   SS
+   ®   a"></PRE></CENTER>
+   <P >For G, using the terminology of the proof of the previous theorem, t = 2,
+|N| = 2, and m = 8. The string w = (ab)<SUP>3</SUP>a(ab)<SUP>2</SUP> has the derivation tree given in
+Figure <A 
+ HREF="#40004-21006r3.4.2">3.4.2</A>(a).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40004-21006r3.4.2"> </A>
+<A 
+   NAME="40004-21006r3.4.2"> </A>
+<IMG 
+SRC="draw-pic/theory-bk-three-3-4-2-a.jpg" ALT="[PICT]" 
+><P>(a)<P><IMG 
+SRC="draw-pic/theory-bk-three-3-4-2-b.jpg" ALT="[PICT]" 
+><P>(b)<P><IMG 
+SRC="draw-pic/theory-bk-three-3-4-2-c.jpg" ALT="[PICT]" 
+><P>(c)<P>
+<BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure                                                                                                                  3.4.2
+</STRONG></NOBR></TD><TD  
+>(a)   A   derivation   tree   T   for   (ab)<SUP>3</SUP>a(ab)<SUP>2</SUP>.   (b)   A   derivation   tree   T<SUB>k</SUB>   for
+(ab)<SUP>2</SUP>(aba)<SUP>k</SUP>(ab)<SUP>2</SUP>. (c) A derivation tree T<SUB>k</SUB> for ab(ab)<SUP>k</SUP>aba<SUP>k</SUP>(ab)<SUP>2</SUP>.             </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>A longest path in the tree, from the root to a leaf, contains six nodes.
+   <P >w has two decompositions that satisfy the constraints of the proof of the pumping
+lemma. One is of the form u = ab, v = <FONT FACE="SYMBOL">e</FONT>, x = ab, y = aba, z = abab; the other is of the
+form u = ab, v = ab, x = ab, y = a, z = abab.
+   <P >(ab)<SUP>2</SUP>(aba)<SUP>k</SUP>(ab)<SUP>2</SUP> and ab(ab)<SUP>k</SUP>aba<SUP>k</SUP>(ab)<SUP>2</SUP> are the new strings in the language for k <FONT FACE="SYMBOL">³</FONT> 0,
+that the proof implies for w by pumping. Figures <A 
+ HREF="#40004-21006r3.4.2">3.4.2</A>(b) and <A 
+ HREF="#40004-21006r3.4.2">3.4.2</A>(c), respectively, show
+the derivation trees T<SUB>k</SUB> for these strings. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="40004-22000"> </A><A 
+ HREF="#Q2-40004-22"  NAME="Q1-40004-22">Applications of the Pumping Lemma</A></EM>
+   <P >The pumping lemma for context-free languages can be used to show that a language is
+not context-free. The method is similar to that for using the pumping lemma for regular
+languages to show that a language is not regular.
+   <P ><STRONG>Example 3.4.2</STRONG> <A 
+   NAME="40004-22001t3.4.2"> </A> 
+Let L be the language { a<SUP>n</SUP>b<SUP>n</SUP>c<SUP>n</SUP> | n <FONT FACE="SYMBOL">³</FONT> 0 }. To show that L is not a context-free language,
+assume to the contrary that L is context-free. Consider the choice of w = a<SUP>m</SUP>b<SUP>m</SUP>c<SUP>m</SUP>, where
+m is the constant implied by the pumping lemma for L.
+   <P >By the lemma, a<SUP>m</SUP>b<SUP>m</SUP>c<SUP>m</SUP> can be written as uvxyz, where |vxy| <FONT FACE="SYMBOL">£</FONT> m, |vy| &gt; 0, and the
+decomposition satisfies the following conditions.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="40004-22002xa"> </A>vy contains a's or b's but not c's.
+     <LI><A 
+   NAME="40004-22003xb"> </A>vy contains a's or c's but not b's.
+     <LI><A 
+   NAME="40004-22004xc"> </A>vy contains b's or c's but not a's.</OL>
+Moreover, by the pumping lemma, uv<SUP>k</SUP>xy<SUP>k</SUP>z is also in L for each k <FONT FACE="SYMBOL">³</FONT> 0. However, for (a)
+the choice of k = 0 implies uv<SUP>0</SUP>xy<SUP>0</SUP>z not in L because of too many c's. Similarly,
+for (b) the choice of k = 0 implies uv<SUP>0</SUP>xy<SUP>0</SUP>z not in L because of too many b's,
+and for (c) the choice of k = 0 implies uv<SUP>0</SUP>xy<SUP>0</SUP>z not in L because of too many
+a's.
+   <P >Since the pumping lemma does not hold for a<SUP>m</SUP>b<SUP>m</SUP>c<SUP>m</SUP>, it also does not hold for L. It
+follows, therefore, that the assumption that L is a context-free language is false. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >As in the case of the pumping lemma for regular languages the choice of the
+string w is of critical importance when trying to show that a language is not
+context-free.
+   <P ><STRONG>Example 3.4.3</STRONG> <A 
+   NAME="40004-22005t3.4.3"> </A> 
+Consider the language L = { <FONT FACE="SYMBOL">a</FONT><FONT FACE="SYMBOL">a</FONT> | <FONT FACE="SYMBOL">a</FONT> is in {a, b}* }. To show that L is not a context-free
+language assume the contrary. Let m be the constant implied by the pumping lemma for
+L.
+   <P >For the choice w = a<SUP>m</SUP>b<SUP>m</SUP>a<SUP>m</SUP>b<SUP>m</SUP> the pumping lemma implies a decomposition uvxyz
+such that |vxy| <FONT FACE="SYMBOL">£</FONT> m and |vy| &gt; 0. For such a choice uv<SUP>0</SUP>xy<SUP>0</SUP>z = uxz = a<SUP>i</SUP>b<SUP>j</SUP>a<SUP>s</SUP>b<SUP>t</SUP> with
+either i<IMG 
+SRC="theory-bk-three40x.gif" ALT="/="ALIGN="MIDDLE" > s or j<IMG 
+SRC="theory-bk-three41x.gif" ALT="/="ALIGN="MIDDLE" > t. In either case, uxz is not in L. As a result, L cannot be
+context-free.
+   <P >On the other hand, for the choice w = a<SUP>m</SUP>ba<SUP>m</SUP>b a decomposition uvxyz that satisfies
+|vxy| <FONT FACE="SYMBOL">£</FONT> m and |vy| &gt; 0 might be of the form v = y = a<SUP>j</SUP> with b in x for some j &gt; 0.
+With such a decomposition uv<SUP>k</SUP>xy<SUP>k</SUP>z = a<SUP>m+(k-1)j</SUP>ba<SUP>m+(k-1)j</SUP>b is also in L for all k <FONT FACE="SYMBOL">³</FONT> 0.
+Consequently the latter choice for w does not imply the desired contradiction. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="40004-23000"> </A><A 
+ HREF="#Q2-40004-23"  NAME="Q1-40004-23">A Generalization for the Pumping Lemma</A></EM>
+   <P >The pumping lemma for context-free languages can be generalized to relations that
+are computable by pushdown transducers. This generalized pumping lemma, in
+turn, can be used to determine relations that cannot be computed by pushdown
+transducers.
+   <P ><STRONG>Theorem 3.4.2</STRONG> <A 
+   NAME="40004-23001t3.4.2"> </A> 
+For each relation R that is computable by a pushdown transducer, there exists a constant
+m such that the following holds for each (w<SUB>1</SUB>, w<SUB>2</SUB>) in R. If |w<SUB>1</SUB>| + |w<SUB>2</SUB>| <FONT FACE="SYMBOL">³</FONT> m,
+then w<SUB>1</SUB> can be written as u<SUB>1</SUB>v<SUB>1</SUB>x<SUB>1</SUB>y<SUB>1</SUB>z<SUB>1</SUB> and w<SUB>2</SUB> can be written as u<SUB>2</SUB>v<SUB>2</SUB>x<SUB>2</SUB>y<SUB>2</SUB>z<SUB>2</SUB>,
+where (u<SUB>1</SUB>v<SUB>1</SUB><SUP>k</SUP>x<SUB>1</SUB>y<SUB>1</SUB><SUP>k</SUP>z<SUB>1</SUB>, u<SUB>2</SUB>v<SUB>2</SUB><SUP>k</SUP>x<SUB>2</SUB>y<SUB>2</SUB><SUP>k</SUP>z<SUB>2</SUB>) is also in R for each k <FONT FACE="SYMBOL">³</FONT> 0. Moreover,
+|v<SUB>1</SUB>x<SUB>1</SUB>y<SUB>1</SUB>| + |v<SUB>2</SUB>x<SUB>2</SUB>y<SUB>2</SUB>| <FONT FACE="SYMBOL">£</FONT> m and |v<SUB>1</SUB>y<SUB>1</SUB>| + |v<SUB>2</SUB>y<SUB>2</SUB>| &gt; 0.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="40004-23002t"> </A> 
+Consider any pushdown transducer M<SUB>1</SUB>. Let M<SUB>2</SUB> be the pushdown automaton obtained
+from M<SUB>1</SUB> by replacing each transition rule of the form (q, <FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>, <FONT FACE="SYMBOL">r</FONT>) with a
+transition rule of the form (q, [<FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">r</FONT>], <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>) if the inequality [<FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">r</FONT>]<IMG 
+SRC="theory-bk-three42x.gif" ALT="/="ALIGN="MIDDLE" > [<FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>] hols,
+and with a transition rule of the form (q, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>) if the equality [<FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">r</FONT>] = [<FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>]
+holds. Let h<SUB>1</SUB> and h<SUB>2</SUB> be the projection functions defined in the following way:
+h<SUB>1</SUB>(<FONT FACE="SYMBOL">e</FONT>) = h<SUB>2</SUB>(<FONT FACE="SYMBOL">e</FONT>) = <FONT FACE="SYMBOL">e</FONT>, h<SUB>1</SUB>([<FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">r</FONT>]) = <FONT FACE="SYMBOL">a</FONT>, h<SUB>2</SUB>([<FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">r</FONT>]) = <FONT FACE="SYMBOL">r</FONT>, h<SUB>1</SUB>([<FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">r</FONT>]w) = h<SUB>1</SUB>([<FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">r</FONT>])h<SUB>1</SUB>(w), and
+h<SUB>2</SUB>([<FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">r</FONT>]w) = h<SUB>2</SUB>([<FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">r</FONT>])h<SUB>2</SUB>(w).
+   <P >By construction M<SUB>2</SUB> encodes in its inputs the inputs and outputs of M<SUB>1</SUB>. h<SUB>1</SUB> and h<SUB>2</SUB>,
+respectively, determine the values of these encoded inputs and outputs. As a result,
+(w<SUB>1</SUB>, w<SUB>2</SUB>) is in R(M<SUB>1</SUB>) if and only if w is in L(M<SUB>2</SUB>) for some w such that h<SUB>1</SUB>(w) = w<SUB>1</SUB> and
+h<SUB>2</SUB>(w) = w<SUB>2</SUB>. Use m' to denote the constant implied by the pumping lemma for
+context-free languages for L(M<SUB>2</SUB>), and choose m = 2m'.
+   <P >Consider any (w<SUB>1</SUB>, w<SUB>2</SUB>) in the relation R(M<SUB>1</SUB>) such that |w<SUB>1</SUB>| + |w<SUB>2</SUB>| <FONT FACE="SYMBOL">³</FONT> m. Then there
+is some w in the language L(M<SUB>2</SUB>) such that h<SUB>1</SUB>(w) = w<SUB>1</SUB>, h<SUB>2</SUB>(w) = w<SUB>2</SUB>, and
+|w| <FONT FACE="SYMBOL">³</FONT> m/2 = m'. By the pumping lemma for context-free languages w can be written as
+uvxyz, where |vxy| <FONT FACE="SYMBOL">£</FONT> m', |vy| &gt; 0, and uv<SUP>k</SUP>xy<SUP>k</SUP>z is in L(M<SUB>2</SUB>) for each k <FONT FACE="SYMBOL">³</FONT> 0. The result
+then follows if one chooses u<SUB>1</SUB> = h<SUB>1</SUB>(u), u<SUB>2</SUB> = h<SUB>2</SUB>(u), v<SUB>1</SUB> = h<SUB>1</SUB>(v), v<SUB>2</SUB> = h<SUB>2</SUB>(v),
+x<SUB>1</SUB> = h<SUB>1</SUB>(x), x<SUB>2</SUB> = h<SUB>2</SUB>(x), y<SUB>1</SUB> = h<SUB>1</SUB>(y), y<SUB>2</SUB> = h<SUB>2</SUB>(y), z<SUB>1</SUB> = h<SUB>1</SUB>(z), and z<SUB>2</SUB> = k<SUB>2</SUB>(z). <IMG 
+SRC="theory-bk-three1x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><STRONG>Example 3.4.4</STRONG> <A 
+   NAME="40004-23003t3.4.4"> </A> 
+Let M<SUB>1</SUB> be the pushdown transducer whose transition diagram is given in Figure <A 
+ HREF="theory-bk-threese2.html#40002-4024r3.2.3">3.2.3</A>.
+Using the terminology of the proof of Theorem <A 
+ HREF="#40004-23001t3.4.2">3.4.2</A>, M<SUB>2</SUB> is the pushdown automaton
+whose transition diagram is given in Figure <A 
+ HREF="#40004-23004r3.4.3">3.4.3</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40004-23004r3.4.3"> </A>
+<A 
+   NAME="40004-23004r3.4.3"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-4-3.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.4.3 </STRONG></NOBR></TD><TD  
+>A pushdown automaton that &#34;encodes&#34; the pushdown transducer of Figure <A 
+ HREF="theory-bk-threese2.html#40002-4024r3.2.3">3.2.3</A>.     </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>The computation of M<SUB>1</SUB> on input aabbaa gives the output baa. The computation of M<SUB>1</SUB> on
+input aabbaa corresponds to the computation of M<SUB>2</SUB> on input [a, <FONT FACE="SYMBOL">e</FONT>][a, <FONT FACE="SYMBOL">e</FONT>][b, <FONT FACE="SYMBOL">e</FONT>][b, b][a, a][a, a]. <IMG 
+SRC="theory-bk-three1x.gif" ALT="
+*** " 
+ >
+   <P >
+   <P >
+   <P >[<A 
+ HREF="theory-bk-threese5.html" >next</A>] [<A 
+ HREF="theory-bk-threese3.html" >prev</A>] [<A 
+ HREF="theory-bk-threese3.html#tailtheory-bk-threese3.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-threese4.html" >front</A>] [<A 
+ HREF="theory-bk-three.html#theory-bk-threese4.html" >up</A>] <A 
+   NAME="tailtheory-bk-threese4.html"> </A></BODY></HTML>

@@ -1,0 +1,175 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-six.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-sixse4.html" >next</A>] [<A 
+ HREF="theory-bk-sixse2.html" >prev</A>] [<A 
+ HREF="theory-bk-sixse2.html#tailtheory-bk-sixse2.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-sixse3.html">tail</A>] [<A 
+ HREF="theory-bk-six.html#theory-bk-sixse3.html" >up</A>]
+<H3>6.3 <A 
+   NAME="70003-60006.3"> </A><A 
+ HREF="theory-bk.html#Q2-70003-6"  NAME="Q1-70003-6">Probabilistic Turing Transducers</A></H3>
+   <P >
+   <P >The study of nonprobabilistic computations employed the abstract models of
+deterministic and nondeterministic Turing transducers. For the study of probabilistic
+computations we will use similar abstract models, called probabilistic Turing
+transducers.
+   <P >Informally, a probabilistic Turing transducer is a Turing transducer that views
+nondeterminism as randomness. Formally, a <I>probabilistic<A NAME="70003-6001"> </A> Turing transducer</I> is a Turing
+transducer M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt; whose computations are defined in the
+following manner.
+   <P >A sequence C of the moves of M is said to be a <I>computation</I><A NAME="70003-6002"> </A> if the two conditions
+below hold.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="70003-6003xa"> </A>C starts at an initial configuration.
+     <LI><A 
+   NAME="70003-6004xb"> </A>Whenever  C  is  finite,  it  ends  either  at  an  accepting  configuration  or  a
+     nonaccepting configuration from which no move is possible.</OL>
+A computation of M is said to be an <I>accepting<A NAME="70003-6005"> </A> computation</I> if it ends at an accepting
+configuration. Otherwise, the computation is said to be a <I>nonaccepting</I><A NAME="70003-6006"> </A>, or a <I>rejecting</I>,
+<I>computation</I>.
+   <P >By definition, a probabilistic Turing transducer might have both accepting
+computations and nonaccepting computations on a given input.
+   <P >Each computation of a probabilistic Turing transducer is similar to that of a
+nondeterministic Turing transducer, the only exception arising upon reaching a
+configuration from which more than one move is possible. In such a case, the choice
+between the possible moves is made randomly, with an equal probability of each move
+occurring.
+   <P >The function that a probabilistic Turing transducer computes<A NAME="70003-6007"> </A> and its error probability
+are defined similarly to probabilistic programs.<A NAME="70003-6008"> </A> <I>Probabilistic<A NAME="70003-6009"> </A> Turing machines</I> are defined
+similarly to probabilistic Turing transducers.
+   <P >A probabilistic Turing machine M is said to <I>accept<A NAME="70003-6010"> </A> a language</I> L if
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="70003-6011xa"> </A>On  input  x  from  L,  M  has  probability  1 - e(x)  &gt;  1/2 for an accepting
+     computation.
+     <LI><A 
+   NAME="70003-6012xb"> </A>On input x not from L, M has probability 1 - e(x) &gt; 1/2 for a nonaccepting
+     computation.</OL>
+e(x) is said to be the <I>error<A NAME="70003-6013"> </A> probability</I> of M. The error probability is said to be <I>bounded</I><A NAME="70003-6014"> </A> if
+there exists a constant <FONT FACE="SYMBOL">e</FONT> &lt; 1/2 such that e(x) <FONT FACE="SYMBOL">£</FONT> <FONT FACE="SYMBOL">e</FONT> for all x. M is said to be a
+<I>bounded-error<A NAME="70003-6015"> </A> probabilistic Turing machine</I> if it has bounded-error probability.
+<A NAME="70003-6016"> </A>
+   <P ><STRONG>Example 6.3.1</STRONG> <A 
+   NAME="70003-6017t6.3.1"> </A> 
+Figure <A 
+ HREF="#70003-6018r6.3.1">6.3.1</A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="70003-6018r6.3.1"> </A>
+<A 
+   NAME="70003-6018r6.3.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-six-6-3-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 6.3.1 </STRONG></NOBR></TD><TD  
+>A segment of a probabilistic Turing machine that generates a random number.         </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>gives the transition diagram of a segment M of a probabilistic Turing machine. On input
+x, M finds a random number between 0 and v, with probability 1 - (1/2)<SUP>k</SUP>. x is assumed to
+be a string in {0, 1}* that starts with 1, and v is assumed to be the natural number
+represented by x. The binary representation of the random number is stored in the first
+auxiliary work tape.
+   <P >M starts each computation by employing M<SUB>1</SUB> for recording the value of k. Then M
+repeatedly employs M<SUB>2</SUB>, M<SUB>3</SUB>, and M<SUB>4</SUB> for generating a random string y of length |x|,
+and checking whether y represents an integer no greater than v. M terminates
+its subcomputation successfully if and only if it finds such a string y within k
+tries.
+   <P >M<SUB>1</SUB> records the value of k in unary in the second auxiliary work tape of M. In the first
+auxiliary work tape of M, M<SUB>2</SUB> generates a random string y of length |x| over {0, 1}. M<SUB>3</SUB>
+checks whether x represents a number greater than the one y represents. M<SUB>3</SUB> performs the
+checking by simulating a subtraction of the corresponding numbers. M<SUB>4</SUB> erases the string
+y that is stored on the first auxiliary work tape.
+   <P >The number of executed cycles M<SUB>2</SUB>, M<SUB>3</SUB>, M<SUB>4</SUB> is controlled by the length k of the string
+1 · · · 1 that is stored on the second auxiliary work tape. At the end of each cycle the string
+shrinks by one symbol.
+   <P >The probability that M<SUB>2</SUB> will generate a string that represents a number between 0 and
+v is (v + 1)/2<SUP>|x|</SUP> <FONT FACE="SYMBOL">³</FONT> 1/2. The probability that such a string will be generated in k cycles
+is
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-six150x.gif" ALT=" (Probabilityofgenerating the stringinthefirstcycle)
++  (Probability of generatingthestring in thesecondcycle,butnot
+   in the firstcycle)
+ ..
++. (Probabilityofgenerating thestringinthekthcycle,butnotin
+   thefirstk- 1 cycles)."></PRE></CENTER>
+   <P >The sum of these probabilities is equal to
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-six151x.gif" ALT="  v+1-(   (    v+1-)  (   -v+1)2       (   v+1-)k-1)
+ 2-|x| 1 +(1 - 2-|x| +  1-) 2(-|x|  + ···+ )1--12-|x|
+=   -v-+|1x| (1- v+-1|x|)k- 1   (1- -v-+|1x| ) -1
+    2  (    v+21-)k            2
+=   1 - 1 - 2-|x|
+³   1 -(1/2)k."></PRE></CENTER>
+   <P >                                                                                              <IMG 
+SRC="theory-bk-six152x.gif" ALT="PICT" >
+   <P >
+   <P >The probabilistic Turing machine in the following example is, in essence, a
+probabilistic pushdown<A NAME="70003-6019"> </A> automaton that accepts a non-context-free language. This
+automaton can be modified to make exactly n + 2 moves on each input of length n,
+whereas each one auxiliary-work-tape, nonprobabilistic Turing machine seems to require
+more than n + 2 time to recognize the language.
+   <P ><STRONG>Example 6.3.2</STRONG> <A 
+   NAME="70003-6020t6.3.2"> </A> 
+The one auxiliary-work-tape, probabilistic Turing machine M of Figure <A 
+ HREF="#70003-6021r6.3.2">6.3.2</A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="70003-6021r6.3.2"> </A>
+<A 
+   NAME="70003-6021r6.3.2"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-six-6-3-2.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 6.3.2 </STRONG></NOBR></TD><TD  
+>A one auxiliary-work-tape, probabilistic Turing machine M that accepts the language
+L = { w | w is in {a<SUB>1</SUB>, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, a<SUB>k</SUB>, b<SUB>k</SUB>}*, and w has the same number of a<SUB>i</SUB>'s as b<SUB>i</SUB>'s for each
+1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> k }. (<IMG 
+SRC="theory-bk-six153x.gif" ALT="PICT" >
+stands for a sequence of j transition rules that move the head of the auxiliary work
+tape, j positions to the right. The sequence does not change the content of the
+tape.)                                                                                                                             </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>accepts the language L = { w | w is in {a<SUB>1</SUB>, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, a<SUB>k</SUB>, b<SUB>k</SUB>}*, and w has the same number of
+a<SUB>i</SUB> 's as b<SUB>i</SUB> 's for each 1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> k }.
+   <P >M on any given input w starts its computation by choosing randomly some
+number r between 1 and 2k. It does so by moving from the initial state q<SUB>0</SUB> to the
+corresponding state q<SUB>r</SUB>. In addition, M writes Z<SUB>0</SUB> on its auxiliary work tape.
+Then M moves its auxiliary work-tape head r<SUP>i</SUP> positions to the right for each
+symbol a<SUB>i</SUB> that it reads, and r<SUP>i</SUP> positions to the left for each symbol b<SUB>i</SUB> that it
+reads.
+   <P >At the end of each computation, the auxiliary work-tape head is located
+(n(a<SUB>1</SUB>) - n(b<SUB>1</SUB>))r + (n(a<SUB>2</SUB>) - n(b<SUB>2</SUB>))r<SUP>2</SUP> + · · · + (n(a<SUB>k</SUB>) - n(b<SUB>k</SUB>))r<SUP>k</SUP> positions to the right
+of Z<SUB>0</SUB>, where n(c) denotes the number of times the symbol c appears in w. If
+the head is located on Z<SUB>0</SUB>, then the input is accepted. Otherwise, the input is
+rejected.
+   <P >By construction, M accepts each input w from the language L. Alternatively, M
+might also accept some strings not in L with probability e(x) = <FONT FACE="SYMBOL">e</FONT> &lt; 1/2, where
+<FONT FACE="SYMBOL">e</FONT> = (k - 1)/(2k).
+   <P >The equality <FONT FACE="SYMBOL">e</FONT> = (k - 1)/(2k) holds because if w is not in L then n(a<SUB>i</SUB>) - n(b<SUB>i</SUB>)<IMG 
+SRC="theory-bk-six154x.gif" ALT="/="ALIGN="MIDDLE" > 0 for
+at least one i. In such a case, the equation (n(a<SUB>1</SUB>) - n(b<SUB>1</SUB>))r + · · · + (n(a<SUB>k</SUB>) - n(b<SUB>k</SUB>))r<SUP>k</SUP> = 0
+can be satisfied by at most k - 1 nonzero values of r. However, there are 2k possible
+assignments for r. As a result the probability that r will get a value that satisfies the
+equation is no greater than <FONT FACE="SYMBOL">e</FONT> = (k - 1)/(2k).
+   <P >The bound <FONT FACE="SYMBOL">e</FONT> on the error probability e(x) can be reduced to any desirable value, by
+allowing r to be randomly assigned with a value from {1,<FONT FACE="SYMBOL"> ¼</FONT>, <FONT FACE="SYMBOL">é</FONT>k/<FONT FACE="SYMBOL">e</FONT><FONT FACE="SYMBOL">ù</FONT>}.
+   <P >M takes no more than T(n) = (2k)<SUP>k</SUP>n + 2 moves on input of length n. M can be
+modified to make exactly T(n) = n + 2 moves by recording values modulo (2k)<SUP>k</SUP> in the
+auxiliary work tape. In such a case, smaller intermediate values are stored in the
+finite-state control of M. <IMG 
+SRC="theory-bk-six40x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >
+   <P >[<A 
+ HREF="theory-bk-sixse4.html" >next</A>] [<A 
+ HREF="theory-bk-sixse2.html" >prev</A>] [<A 
+ HREF="theory-bk-sixse2.html#tailtheory-bk-sixse2.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-sixse3.html" >front</A>] [<A 
+ HREF="theory-bk-six.html#theory-bk-sixse3.html" >up</A>] <A 
+   NAME="tailtheory-bk-sixse3.html"> </A></BODY></HTML>

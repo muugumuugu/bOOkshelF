@@ -1,0 +1,232 @@
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-one.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-onese2.html" >next</A>] [<A 
+ HREF="#tailtheory-bk-onese1.html">tail</A>] [<A 
+ HREF="theory-bk-one.html#theory-bk-onese1.html" >up</A>]
+<H3>1.1 <A 
+   NAME="20001-20001.1"> </A><A 
+ HREF="theory-bk.html#Q2-20001-2"  NAME="Q1-20001-2">Alphabets, Strings, and Representations</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-20001-3"  NAME="Q2-20001-3">Alphabets and Strings</A>
+<BR>         <A 
+ HREF="#Q1-20001-4"  NAME="Q2-20001-4">Ordering of Strings</A>
+<BR>         <A 
+ HREF="#Q1-20001-5"  NAME="Q2-20001-5">Representations</A>
+   <P >The ability to represent information is crucial to communicating and processing
+information. Human societies created spoken languages to communicate on a basic level,
+and developed writing to reach a more sophisticated level.
+   <P >The English language, for instance, in its spoken form relies on some finite set of basic
+sounds as a set of primitives. The words are defined in term of finite sequences of such
+sounds. Sentences are derived from finite sequences of words. Conversations are achieved
+from finite sequences of sentences, and so forth.
+   <P >Written English uses some finite set of symbols as a set of primitives. The words are
+defined by finite sequences of symbols. Sentences are derived from finite sequences
+of words. Paragraphs are obtained from finite sequences of sentences, and so
+forth.
+   <P >Similar approaches have been developed also for representing elements of other sets.
+For instance, the natural number can be represented by finite sequences of decimal
+digits.
+   <P >Computations, like natural languages, are expected to deal with information in its most
+general form. Consequently, computations function as manipulators of integers, graphs,
+programs, and many other kinds of entities. However, in reality computations only
+manipulate strings of symbols that represent the objects. The previous discussion
+necessitates the following definitions.
+   <P ><EM><A 
+   NAME="20001-3000"> </A><A 
+ HREF="#Q2-20001-3"  NAME="Q1-20001-3">Alphabets and Strings</A></EM>
+   <P >A finite, nonempty ordered set will be called an <I>alphabet</I><A NAME="20001-3001"> </A> if its elements are <I>symbols</I><A NAME="20001-3002"> </A>, or
+<I>characters</I> (i.e., elements with &#34;primitive&#34; graphical representations). A finite sequence of
+symbols from a given alphabet will be called a <I>string</I><A NAME="20001-3003"> </A> over the alphabet. A string that
+consists of a sequence a<SUB>1</SUB>, a<SUB>2</SUB>, <FONT FACE="SYMBOL">¼</FONT> , a<SUB>n</SUB> of symbols will be denoted by the juxtaposition
+a<SUB>1</SUB>a<SUB>2</SUB> · · · a<SUB>n</SUB>. Strings that have zero symbols, called <I>empty<A NAME="20001-3004"> </A> strings</I>, will be denoted by
+<FONT FACE="SYMBOL">e</FONT>.
+   <P ><STRONG>Example 1.1.1</STRONG> <A 
+   NAME="20001-3005t1.1.1"> </A> 
+<FONT FACE="SYMBOL">S</FONT><SUB>1</SUB> = {a,<FONT FACE="SYMBOL"> ¼</FONT>, z} and <FONT FACE="SYMBOL">S</FONT><SUB>2</SUB> = {0,<FONT FACE="SYMBOL"> ¼</FONT>, 9} are alphabets. abb is a string over <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB>, and 123 is a string
+over <FONT FACE="SYMBOL">S</FONT><SUB>2</SUB>. ba12 is not a string over <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB>, because it contains symbols that are not in <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB>.
+Similarly, 314<FONT FACE="SYMBOL">¼</FONT> is not a string over <FONT FACE="SYMBOL">S</FONT><SUB>2</SUB>, because it is not a finite sequence. On the other
+hand, <FONT FACE="SYMBOL">e</FONT> is a string over any alphabet.
+   <P >The empty set Ø is not an alphabet because it contains no element. The set of natural
+numbers is not an alphabet, because it is not finite. The union <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB> <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">S</FONT><SUB>2</SUB> is an alphabet only
+if an ordering is placed on its symbols. <IMG 
+SRC="theory-bk-one0x.gif" ALT=" *** ">
+   <P >
+   <P >An alphabet of cardinality 2 is called a <I>binary<A NAME="20001-3006"> </A> alphabet</I>, and strings over a
+binary alphabet are called <I>binary<A NAME="20001-3007"> </A> strings</I>. Similarly, an alphabet of cardinality 1
+is called a <I>unary<A NAME="20001-3008"> </A> alphabet</I>, and strings over a unary alphabet are called <I>unary<A NAME="20001-3009"> </A>
+strings</I>.
+   <P >The <I>length</I><A NAME="20001-3010"> </A> of a string <FONT FACE="SYMBOL">a</FONT> is denoted |<FONT FACE="SYMBOL">a</FONT>| and assumed to equal the number of symbols in
+the string.
+   <P ><STRONG>Example 1.1.2</STRONG> <A 
+   NAME="20001-3011t1.1.2"> </A> 
+{0, 1} is a binary alphabet, and {1} is a unary alphabet. 11 is a binary string over the
+alphabet {0, 1}, and a unary string over the alphabet {1}.
+   <P >11 is a string of length 2, |<FONT FACE="SYMBOL">e</FONT>| = 0, and |01| + |1| = 3. <IMG 
+SRC="theory-bk-one0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >The string consisting of a sequence <FONT FACE="SYMBOL">a</FONT> followed by a sequence <FONT FACE="SYMBOL">b</FONT> is denoted <FONT FACE="SYMBOL">a</FONT><FONT FACE="SYMBOL">b</FONT>. The
+string <FONT FACE="SYMBOL">a</FONT><FONT FACE="SYMBOL">b</FONT> is called the <I>concatenation</I><A NAME="20001-3012"> </A> of <FONT FACE="SYMBOL">a</FONT> and <FONT FACE="SYMBOL">b</FONT>. The notation <FONT FACE="SYMBOL">a</FONT><SUP>i</SUP> is used for the string
+obtained by concatenating i copies of the string <FONT FACE="SYMBOL">a</FONT>.
+   <P ><STRONG>Example 1.1.3</STRONG> <A 
+   NAME="20001-3013t1.1.3"> </A> 
+The concatenation of the string 01 with the string 100 gives the string 01100. The
+concatenation <FONT FACE="SYMBOL">e</FONT><FONT FACE="SYMBOL">a</FONT> of <FONT FACE="SYMBOL">e</FONT> with any string <FONT FACE="SYMBOL">a</FONT>, and the concatenation <FONT FACE="SYMBOL">a</FONT><FONT FACE="SYMBOL">e</FONT> of any string <FONT FACE="SYMBOL">a</FONT> with <FONT FACE="SYMBOL">e</FONT>
+give the string <FONT FACE="SYMBOL">a</FONT>. In particular, <FONT FACE="SYMBOL">e</FONT><FONT FACE="SYMBOL">e</FONT> = <FONT FACE="SYMBOL">e</FONT>.
+   <P >If <FONT FACE="SYMBOL">a</FONT> = 01, then <FONT FACE="SYMBOL">a</FONT><SUP>0</SUP> = <FONT FACE="SYMBOL">e</FONT>,  <FONT FACE="SYMBOL">a</FONT><SUP>1</SUP> = 01,  <FONT FACE="SYMBOL">a</FONT><SUP>2</SUP> = 0101,  and  <FONT FACE="SYMBOL">a</FONT><SUP>3</SUP> = 010101. <IMG 
+SRC="theory-bk-one0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >A string <FONT FACE="SYMBOL">a</FONT> is said to be a <I>substring</I><A NAME="20001-3014"> </A> of a string <FONT FACE="SYMBOL">b</FONT> if <FONT FACE="SYMBOL">b</FONT> = <FONT FACE="SYMBOL">g</FONT><FONT FACE="SYMBOL">a</FONT><FONT FACE="SYMBOL">r</FONT> for some <FONT FACE="SYMBOL">g</FONT> and <FONT FACE="SYMBOL">r</FONT>. A
+substring <FONT FACE="SYMBOL">a</FONT> of a string <FONT FACE="SYMBOL">b</FONT> is said to be a <I>prefix</I><A NAME="20001-3015"> </A> of <FONT FACE="SYMBOL">b</FONT> if <FONT FACE="SYMBOL">b</FONT> = <FONT FACE="SYMBOL">a</FONT><FONT FACE="SYMBOL">r</FONT> for some <FONT FACE="SYMBOL">r</FONT>. The prefix is said
+to be a <I>proper<A NAME="20001-3016"> </A> prefix</I> of <FONT FACE="SYMBOL">b</FONT> if <FONT FACE="SYMBOL">r</FONT><IMG 
+SRC="theory-bk-one1x.gif" ALT="/="ALIGN="MIDDLE" > <FONT FACE="SYMBOL">e</FONT>. A substring <FONT FACE="SYMBOL">a</FONT> of a string <FONT FACE="SYMBOL">b</FONT> is said to be a
+<I>suffix</I><A NAME="20001-3017"> </A> of <FONT FACE="SYMBOL">b</FONT> if <FONT FACE="SYMBOL">b</FONT> = <FONT FACE="SYMBOL">g</FONT><FONT FACE="SYMBOL">a</FONT> for some <FONT FACE="SYMBOL">g</FONT>. The suffix is said to be a <I>proper<A NAME="20001-3018"> </A> suffix</I> of <FONT FACE="SYMBOL">b</FONT> if
+<FONT FACE="SYMBOL">g</FONT><IMG 
+SRC="theory-bk-one2x.gif" ALT="/="ALIGN="MIDDLE" > <FONT FACE="SYMBOL">e</FONT>.
+   <P ><STRONG>Example 1.1.4</STRONG> <A 
+   NAME="20001-3019t1.1.4"> </A> 
+<FONT FACE="SYMBOL">e</FONT>, 0, 1, 01, 11, and 011 are the substrings of 011. <FONT FACE="SYMBOL">e</FONT>, 0, and 01 are the proper prefixes of
+011. <FONT FACE="SYMBOL">e</FONT>, 1, and 11 are the proper suffixes of 011. 011 is a prefix and a suffix of 011. <IMG 
+SRC="theory-bk-one0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >If <FONT FACE="SYMBOL">a</FONT> = a<SUB>1</SUB> · · · a<SUB>n</SUB> for some symbols a<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , a<SUB>n</SUB> then a<SUB>n</SUB> · · · a<SUB>1</SUB> is called the <I>reverse</I><A NAME="20001-3020"> </A> of <FONT FACE="SYMBOL">a</FONT>,
+denoted <FONT FACE="SYMBOL">a</FONT><SUP>rev</SUP>. <FONT FACE="SYMBOL">b</FONT> is said to be a <I>permutation</I><A NAME="20001-3021"> </A> of <FONT FACE="SYMBOL">a</FONT> if <FONT FACE="SYMBOL">b</FONT> can be obtained from <FONT FACE="SYMBOL">a</FONT> by reordering
+the symbols in <FONT FACE="SYMBOL">a</FONT>.
+   <P ><STRONG>Example 1.1.5</STRONG> <A 
+   NAME="20001-3022t1.1.5"> </A> 
+Let <FONT FACE="SYMBOL">a</FONT> be the string 001. <FONT FACE="SYMBOL">a</FONT><SUP>rev</SUP> = 100. The strings 001, 010, and 100 are the permutations of
+<FONT FACE="SYMBOL">a</FONT>. <IMG 
+SRC="theory-bk-one0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >The set of all the strings over an alphabet <FONT FACE="SYMBOL">S</FONT> will be denoted by <FONT FACE="SYMBOL">S</FONT>*<A NAME="20001-3023"> </A>. <FONT FACE="SYMBOL">S</FONT><SUP>+</SUP> will denote the
+set <FONT FACE="SYMBOL">S</FONT>* - {<FONT FACE="SYMBOL">e</FONT>}.
+   <P ><EM><A 
+   NAME="20001-4000"> </A><A 
+ HREF="#Q2-20001-4"  NAME="Q1-20001-4">Ordering of Strings</A></EM>
+   <P >Searching is probably the most commonly applied operation on information. Due to
+the importance of this operation, approaches for searching information and for organizing
+information to facilitate searching, receive special attention. Sequential search, binary
+search, insertion sort, quick sort, and merge sort are some examples of such approaches.
+These approaches rely in most cases on the existence of a relationship that defines an
+ordering of the entities in question.
+   <P >A frequently used relationship for strings is the one that compares them alphabetically,
+as reflected by the ordering of names in telephone books. The relationship and ordering
+can be defined in the following manner.
+   <P >Consider any alphabet <FONT FACE="SYMBOL">S</FONT>. A string <FONT FACE="SYMBOL">a</FONT> is said to be <I>alphabetically<A NAME="20001-4001"> </A> smaller</I> in <FONT FACE="SYMBOL">S</FONT>* than a
+string <FONT FACE="SYMBOL">b</FONT>, or equivalently, <FONT FACE="SYMBOL">b</FONT> is said to be <I>alphabetically<A NAME="20001-4002"> </A> bigger</I> in <FONT FACE="SYMBOL">S</FONT>* than <FONT FACE="SYMBOL">a</FONT> if <FONT FACE="SYMBOL">a</FONT> and <FONT FACE="SYMBOL">b</FONT> are
+in <FONT FACE="SYMBOL">S</FONT>* and either of the following two cases holds.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="20001-4003xa"> </A><FONT FACE="SYMBOL">a</FONT> is a proper prefix of <FONT FACE="SYMBOL">b</FONT>.
+     <LI><A 
+   NAME="20001-4004xb"> </A>For some <FONT FACE="SYMBOL">g</FONT> in <FONT FACE="SYMBOL">S</FONT>* and some a and b in <FONT FACE="SYMBOL">S</FONT> such that a precedes b in <FONT FACE="SYMBOL">S</FONT>, the string
+     <FONT FACE="SYMBOL">g</FONT>a is a prefix of <FONT FACE="SYMBOL">a</FONT> and the string <FONT FACE="SYMBOL">g</FONT>b is a prefix of <FONT FACE="SYMBOL">b</FONT>.<A NAME="20001-4005"> </A></OL>
+An ordered subset of <FONT FACE="SYMBOL">S</FONT>* is said to be <I>alphabetically<A NAME="20001-4006"> </A> ordered</I>, if <FONT FACE="SYMBOL">b</FONT> is not alphabetically
+smaller in <FONT FACE="SYMBOL">S</FONT>* than <FONT FACE="SYMBOL">a</FONT> whenever <FONT FACE="SYMBOL">a</FONT> precedes <FONT FACE="SYMBOL">b</FONT> in the subset.
+   <P ><STRONG>Example 1.1.6</STRONG> <A 
+   NAME="20001-4007t1.1.6"> </A> 
+Let <FONT FACE="SYMBOL">S</FONT> be the binary alphabet {0, 1}. The string 01 is alphabetically smaller in <FONT FACE="SYMBOL">S</FONT>* than the
+string 01100, because 01 is a proper prefix of 01100. On the other hand, 01100 is
+alphabetically smaller than 0111, because both strings agree in their first three
+symbols and the fourth symbol in 01100 is smaller than the fourth symbol in
+0111.
+   <P >The set {<FONT FACE="SYMBOL">e</FONT>, 0, 00, 000, 001, 01, 010, 011, 1, 10, 100, 101, 11, 110, 111}, of those
+strings that have length not greater than 3, is given in alphabetical ordering. <IMG 
+SRC="theory-bk-one0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >Alphabetical ordering is satisfactory for finite sets, because each string in such an
+ordered set can eventually be reached. For similar reasons, alphabetical ordering is also
+satisfactory for infinite sets of unary strings. However, in some other cases alphabetical
+ordering is not satisfactory because it can result in some strings being preceded by an
+unbounded number of strings. For instance, such is the case for the string 1 in the
+alphabetically ordered set {0, 1}*, that is, 1 is preceded by the strings 0, 00,
+000, <FONT FACE="SYMBOL">¼</FONT>  This deficiency motivates the following definition of canonical ordering
+for strings. In canonical ordering each string is preceded by a finite number of
+strings.
+   <P >A string <FONT FACE="SYMBOL">a</FONT> is said to be <I>canonically<A NAME="20001-4008"> </A> smaller</I> or <I>lexicographically smaller</I> in <FONT FACE="SYMBOL">S</FONT>* than a
+string <FONT FACE="SYMBOL">b</FONT>, or equivalently, <FONT FACE="SYMBOL">b</FONT> is said to be <I>canonically<A NAME="20001-4009"> </A> bigger</I> or <I>lexicographically bigger</I> in
+<FONT FACE="SYMBOL">S</FONT>* than <FONT FACE="SYMBOL">a</FONT> if either of the following two cases holds.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="20001-4010xa"> </A><FONT FACE="SYMBOL">a</FONT> is shorter than <FONT FACE="SYMBOL">b</FONT>.
+     <LI><A 
+   NAME="20001-4011xb"> </A><FONT FACE="SYMBOL">a</FONT> and <FONT FACE="SYMBOL">b</FONT> are of identical length but <FONT FACE="SYMBOL">a</FONT> is alphabetically smaller than <FONT FACE="SYMBOL">b</FONT>.<A NAME="20001-4012"> </A></OL>
+An ordered subset of <FONT FACE="SYMBOL">S</FONT>* is said to be <I>canonically<A NAME="20001-4013"> </A> ordered</I> or <I>lexicographically
+ordered</I>, if <FONT FACE="SYMBOL">b</FONT> is not canonically smaller in <FONT FACE="SYMBOL">S</FONT>* than <FONT FACE="SYMBOL">a</FONT> whenever <FONT FACE="SYMBOL">a</FONT> precedes <FONT FACE="SYMBOL">b</FONT> in the
+subset.
+   <P ><STRONG>Example 1.1.7</STRONG> <A 
+   NAME="20001-4014t1.1.7"> </A> 
+Consider the alphabet <FONT FACE="SYMBOL">S</FONT> = {0, 1}. The string 11 is canonically smaller in <FONT FACE="SYMBOL">S</FONT>* than the
+string 000, because 11 is a shorter string than 000. On the other hand, 00 is canonically
+smaller than 11, because the strings are of equal length and 00 is alphabetically smaller
+than 11.
+   <P >The set <FONT FACE="SYMBOL">S</FONT>* = {<FONT FACE="SYMBOL">e</FONT>, 0, 1, 00, 01, 10, 11, 000, 001,<FONT FACE="SYMBOL"> ¼</FONT>} is given in its canonical ordering. <IMG 
+SRC="theory-bk-one0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="20001-5000"> </A><A 
+ HREF="#Q2-20001-5"  NAME="Q1-20001-5">Representations</A></EM>
+   <P >Given the preceding definitions of alphabets and strings, representations of information
+can be viewed as the mapping of objects into strings in accordance with some rules. That
+is, formally speaking, a <I>representation</I><A NAME="20001-5001"> </A> or <I>encoding</I> over an alphabet <FONT FACE="SYMBOL">S</FONT> of a set D is
+a function f from D to <IMG 
+SRC="theory-bk-one3x.gif" ALT=""> that satisfies the following condition: f(e<SUB>1</SUB>) and
+f(e<SUB>2</SUB>) are disjoint nonempty sets for each pair of distinct elements e<SUB>1</SUB> and e<SUB>2</SUB> in
+D.
+   <P >If <FONT FACE="SYMBOL">S</FONT> is a unary alphabet, then the representation is said to be a <I>unary<A NAME="20001-5002"> </A> representation</I>. If
+<FONT FACE="SYMBOL">S</FONT> is a binary alphabet, then the representation is said to be a <I>binary<A NAME="20001-5003"> </A> representation</I>.
+   <P >In what follows each element in f(e) will be referred to as a representation, or
+encoding, of e.
+   <P ><STRONG>Example 1.1.8</STRONG> <A 
+   NAME="20001-5004t1.1.8"> </A> 
+f<SUB>1</SUB> is a binary representation over {0, 1} of the natural numbers if
+f<SUB>1</SUB>(0) = {0, 00, 000, 0000,<FONT FACE="SYMBOL"> ¼</FONT> }, f<SUB>1</SUB>(1) = {1, 01, 001, 0001,<FONT FACE="SYMBOL"> ¼</FONT> }, f<SUB>1</SUB>(2) = {10, 010,
+0010, 00010,<FONT FACE="SYMBOL"> ¼</FONT> }, f<SUB>1</SUB>(3) = {11, 011, 0011, 00011,<FONT FACE="SYMBOL"> ¼</FONT> }, and f<SUB>1</SUB>(4) = {100, 0100, 00100, 000100,<FONT FACE="SYMBOL"> ¼</FONT> },
+etc.
+   <P >Similarly, f<SUB>2</SUB> is a binary representation over {0, 1} of the natural numbers if it assigns
+to the <I>i</I>th natural number the set consisting of the <I>i</I>th canonically smallest binary
+string. In such a case, f<SUB>2</SUB>(0) = {<FONT FACE="SYMBOL">e</FONT>}, f<SUB>2</SUB>(1) = {0}, f<SUB>2</SUB>(2) = {1}, f<SUB>2</SUB>(3) = {00},
+f<SUB>2</SUB>(4) = {01}, f<SUB>2</SUB>(5) = {10}, f<SUB>2</SUB>(6) = {11}, f<SUB>2</SUB>(7) = {000}, f<SUB>2</SUB>(8) = {1000},
+f<SUB>2</SUB>(9) = {1001}, <FONT FACE="SYMBOL">¼</FONT>
+   <P >On the other hand, f<SUB>3</SUB> is a unary representation over {1} of the natural numbers if it
+assigns to the <I>i</I>th natural number the set consisting of the <I>i</I>th alphabetically (=
+canonically) smallest unary string. In such a case, f<SUB>3</SUB>(0) = {<FONT FACE="SYMBOL">e</FONT>}, f<SUB>3</SUB>(1) = {1},
+f<SUB>3</SUB>(2) = {11}, f<SUB>3</SUB>(3) = {111}, f<SUB>3</SUB>(4) = {1111}, <FONT FACE="SYMBOL">¼</FONT> , f<SUB>3</SUB>(i) = {1<SUP>i</SUP>}, <FONT FACE="SYMBOL">¼</FONT>
+   <P >The three representations f<SUB>1</SUB>, f<SUB>2</SUB>, and f<SUB>3</SUB> are illustrated in Figure <A 
+ HREF="#20001-5005r1.1.1">1.1.1</A>. <IMG 
+SRC="theory-bk-one0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="20001-5005r1.1.1"> </A>
+<A 
+   NAME="20001-5005r1.1.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-one-1-1-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 1.1.1 </STRONG></NOBR></TD><TD  
+>Representations for the natural numbers.                                                                     </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >In the rest of the book, unless otherwise is stated, the function f<SUB>1</SUB> of Example <A 
+ HREF="#20001-5004t1.1.8">1.1.8</A> is
+assumed to be the binary representation of the natural numbers.<A NAME="20001-5006"> </A>
+   <P >
+   <P >[<A 
+ HREF="theory-bk-onese2.html" >next</A>] [<A 
+ HREF="theory-bk-onese1.html" >front</A>] [<A 
+ HREF="theory-bk-one.html#theory-bk-onese1.html" >up</A>] <A 
+   NAME="tailtheory-bk-onese1.html"> </A></BODY></HTML>

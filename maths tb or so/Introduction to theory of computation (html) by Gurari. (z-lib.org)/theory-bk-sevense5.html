@@ -1,0 +1,513 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-seven.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-sevense6.html" >next</A>] [<A 
+ HREF="theory-bk-sevense4.html" >prev</A>] [<A 
+ HREF="theory-bk-sevense4.html#tailtheory-bk-sevense4.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-sevense5.html">tail</A>] [<A 
+ HREF="theory-bk-seven.html#theory-bk-sevense5.html" >up</A>]
+<H3>7.5 <A 
+   NAME="80005-110007.5"> </A><A 
+ HREF="theory-bk.html#Q2-80005-11"  NAME="Q1-80005-11">Uniform Families of Circuits and Sequential Computations</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-80005-12"  NAME="Q2-80005-12">From Sequential Time to Circuit Size</A>
+<BR>         <A 
+ HREF="#Q1-80005-13"  NAME="Q2-80005-13">A Modified Version of M</A>
+<BR>         <A 
+ HREF="#Q1-80005-14"  NAME="Q2-80005-14">A Circuit c<SUB>n</SUB> for Simulating M</A>
+<BR>         <A 
+ HREF="#Q1-80005-15"  NAME="Q2-80005-15">The Subcircuit MOVE<SUB> i</SUB></A>
+<BR>         <A 
+ HREF="#Q1-80005-16"  NAME="Q2-80005-16">A Uniform Circuits Constructor</A>
+<BR>         <A 
+ HREF="#Q1-80005-17"  NAME="Q2-80005-17">From Circuits Size to Sequential Time</A>
+<BR>         <A 
+ HREF="#Q1-80005-18"  NAME="Q2-80005-18"><I>U_FNC</I>, <I>U_NC</I>, and <I>NC</I></A>
+<BR>         <A 
+ HREF="#Q1-80005-19"  NAME="Q2-80005-19">Sequential Space and Parallel Time</A>
+   <P >The size of circuits is a major resource for parallel computations, as is time for
+sequential computations. The following theorem shows that these two types of resources
+are polynomially related.
+   <P ><STRONG>Notation </STRONG> <A 
+   NAME="80005-11001t7.5"> </A> 
+In what follows <I>DTIME _F</I> (T(n))<A NAME="80005-11002"> </A> will denote the class of functions computable by
+O(T(n)) time-bounded, deterministic Turing transducers. The class of functions with size
+complexity <I>SIZE _F</I> (Z(n))<A NAME="80005-11003"> </A> will be denoted O(Z(n)). The class of languages whose
+characteristic functions are in <I>SIZE _F</I> (Z(n)) will be denoted <I>SIZE</I> (Z(n))<A NAME="80005-11004"> </A>.
+<I>U_SIZE _F</I> (Z(n))<A NAME="80005-11005"> </A> will denote the class of functions computable by uniform
+families of circuits of size complexity O(Z(n)). The class of languages whose
+characteristic functions are in <I>U_SIZE _F</I> (Z(n)) will be denoted <I>U_SIZE</I> (Z(n))<A NAME="80005-11006"> </A>.
+<I>U_DEPTH _F</I> (D(n))<A NAME="80005-11007"> </A> will denote the class of functions computable by uniform
+families of circuits of depth complexity O(D(n)), and the class of languages whose
+characteristic functions are in <I>U_DEPTH _F</I> (D(n)) will be denoted <I>U_DEPTH</I> (D(n))<A NAME="80005-11008"> </A>.
+<I>U_SIZE _DEPTH _F</I> (Z(n), D(n))<A NAME="80005-11009"> </A> will denote the class of functions computable by
+uniform families of circuits with simultaneous size complexity Z(n) and depth complexity
+D(n).
+   <P ><STRONG>Theorem 7.5.1</STRONG> <A 
+   NAME="80005-11010t7.5.1"> </A> 
+If log T(n) is fully space-constructible, then <A NAME="80005-11011"> </A><A NAME="80005-11012"> </A>
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-seven45x.gif" ALT=" È  DTIME _F (T d(n))   =   È  U_SIZE_F (Td(n))
+d³0                     d³0"></PRE></CENTER>
+   <P >
+   <P >The proof of the theorem is implied from the two lemmas below.
+   <P ><EM><A 
+   NAME="80005-12000"> </A><A 
+ HREF="#Q2-80005-12"  NAME="Q1-80005-12">From Sequential Time to Circuit Size</A></EM>
+   <P >The proof of the first lemma consists of unrolling the hardware of deterministic Turing
+transducers.
+   <P ><STRONG>Lemma 7.5.1</STRONG> <A 
+   NAME="80005-12001t7.5.1"> </A> 
+If log T(n) is fully space-constructible, then
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-seven46x.gif" ALT=" DTIME _F (T(n))  Í   U_SIZE_F (T2(n))."></PRE></CENTER><P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="80005-12002t"> </A> 
+Consider any T(n) time-bounded, deterministic Turing transducer
+M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt;, where log T(n) is fully space-constructible. With no loss
+of generality assume that <FONT FACE="SYMBOL">S</FONT> = {0, 1}. Let m denote the number of auxiliary work tapes of
+M.
+   <P ><EM><A 
+   NAME="80005-13000"> </A><A 
+ HREF="#Q2-80005-13"  NAME="Q1-80005-13">A Modified Version of M</A></EM>
+   <P >Assume that <FONT FACE="SYMBOL">D</FONT> does not contain the symbols a and b. Modify M in the following
+way.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="80005-13001xa"> </A>Modify each transition rule that provides no output to a rule that provides the
+     output b.
+     <LI><A 
+   NAME="80005-13002xb"> </A>Remove the transition rules that originate at the accepting states, convert the
+     accepting states into nonaccepting states, add a new nonaccepting state, and
+     add new transition rules that force M to go from the old accepting states to
+     the new state while writing the symbol a. Call the new state an a state.
+     <LI><A 
+   NAME="80005-13003xc"> </A>For  each  state  q,  input  symbol  c,  and  auxiliary  work-tape  symbols  b<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , b<SUB>m</SUB>
+     on which <FONT FACE="SYMBOL">d</FONT>(q, c, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>) is undefined, add the transition rule (q, c, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>,
+     q, 0, b<SUB>1</SUB>, 0,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>, 0, <FONT FACE="SYMBOL">a</FONT>) to <FONT FACE="SYMBOL">d</FONT>. <FONT FACE="SYMBOL">a</FONT> is assumed to equal a if q is the a state, and <FONT FACE="SYMBOL">a</FONT> is
+     assumed to equal b if q is not the a state.</OL>
+The modified M is a deterministic Turing transducer, which on each input has a
+computation of an unbounded number of moves. On an input on which the original M has
+i moves, the modified M enters an infinite loop in the i + 1st move. In each move the
+modified M writes one symbol onto the output tape. The output of the modified M in the
+i + 1st, i + 2 nd, <FONT FACE="SYMBOL">¼</FONT>  moves is a if and only if the input is accepted by the original M.
+Moreover, the output of the original M can be obtained from the string that the modified
+M writes on the output tape, by removing all the symbols a and all the symbols
+b.
+   <P ><EM><A 
+   NAME="80005-14000"> </A><A 
+ HREF="#Q2-80005-14"  NAME="Q1-80005-14">A Circuit c<SUB>n</SUB> for Simulating M</A></EM>
+   <P >A circuit c<SUB>n</SUB> of the following form can simulate the original M on inputs of length n, by
+simulating the first t = 2<SUP><FONT FACE="SYMBOL">é</FONT>log (T(n)+1)<FONT FACE="SYMBOL">ù</FONT></SUP> moves of the modified M on the given
+input.
+   <P >The simulation of exactly t = 2<SUP><FONT FACE="SYMBOL">é</FONT>log (T(n)+1)<FONT FACE="SYMBOL">ù</FONT></SUP> moves of (the modified) M, allows c<SUB>n</SUB> to
+generate outputs of identical length t for all the inputs of length n. Such a uniformity in the
+length of the outputs is needed because of the circuits' rigidity in the length of their
+outputs.
+   <P >The choice of t = 2<SUP><FONT FACE="SYMBOL">é</FONT>log (T(n)+1)<FONT FACE="SYMBOL">ù</FONT></SUP> instead of T(n) + 1 for the number of moves of
+M, is made to allow the value to be calculated just by marking a space of size
+O(log T(n)).
+   <P >c<SUB>n</SUB> assumes some fixed binary representation for the set <FONT FACE="SYMBOL">S</FONT><FONT FACE="SYMBOL">È</FONT><FONT FACE="SYMBOL">G</FONT><FONT FACE="SYMBOL">È</FONT><FONT FACE="SYMBOL">D</FONT><FONT FACE="SYMBOL">È</FONT>{a, b, ¢, $, -1, 0, +1, <IMG 
+SRC="theory-bk-seven47x.gif" ALT="PICT" >,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-seven48x.gif" ALT="PICT" >}<FONT FACE="SYMBOL">È</FONT>Q.
+The elements of the set can be represented by binary strings of identical length k. <IMG 
+SRC="theory-bk-seven49x.gif" ALT="PICT" >, <FONT FACE="SYMBOL">¼</FONT> , <IMG 
+SRC="theory-bk-seven50x.gif" ALT="PICT" >
+are assumed to be new symbols corresponding to the heads of M.
+   <P >c<SUB>n</SUB> consists of t + 2 subcircuits, referred to as IN, MOVE<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , MOVE<SUB> t</SUB>, and OUT, respectively
+(see Figure <A 
+ HREF="#80005-14001r7.5.1">7.5.1</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="80005-14001r7.5.1"> </A>
+<A 
+   NAME="80005-14001r7.5.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-seven-7-5-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 7.5.1 </STRONG></NOBR></TD><TD  
+>A  circuit  c<SUB>n</SUB>  that  computes  the  function  computable  by  a  deterministic  Turing
+transducer M on instances of length n.                                                                       </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >IN is a subcircuit which derives the initial (i.e., 0th) configuration
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-seven51x.gif" ALT="  |            t   t     t   t
+(cq0a1 ···an$,B q0B ,...,B q0B ,e)"></PRE></CENTER>
+   <P >of M on the given input a<SUB>1</SUB> · · · a<SUB>n</SUB>. IN uses the values a<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , a<SUB>n</SUB> of the input nodes x<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , x<SUB>n</SUB>;
+the values of some constant nodes 0; and the values of some constant nodes 1 for obtaining
+the desired (representation of the) configuration.
+   <P >The subcircuit MOVE<SUB>i</SUB>, 1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> t, derives the <I>i</I>th configuration
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-seven52x.gif" ALT=" (ca1···q'···an$,b'11···q'···b'12t,...,b'm 1··· q'···b'm 2t,b'm+11 ···b'm+1 i)"></PRE></CENTER>
+   <P >of M from the i - 1st configuration
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-seven53x.gif" ALT="  |
+(ca1 ··· q··· an$,b11 ···q ···b12t,...,bm1 ···q ··· bm 2t,bm+1 1··· bm+1 i- 1)"></PRE></CENTER>
+   <P >of M.
+   <P >OUT  is a subcircuit that extracts the (encoding of the) output b<SUB>1</SUB> · · · b<SUB>t</SUB> that M has in the
+<I>t</I>th configuration. OUT  does so by eliminating the symbols that are not in <FONT FACE="SYMBOL">D</FONT> <FONT FACE="SYMBOL">È</FONT> {a, b}, for
+example, by using AND gates.
+   <P ><EM><A 
+   NAME="80005-15000"> </A><A 
+ HREF="#Q2-80005-15"  NAME="Q1-80005-15">The Subcircuit MOVE<SUB> i</SUB></A></EM>
+   <P >MOVE<SUB> i</SUB> uses components PREFIX _FINDER and SUFFIX _FINDER for determining the
+transition rule (q, a, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>, p, d<SUB>0</SUB>, c<SUB>1</SUB>, d<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, c<SUB>m</SUB>, d<SUB>m</SUB>, <FONT FACE="SYMBOL">r</FONT>) that M uses in its <I>i</I>th move (see
+Figure <A 
+ HREF="#80005-15001r7.5.2">7.5.2</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="80005-15001r7.5.2"> </A>
+<A 
+   NAME="80005-15001r7.5.2"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-seven-7-5-2.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 7.5.2 </STRONG></NOBR></TD><TD  
+>Subcircuit MOVE<SUB> i</SUB>  for  simulating  a  transition  of  a  deterministic  Turing  transducer
+between two configurations.                                                                                         </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>PREFIX _FINDER determines the prefix (q, a, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>) of the transition rule from the i - 1st
+configuration of M. SUFFIX _FINDER determines the suffix (p, d<SUB>0</SUB>, c<SUB>1</SUB>, d<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, c<SUB>m</SUB>, d<SUB>m</SUB>, <FONT FACE="SYMBOL">r</FONT>) of the
+transition rule from (q, a, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>). MOVE<SUB> i</SUB> uses a component MODIFIER for carrying out the
+necessary modifications to the i - 1st configuration of M.
+   <P >PREFIX _FINDER has a component FINDER<SUB> i</SUB>, 0 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> m, corresponding to each of the
+nonoutput tapes of M (see Figure <A 
+ HREF="#80005-15002r7.5.3">7.5.3</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="80005-15002r7.5.3"> </A>
+<A 
+   NAME="80005-15002r7.5.3"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-seven-7-5-3.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 7.5.3 </STRONG></NOBR></TD><TD  
+>A subcircuit PREFIX _FINDER for determining a transition rule of a Turing transducer.</TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>FINDER<SUB>i</SUB> determines the symbol that is under the head of the <I>i</I>th tape of M. FINDER<SUB>i</SUB>
+employs a subcircuit LOCAL _FINDER<SUB> i</SUB> for each pair of consecutive symbols in the portion
+of the configuration that corresponds to the <I>i</I>th tape of M. LOCAL _FINDER<SUB>i</SUB> outputs (the
+representation of) the symbol <FONT FACE="SYMBOL">a</FONT> if its input corresponds to a pair of the form <IMG 
+SRC="theory-bk-seven54x.gif" ALT="PICT" ><FONT FACE="SYMBOL">a</FONT>.
+Otherwise, the subcircuit LOCAL _FINDER<SUB> i</SUB> outputs just 0's. The output of each
+LOCAL _FINDER<SUB>
+i</SUB> is determined by a table look-up circuit. The outputs of all the
+LOCAL _FINDER<SUB>
+i</SUB>'s are OR ed to obtain the desired output of FINDER<SUB>i</SUB>.
+   <P >SUFFIX _FINDER on input (q, a, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>) employs a table look-up approach to find
+(p, d<SUB>0</SUB>, c<SUB>1</SUB>, d<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, c<SUB>m</SUB>, d<SUB>m</SUB>, <FONT FACE="SYMBOL">r</FONT>).
+   <P >MODIFIER contains one component TAPE _MODIFIER<SUB> i</SUB> for each of the nonoutput tapes i
+of the Turing transducer M, 0 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> m (see Figure <A 
+ HREF="#80005-15003r7.5.4">7.5.4</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="80005-15003r7.5.4"> </A>
+<A 
+   NAME="80005-15003r7.5.4"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-seven-7-5-4.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 7.5.4 </STRONG></NOBR></TD><TD  
+>A subcircuit MODIFIER for modifying a configuration of a Turing transducer.            </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>TAPE _MODIFIER<SUB>i</SUB> contains one subcircuit SUBTAPE _MODIFIER for each location in the
+constructed configuration of the Turing transducer M. A SUBTAPE _MODIFIER that
+corresponds to location j receives the three symbols U, Y, and V as inputs at locations
+j - 1, j, and j + 1 in the configuration of M that is being modified. (The only exception
+occurs when the <I>j</I>th location is a boundary location. In such a case the SUBTAPE _MODIFIER
+receives only two input values.) In addition, the SUBTAPE _MODIFIER gets as input the
+modifications (c<SUB>i</SUB> and d<SUB>i</SUB>) that are to be made in the <I>i</I>th tape of M. The SUBTAPE _MODIFIER
+outputs the symbol Y ' for the <I>j</I>th location in the constructed configuration of
+M.
+   <P ><EM><A 
+   NAME="80005-16000"> </A><A 
+ HREF="#Q2-80005-16"  NAME="Q1-80005-16">A Uniform Circuits Constructor</A></EM>
+   <P >IN has size 0. Each FINDER<SUB> i</SUB> contains O(T(n)) subcircuits LOCAL _FINDER<SUB> i</SUB>, and a
+constant number of subcircuits OR. Each LOCAL _FINDER<SUB> i</SUB> has constant size. Each
+subcircuit OR has size O(T(n)). Hence, PREFIX _FINDER has size O(T(n)). SUFFIX _
+FINDER has constant size, and TAPE _MODIFIER has size O(T(n)). Consequently, c<SUB>n</SUB> has
+size O(T<SUP>2</SUP>(n)).
+   <P >An O(log T(n)) space-bounded, deterministic Turing transducer X can be
+constructed, to compute { (1<SUP>n</SUP>, c<SUB>n</SUB>) | n <FONT FACE="SYMBOL">³</FONT> 0 } in a brute-force manner. <IMG 
+SRC="theory-bk-seven15x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><STRONG>Example 7.5.1</STRONG> <A 
+   NAME="80005-16001t7.5.1"> </A> 
+Let M be the one auxiliary-work-tape deterministic Turing transducer in Figure <A 
+ HREF="#80005-16002r7.5.5">7.5.5</A>(a).
+M has time complexity T(n) = n + 1. For the purpose of the example take M as it
+is, without modifications. Using the terminology in the proof of Lemma <A 
+ HREF="#80005-12001t7.5.1">7.5.1</A>,
+Q = {q<SUB>0</SUB>, q<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, q<SUB>4</SUB>}, <FONT FACE="SYMBOL">S</FONT> = <FONT FACE="SYMBOL">D</FONT> = {0, 1}, <FONT FACE="SYMBOL">G</FONT> = {0, 1, B}, m = 1, and k = 4. Choose the
+following binary representation E: E(0) = 0000, E(1) = 0001, E(¢) = 0010,
+E($) = 0011, E(B) = 0100, E(a) = 0101, E(b) = 0110, E(<IMG 
+SRC="theory-bk-seven55x.gif" ALT="PICT" >) = 0111,
+E(<IMG 
+SRC="theory-bk-seven56x.gif" ALT="PICT" >) = 1000, E(q<SUB>0</SUB>) = 1001, E(q<SUB>1</SUB>) = 1010, E(q<SUB>2</SUB>) = 1011, E(q<SUB>3</SUB>) = 1100,
+E(q<SUB>4</SUB>) = 1101, E(-1) = 1110, E(+1) = 1111. Choose n = 3.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="80005-16002r7.5.5"> </A>
+<A 
+   NAME="80005-16002r7.5.5"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-seven-7-5-5.jpg" ALT="[PICT]" 
+>
+<BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure                                                                                                                  7.5.5
+</STRONG></NOBR></TD><TD  
+>(a)  A  Turing  transducer.  (b)  Corresponding  subcircuit  IN.  (c)  Corresponding
+subcircuit PREFIX _FINDER. (d) Corresponding subcircuit SUFFIX _FINDER.        </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >In such a case, t = 4. The subcircuit IN is given in Figure <A 
+ HREF="#80005-16002r7.5.5">7.5.5</A>(b), the subcircuit
+PREFIX _FINDER is given in Figure <A 
+ HREF="#80005-16002r7.5.5">7.5.5</A>(c), and the subcircuit SUFFIX _FINDER is given in
+Figure <A 
+ HREF="#80005-16002r7.5.5">7.5.5</A>(d). <IMG 
+SRC="theory-bk-seven15x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="80005-17000"> </A><A 
+ HREF="#Q2-80005-17"  NAME="Q1-80005-17">From Circuits Size to Sequential Time</A></EM>
+   <P >The previous lemma deals with applying parallelism for simulating sequential
+computations. The following lemma deals with the simulation of parallel computations by
+sequential computations.
+   <P ><STRONG>Lemma 7.5.2</STRONG> <A 
+   NAME="80005-17001t7.5.2"> </A> 
+    <I>U_SIZE _F</I> (Z(n))  <FONT FACE="SYMBOL">Í</FONT>    <FONT FACE="SYMBOL">È</FONT>
+      <SUB> d<FONT FACE="SYMBOL">³</FONT>0</SUB><I>DTIME _F</I> (Z<SUP>d</SUP>(n)).
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="80005-17002t"> </A> 
+Consider any function Z(n), and any uniform family C = (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) of circuits of size
+complexity Z(n). Let X be an O(log Z(n)) space-bounded, deterministic Turing
+transducer that computes the function { (1<SUP>n</SUP>, c<SUB>n</SUB>) | n <FONT FACE="SYMBOL">³</FONT> 0 }. A deterministic Turing
+transducer M can compute the same function as C in the following manner.
+   <P >Given an input a<SUB>1</SUB> · · · a<SUB>n</SUB>, M employs X to determine the representation of the circuit
+c<SUB>n</SUB>. The representation can be found in 2<SUP>O(log Z(n))</SUP> = Z<SUP>O(1)</SUP>(n) time because X is
+O(log Z(n)) space-bounded (see Theorem <A 
+ HREF="theory-bk-fivese5.html#60005-27005t5.5.1">5.5.1</A>). Moreover, the representation has length
+O(Z(n)log Z(n)) because c<SUB>n</SUB> has at most Z(n) gates, and each gate (g, t, g<SUB>L</SUB>, g<SUB>R</SUB>) has a
+representation of length O(log Z(n)).
+   <P >Having the representation of c<SUB>n</SUB>, the Turing transducer M evaluates the output of each
+node in c<SUB>n</SUB>. M does so by repeatedly scanning the representation of c<SUB>n</SUB> for quadruples
+(g, t, g<SUB>L</SUB>, g<SUB>R</SUB>), that correspond to nodes g<SUB>L</SUB> and g<SUB>R</SUB>, whose output values are already known.
+Having found such a quadruple (g, t, g<SUB>L</SUB>, g<SUB>R</SUB>), the Turing transducer M evaluates and also
+records the output value of g. After at most Z(n) iterations, M determines the output
+values of all the nodes in c<SUB>n</SUB>.
+   <P >Finally, M determines which nodes of c<SUB>n</SUB> are the output nodes, and writes out their
+values. <IMG 
+SRC="theory-bk-seven15x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >By Theorem <A 
+ HREF="#80005-11010t7.5.1">7.5.1</A>, the time of sequential computations and the size of uniform families
+of circuits are polynomially related.
+   <P ><STRONG>Corollary 7.5.1</STRONG> <A 
+   NAME="80005-17003t7.5.1"> </A> 
+A problem is solvable in polynomial time if and only if it is solvable by a uniform family
+of circuits of polynomial size complexity.
+   <P >
+   <P ><EM><A 
+   NAME="80005-18000"> </A><A 
+ HREF="#Q2-80005-18"  NAME="Q1-80005-18"><I>U_FNC</I>, <I>U_NC</I>, and <I>NC</I></A></EM>
+   <P >Sequential computations are considered feasible only if they are polynomially time-
+bounded. Similarly, families of circuits are considered feasible only if they are
+polynomially size-bounded. As a result, parallelism does not seem to have major influence
+on problems that are not solvable in polynomial time. On the other hand, for those
+problems that are solvable in polynomial time, parallelism is of central importance when it
+can significantly increase computing speed. One such class of problems is that which can
+be solved by uniform families of circuits, simultaneously having polynomial size
+complexity and <I>polylog</I><A NAME="80005-18001"> </A> (i.e., O(log<SUP>i</SUP>n) for some i <FONT FACE="SYMBOL">³</FONT> 0) depth complexity. This class of
+problems is denoted <I>U_FNC</I><A NAME="80005-18002"> </A>.
+   <P >The subclass of <I>U_FNC</I>, which is obtained by restricting the depth complexity of the
+families of circuits to O(log<SUP>i</SUP>n), is denoted <I>U_FNC</I><SUP> i</SUP>. The subclass of decision problems in
+<I>U_FNC</I> is denoted <I>U_NC</I><A NAME="80005-18003"> </A>. The subclass of decision problems in <I>U_FNC</I><SUP> i</SUP> is denoted
+<I>U_NC</I><SUP>i</SUP>.
+   <P ><I>FNC</I><A NAME="80005-18004"> </A> denotes the class of problems solvable by (not necessarily uniform) families
+of circuits that simultaneously, have polynomial size complexity and polylog
+depth complexity. The subclass of decision problems in <I>FNC</I> is denoted <I>NC</I><A NAME="80005-18005"> </A>.
+The subclass of <I>FNC</I>, obtained by restricting the families of circuits to depth
+complexity O(log<SUP>i</SUP>n), is denoted <I>FNC</I><SUP> i</SUP>. <I>NC</I><SUP> i</SUP> denotes the class of decision problems
+in <I>FNC</I><SUP> i</SUP>.
+   <P >For nonuniform families of circuits the following contrasting theorem holds.
+   <P ><STRONG>Theorem 7.5.2</STRONG> <A 
+   NAME="80005-18006t7.5.2"> </A> 
+<I>NC</I><SUP>1</SUP> contains undecidable problems.<A NAME="80005-18007"> </A>
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="80005-18008t"> </A> 
+Every unary language L over the alphabet {1} can be decided by a family
+C = (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) of circuits of simultaneous polynomial size complexity and
+logarithmic depth complexity. Specifically, each c<SUB>n</SUB> in C is a table look-up circuit
+that outputs 1 on a given input a<SUB>1</SUB> · · · a<SUB>n</SUB> if and only if a<SUB>1</SUB> · · · a<SUB>n</SUB> = 1<SUP>n</SUP> and 1<SUP>n</SUP> is
+in L.
+   <P >However, a proof by diagonalization implies that the<A NAME="80005-18009"> </A> membership problem is
+undecidable for the unary language { 1<SUP>i</SUP> | The Turing machine M<SUB>i</SUB> does not accept the
+string 1<SUP>i</SUP> }. <IMG 
+SRC="theory-bk-seven15x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="80005-19000"> </A><A 
+ HREF="#Q2-80005-19"  NAME="Q1-80005-19">Sequential Space and Parallel Time</A></EM>
+   <P >By Corollary <A 
+ HREF="#80005-17003t7.5.1">7.5.1</A>, the definitions above, and the following lemma, the hierarchy
+shown in Figure <A 
+ HREF="#80005-19001r7.5.6">7.5.6</A> holds.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="80005-19001r7.5.6"> </A>
+<A 
+   NAME="80005-19001r7.5.6"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-seven-7-5-6.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 7.5.6 </STRONG></NOBR></TD><TD  
+>A hierarchy of decision problems between <I>NLOG</I> and <I>P</I>.                                           </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P ><STRONG>Lemma 7.5.3</STRONG> <A 
+   NAME="80005-19002t7.5.3"> </A> 
+    <I>NLOG</I>  <FONT FACE="SYMBOL">Í</FONT>    <I>U_NC</I><SUP>2</SUP>. <A NAME="80005-19003"> </A>
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="80005-19004t"> </A> 
+Consider any S(n) = O(log n) space-bounded, nondeterministic Turing machine
+M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt; with m auxiliary work tapes. With no loss of generality
+assume that <FONT FACE="SYMBOL">S</FONT> = {0, 1}. Let a tuple w = (q, i, a, u<SUB>1</SUB>, v<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, u<SUB>m</SUB>, v<SUB>m</SUB>) be called a partial
+configuration of M on input a<SUB>1</SUB> · · · a<SUB>n</SUB>, if M has a configuration (<FONT FACE="SYMBOL">a</FONT>qa<FONT FACE="SYMBOL">b</FONT>, u<SUB>1</SUB>qv<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, u<SUB>m</SUB>qv<SUB>m</SUB>)
+with <FONT FACE="SYMBOL">a</FONT>a<FONT FACE="SYMBOL">b</FONT> = ¢a<SUB>1</SUB> · · · a<SUB>n</SUB>$ and |<FONT FACE="SYMBOL">a</FONT>| = i. Let a partial configuration be called an initial partial
+configuration if it corresponds to an initial configuration. Let a partial configuration
+be called an accepting partial configuration if it corresponds to an accepting
+configuration.
+   <P >Each partial configuration of M requires O(log n) space. The number k of
+partial configurations w<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , w<SUB>k</SUB> that M has on the set of inputs of length n satisfies
+k = 2<SUP>O(log n)</SUP> = n<SUP>O(1)</SUP>.
+   <P >Say that M can directly reach partial configuration w' from partial configuration w if
+w and w' correspond to some configurations <FONT FACE="SYMBOL">O</FONT><SUB>w</SUB> and <FONT FACE="SYMBOL">O</FONT><SUB>w' </SUB> of M, respectively, such that
+<FONT FACE="SYMBOL">O</FONT><SUB>w</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> <FONT FACE="SYMBOL">O</FONT><SUB>w' </SUB>. Say that M can reach partial configuration w' from partial configuration w if w
+and w' correspond to some configurations <FONT FACE="SYMBOL">O</FONT><SUB>w</SUB> and <FONT FACE="SYMBOL">O</FONT><SUB>w' </SUB>  of M, respectively, such that
+<FONT FACE="SYMBOL">O</FONT><SUB>w</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- ">* <FONT FACE="SYMBOL">O</FONT><SUB>w' </SUB>.
+   <P >For the given n, the language L(M) <FONT FACE="SYMBOL">Ç</FONT> {0, 1}<SUP>n</SUP> is decidable by a circuit c<SUB>n</SUB> that consists
+of <FONT FACE="SYMBOL">é</FONT>log k<FONT FACE="SYMBOL">ù</FONT> + 2 subcircuits, namely, DIRECT, FINAL, and <FONT FACE="SYMBOL">é</FONT>log k<FONT FACE="SYMBOL">ù</FONT> copies of INDIRECT
+(Figure <A 
+ HREF="#80005-19005r7.5.7">7.5.7</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="80005-19005r7.5.7"> </A>
+<A 
+   NAME="80005-19005r7.5.7"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-seven-7-5-7.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 7.5.7 </STRONG></NOBR></TD><TD  
+>A  circuit  c<SUB>n</SUB>  that  corresponds  to  an  O(log n)  space-bounded,  nondeterministic
+Turing machine.                                                                                                           </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>The structure of c<SUB>n</SUB> relies on the observation that the Turing machine M accepts a given
+input a<SUB>1</SUB> · · · a<SUB>n</SUB> if and only if M has partial configurations w<SUB>0</SUB>, <FONT FACE="SYMBOL">¼</FONT> , w<SUB>t</SUB> on input a<SUB>1</SUB> · · · a<SUB>n</SUB>, such
+that w<SUB>0</SUB> is an initial partial configuration, w<SUB>t</SUB> is an accepting partial configuration, and M
+can directly reach w<SUB>i</SUB> from w<SUB>i-1</SUB> for 1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> t.
+   <P >DIRECT  has a component CHECK<SUB> i j</SUB> for each possible pair (w<SUB>i</SUB>, w<SUB>j</SUB>) of distinct partial
+configurations of M on the inputs of length n. CHECK<SUB> i j</SUB> has the output 1 on a
+given input a<SUB>1</SUB> · · · a<SUB>n</SUB> if w<SUB>i</SUB> as well as w<SUB>j</SUB> are partial configurations of M on input
+a<SUB>1</SUB> · · · a<SUB>n</SUB>, and M can directly reach w<SUB>j</SUB> from w<SUB>i</SUB>. Otherwise, CHECK<SUB>i j</SUB> has the output
+0.
+   <P >The component CHECK<SUB> i j</SUB> is a table look-up circuit. Specifically, assume that
+CHECK<SUB>i j</SUB> corresponds to the partial configurations w<SUB>i</SUB> = (q, l, a, u<SUB>1</SUB>, v<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, u<SUB>m</SUB>, v<SUB>m</SUB>) and
+w<SUB>j</SUB> = (<IMG 
+SRC="theory-bk-seven57x.gif" ALT="^q">, <IMG 
+SRC="theory-bk-seven58x.gif" ALT="^
+ l">, â, û<SUB>1</SUB>, <IMG 
+SRC="theory-bk-seven59x.gif" ALT="^v"><SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, û<SUB>m</SUB>, <IMG 
+SRC="theory-bk-seven60x.gif" ALT="^v"><SUB>m</SUB>). In such a case, CHECK<SUB> i j</SUB> is the constant node 0 when M
+cannot directly reach w<SUB>j</SUB> from w<SUB>i</SUB>. On the other hand, when M can directly reach w<SUB>j</SUB> from
+w<SUB>i</SUB>, then CHECK<SUB>i j</SUB> is a circuit that has the output 1 on input a<SUB>1</SUB> · · · a<SUB>n</SUB> if and only
+if the l + 1st symbol in ¢a<SUB>1</SUB> · · · a<SUB>n</SUB>$ is a and the <IMG 
+SRC="theory-bk-seven61x.gif" ALT="^l">+ 1st symbol in ¢a<SUB>1</SUB> · · · a<SUB>n</SUB>$ is
+â.
+   <P >Each copy of the subcircuit INDIRECT  modifies the values of the &#34;variables&#34;
+<TT>x</TT><SUB>
+1 2</SUB>, <TT>x</TT><SUB>1 3</SUB>, <FONT FACE="SYMBOL">¼</FONT> , <TT>x</TT><SUB> n n-1</SUB> in parallel, where the value of <TT>x</TT><SUB> i j</SUB> is modified by a component called
+UPDATE<SUB>
+i j</SUB>. Upon reaching the <I>r</I>th INDIRECT  the variable <TT>x</TT><SUB> i j</SUB> holds 1 if and only if M can
+reach w<SUB>j</SUB> from w<SUB>i</SUB> in at most 2<SUP>r</SUP> moves (through partial configurations of M on the given
+input), 1 <FONT FACE="SYMBOL">£</FONT> r <FONT FACE="SYMBOL">£</FONT> <FONT FACE="SYMBOL">é</FONT>log k<FONT FACE="SYMBOL">ù</FONT>. Upon leaving the <I>r</I>th INDIRECT  the variable <TT>x</TT><SUB> i j</SUB> holds 1
+if and only if M can reach w<SUB>j</SUB> from w<SUB>i</SUB> in at most 2<SUP>r+1</SUP> moves. In particular,
+upon reaching the first INDIRECT, <TT>x</TT><SUB> i j</SUB> holds the output of CHECK<SUB> i j</SUB>. However,
+upon leaving the last INDIRECT, <TT>x</TT><SUB> i j</SUB> holds 1 if and only if M can reach w<SUB>j</SUB> from
+w<SUB>i</SUB>.
+   <P >FINAL determines whether M can reach an accepting partial configuration from an
+initial partial configuration on the given input a<SUB>1</SUB> · · · a<SUB>n</SUB>, that is, whether <TT>x</TT><SUB> i j</SUB> is equal to 1
+for some initial partial configuration w<SUB>i</SUB> and some accepting partial configuration
+w<SUB>j</SUB>.
+   <P >The subcircuit DIRECT  has size O(k<SUP>2</SUP>) = n<SUP>O(1)</SUP> and constant depth. Each of the
+subcircuits FINAL and INDIRECT  has size no greater than O(k<SUP>2</SUP>) = n<SUP>O(1)</SUP> and depth no
+greater than O(log k) = O(log n). As a result, the circuit c<SUB>n</SUB> has size of at most
+O(k<SUP>2</SUP>(<FONT FACE="SYMBOL">é</FONT>log k<FONT FACE="SYMBOL">ù</FONT> + 2)) = n<SUP>O(1)</SUP>, and depth of at most O((<FONT FACE="SYMBOL">é</FONT>log k<FONT FACE="SYMBOL">ù</FONT> + 2)log k) = O(log<SUP>2</SUP>n). <IMG 
+SRC="theory-bk-seven15x.gif" ALT="
+*** " 
+ >
+   <P >
+   <P >The containment of <I>DLOG</I> in <I>U_NC</I> and the conjecture<A NAME="80005-19006"> </A> that <I>U_NC</I> is properly
+contained in <I>P</I>, suggest that the <I>P</I>-complete problems can not be solved efficiently by
+parallel programs. The following theorem provides a tool for detecting problems that can
+be solved efficiently by parallel programs (e.g., the problems in Exercise <A 
+ HREF="theory-bk-fiveli1.html#60007-34028r5.1.8">5.1.8</A>). Moreover,
+the proof of the theorem implies an approach for mechanically obtaining the parallel
+programs from corresponding nondeterministic sequential programs that solve the
+problems.
+   <P ><STRONG>Notation </STRONG> <A 
+   NAME="80005-19007t"> </A> 
+In what follows, <I>NSPACE _F</I> (S(n))<A NAME="80005-19008"> </A> denotes the set of functions computable by O(S(n))
+space-bounded, nondeterministic Turing transducers.
+   <P ><STRONG>Theorem 7.5.3</STRONG> <A 
+   NAME="80005-19009t7.5.3"> </A> 
+    <I>NSPACE _F</I> (log n)  <FONT FACE="SYMBOL">Í</FONT>    <I>U_FNC</I><SUP> 2</SUP>.<A NAME="80005-19010"> </A>
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="80005-19011t"> </A> 
+Consider any Turing transducer M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt; of space complexity
+S(n) = O(log n). Assume that M computes some function f. In addition, with no loss of
+generality assume that <FONT FACE="SYMBOL">S</FONT> = <FONT FACE="SYMBOL">D</FONT> = {0, 1}. From M, for each symbol a in <FONT FACE="SYMBOL">S</FONT>, a Turing
+machine M<SUB>a</SUB> = &lt;Q<SUB>a</SUB>, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">d</FONT><SUB>a</SUB>, q<SUB>0a</SUB>, B, F<SUB>a</SUB>&gt; can be constructed to accept the language
+{ 1<SUP>i</SUP>0x | The <I>i</I>th output symbol of M on input x is a }.
+   <P >Specifically, on a given input 1<SUP>i</SUP>0x, M<SUB>a</SUB> records the value of i in binary on an
+auxiliary work tape. Then M<SUB>a</SUB> follows the computation of M on input x. During the
+simulated computation, M<SUB>a</SUB> uses the stored value of i to find the <I>i</I>th symbol in
+the output of M, while ignoring the output itself. M<SUB>a</SUB> accepts 1<SUP>i</SUP>0x if and only
+if M has an accepting computation on input x with a as the <I>i</I>th symbol in the
+output.
+   <P >The function f is computable by a family C = (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) of circuits of the following
+form. Each c<SUB>n</SUB> provides an output y<SUB>1</SUB> · · · y<SUB>2<SUP>S(n)+1</SUP></SUB> of length 2 · 2<SUP>S(n)</SUP> on input x<SUB>1</SUB> · · · x<SUB>n</SUB>.
+Each substring y<SUB>2j-1</SUB>y<SUB>2j</SUB> of the output is equal to 00, 11, or 10, depending on whether
+the <I>j</I>th symbol in the output of M is 0, 1, or undefined, respectively. y<SUB>2j-1</SUB> is
+obtained by negating the output of a circuit that simulates M<SUB>a</SUB> for a = 0 on input
+1<SUP>j</SUP>0x<SUB>1</SUB> · · · x<SUB>n</SUB>. y<SUB>2j</SUB> is obtained by a circuit that simulates M<SUB>a</SUB> for a = 1 on input
+1<SUP>j</SUP>0x<SUB>1</SUB> · · · x<SUB>n</SUB>.
+   <P >The result then follows from Lemma <A 
+ HREF="#80005-19002t7.5.3">7.5.3</A> because M<SUB>a</SUB> is a logspace-bounded, Turing
+machine for a = 0 and for a = 1. <IMG 
+SRC="theory-bk-seven15x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >A proof similar to the one provided for the previous theorem can be used to
+show that <I>NSPACE _F</I> (S(n)) <FONT FACE="SYMBOL">Í</FONT> <FONT FACE="SYMBOL">È</FONT><SUB>d&gt;0</SUB> <I>U_SIZE _DEPTH _F</I> (2<SUP>dS(n)</SUP>, S<SUP>2</SUP>(n)) for
+each fully space-constructible function S(n) <FONT FACE="SYMBOL">³</FONT> log n. By this containment and
+a proof similar to that of Exercise <A 
+ HREF="theory-bk-sevenli1.html#80007-27030r7.5.3">7.5.3</A>, the space requirements of sequential
+computations and the time requirements of parallel computations are polynomially
+related.<A NAME="80005-19012"> </A>
+   <P >
+   <P >[<A 
+ HREF="theory-bk-sevense6.html" >next</A>] [<A 
+ HREF="theory-bk-sevense4.html" >prev</A>] [<A 
+ HREF="theory-bk-sevense4.html#tailtheory-bk-sevense4.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-sevense5.html" >front</A>] [<A 
+ HREF="theory-bk-seven.html#theory-bk-sevense5.html" >up</A>] <A 
+   NAME="tailtheory-bk-sevense5.html"> </A></BODY></HTML>

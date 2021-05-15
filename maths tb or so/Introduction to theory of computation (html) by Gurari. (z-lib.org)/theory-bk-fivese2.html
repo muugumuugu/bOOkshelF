@@ -1,0 +1,357 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-five.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-fivese3.html" >next</A>] [<A 
+ HREF="theory-bk-fivese1.html" >prev</A>] [<A 
+ HREF="theory-bk-fivese1.html#tailtheory-bk-fivese1.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-fivese2.html">tail</A>] [<A 
+ HREF="theory-bk-five.html#theory-bk-fivese2.html" >up</A>]
+<H3>5.2 <A 
+   NAME="60002-80005.2"> </A><A 
+ HREF="theory-bk.html#Q2-60002-8"  NAME="Q1-60002-8">A Time Hierarchy</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-60002-9"  NAME="Q2-60002-9">Lower Bounds on Time Complexity</A>
+<BR>         <A 
+ HREF="#Q1-60002-10"  NAME="Q2-60002-10">Tractability and Intractability</A>
+<A NAME="60002-8001"> </A>
+   <P >Intuitively, it seems obvious that some problems require more time to solve than
+others. The following result confirms this intuitive assessment while implying the
+existence of a time hierarchy for the class of language recognition problems.
+   <P ><STRONG>Definitions </STRONG> <A 
+   NAME="60002-8002t5.2"> </A> 
+A function T(n) is said to be <I>time-constructible</I><A NAME="60002-8003"> </A> if there exists a T(n) time-bounded,
+deterministic Turing machine that for each n has an input of length n on which it makes
+exactly T(n) moves. The function is said to be <I>fully time-constructible</I> if there exists a
+deterministic Turing machine that makes exactly T(n) moves on each input of length n. A
+function S(n) is said to be <I>space-constructible</I> if there exists an S(n) space-bounded,
+deterministic Turing machine that for each n has an input of length n on which it requires
+exactly S(n) space. The function is said to be <I>fully space-constructible</I> if there exists a
+deterministic Turing machine that requires exactly S(n) space on each input of length
+n.
+   <P ><STRONG>Example 5.2.1</STRONG> <A 
+   NAME="60002-8004t5.2.1"> </A> 
+The deterministic Turing machine M in Figure <A 
+ HREF="#60002-8005r5.2.1">5.2.1</A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60002-8005r5.2.1"> </A>
+<A 
+   NAME="60002-8005r5.2.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-2-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.2.1 </STRONG></NOBR></TD><TD  
+>A T(n) = 2n time-bounded, deterministic Turing machine.                                      </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>makes exactly t(x) = |x| + (number of 1's in x) moves on a given input x. t(x) = 2|x|
+when x contains no 0's, and t(x) &lt; 2|x| when x contains 0's.
+   <P >The existence of M implies that T(n) = 2n is a time-constructible function,
+because
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60002-8006xa"> </A>M is 2n time-bounded, and
+     <LI><A 
+   NAME="60002-8007xb"> </A>For each n there exists the input 1<SUP>n</SUP> of length n on which M makes exactly
+     2n moves.</OL>
+The existence of the deterministic Turing machine M does not imply that 2n is fully
+time-constructible, because M does not make exactly 2n moves on each input of length n.
+However, M can be modified to show that 2n is a fully time-constructible function. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><STRONG>Convention </STRONG> <A 
+   NAME="60002-8008t5.2"> </A> 
+In this section M<SUB>x</SUB> denotes a Turing machine that is represented by the string x of the
+following form. If x = 1<SUP>j</SUP>x<SUB>0</SUB> for some j <FONT FACE="SYMBOL">³</FONT> 0 and for some standard binary representation
+x<SUB>0</SUB> of a deterministic Turing machine M, then M<SUB>x</SUB> denotes M. Otherwise, M<SUB>x</SUB> denotes a
+deterministic Turing machine that accepts no input. The string x is said to be a <I>padded<A NAME="60002-8009"> </A>
+binary representation</I> of M<SUB>x</SUB>.
+   <P ><STRONG>Theorem 5.2.1</STRONG> <A 
+   NAME="60002-8010t5.2.1"> </A> 
+Consider any function T<SUB>1</SUB>(n) and any fully time-constructible function T<SUB>2</SUB>(n),
+that for each c &gt; 0 have an n<SUB>c</SUB> such that T<SUB>2</SUB>(n) <FONT FACE="SYMBOL">³</FONT> c(T<SUB>1</SUB>(n))<SUP>2</SUP> for all n <FONT FACE="SYMBOL">³</FONT> n<SUB>c</SUB>.
+Then there is a language which is in <I>DTIME</I> (T<SUB>2</SUB>(n)) but not in <I>DTIME</I> (T<SUB>1</SUB>(n)).<A NAME="60002-8011"> </A>
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60002-8012t"> </A> 
+Let T<SUB>1</SUB>(n) and T<SUB>2</SUB>(n) be as in the statement of the theorem. Let U be a universal Turing
+machine similar to the universal Turing transducer in the proof of Lemma <A 
+ HREF="theory-bk-fivese1.html#60001-7002t5.1.1">5.1.1</A>. The main
+difference is that here U assumes an input (M, x) in which M is represented by a padded
+binary representation instead of a standard binary representation. U starts each
+computation by going over the &#34;padding&#34; 1<SUP>j</SUP> until it reaches the first 0 in the input. Then U
+continues with its computation in the usual manner while ignoring the padding. U uses
+a third auxiliary work tape for keeping track of the distance of its input head
+from the end of the padding. The result is shown by <A NAME="60002-8013"> </A>diagonalization over the
+language L = { v | v is in {0, 1}*, and U does not accept (M<SUB>v</SUB>, v) in T<SUB>2</SUB>(|v|)
+time }.
+   <P >L is obtained from the diagonal of the table T<SUB>universal</SUB> (see Figure <A 
+ HREF="#60002-8014r5.2.2">5.2.2</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60002-8014r5.2.2"> </A>
+<A 
+   NAME="60002-8014r5.2.2"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-2-2.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.2.2 </STRONG></NOBR></TD><TD  
+>Hypothetical table T<SUB>universal</SUB> indicating membership in the language { (M<SUB>w</SUB>, u) | U
+accepts (M<SUB>w</SUB>, u) in T<SUB>2</SUB>(|u|) time }.                                                                              </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>In the table T<SUB>universal</SUB> the entry at row M<SUB>w</SUB> and column u is equal to 1 if U accepts
+(M<SUB>w</SUB>, u) in T<SUB>2</SUB>(|u|) time, and it is equal to 0 if U does not. The proof relies on the
+observation that each O(T<SUB>1</SUB>(n)) time-bounded, deterministic Turing machine M<SUB>x<SUB>0</SUB></SUB> that
+accepts L has also a padded representation x for which U can simulate the whole
+computation of M<SUB>x</SUB> on x in T<SUB>2</SUB>(|x|) time. Consequently, M<SUB>x</SUB> accepts x if and only if
+U does not accept (M<SUB>x</SUB>, x) or, equivalently, if and only if M<SUB>x</SUB> does not accept
+x.
+   <P >Specifically, for the purpose of showing that L is not in <I>DTIME</I> (T<SUB>1</SUB>(n)), assume to the
+contrary that L is in the class. Under this assumption, there is a dT<SUB>1</SUB>(n) time-bounded,
+deterministic Turing machine M that accepts L, for some constant d. Let x<SUB>0</SUB> be a standard
+binary representation of M, and c be the corresponding constant c<SUB>M </SUB> implied by
+Lemma <A 
+ HREF="theory-bk-fivese1.html#60001-7002t5.1.1">5.1.1</A> for the representation x<SUB>0</SUB> of M. Let x = 1<SUP>j</SUP>x<SUB>0</SUB> for some j that satisfies
+j + c(dT<SUB>1</SUB>(j + |x<SUB>0</SUB>|))<SUP>2</SUP> <FONT FACE="SYMBOL">£</FONT> T<SUB>2</SUB>(j + |x<SUB>0</SUB>|), that is, x = 1<SUP>j</SUP>x<SUB>0</SUB> for a large enough j to allow U
+sufficient time T<SUB>2</SUB>(|x|) for simulating the whole computation of M<SUB>x</SUB> on input x.
+Such a value j exists because for big enough j the following inequalities hold.
+<CENTER>
+       <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>j + c<IMG 
+SRC="theory-bk-five16x.gif" ALT="(dT1(j + |x0| ))"ALIGN="MIDDLE" ><SUP> 2</SUP></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(j + |x<SUB>
+0</SUB>|) + c<IMG 
+SRC="theory-bk-five17x.gif" ALT="(dT1(j + |x0| ))"ALIGN="MIDDLE" ><SUP> 2</SUP></TD>         <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>T<SUB>1</SUB>(j + |x<SUB>0</SUB>|) + c<IMG 
+SRC="theory-bk-five18x.gif" ALT="(dT1(j + |x0|))"ALIGN="MIDDLE" ><SUP> 2</SUP></TD>       <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(1 + cd<SUP>2</SUP>)<IMG 
+SRC="theory-bk-five19x.gif" ALT="(T1(j + |x0|))"ALIGN="MIDDLE" ><SUP> 2</SUP></TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>T<SUB>2</SUB>(j + |x<SUB>0</SUB>|)</TD>                        <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>
+   <P >Consider the string x = 1<SUP>j</SUP>x<SUB>0</SUB>. By definition, |x| = j + |x<SUB>0</SUB>| and so
+j + c(dT<SUB>1</SUB>(|x|))<SUP>2</SUP> <FONT FACE="SYMBOL">£</FONT> T<SUB>2</SUB>(|x|). Moreover, x is a padded binary representation of M. For the
+string x one of the following two cases must hold. However, neither of them
+can hold, so implying the desired contradiction to the assumption that L is in
+<I>DTIME</I> (T<SUB>1</SUB>(n)).
+    <DL><DT><STRONG>
+ <STRONG>Case 1</STRONG> </STRONG><DD 
+>x is in L. The assumption together with L  =  L(M<SUB>x</SUB>) imply that M<SUB>x</SUB>
+    accepts x in dT<SUB>1</SUB>(|x|) time. In such a case, by Lemma <A 
+ HREF="theory-bk-fivese1.html#60001-7002t5.1.1">5.1.1</A> U accepts (M<SUB>x</SUB>, x)
+    in  j + c(dT<SUB>1</SUB>(|x|))<SUP>2</SUP>  <FONT FACE="SYMBOL">£</FONT>  T<SUB>2</SUB>(|x|) time. On the other hand, x in L together
+    with the definition of L imply that U does not accept x in T<SUB>2</SUB>(|x|) time. The
+    contradiction implies that this case cannot hold.
+    <DT><STRONG>
+ <STRONG>Case 2</STRONG> </STRONG><DD 
+>x is not in L. The assumption together with L = L(M<SUB>x</SUB>) imply that M<SUB>x</SUB>
+    does not accept x. In such a case, U does not accept (M<SUB>x</SUB>, x) either. On the
+    other hand, x not in L together with the definition of L imply that U accepts
+    (M<SUB>x</SUB>, x). The contradiction implies that this case cannot hold either.</DL>
+To show that L is in <I>DTIME</I> (T<SUB>2</SUB>(n)) consider the deterministic four auxiliary-work-tape
+Turing machine M that on input x proceeds according to the following algorithm.
+    <DL><DT><STRONG>
+ <STRONG>Step 1</STRONG> </STRONG><DD 
+>M stores (M<SUB>x</SUB>, x) in its first auxiliary work tape. That is, M stores the string x,
+    followed by the separator 01, followed by the representation 011 of the left
+    endmarker ¢, followed by x, followed by the representation 0111 of the right
+    endmarker $. In addition, M encloses the sequence of strings above between the &#34;left
+    endmarker&#34; <IMG 
+SRC="theory-bk-five20x.gif" ALT="PICT" >
+    and the &#34;right endmarker&#34; <IMG 
+SRC="theory-bk-five21x.gif" ALT="PICT" >, respectively.
+    <DT><STRONG>
+ <STRONG>Step 2</STRONG> </STRONG><DD 
+>M computes the value of T<SUB>2</SUB>(|x|) and stores it in the second auxiliary work
+    tape.
+    <DT><STRONG>
+ <STRONG>Step 3</STRONG> </STRONG><DD 
+>M follows the moves of U on the content of its first auxiliary work tape, that is,
+    on (M<SUB>x</SUB>, x). M uses its third and fourth auxiliary work tapes for recording the
+    content of the two auxiliary work tapes of U. During the simulation M interprets <IMG 
+SRC="theory-bk-five22x.gif" ALT="PICT" >
+    as the left endmarker ¢, and <IMG 
+SRC="theory-bk-five23x.gif" ALT="PICT" > as the right endmarker $. M halts in an accepting
+    configuration if it determines that U does not reach an accepting state in T<SUB>2</SUB>(|x|)
+    moves. Otherwise, M halts in a nonaccepting configuration.</DL>
+By construction, the Turing machine M is of O(T<SUB>2</SUB>(|x|)) time complexity. The fully
+time-constructibility of T<SUB>2</SUB>(n) is required for Step 2. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><STRONG>Example 5.2.2</STRONG> <A 
+   NAME="60002-8015t5.2.2"> </A> 
+Let T<SUB>1</SUB>(n) = n<SUP>k</SUP> and T<SUB>2</SUB>(n) = 2<SUP>n</SUP>. T<SUB>1</SUB>(n) and T<SUB>2</SUB>(n) satisfy the conditions of
+Theorem <A 
+ HREF="#60002-8010t5.2.1">5.2.1</A>. Therefore the class <I>DTIME</I> (2<SUP>n</SUP>) properly contains the class <I>DTIME</I> (n<SUP>k</SUP>). <IMG 
+SRC="theory-bk-five0x.gif" ALT="
+*** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="60002-9000"> </A><A 
+ HREF="#Q2-60002-9"  NAME="Q1-60002-9">Lower Bounds on Time Complexity</A></EM>
+<A NAME="60002-9001"> </A>
+   <P >In addition to implying the existence of a time hierarchy for the language
+recognition problems, Theorem <A 
+ HREF="#60002-8010t5.2.1">5.2.1</A> can be used to show lower bounds on the
+time complexity of some problems. Specifically, consider any two functions
+T<SUB>1</SUB>(n) and T<SUB>2</SUB>(n) that satisfy the conditions of Theorem <A 
+ HREF="#60002-8010t5.2.1">5.2.1</A>. Assume that each
+membership problem K<SUB>i</SUB> for a language in <I>DTIME</I> (T<SUB>2</SUB>(n)) can be reduced by a T<SUB>3</SUB>(n)
+time-bounded, deterministic Turing transducer M<SUB>i</SUB> to some fixed problem K (see
+Figure <A 
+ HREF="#60002-9002r5.2.3">5.2.3</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60002-9002r5.2.3"> </A>
+<A 
+   NAME="60002-9002r5.2.3"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-2-3.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.2.3 </STRONG></NOBR></TD><TD  
+>A  set  of  Turing  transducers  M<SUB>1</SUB>,  M<SUB>2</SUB>, <FONT FACE="SYMBOL">¼</FONT>   for  reducing  the  problems  K<SUB>1</SUB>,  K<SUB>2</SUB>, <FONT FACE="SYMBOL">¼</FONT>   in
+<I>DTIME</I> (T<SUB>2</SUB>(n)) to a given language recognition problem K. Each M<SUB>i</SUB> on instance
+x of K<SUB>i</SUB> provides an instance y of K, where K has the answer yes for y if and only
+if K<SUB>i</SUB> has the answer yes for x.                                                                                    </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>In addition, assume that each such M<SUB>i</SUB> on input x of length n provides an output y of
+length f(n) at most. Then the membership problems for the languages in <I>DTIME</I> (T<SUB>2</SUB>(n))
+are decidable in T<SUB>3</SUB>(n) + T(f(n)) time if K can be solved in T(n) time. In such a case, a
+lower bound for the time complexity T(n) of K is implied, since by Theorem <A 
+ HREF="#60002-8010t5.2.1">5.2.1</A> the
+class <I>DTIME</I> (T<SUB>2</SUB>(n)) contains a problem that requires more than cT<SUB>1</SUB>(n) time for each
+constant c, that is, the inequality T<SUB>3</SUB>(n) + T(f(n)) &gt; cT<SUB>1</SUB>(n) must hold for infinitely
+many n's. The lower bound is obtained by substituting m for f(n) to obtain the
+inequality T(m) &gt; cT<SUB>1</SUB>(f<SUP>-1</SUP>(m)) - T<SUB>3</SUB>(f<SUP>-1</SUP>(m)) or, equivalently, the inequality
+T(n) &gt; cT<SUB>1</SUB>(f<SUP>-1</SUP>(n)) - T<SUB>3</SUB>(f<SUP>-1</SUP>(n)).
+   <P ><STRONG>Example 5.2.3</STRONG> <A 
+   NAME="60002-9003t5.2.3"> </A> 
+Consider the time bounds T<SUB>1</SUB>(n) = 2<SUP>an</SUP>, T<SUB>2</SUB>(n) = 2<SUP>bn</SUP> for b &gt; 2a, and
+T<SUB>3</SUB>(n) = f(n) = n log n. For such a choice, T<SUB>3</SUB>(n) + T(f(n)) &gt; cT<SUB>1</SUB>(n) implies
+that n log n + T(n log n) &gt; c2<SUP>an</SUP>. By substituting m for n log n it follows that
+T(m) &gt; c2<SUP>an</SUP> - m = c2<SUP>am/log n</SUP> - m <FONT FACE="SYMBOL">³</FONT> c2<SUP>am/log m</SUP> - m <FONT FACE="SYMBOL">³</FONT> 2<SUP>dm/log m</SUP> or, equivalently,
+that T(n) &gt; 2<SUP>dn/log n</SUP> for some constant d. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >The approach above for deriving lower bounds is of special interest in the
+identification of intractable problems, that is, problems that require impractical amounts of
+resources to solve. Such an identification can save considerable effort that might otherwise
+be wasted in trying to solve intractable problems.
+   <P ><EM><A 
+   NAME="60002-10000"> </A><A 
+ HREF="#Q2-60002-10"  NAME="Q1-60002-10">Tractability and Intractability</A></EM>
+   <P >In general, a problem is considered to be tractable if it is of polynomial time
+complexity. This is because its time requirements grow slowly with input length.
+Conversely, problems of exponential time complexity are considered to be intractable,
+because their time requirements grow rapidly with input length and so can be practically
+solved only for small inputs. For instance, an increase by a factor of 2 in n, increases the
+value of a polynomial p(n) of degree k by at most a factor of 2<SUP>k</SUP>. On the other hand, such
+an increase at least squares the value of 2<SUP>p(n)</SUP>.
+   <P >The application of the approach above in the identification of intractable problems
+employs polynomially time-bounded reductions.
+   <P >A problem K<SUB>1</SUB> is said to be <I>polynomially<A NAME="60002-10001"> </A> time reducible</I> to a problem K<SUB>2</SUB> if there exist
+polynomially time-bounded, deterministic Turing transducers T<SUB>f </SUB> and T<SUB>g</SUB> that for each
+instance I<SUB>1</SUB> of K<SUB>1</SUB> satisfy the following conditions (see Figure <A 
+ HREF="#60002-10002r5.2.4">5.2.4</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60002-10002r5.2.4"> </A>
+<A 
+   NAME="60002-10002r5.2.4"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-2-4.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.2.4 </STRONG></NOBR></TD><TD  
+>Reduction by polynomially time-bounded, deterministic Turing transducers T<SUB>f </SUB> and
+T<SUB>g</SUB>.                                                                                                                                </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60002-10003xa"> </A>T<SUB>f </SUB> on input I<SUB>1</SUB> gives an instance I<SUB>2</SUB> of K<SUB>2</SUB>.
+     <LI><A 
+   NAME="60002-10004xb"> </A>K<SUB>1</SUB> has a solution S<SUB>1</SUB> at I<SUB>1</SUB> if and only if K<SUB>2</SUB> has a solution S<SUB>2</SUB> at I<SUB>2</SUB>, where
+     S<SUB>1</SUB> is the output of T<SUB>g</SUB> on input S<SUB>2</SUB>.</OL>
+In the case that K<SUB>1</SUB> and K<SUB>2</SUB> are decision problems, with no loss of generality it can be
+assumed that T<SUB>g</SUB> computes the identity function g(S) = S, that is, that T<SUB>g</SUB> on input S<SUB>2</SUB>
+outputs S<SUB>1</SUB> = S<SUB>2</SUB>.
+   <P >A given complexity class <I>C</I> of problems can be used to show the intractability of a
+problem K by showing that the following two conditions hold.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60002-10005xa"> </A><I>C</I> contains some intractable problems.
+     <LI><A 
+   NAME="60002-10006xb"> </A>Each problem in <I>C</I> is polynomially time reducible to K, that is, K is at least
+     as hard to solve as any problem in <I>C</I>.</OL>
+Once a problem K is determined to be intractable, it then might be used to show the
+intractability of some other problems <IMG 
+SRC="theory-bk-five24x.gif" ALT="^K"> by showing that K is polynomially time reducible
+to <IMG 
+SRC="theory-bk-five25x.gif" ALT="K^">. In such a case, the easier K is the easier the reductions are, and the larger the class
+of such applicable problems <IMG 
+SRC="theory-bk-five26x.gif" ALT="K^"> is.
+   <P >The observation above sparks our interest in the &#34;easiest&#34; intractable problems K, and
+in the complexity classes <I>C</I> whose intractable problems are all &#34;easiest&#34; intractable
+problems.
+   <P >In what follows, a problem K is said to be a <I><I>C</I>-hard<A NAME="60002-10007"> </A> problem with respect to
+polynomial time reductions</I>, or just a <I><I>C</I>-hard problem</I> when the polynomial time reductions
+are understood, if every problem in the class <I>C</I> is polynomially time reducible to the
+problem K. The problem K is said to be <I><I>C</I>-complete</I> if it is a <I>C</I>-hard problem in
+<I>C</I>.
+   <P >Our interest here is in the cases that<A NAME="60002-10008"> </A> <I>C</I> = <I>NP</I> and <I>C</I> = <I>PSPACE</I>.
+   <P >
+   <P >[<A 
+ HREF="theory-bk-fivese3.html" >next</A>] [<A 
+ HREF="theory-bk-fivese1.html" >prev</A>] [<A 
+ HREF="theory-bk-fivese1.html#tailtheory-bk-fivese1.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-fivese2.html" >front</A>] [<A 
+ HREF="theory-bk-five.html#theory-bk-fivese2.html" >up</A>] <A 
+   NAME="tailtheory-bk-fivese2.html"> </A></BODY></HTML>

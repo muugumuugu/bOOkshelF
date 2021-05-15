@@ -1,0 +1,672 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-five.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-fivese6.html" >next</A>] [<A 
+ HREF="theory-bk-fivese4.html" >prev</A>] [<A 
+ HREF="theory-bk-fivese4.html#tailtheory-bk-fivese4.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-fivese5.html">tail</A>] [<A 
+ HREF="theory-bk-five.html#theory-bk-fivese5.html" >up</A>]
+<H3>5.5 <A 
+   NAME="60005-260005.5"> </A><A 
+ HREF="theory-bk.html#Q2-60005-26"  NAME="Q1-60005-26">Polynomial Space</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-60005-27"  NAME="Q2-60005-27">From Nondeterministic Space to Deterministic Time</A>
+<BR>         <A 
+ HREF="#Q1-60005-28"  NAME="Q2-60005-28">From Nondeterministic to Deterministic Space</A>
+<BR>         <A 
+ HREF="#Q1-60005-29"  NAME="Q2-60005-29"><I>PSPACE</I>-Complete Problems</A>
+<BR>         <A 
+ HREF="#Q1-60005-30"  NAME="Q2-60005-30">Closure Properties</A>
+<A NAME="60005-26001"> </A>
+   <P >By Corollary <A 
+ HREF="theory-bk-fivese3.html#60003-12001t5.3.1">5.3.1</A> <I>NTIME</I> (T(n)) <FONT FACE="SYMBOL">Í</FONT> <I>DSPACE</I> (T(n))<A NAME="60005-26002"> </A> and so <I>PSPACE</I> contains <I>NP</I>.
+Moreover, by Theorem <A 
+ HREF="#60005-27005t5.5.1">5.5.1</A> <I>PSPACE</I> is contained in <I>EXPTIME</I><A NAME="60005-26003"> </A>. These containments
+suggest that <I>PSPACE</I> be studied similarly to <I>NP</I>. Specifically, such a study will be
+important in the remote possibility that <I>NP</I> turns out to be equal to <I>P</I> -- the same reason
+the study was important for <I>NP</I> in the first place. However, if <I>NP</I> turns out to be different
+from <I>P</I>, then the study of <I>PSPACE</I> might provide some insight into the factors that
+increase the complexity of problems.
+   <P ><STRONG>Lemma 5.5.1</STRONG> <A 
+   NAME="60005-26004t5.5.1"> </A> 
+An S(n) <FONT FACE="SYMBOL">³</FONT> log n space-bounded Turing machine M can reach at most 2<SUP>dS(n)</SUP>
+configurations on a given input of length n. d is assumed to be some constant dependent
+only on M.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60005-26005t"> </A> 
+Consider any Turing machine M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt; of space complexity
+S(n) <FONT FACE="SYMBOL">³</FONT> log n. For input x of length n the Turing machine M can have at most
+|Q| (n + 2) (S(n)|<FONT FACE="SYMBOL">G</FONT>|<SUP>S(n)</SUP>)<SUP>m</SUP> different configurations. |Q| denotes the number of states of
+M, m denotes the number of auxiliary work tapes of M, and |<FONT FACE="SYMBOL">G</FONT>| denotes the size of the
+auxiliary work-tape alphabet <FONT FACE="SYMBOL">G</FONT> of M.
+   <P >The factor of |Q| arises because in the configurations (uqv, u<SUB>1</SUB>qv<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, u<SUB>m</SUB>qv<SUB>m</SUB>) which
+satisfy uv = ¢x$ the state q comes from a set Q of cardinality |Q|. The factor n + 2 arises
+because the input head position |u| can be in n + 2 locations. S(n) represents the
+number of possible locations for the head of an auxiliary work tape, and |<FONT FACE="SYMBOL">G</FONT>|<SUP>S(n)</SUP>
+represents the number of different strings that can be stored on an auxiliary work
+tape.
+   <P >The expression |Q| (n + 2) (S(n)|<FONT FACE="SYMBOL">G</FONT>|<SUP>S(n)</SUP>)<SUP>m</SUP> has a constant d such that <CENTER>
+   <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>|Q| (n + 2) (S(n)|<FONT FACE="SYMBOL">G</FONT>|<SUP>S(n)</SUP>)<SUP>m</SUP></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>2<SUP>log |Q|</SUP>2<SUP>log (n+2)</SUP>(2<SUP>log S(n)</SUP>2<SUP>S(n)log |<FONT FACE="SYMBOL">G</FONT>|</SUP>)<SUP>m</SUP></TD>   <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>2<SUP>dS(n)</SUP></TD>                            <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>for all n if S(n) <FONT FACE="SYMBOL">³</FONT> log n. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="60005-27000"> </A><A 
+ HREF="#Q2-60005-27"  NAME="Q1-60005-27">From Nondeterministic Space to Deterministic Time</A></EM>
+   <P >By Corollary <A 
+ HREF="theory-bk-fivese3.html#60003-12001t5.3.1">5.3.1</A> nondeterministic and deterministic time satisfy <A NAME="60005-27001"> </A>the relation
+<I>NTIME</I> (T(n)) <FONT FACE="SYMBOL">Í</FONT> <FONT FACE="SYMBOL">È</FONT>
+   <SUB> c&gt;0</SUB><I>DTIME</I> (2<SUP>cT(n)</SUP>). The following theorem provides a refinement to
+this result because <I>NTIME</I> (T(n)) <FONT FACE="SYMBOL">Í</FONT> <I>NSPACE</I> (T(n)).<A NAME="60005-27002"> </A>
+   <P ><STRONG>Definition </STRONG> <A 
+   NAME="60005-27003t"> </A> 
+The <I>configurations<A NAME="60005-27004"> </A> tree</I> of a Turing machine M on input x is a possibly infinite tree <FONT FACE="SYMBOL">O</FONT>
+defined in the following manner. The root of <FONT FACE="SYMBOL">O</FONT> is a node labeled by the initial
+configuration of M on input x. A node in <FONT FACE="SYMBOL">O</FONT>, which is labeled by a configuration C<SUB>1</SUB>,
+has an immediate successor that is labeled by configuration C<SUB>2</SUB> if and only if
+C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB>2</SUB>.
+   <P ><STRONG>Theorem 5.5.1</STRONG> <A 
+   NAME="60005-27005t5.5.1"> </A> 
+<A NAME="60005-27006"> </A>
+<A NAME="60005-27007"> </A>
+If S(n) <FONT FACE="SYMBOL">³</FONT> log n then
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-five52x.gif" ALT=" NSPACE  (S(n))  Í    È DTIME (2cS(n))
+                   c&gt;0"></PRE></CENTER><P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60005-27008t"> </A> 
+Consider any S(n) space-bounded Turing machine M<SUB>1</SUB> = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt;. A
+deterministic Turing machine M<SUB>2</SUB> can determine if M<SUB>1</SUB> accepts a given input x by
+determining whether the configurations tree <FONT FACE="SYMBOL">O</FONT>, of M<SUB>1</SUB> on input x, contains an accepting
+configuration. M<SUB>2</SUB> can do so by finding the set A of all the configurations in <FONT FACE="SYMBOL">O</FONT>, and then
+checking whether the set contains an accepting configuration. The set A can be generated
+by following the algorithm.
+    <DL><DT><STRONG>
+ <STRONG>Step 1</STRONG> </STRONG><DD 
+>Initiate A to contain only the initial configuration of M<SUB>1</SUB> on input x.
+    <DT><STRONG>
+ <STRONG>Step 2</STRONG> </STRONG><DD 
+>For each configuration C in A that has not been considered yet determine
+    all the configurations that M<SUB>1</SUB> can reach from C in a single move, and insert
+    them to A.
+    <DT><STRONG>
+ <STRONG>Step 3</STRONG> </STRONG><DD 
+>Repeat Step 2 as long as more configurations can be added to A.</DL>
+By Lemma <A 
+ HREF="#60005-26004t5.5.1">5.5.1</A> the Turing machine M<SUB>1</SUB> on input x of length n has at most 2<SUP>dS(n)</SUP>
+different configurations, for some constant that depends only on M<SUB>1</SUB>. Each of the
+configurations (uqv, y<SUB>1</SUB>qz<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, y<SUB>m</SUB>qz<SUB>m</SUB>) of M<SUB>1</SUB> on input x can be represented by
+M<SUB>2</SUB> in log n + m(S(n) + 1) space. The set A can be explicitly represented in
+(log n + m(S(n) + 1))2<SUP>dS(n)</SUP> <FONT FACE="SYMBOL">£</FONT> 2<SUP>eS(n)</SUP> space, where e is some constant. The number of
+times that A is accessed is bounded above by the number of elements that it contains.
+Consequently, the result follows. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><STRONG>Example 5.5.1</STRONG> <A 
+   NAME="60005-27009t5.5.1"> </A> 
+Let M<SUB>1</SUB> be the Turing machine in Figure <A 
+ HREF="#60005-27010r5.5.1">5.5.1</A>(a).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60005-27010r5.5.1"> </A>
+<A 
+   NAME="60005-27010r5.5.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-5-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.5.1 </STRONG></NOBR></TD><TD  
+>(a) A Turing machine M<SUB>1</SUB>. (b) The configurations tree <FONT FACE="SYMBOL">O</FONT> of M<SUB>1</SUB> on input aa.             </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>The configurations tree <FONT FACE="SYMBOL">O</FONT> of M<SUB>1</SUB> on input aa is given in Figure <A 
+ HREF="#60005-27010r5.5.1">5.5.1</A>(b). For a given input
+x of M<SUB>1</SUB> let C<SUB>i<SUB>1</SUB>··· i<SUB>t</SUB></SUB> denote the configuration that M<SUB>1</SUB> reaches from its initial
+configuration through a sequence of moves using the transition rules <FONT FACE="SYMBOL">t</FONT><SUB>i<SUB>1</SUB></SUB>, <FONT FACE="SYMBOL">¼</FONT> , <FONT FACE="SYMBOL">t</FONT><SUB>i<SUB>t</SUB></SUB>. If no
+such sequence of moves is possible, then C<SUB>i<SUB>1</SUB>··· i<SUB>t</SUB></SUB> is assumed to be an undefined
+configuration.
+   <P >The algorithm in the proof of Theorem <A 
+ HREF="#60005-27005t5.5.1">5.5.1</A> inserts C<SUB><FONT FACE="SYMBOL">e</FONT></SUB> to A in Step 1. The first iteration
+of Step 2 determines the immediate successors C<SUB>1</SUB> and C<SUB>3</SUB> of C<SUB><FONT FACE="SYMBOL">e</FONT></SUB>, and inserts them into A.
+The second iteration considers either the configuration C<SUB>1</SUB> or the configuration
+C<SUB>3</SUB>.
+   <P >If C<SUB>1</SUB> is considered before C<SUB>3</SUB>, then C<SUB>11</SUB> and C<SUB>13</SUB> are the configurations contributed by
+C<SUB>1</SUB> to A. In such a case, C<SUB>3</SUB> contributes C<SUB>33</SUB> to A.
+   <P >Upon completion A contains the configurations C<SUB><FONT FACE="SYMBOL">e</FONT></SUB>, C<SUB>1</SUB>, C<SUB>3</SUB>, C<SUB>1 1</SUB>, C<SUB>1 3</SUB> (= C<SUB>3 1</SUB>), C<SUB>3 3</SUB>,
+C<SUB>1 1 5</SUB>, C<SUB>1 3 5</SUB> (= C<SUB>3 1 5</SUB>), C<SUB>3 3 5</SUB>, <FONT FACE="SYMBOL">¼</FONT> , C<SUB>3 1 5 6 10 12 14 13 21</SUB>. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="60005-28000"> </A><A 
+ HREF="#Q2-60005-28"  NAME="Q1-60005-28">From Nondeterministic to Deterministic Space</A></EM>
+   <P >The previous theorem, together with Corollary <A 
+ HREF="theory-bk-fivese3.html#60003-12001t5.3.1">5.3.1</A>, imply the hierarchy<A NAME="60005-28001"> </A>
+<I>DLOG</I> <FONT FACE="SYMBOL">Í</FONT> <I>NLOG</I> <FONT FACE="SYMBOL">Í</FONT> <I>P</I> <FONT FACE="SYMBOL">Í</FONT> <I>NP</I> <FONT FACE="SYMBOL">Í</FONT> <I>PSPACE</I> <FONT FACE="SYMBOL">Í</FONT> <I>EXPTIME</I> (see Figure <A 
+ HREF="#60005-28005r5.5.2">5.5.2</A>).<A NAME="60005-28002"> </A><A NAME="60005-28003"> </A><A NAME="60005-28004"> </A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60005-28005r5.5.2"> </A>
+<A 
+   NAME="60005-28005r5.5.2"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-5-2.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.5.2 </STRONG></NOBR></TD><TD  
+>A refinement to the classification in Figure <A 
+ HREF="theory-bk-fivese3.html#60003-11004r5.3.1">5.3.1</A>.                                                        </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>By the following theorem, nondeterministic Turing machines of polynomial space
+complexity can be simulated by deterministic Turing machines of similar complexity.
+However, from Exercise <A 
+ HREF="theory-bk-fiveli1.html#60007-34045r5.2.6">5.2.6</A> <I>NLOG</I> is properly included in <I>PSPACE</I>. Besides this proper
+inclusion, and the proper inclusion of <I>P</I> in <I>EXPTIME</I>, it is not known whether any of the
+other inclusions in the above hierarchy is proper.
+   <P >The following theorem provides an approach more economical in space, than that of
+the proof of the previous theorem. However, the improvement in the space requirements is
+achieved at the cost of slower simulations.
+   <P ><STRONG>Theorem 5.5.2</STRONG> <A 
+   NAME="60005-28006t5.5.2"> </A> 
+<A NAME="60005-28007"> </A>
+<A NAME="60005-28008"> </A>
+If S(n) is a fully space-constructible function and S(n) <FONT FACE="SYMBOL">³</FONT> log n then
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-five53x.gif" ALT=" NSPACE (S(n))  Í   DSPACE (S(n))2)"></PRE></CENTER><P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60005-28009t"> </A> 
+Consider any cS(n) space-bounded Turing machine M<SUB>1</SUB>, where S(n) <FONT FACE="SYMBOL">³</FONT> log n is
+fully space-constructible. With no loss of generality it can be assumed that on
+entering into an accepting configuration the auxiliary work tapes of M<SUB>1</SUB> are all
+blank, and the input head of M<SUB>1</SUB> is on the right endmarker $. In addition, it can be
+assumed that M<SUB>1</SUB> has exactly one accepting state q<SUB>f</SUB>. Consequently, an accepting
+computation of M<SUB>1</SUB> on a given input x must end at the accepting configuration
+(¢xq<SUB>f</SUB>$, q<SUB>f</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, q<SUB>f</SUB>).
+   <P >By definition, M<SUB>1</SUB> accepts a given input x if and only if M<SUB>1</SUB> on input x has a sequence
+of moves, starting at the initial configuration C<SUB>0</SUB> of M<SUB>1</SUB> on input x and ending at the
+accepting configuration C<SUB>f</SUB> of M<SUB>1</SUB> on input x. By Lemma <A 
+ HREF="#60005-26004t5.5.1">5.5.1</A> the Turing machine M<SUB>1</SUB>
+can reach at most 2<SUP>dS(n)</SUP> different configurations on an input of length n. By Theorem <A 
+ HREF="#60005-27005t5.5.1">5.5.1</A>
+each configuration requires at most d's(n) space when the input string is excluded.
+Consequently, M<SUB>1</SUB> accepts x if and only if it has a sequence of at most 2<SUP>dS(|x|)</SUP> moves that
+starts at C<SUB>0</SUB> and ends at C<SUB>f</SUB>.
+   <P >A deterministic Turing machine M<SUB>2</SUB> can determine whether M<SUB>1</SUB> accepts an input x by
+the algorithm in Figure <A 
+ HREF="#60005-28010r5.5.3">5.5.3</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60005-28010r5.5.3"> </A>
+            <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE>C<SUB>0</SUB> := the initial configuration of M<SUB>1</SUB> on input x
+C<SUB>f</SUB> := the accepting configuration of M<SUB>1</SUB> on input x
+<B>if</B> R(C<SUB>0</SUB>, C<SUB>f</SUB>, 2<SUP>dS(|x|)</SUP>) <B>then accept</B>
+<B>reject</B>
+<B>function</B> R(C<SUB>1</SUB>, C<SUB>2</SUB>, t)
+   <B>if</B> t <FONT FACE="SYMBOL">£</FONT> 1 <B>then</B>
+        <B>if</B> M<SUB>1</SUB> can in t steps reach configuration C<SUB>2</SUB>
+               from configuration C<SUB>1</SUB> <B>then return</B> (true)
+    <B>else</B> <B>for</B> each configuration C of M<SUB>1</SUB> on input x
+               of length <FONT FACE="SYMBOL">£</FONT> d's(|x|) <B>do</B>
+        <B>if</B> R(C<SUB>1</SUB>, C, <FONT FACE="SYMBOL">é</FONT>t/2<FONT FACE="SYMBOL">ù</FONT>) <B>and</B>
+            R(C, C<SUB>2</SUB>, <FONT FACE="SYMBOL">ë</FONT>t/2<FONT FACE="SYMBOL">û</FONT>) <B>then return</B> (true)
+    <B>return</B> (false)
+<B>end</B>                                                                              </PRE></TD></TR></TABLE>
+<A 
+   NAME="60005-28010r5.5.3"> </A>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.5.3 </STRONG></NOBR></TD><TD  
+>A deterministic simulation of a nondeterministic Turing machine M<SUB>1</SUB>.                      </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >The algorithm uses a recursive function R(C<SUB>1</SUB>, C<SUB>2</SUB>, t) whose task is to determine
+whether M<SUB>1</SUB> on input x has a sequence of at most t moves, starting at C<SUB>1</SUB> and ending at
+C<SUB>2</SUB>. The property is checked directly when t <FONT FACE="SYMBOL">£</FONT> 1. Otherwise, it is checked recursively by
+exhaustively searching for a configuration C of M<SUB>1</SUB>, such that both R(C<SUB>1</SUB>, C, <FONT FACE="SYMBOL">é</FONT>t/2<FONT FACE="SYMBOL">ù</FONT>) and
+R(C, C<SUB>2</SUB>, <FONT FACE="SYMBOL">ë</FONT>t/2<FONT FACE="SYMBOL">û</FONT>) hold.
+   <P >The algorithm uses O(S(n)) levels of recursion in R(C<SUB>1</SUB>, C<SUB>2</SUB>, t). Each level of
+recursion requires space O(S(n)). Consequently M<SUB>2</SUB> uses O( (S(n))<SUP>2</SUP>) space.
+   <P >When it derives the configurations of M<SUB>1</SUB>, M<SUB>2</SUB> relies on the property that S(n) is
+space-constructible. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="60005-29000"> </A><A 
+ HREF="#Q2-60005-29"  NAME="Q1-60005-29"><I>PSPACE</I>-Complete Problems</A></EM>
+<A NAME="60005-29001"> </A>
+   <P >Approaches similar to those used for showing the <I>NP</I>-hardness of some given
+problems, can also be used for showing <I>PSPACE</I>-hardness. The following theorem is an
+example of a <I>PSPACE</I>-complete problem whose <I>PSPACE</I>-hardness is shown by a generic
+transformation.
+   <P ><STRONG>Theorem 5.5.3</STRONG> <A 
+   NAME="60005-29002t5.5.3"> </A> 
+The membership problem for <A NAME="60005-29003"> </A>linear bounded automata or, equivalently, for L =
+{ (M, x) | M is a linear bounded automaton that accepts x } is a <I>PSPACE</I>-complete
+problem.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60005-29004t"> </A> 
+The language L is accepted by a nondeterministic Turing machine M<SUB>U </SUB> similar to the
+universal Turing machine in the proof of Theorem <A 
+ HREF="theory-bk-fourse4.html#50004-17001t4.4.1">4.4.1</A>. M<SUB>U </SUB> on input (M, x)
+nondeterministically finds a sequence of moves of M on x. M<SUB>U </SUB> accepts the input if and
+only if the sequence of moves starts at the initial configuration of M on input x, and ends
+at an accepting configuration. The computation of M<SUB>U </SUB> proceeds in the following
+manner.
+   <P >M<SUB>U </SUB> starts by constructing the initial configuration C<SUB>0</SUB> of M on input x. Then it
+repeatedly and nondeterministically finds a configuration C that M can reach in one step
+from the last configuration that has been determined for M by M<SUB>U </SUB>. M<SUB>U </SUB> accepts (M, x) if
+and when it reaches an accepting configuration of M.
+   <P >By construction, M<SUB>U </SUB> requires a space no greater than the amount of memory required
+for recording a single configuration of M. A single configuration (uqv, u<SUB>1</SUB>qv<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, u<SUB>m</SUB>qv<SUB>m</SUB>)
+of M requires space equal to the amount of memory needed for recording a single symbol
+times the number of symbols in the configuration, that is, <CENTER>
+  <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>O(|M|( (1 + |uv|) + (1 + |u<SUB>1</SUB>v<SUB>1</SUB>|) + · · · + (1 + |u<SUB>m</SUB>v<SUB>m</SUB>|) ))</TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+></TD>           <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                                               </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                            </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>O(|M|(m + 1)(1 + |x|))</TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>O(|M|<SUP>2</SUP>|x|)</TD>  <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>where |M| stands for the length of the representation of M. Consequently, M<SUB>U </SUB> requires a
+space which is polynomial in the size of its input (M, x). It follows from Theorem <A 
+ HREF="#60005-28006t5.5.2">5.5.2</A>
+that the language L is in <I>PSPACE</I>.
+   <P >To show that the membership problem for L is <I>PSPACE</I>-hard, consider any problem K
+in <I>PSPACE</I>. Assume that A is a deterministic Turing machine of space complexity
+S(n) = O(n<SUP>k</SUP>) that decides K. From (A, S(n)) a polynomially time-bounded,
+deterministic Turing transducer T<SUB>K</SUB> can be constructed to output the pair (M, y) on input
+x.
+   <P >y is assumed to be the string #<SUP>j</SUP>x, where j = S(|x|) and # is a new symbol. M is
+assumed to be a linear bounded automaton, which on input #<SUP>j</SUP>x simulates the computation
+of A on x with j space. That is, M accepts y if and only if A accepts x within j space. <IMG 
+SRC="theory-bk-five0x.gif" ALT="
+*** " 
+ >
+   <P >
+   <P ><STRONG>Example 5.5.2</STRONG> <A 
+   NAME="60005-29005t5.5.2"> </A> 
+Let A be the Turing machine in Figure <A 
+ HREF="theory-bk-fivese3.html#60003-19013r5.3.3">5.3.3</A>. Using the terminology in the proof of
+Theorem <A 
+ HREF="#60005-29002t5.5.3">5.5.3</A>, the corresponding linear bounded automaton M can be the one given in
+Figure <A 
+ HREF="#60005-29006r5.5.4">5.5.4</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60005-29006r5.5.4"> </A>
+<A 
+   NAME="60005-29006r5.5.4"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-5-4.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.5.4 </STRONG></NOBR></TD><TD  
+>A linear bounded automaton corresponding to the Turing machine of Figure <A 
+ HREF="theory-bk-fivese3.html#60003-19013r5.3.3">5.3.3</A>.   </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >M starts each computation by copying the leading symbols #, from the input
+to its auxiliary work tape. Then M nondeterministically locates its auxiliary
+work-tape head over one of the symbols #. Finally, M follows a computation similar
+to A's on the remainder of the input. The main difference is that M expects
+the symbol # whenever A scans the left endmarker ¢ or a blank symbol B. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >The following theorem is an example of a problem whose <I>PSPACE</I>-hardness is shown
+by reduction from another <I>PSPACE</I>-hard problem.
+   <P ><STRONG>Theorem 5.5.4</STRONG> <A 
+   NAME="60005-29007t5.5.4"> </A> 
+The inequivalence problem for finite-state<A NAME="60005-29008"> </A> automata is <I>PSPACE</I>-complete.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60005-29009t"> </A> 
+Let (M<SUB>1</SUB>, M<SUB>2</SUB>) be any given pair of finite-state automata. A Turing machine M can
+determine the inequivalency of M<SUB>1</SUB> and M<SUB>2</SUB> by finding nondeterministically an input
+a<SUB>1</SUB> · · · a<SUB>N </SUB> that is accepted by exactly one of the finite-state automata M<SUB>1</SUB> and
+M<SUB>2</SUB>.
+   <P >M starts its computation by determining the set S<SUB>0</SUB> of all the states that M<SUB>1</SUB> and M<SUB>2</SUB> can
+reach on empty input. With no loss of generality it is assumed that M<SUB>1</SUB> and M<SUB>2</SUB> have
+disjoint sets of states. Then M determines, one at a time, the symbols in a<SUB>1</SUB> · · · a<SUB>N </SUB>. For
+each symbol a<SUB>i</SUB> that M determines, M also finds the set S<SUB>i</SUB> (from those states that are in
+S<SUB>i-1</SUB>) that M<SUB>1</SUB> and M<SUB>2</SUB> can reach by consuming a<SUB>i</SUB>.
+   <P >M halts in an accepting configuration upon, and only upon, finding an S<SUB>N </SUB> that satisfies
+either of the following conditions.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60005-29010xa"> </A>S<SUB>N </SUB> contains an accepting state of M<SUB>1</SUB> and no accepting state of M<SUB>2</SUB>.
+     <LI><A 
+   NAME="60005-29011xb"> </A>S<SUB>N </SUB> contains an accepting state of M<SUB>2</SUB> and no accepting state of M<SUB>1</SUB>.</OL>
+At each instance of the computation, M needs to record only the last symbol a<SUB>i</SUB> and the
+associated sets S<SUB>i-1</SUB> and S<SUB>i</SUB>, that M determines. That is, M on input (M<SUB>1</SUB>, M<SUB>2</SUB>) uses space
+linear in |M<SUB>1</SUB>| + |M<SUB>2</SUB>|. As a result, M is of nondeterministically polynomial space
+complexity. From Theorem <A 
+ HREF="#60005-28006t5.5.2">5.5.2</A> it follows that the inequivalence problem for finite-state
+automata is in <I>PSPACE</I>.
+   <P >To show that the inequivalence problem for finite-state automata is a <I>PSPACE</I>-hard
+problem, it is sufficient to demonstrate the existence of a polynomially time-bounded,
+deterministic Turing transducer T that has the following property: T on input (M, x), of a
+linear bounded automaton M and of an input x for M, outputs a pair (M<SUB>1</SUB>, M<SUB>2</SUB>) of
+finite-state automata M<SUB>1</SUB> and M<SUB>2</SUB>. Moreover, M<SUB>1</SUB> and M<SUB>2</SUB> are inequivalent if and only if
+M accepts x.
+   <P >M<SUB>1</SUB> can be a finite-state automaton that accepts a given input if and only if the input is
+not of the form #C<SUB>0</SUB>#C<SUB>1</SUB># · · · #C<SUB>f</SUB>#. C<SUB>0</SUB> is assumed to be the initial configuration of M
+on input x. C<SUB>f</SUB> is assumed to be an accepting configuration of M on input x. C<SUB>i</SUB> is assumed
+to be a configuration that M can reach in one move from C<SUB>i-1</SUB>, i = 1,<FONT FACE="SYMBOL"> ¼</FONT>, f. The length of
+each C<SUB>i</SUB> is assumed to equal (n + 3) + m(S(n) + 1), m is assumed to be the number of
+auxiliary work tapes of M, S(n) is assumed to be the space complexity of M, and # is
+assumed to be a new symbol.
+   <P >M<SUB>1</SUB> can determine that an input is not of such a form, by nondeterministically
+choosing to check for one of the following conditions.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60005-29012xa"> </A>The first symbol in the input is not #.
+     <LI><A 
+   NAME="60005-29013xb"> </A>The last symbol in the input is not #.
+     <LI><A 
+   NAME="60005-29014xc"> </A>C<SUB>0</SUB> is not an initial configuration of M on input x.
+     <LI><A 
+   NAME="60005-29015xd"> </A>C<SUB>f</SUB> does not contain an accepting state of M.
+     <LI><A 
+   NAME="60005-29016xe"> </A>C<SUB>i</SUB> is not consistent with C<SUB>i-1</SUB> for some i (chosen nondeterministically). M<SUB>1</SUB>
+     can check for this condition by nondeterministically finding a j such that the
+     <I>j</I>th symbol in C<SUB>i</SUB> is not consistent with the <I>j</I>th symbol in C<SUB>i-1</SUB> and its two
+     neighbors.</OL>
+M<SUB>1</SUB> can check for each of these conditions by using a polynomial number of states in the
+length of x.
+   <P >By construction, M<SUB>1</SUB> accepts all inputs if and only if M does not accept x. The result
+then follows immediately if M<SUB>2</SUB> is taken to accept all the strings over the input alphabet of
+M<SUB>1</SUB>. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><STRONG>Example 5.5.3</STRONG> <A 
+   NAME="60005-29017t5.5.3"> </A> 
+The Turing machine M in Figure <A 
+ HREF="#60005-27010r5.5.1">5.5.1</A>(a) has space complexity of S(n) = n + 2. For the
+string x = aa the Turing machine M in the proof of Theorem <A 
+ HREF="#60005-29007t5.5.4">5.5.4</A> has the corresponding
+finite-state automaton M<SUB>1</SUB> of Figure <A 
+ HREF="#60005-29018r5.5.5">5.5.5</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60005-29018r5.5.5"> </A>
+<A 
+   NAME="60005-29018r5.5.5"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-5-5.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.5.5 </STRONG></NOBR></TD><TD  
+>A finite-state automaton that accepts all inputs if and only if the Turing machine in
+Figure <A 
+ HREF="#60005-27010r5.5.1">5.5.1</A>(a) does not accept aa.                                                                               </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>Each configuration (uqv, u<SUB>1</SUB>qv<SUB>1</SUB>) of M on input aa is assumed to be represented in M<SUB>1</SUB> by
+a string uqvu<SUB>1</SUB>qv<SUB>1</SUB> of length (n + 3) + (S(n) + 1) = 2n + 6.
+   <P >On a given input M<SUB>1</SUB> nondeterministically chooses to execute one of the
+subcomponents A<SUB>1</SUB>, A<SUB>2</SUB>, A<SUB>3</SUB>, A<SUB>4</SUB>, or A<SUB>5</SUB>.
+   <P >A<SUB>1</SUB> checks that the input does not start with the symbol #. A<SUB>2</SUB> checks that the input
+does not end with the symbol #. A<SUB>3</SUB> checks that the string between the first two # symbols
+is not the initial configuration of M on input aa. A<SUB>4</SUB> checks that the accepting state q<SUB>4</SUB> does
+not appear in the last configuration C<SUB>f</SUB>.
+   <P >A<SUB>5</SUB> checks for inconsistency between consecutive configurations. Its specification is
+omitted here.<A NAME="60005-29019"> </A> <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="60005-30000"> </A><A 
+ HREF="#Q2-60005-30"  NAME="Q1-60005-30">Closure Properties</A></EM>
+<A NAME="60005-30001"> </A>
+   <P >The classes <I>NTIME</I> (T(n)) and <I>NSPACE</I> (S(n)) are<A NAME="60005-30002"> </A> closed under union<A NAME="60005-30003"> </A> and
+intersection (see Exercise <A 
+ HREF="theory-bk-fiveli1.html#60007-34007r5.1.3">5.1.3</A>(a)), but it is not known whether they are closed <A NAME="60005-30004"> </A>under
+complementation. However, the following theorem holds for <I>NSPACE</I> (S(n)).
+   <P ><STRONG>Theorem 5.5.5</STRONG> <A 
+   NAME="60005-30005t5.5.5"> </A> 
+The class <I>NSPACE</I> (S(n)) is closed under complementation for S(n) <FONT FACE="SYMBOL">³</FONT> log n.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60005-30006t"> </A> 
+Consider any S(n) space-bounded, nondeterministic Turing machine M<SUB>1</SUB>. From M<SUB>1</SUB> an
+S(n) space-bounded, nondeterministic Turing machine M<SUB>2</SUB> can be constructed to accept
+the complementation of L(M<SUB>1</SUB>).
+   <P >Specifically, on a given input x the Turing machine M<SUB>2</SUB> determines whether the
+configurations tree <FONT FACE="SYMBOL">O</FONT> of M<SUB>1</SUB> on x contains an accepting configuration. If so, then M<SUB>2</SUB>
+rejects x. Otherwise, M<SUB>2</SUB> accepts x.
+   <P >M<SUB>2</SUB> traverses <FONT FACE="SYMBOL">O</FONT> by stages, according to the algorithm in Figure <A 
+ HREF="#60005-30007r5.5.6">5.5.6</A>(a).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60005-30007r5.5.6"> </A>
+         <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE><TT>i</TT> := 0
+<TT>l</TT> := length of the initial configuration C<SUB>0</SUB> of M<SUB>1</SUB> on input x
+<TT>N</TT> := 1
+<B>repeat</B>
+    <B>for</B> each configuration C in <FONT FACE="SYMBOL">O</FONT><SUB>i</SUB> <B>do</B>
+        <B>if</B> C is an accepting configuration <B>then</B> <B>reject</B>
+    <TT>l</TT> := max(<TT>l</TT>, length of longest configuration in <FONT FACE="SYMBOL">O</FONT><SUB>i+1</SUB>)
+   <TT>N</TT> := number of configurations in <FONT FACE="SYMBOL">O</FONT><SUB>i+1</SUB>
+    <TT>i</TT> := <TT>i</TT> + 1
+<B>until</B> <TT>i</TT> &gt; (the number of configurations, of M<SUB>1</SUB> on input x, of
+ length <TT>l</TT>)
+<B>accept</B>                                                                                        </PRE></TD></TR></TABLE>
+                               (a)
+                 <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE><TT>count</TT> := 0
+<B>for</B> each configuration C, of M<SUB>1</SUB> on
+ input x, of length <TT>l</TT> at most
+ <B> do</B>
+    <B>if</B> C<SUB>0</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- ">* C in exactly <TT>i</TT> moves <B>then</B>
+    <B>begin</B> <TT>count</TT> := <TT>count</TT> + 1
+      <FONT FACE="SYMBOL">a</FONT>
+   <B>end</B>
+<B>if</B> <TT>count</TT><IMG 
+SRC="theory-bk-five54x.gif" ALT="/="ALIGN="MIDDLE" > <TT>N</TT> <B>then</B> <B>reject</B>                       </PRE></TD></TR></TABLE>
+                               (b)
+                <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE><TT>nextN</TT> := 0
+<B>for</B> each configuration C', of
+ M<SUB>1</SUB> on input x, of length <TT>l</TT><B> do</B>
+    <B>begin</B> <TT>countup</TT> := false
+      <B>for</B> each configuration C in <FONT FACE="SYMBOL">O</FONT><SUB>i</SUB> <B>do</B>
+            <B>if</B> C <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C' <B>then</B> <TT>countup</TT> := true
+      <B>if</B> <TT>countup</TT> <B>then</B> <TT>nextN</TT> := <TT>nextN</TT> + 1
+   <B>end</B>
+<TT>N</TT> := <TT>nextN</TT>                                                </PRE></TD></TR></TABLE>
+                               (c)
+<A 
+   NAME="60005-30007r5.5.6"> </A>
+<BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure                                                                                                                  5.5.6
+</STRONG></NOBR></TD><TD  
+>(a) A breadth-first search algorithm for accepting the complementation of L(M<SUB>1</SUB>).
+(b) Simulation of &#34;<B>for</B> each configuration C in <FONT FACE="SYMBOL">O</FONT><SUB>i</SUB> <B>do</B> <FONT FACE="SYMBOL">a</FONT>&#34;. (c) Evaluation of the number
+of configurations in <FONT FACE="SYMBOL">O</FONT><SUB>i+1</SUB>.                                            </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>At the <I>i</I>th stage M<SUB>2</SUB> determines the configurations C at the <I>i</I>th level of <FONT FACE="SYMBOL">O</FONT>, that is, the
+configurations in the set <FONT FACE="SYMBOL">O</FONT><SUB>i</SUB> = { C | M<SUB>1</SUB> has a sequence C<SUB>0</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- ">* C of exactly i moves that
+starts at the initial configuration C<SUB>0</SUB> of M<SUB>1</SUB> on input x }.
+   <P >M<SUB>2</SUB> halts during the <I>i</I>th stage in a nonaccepting configuration if it determines an
+accepting configuration in <FONT FACE="SYMBOL">O</FONT><SUB>i</SUB>. However, it halts at the end of the <I>i</I>th stage in an accepting
+configuration if it determines that <FONT FACE="SYMBOL">O</FONT><SUB>i</SUB> cannot contain new configurations (i.e., by
+determining that i is greater than the number of configurations M<SUB>1</SUB> can reach on input
+x).
+   <P >The configurations C that are in <FONT FACE="SYMBOL">O</FONT><SUB>i</SUB> are found nondeterministically from i and the
+number N of configurations in <FONT FACE="SYMBOL">O</FONT><SUB>i</SUB>. In particular, M<SUB>2</SUB> simulates the instructions of the
+form &#34;<B>for</B> each configuration C in <FONT FACE="SYMBOL">O</FONT><SUB>i</SUB> <B>do</B> <FONT FACE="SYMBOL">a</FONT>&#34; in accordance with the algorithm in
+Figure <A 
+ HREF="#60005-30007r5.5.6">5.5.6</A>(b). The nondeterminism is required for simulating the sequences of moves
+C<SUB>0</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- ">* C.
+   <P >M<SUB>2</SUB> determines the number N of configurations in <FONT FACE="SYMBOL">O</FONT><SUB>i+1</SUB> by determining which
+configuration can be directly reached from those that are in <FONT FACE="SYMBOL">O</FONT><SUB>i</SUB>. The algorithm is given in
+Figure <A 
+ HREF="#60005-30007r5.5.6">5.5.6</A>(c).
+   <P >The result now follows because by Lemma <A 
+ HREF="#60005-26004t5.5.1">5.5.1</A>, the Turing machine M<SUB>1</SUB> can reach at
+most 2<SUP>O(S(n))</SUP> different configurations on inputs of length n, that is, M<SUB>2</SUB> considers only
+i <FONT FACE="SYMBOL">£</FONT> 2<SUP>O(S(n))</SUP> levels of <FONT FACE="SYMBOL">O</FONT>. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >The class <I>DTIME</I> (T(n))<A NAME="60005-30008"> </A> is closed under union<A NAME="60005-30009"> </A>, intersection, and complementation
+<A NAME="60005-30010"> </A>(see Exercise <A 
+ HREF="theory-bk-fiveli1.html#60007-34007r5.1.3">5.1.3</A>(b)). The closure of <I>DSPACE</I> (S(n)) <A NAME="60005-30011"> </A>under union, intersection, and
+complementation can be easily shown by direct simulations. For the last operation,
+however, the following theorem is required.
+   <P ><STRONG>Definitions </STRONG> <A 
+   NAME="60005-30012t"> </A> 
+An <I>s space-bounded configuration</I> is a configuration that requires at most s space in each
+auxiliary work tape. An <I>s space-bounded</I>, <I>backward-moving-configurations<A NAME="60005-30013"> </A> tree</I> of a
+Turing machine M is a tree <FONT FACE="SYMBOL">O</FONT>, defined in the following manner. The root of <FONT FACE="SYMBOL">O</FONT> is labeled
+by an s space-bounded configuration of M. A node in <FONT FACE="SYMBOL">O</FONT>, labeled by a configuration C<SUB>2</SUB>,
+has an immediate successor labeled by configuration C<SUB>1</SUB> if and only if C<SUB>1</SUB> is an s
+space-bounded configuration of M such that C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB>2</SUB>.
+   <P ><STRONG>Theorem 5.5.6</STRONG> <A 
+   NAME="60005-30014t5.5.6"> </A> 
+Each S(n) space-bounded, deterministic Turing machine M<SUB>1</SUB> has an equivalent S(n)
+space-bounded, deterministic Turing machine M<SUB>2</SUB> that halts on all inputs.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60005-30015t"> </A> 
+Consider any S(n) space-bounded, deterministic Turing machine M<SUB>1</SUB> = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt;.
+M<SUB>2</SUB> can be of the following form. M<SUB>2</SUB> on a given input x determines the space s<SUB>x</SUB> that M<SUB>1</SUB>
+uses on input x. Then M<SUB>2</SUB> checks whether M<SUB>1</SUB> has an accepting computation on input x. If
+so, then M<SUB>2</SUB> halts in an accepting configuration. Otherwise M<SUB>2</SUB> halts in a rejecting
+one.
+   <P >To determine the value of s<SUB>x</SUB> the Turing machine M<SUB>2</SUB> initializes s<SUB>x</SUB> to equal 1. Then M<SUB>2</SUB>
+increases s<SUB>x</SUB> by 1 as long as it finds an s<SUB>x</SUB> space-bounded configuration C<SUB>1</SUB>, and an
+(s<SUB>x</SUB> + 1) space-bounded configuration C<SUB>2</SUB>, such that the following conditions
+hold.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60005-30016xa"> </A>C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB>2</SUB>.
+     <LI><A 
+   NAME="60005-30017xb"> </A>M<SUB>1</SUB> has an s<SUB>x</SUB>  space-bounded, backward-moving-configurations tree <FONT FACE="SYMBOL">O</FONT>, the
+     root of which is C<SUB>1</SUB> and which contains the initial configuration of M<SUB>1</SUB> on x.</OL>
+M<SUB>2</SUB> searches for an s<SUB>x</SUB> space-bounded configuration C<SUB>1</SUB> that satisfies the above conditions
+by generating all the s<SUB>x</SUB> space-bounded configurations in canonical order, and checking
+each of them for the conditions.
+   <P >To check whether M<SUB>1</SUB> has an accepting computation on input x the Turing machine
+M<SUB>2</SUB> searches for an s<SUB>x</SUB> space-bounded, backward-moving-configurations tree that satisfies
+the following conditions.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60005-30018xa"> </A>The root of <FONT FACE="SYMBOL">O</FONT> is an accepting configuration of M<SUB>1</SUB> on input x.
+     <LI><A 
+   NAME="60005-30019xb"> </A><FONT FACE="SYMBOL">O</FONT> contains the initial configuration of M<SUB>1</SUB> on input x.</OL>
+M<SUB>2</SUB> follows the algorithm in Figure <A 
+ HREF="#60005-30020r5.5.7">5.5.7</A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60005-30020r5.5.7"> </A>
+               <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE>C := C<SUB>root</SUB>
+<B>do</B>
+    <B>if</B> C is an initial configuration <B>then</B>
+        <B>begin</B>
+            <B>while</B> C has a predecessor in <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB> <B>do</B>
+                C := predecessor of C in <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB>
+             <B>return</B> (true)
+        <B>end</B>
+    <B>if</B> C is not a terminal node in <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB> <B>then</B>
+        C := the leftmost successor of C in <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB>
+    <B>else if</B> C has a right neighbor in <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB> <B>then</B>
+        C := the right neighbor C in <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB>
+    <B>else if</B> C has a predecessor in <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB> <B>then</B>
+        C := the predecessor of C in <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB>
+    <B>else return</B> (false)
+<B>until</B> false                                       </PRE></TD></TR></TABLE>
+<A 
+   NAME="60005-30020r5.5.7"> </A>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.5.7 </STRONG></NOBR></TD><TD  
+>Depth-first search for an initial configuration in <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB>.                                                   </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>for determining whether M<SUB>1</SUB> on input x has an s space-bounded, backward-moving-configurations
+tree <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB>, the root of which is C<SUB>root</SUB> and which contains a node that corresponds to an initial
+configuration. Upon halting, the algorithm is at configuration C = C<SUB>root</SUB>.
+   <P >The algorithm is used only on configurations C<SUB>root</SUB>, such that if C<SUB>root</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C' then C' is
+not an s space-bounded configuration. This property is used by the algorithm to determine
+the root of <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB> upon backtracking.
+   <P >The algorithm relies on the observation that the determinism of M<SUB>1</SUB> implies the
+following properties for each s space-bounded, backward-moving-configurations tree
+<FONT FACE="SYMBOL">O</FONT><SUB>s</SUB>.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60005-30021xa"> </A>The tree <FONT FACE="SYMBOL">O</FONT><SUB>s</SUB> is finite because no configuration can be repeated in a path that
+     starts at the root.
+     <LI><A 
+   NAME="60005-30022xb"> </A>The predecessors, successors, and siblings of each node can be determined
+     simply from the configuration assigned to the node.<A NAME="60005-30023"> </A> <A NAME="60005-30024"> </A><IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ ></OL>
+   <P >
+   <P >
+   <P >[<A 
+ HREF="theory-bk-fivese6.html" >next</A>] [<A 
+ HREF="theory-bk-fivese4.html" >prev</A>] [<A 
+ HREF="theory-bk-fivese4.html#tailtheory-bk-fivese4.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-fivese5.html" >front</A>] [<A 
+ HREF="theory-bk-five.html#theory-bk-fivese5.html" >up</A>] <A 
+   NAME="tailtheory-bk-fivese5.html"> </A></BODY></HTML>

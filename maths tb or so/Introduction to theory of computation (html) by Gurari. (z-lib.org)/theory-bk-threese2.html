@@ -1,0 +1,902 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-three.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-threese3.html" >next</A>] [<A 
+ HREF="theory-bk-threese1.html" >prev</A>] [<A 
+ HREF="theory-bk-threese1.html#tailtheory-bk-threese1.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-threese2.html">tail</A>] [<A 
+ HREF="theory-bk-three.html#theory-bk-threese2.html" >up</A>]
+<H3>3.2 <A 
+   NAME="40002-30003.2"> </A><A 
+ HREF="theory-bk.html#Q2-40002-3"  NAME="Q1-40002-3">Pushdown Transducers</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-40002-4"  NAME="Q2-40002-4">Pushdown Transducers</A>
+<BR>         <A 
+ HREF="#Q1-40002-5"  NAME="Q2-40002-5">Configurations and Moves of Pushdown Transducers</A>
+<BR>         <A 
+ HREF="#Q1-40002-6"  NAME="Q2-40002-6">Determinism and Nondeterminism in Pushdown Transducers</A>
+<BR>         <A 
+ HREF="#Q1-40002-7"  NAME="Q2-40002-7">Computations of Pushdown Transducers</A>
+<BR>         <A 
+ HREF="#Q1-40002-8"  NAME="Q2-40002-8">From Recursive Finite-Domain Programs to Pushdown Transducers</A>
+<BR>         <A 
+ HREF="#Q1-40002-9"  NAME="Q2-40002-9">From Pushdown Transducers to Recursive Finite-Domain Programs</A>
+<BR>         <A 
+ HREF="#Q1-40002-10"  NAME="Q2-40002-10">Pushdown Automata</A>
+   <P >In general, recursion in programs is implemented by means of a pushdown store, that
+is, a last-in-first-out memory. Thus, it is only natural to suspect that recursion in
+finite-domain programs implicitly allows an access to some auxiliary memory.
+Moreover, the observation makes it also unsurprising that the computations of
+recursive finite-domain programs can be characterized by finite-state transducers that
+are augmented with a pushdown store. Such<A NAME="40002-3001"> </A> transducers are called pushdown
+transducers.
+   <P ><EM><A 
+   NAME="40002-4000"> </A><A 
+ HREF="#Q2-40002-4"  NAME="Q1-40002-4">Pushdown Transducers</A></EM>
+   <P >Each pushdown transducer M can be viewed as an abstract computing machine that
+consists of a <I>finite-state<A NAME="40002-4001"> </A> control</I>, an <I>input<A NAME="40002-4002"> </A> tape</I>, a read-only <I>input<A NAME="40002-4003"> </A> head</I>, a <I>pushdown<A NAME="40002-4004"> </A> tape</I> or
+<I>pushdown store</I>, a read-write <I>pushdown<A NAME="40002-4005"> </A> head</I>, an <I>output<A NAME="40002-4006"> </A> tape</I>, and a write-only <I>output<A NAME="40002-4007"> </A> head</I>
+(see Figure <A 
+ HREF="#40002-4008r3.2.1">3.2.1</A>). Each move of M is determined by the state of M, the input to be
+consumed, and the content on the top of the pushdown store. Each move of M
+consists of changing the state of M, reading at most one input symbol, changing the
+content on top of the pushdown store, and writing at most one symbol into the
+output.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-4008r3.2.1"> </A>
+<A 
+   NAME="40002-4008r3.2.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.1 </STRONG></NOBR></TD><TD  
+>Schema of a pushdown transducer.                                                                              </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P ><STRONG>Example 3.2.1</STRONG> <A 
+   NAME="40002-4009t3.2.1"> </A> 
+A pushdown transducer M can compute the relation { (a<SUP>i</SUP>b<SUP>i</SUP>, c<SUP>i</SUP>) | i <FONT FACE="SYMBOL">³</FONT> 1 } by checking that
+each input has the form a · · · ab · · · b with the same number of a's as b's, and
+writing that many c's. The computations of M can be in the following manner (see
+Figure <A 
+ HREF="#40002-4010r3.2.2">3.2.2</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-4010r3.2.2"> </A>
+<A 
+   NAME="40002-4010r3.2.2"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-2.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.2 </STRONG></NOBR></TD><TD  
+>A description of how a pushdown transducer can compute the relation { (a<SUP>i</SUP>b<SUP>i</SUP>, c<SUP>i</SUP>) |
+i <FONT FACE="SYMBOL">³</FONT> 1 }.                                                                                                                         </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >Initially the pushdown store is assumed to contain just one symbol, say, Z<SUB>0</SUB> to mark the
+bottom of the pushdown store. M starts each computation by reading the a's from the
+input tape while pushing them into the pushdown store. The symbols are read one at a time
+from the input.
+   <P >Once M is done reading the a's from the input, it starts reading the b's. As M reads
+the b's it retrieves, or pops, one a from the pushdown store for each symbol b that it reads
+from the input. In addition, M writes one c to the output for each symbol b that it reads
+from the input.
+   <P >M accepts the input if and only if it reaches the end of the input at the same
+time as it reaches the symbol Z<SUB>0</SUB> in the pushdown store. M rejects the input if it
+reaches the symbol Z<SUB>0</SUB> in the pushdown store before reaching the end of the
+input, because in such a case the input contains more b's than a's. M rejects
+the input if it reaches the end of the input before reaching the symbol Z<SUB>0</SUB> in the
+pushdown store, because in such a case the input contains more a's than b's. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >Formally, a mathematical system M consisting of an eight-tuple &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, Z<SUB>0</SUB>, F&gt;
+is called a <I>pushdown transducer</I> if it satisfies the following conditions.
+     <DL><DT><STRONG>
+Q </STRONG><DD 
+>is a finite set, where the elements of Q are called the <I>states</I><A NAME="40002-4011"> </A> of M.
+     <DT><STRONG>
+<FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT> and <FONT FACE="SYMBOL">D</FONT> </STRONG><DD 
+>are alphabets. <FONT FACE="SYMBOL">S</FONT> is called the <I>input<A NAME="40002-4012"> </A> alphabet</I> of M, and its elements are
+     called the <I>input symbols</I> of M. <FONT FACE="SYMBOL">G</FONT> is called the <I>pushdown<A NAME="40002-4013"> </A> alphabet</I> of M, and
+     its elements are called the <I>pushdown symbols</I> of M. <FONT FACE="SYMBOL">D</FONT> is called the <I>output<A NAME="40002-4014"> </A>
+     alphabet</I> of M, the elements of which are called the <I>output symbols</I> of M.
+     <DT><STRONG>
+<FONT FACE="SYMBOL">d</FONT> </STRONG><DD 
+>is a relation from Q × (<FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> {<FONT FACE="SYMBOL">e</FONT>}) × (<FONT FACE="SYMBOL">G</FONT> <FONT FACE="SYMBOL">È</FONT> {<FONT FACE="SYMBOL">e</FONT>}) to Q × <FONT FACE="SYMBOL">G</FONT>* × (<FONT FACE="SYMBOL">D</FONT> <FONT FACE="SYMBOL">È</FONT> {<FONT FACE="SYMBOL">e</FONT>}). <FONT FACE="SYMBOL">d</FONT> is called
+     the <I>transition<A NAME="40002-4015"> </A> table</I> of M, the elements of which are called the <I>transition<A NAME="40002-4016"> </A> rules</I>
+     of M.
+     <DT><STRONG>
+q<SUB>0</SUB> </STRONG><DD 
+>is an element in Q, called the <I>initial<A NAME="40002-4017"> </A> state</I> of M.
+     <DT><STRONG>
+Z<SUB>0</SUB> </STRONG><DD 
+>is an element in <FONT FACE="SYMBOL">G</FONT>, called the <I>bottom<A NAME="40002-4018"> </A> pushdown symbol</I> of M.
+     <DT><STRONG>
+F </STRONG><DD 
+>is a subset of Q. The states in the subset F  are called the <I>accepting</I><A NAME="40002-4019"> </A>, or <I>final</I>,
+     <I>states</I> of M.<A NAME="40002-4020"> </A></DL>
+In what follows, each transition rule (q, <FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">b</FONT>, (p, <FONT FACE="SYMBOL">g</FONT>, <FONT FACE="SYMBOL">r</FONT>)) of a pushdown transducer will be
+written as (q, <FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>, <FONT FACE="SYMBOL">r</FONT>).
+   <P ><STRONG>Example 3.2.2</STRONG> <A 
+   NAME="40002-4021t3.2.2"> </A> 
+M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, Z<SUB>0</SUB>, F&gt; is a pushdown transducer if Q = {q<SUB>0</SUB>, q<SUB>1</SUB>, q<SUB>2</SUB>};
+<FONT FACE="SYMBOL">S</FONT> = {a, b}; <FONT FACE="SYMBOL">D</FONT> = {a, b}; <FONT FACE="SYMBOL">G</FONT> = {Z<SUB>0</SUB>, c}; <FONT FACE="SYMBOL">d</FONT> = {(q<SUB>0</SUB>, a, <FONT FACE="SYMBOL">e</FONT>, q<SUB>0</SUB>, c, <FONT FACE="SYMBOL">e</FONT>), (q<SUB>0</SUB>, b, <FONT FACE="SYMBOL">e</FONT>,
+q<SUB>0</SUB>, c, <FONT FACE="SYMBOL">e</FONT>), (q<SUB>0</SUB>, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>, q<SUB>1</SUB>, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>), (q<SUB>1</SUB>, a, c, q<SUB>1</SUB>, <FONT FACE="SYMBOL">e</FONT>, a), (q<SUB>1</SUB>, b, c, q<SUB>1</SUB>, <FONT FACE="SYMBOL">e</FONT>, b), (q<SUB>1</SUB>, <FONT FACE="SYMBOL">e</FONT>, Z<SUB>0</SUB>, q<SUB>2</SUB>, Z<SUB>0</SUB>, <FONT FACE="SYMBOL">e</FONT>)};
+and F = {q<SUB>2</SUB>}. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >By definition, in each transition rule (q, <FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>, <FONT FACE="SYMBOL">r</FONT>) the entries q and p are states in Q,
+<FONT FACE="SYMBOL">a</FONT> is either an input symbol or an empty string, <FONT FACE="SYMBOL">b</FONT> is either a pushdown symbol or an empty
+string, <FONT FACE="SYMBOL">g</FONT> is a string of pushdown symbols, and <FONT FACE="SYMBOL">r</FONT> is either an output symbol or an empty
+string.
+   <P >Each pushdown transducer M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, Z<SUB>0</SUB>, F&gt; can be graphically
+represented by a <I>transition<A NAME="40002-4022"> </A> diagram</I> of the following form. For each state in Q
+the transition diagram has a corresponding node drawn as a circle. The initial
+state is identified by an arrow from nowhere that points to the corresponding
+node. Each accepting state is identified by a double circle. Each transition rule
+(q, <FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>, <FONT FACE="SYMBOL">r</FONT>) is represented by an edge from the node that corresponds to
+state q to the node that corresponds to state p. In addition, the edge is labeled
+with
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-three3x.gif" ALT="  a
+b/g
+/r ."></PRE></CENTER>
+   <P >For notational convenience, edges that agree in their origin and destination are merged,
+and their labels are separated by commas.
+   <P ><STRONG>Example 3.2.3</STRONG> <A 
+   NAME="40002-4023t3.2.3"> </A> 
+Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A> gives the transition diagram for the pushdown transducer of Example <A 
+ HREF="#40002-4021t3.2.2">3.2.2</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-4024r3.2.3"> </A>
+<A 
+   NAME="40002-4024r3.2.3"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-3.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.3 </STRONG></NOBR></TD><TD  
+>A transition diagram of a pushdown transducer.                                                          </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>The label
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-three4x.gif" ALT=" a
+//ee e"></PRE></CENTER>
+   <P >on the edge that starts and ends at state q<SUB>0</SUB> corresponds to the transition rule
+(q<SUB>0</SUB>, a, <FONT FACE="SYMBOL">e</FONT>, q<SUB>0</SUB>, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>). The label
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-three5x.gif" ALT=" e
+//ee e"></PRE></CENTER>
+   <P >on the edge that starts at state q<SUB>0</SUB> and ends at state q<SUB>1</SUB> corresponds to the transition rule
+(q<SUB>0</SUB>, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>, q<SUB>1</SUB>, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>). <IMG 
+SRC="theory-bk-three1x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >The top row &#34;<FONT FACE="SYMBOL">a</FONT>/&#34; in the label
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-three6x.gif" ALT=" b/ag
+ /r"></PRE></CENTER>
+   <P >corresponds to the input tape. The middle row &#34;<FONT FACE="SYMBOL">b</FONT>/<FONT FACE="SYMBOL">g</FONT>&#34; corresponds to the pushdown
+tape. The bottom row &#34;/<FONT FACE="SYMBOL">r</FONT>&#34; corresponds to the output tape.
+   <P >Throughout the text the following conventions are assumed for each production rule
+(q, <FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>, <FONT FACE="SYMBOL">r</FONT>) of a pushdown transducer. The conventions do not affect the power of the
+pushdown transducers, and they are introduced to simplify the investigation of the
+pushdown transducers.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="40002-4025xa"> </A>If <FONT FACE="SYMBOL">b</FONT> = Z<SUB>0</SUB>, then Z<SUB>0</SUB> is a prefix of <FONT FACE="SYMBOL">g</FONT>.
+     <LI><A 
+   NAME="40002-4026xb"> </A><FONT FACE="SYMBOL">g</FONT> is a string of length 2 at most.
+     <LI><A 
+   NAME="40002-4027xc"> </A>If <FONT FACE="SYMBOL">g</FONT> is a string of length 2, the <FONT FACE="SYMBOL">b</FONT> is equal to the first symbol in <FONT FACE="SYMBOL">g</FONT>. <A NAME="40002-4028"> </A></OL>
+   <P ><EM><A 
+   NAME="40002-5000"> </A><A 
+ HREF="#Q2-40002-5"  NAME="Q1-40002-5">Configurations and Moves of Pushdown Transducers</A></EM>
+   <P >On each input x from <FONT FACE="SYMBOL">S</FONT>* the pushdown transducer M has some set of possible
+configurations (see Figure <A 
+ HREF="#40002-5003r3.2.4">3.2.4</A>). Each <I>configuration</I><A NAME="40002-5001"> </A>, or <I>instantaneous<A NAME="40002-5002"> </A> description</I>, of M is
+a triplet (uqv, z, w), where q is a state of M, uv = x is the input of M, z is a string from
+<FONT FACE="SYMBOL">G</FONT>* of pushdown symbols, and w is a string from <FONT FACE="SYMBOL">D</FONT>* of output symbols. Intuitively, a
+configuration (uqv, z, w) says that M on input x can reach state q with z in its pushdown
+store, after reading u and writing w. With no loss of generality it is assumed that <FONT FACE="SYMBOL">S</FONT> and Q
+are mutually disjoint.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-5003r3.2.4"> </A>
+<A 
+   NAME="40002-5003r3.2.4"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-4.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.4 </STRONG></NOBR></TD><TD  
+>A configuration of a pushdown transducer.                                                                  </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >The configuration is said to be an <I>initial<A NAME="40002-5004"> </A> configuration</I> if q = q<SUB>0</SUB>, u = w = <FONT FACE="SYMBOL">e</FONT>, and
+z = Z<SUB>0</SUB>. Such an initial configuration says that M is in its initial state q<SUB>0</SUB>, with none of the
+input symbols being read yet (i.e., u = <FONT FACE="SYMBOL">e</FONT>), with the output being still empty (i.e., w = <FONT FACE="SYMBOL">e</FONT>),
+and the pushdown being still in its original stage (i.e., z = Z<SUB>0</SUB>). In addition, the
+configuration says that M is given the input v.
+   <P >The configuration is said to be an <I>accepting<A NAME="40002-5005"> </A> configuration</I> if v = <FONT FACE="SYMBOL">e</FONT> and q is an
+accepting state. Such an accepting configuration says that M reached an accepting state
+after reading all the input (i.e., v = <FONT FACE="SYMBOL">e</FONT>) and writing w. In addition, the configuration says
+that the input M has consumed is equal to v.
+   <P ><STRONG>Example 3.2.4</STRONG> <A 
+   NAME="40002-5006t3.2.4"> </A> 
+Consider the pushdown transducer M whose transition diagram is given in Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A>.
+(q<SUB>0</SUB>abbb, Z<SUB>0</SUB>, <FONT FACE="SYMBOL">e</FONT>) is the initial configuration of M on input abbb. The configuration
+(abq<SUB>1</SUB>bb, Z<SUB>0</SUB>cc, <FONT FACE="SYMBOL">e</FONT>) of M says that M consumed already u = ab from the input, the
+remainder of the input is v = bb, M has reached state q<SUB>1</SUB> with the string Z<SUB>0</SUB>cc in the
+pushdown store, and the output so far is empty. The configurations are illustrated in
+Figure <A 
+ HREF="#40002-5007r3.2.5">3.2.5</A>(a) and Figure <A 
+ HREF="#40002-5007r3.2.5">3.2.5</A>(b), respectively.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-5007r3.2.5"> </A>
+<A 
+   NAME="40002-5007r3.2.5"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-5.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.5 </STRONG></NOBR></TD><TD  
+>Configurations of the pushdown transducer of Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A>.                                        </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >(abbbq<SUB>2</SUB>, Z<SUB>0</SUB>, bb) and (abq<SUB>2</SUB>bb, Z<SUB>0</SUB>cc, <FONT FACE="SYMBOL">e</FONT>) are also configurations of M<SUB>0</SUB>. The first
+configuration is accepting. The second, however, is not an accepting configuration despite
+its being in an accepting state, because the input has not been consumed until its end. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >The transition rules<A NAME="40002-5008"> </A> of M are used for defining the possible moves of M. Each move is
+in accordance with some transition rule. A <I>move</I><A NAME="40002-5009"> </A> on transition rule (q, <FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>, <FONT FACE="SYMBOL">r</FONT>)
+changes the state of the finite-state control from q to p; reads <FONT FACE="SYMBOL">a</FONT> from the input tape,
+moving the input head |<FONT FACE="SYMBOL">a</FONT>| positions to the right; writes <FONT FACE="SYMBOL">r</FONT> in the output tape, moving the
+output head |<FONT FACE="SYMBOL">r</FONT>| positions to the right; and replaces on top of the pushdown store (i.e.,
+from the location of the pushdown head to its left) the string <FONT FACE="SYMBOL">b</FONT> with the string <FONT FACE="SYMBOL">g</FONT>,
+moving the pushdown head |<FONT FACE="SYMBOL">g</FONT>| - |<FONT FACE="SYMBOL">b</FONT>| positions to the right. The move is said to
+be a <I>pop</I><A NAME="40002-5010"> </A> move if |<FONT FACE="SYMBOL">g</FONT>| &lt; |<FONT FACE="SYMBOL">b</FONT>|. The move is said to be a <I>push</I><A NAME="40002-5011"> </A> move if |<FONT FACE="SYMBOL">b</FONT>| &lt; |<FONT FACE="SYMBOL">g</FONT>|.
+The symbol under the pushdown head is called the <I>top<A NAME="40002-5012"> </A> symbol</I> of the pushdown
+store.
+   <P >A move of M from configuration C<SUB>1</SUB> to configuration C<SUB>2</SUB> is denoted C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "><SUB> M </SUB>C<SUB>2</SUB>, or
+simply C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB>2</SUB> if M is understood. A sequence of zero or more moves of M from
+configuration C<SUB>1</SUB> to configuration C<SUB>2</SUB> is denoted C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "><SUB> M </SUB>* C<SUB>2</SUB>, or simply C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- ">* C<SUB>2</SUB>, if M is
+understood.
+   <P ><STRONG>Example 3.2.5</STRONG> <A 
+   NAME="40002-5013t3.2.5"> </A> 
+The pushdown transducer whose transition diagram is given in Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A>, has a sequence
+of moves on input abbb that is given by the following sequence of configurations:
+(q<SUB>0</SUB>abbb, Z<SUB>0</SUB>, <FONT FACE="SYMBOL">e</FONT>) <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> (aq<SUB>0</SUB>bbb, Z<SUB>0</SUB>c, <FONT FACE="SYMBOL">e</FONT>) <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> (abq<SUB>0</SUB>bb, Z<SUB>0</SUB>cc, <FONT FACE="SYMBOL">e</FONT>) <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> (abq<SUB>1</SUB>bb, Z<SUB>0</SUB>cc, <FONT FACE="SYMBOL">e</FONT>) <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> (abbq<SUB>1</SUB>b,
+Z<SUB>0</SUB>c, b) <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> (abbbq<SUB>1</SUB>, Z<SUB>0</SUB>, bb) <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> (abbbq<SUB>2</SUB>, Z<SUB>0</SUB>, bb). This sequence is the only one
+that can start at the initial configuration and end at an accepting configuration
+for the input abbb. The sequence of configurations is depicted graphically in
+Figure <A 
+ HREF="#40002-5014r3.2.6">3.2.6</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-5014r3.2.6"> </A>
+<A 
+   NAME="40002-5014r3.2.6"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-6.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.6 </STRONG></NOBR></TD><TD  
+>Transition between configurations of the pushdown transducer of Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A>.         </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >All the moves of M on the transition rules that both start and end at state q<SUB>0</SUB> are push
+moves. All the moves of M on the transition rules that both start and end at state q<SUB>1</SUB> are
+pop moves. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >A string in the pushdown store that starts at the bottom symbol and ends at the top
+symbol, excluding the bottom symbol, is called the <I>content</I><A NAME="40002-5015"> </A> of the pushdown store. The
+pushdown store is said to be <I>empty</I><A NAME="40002-5016"> </A> if its content is empty.
+   <P ><STRONG>Example 3.2.6</STRONG> <A 
+   NAME="40002-5017t3.2.6"> </A> 
+Let M be the pushdown transducer of Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A>. Consider the computation of M on
+input abbb (see Figure <A 
+ HREF="#40002-5014r3.2.6">3.2.6</A>). M starts with an empty pushdown store, adding c to the store
+during the first move. After the second move, the content of the pushdown store is cc.
+The content of the pushdown store does not change during the third move. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="40002-6000"> </A><A 
+ HREF="#Q2-40002-6"  NAME="Q1-40002-6">Determinism and Nondeterminism in Pushdown Transducers</A></EM>
+   <P >The definitions of determinism and nondeterminism in pushdown transducers are, in
+principal, similar to those provided for finite-state transducers. The difference arises only
+in the details.
+   <P >A pushdown transducer M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, Z<SUB>0</SUB>, F&gt; is said to be <I>deterministic</I><A NAME="40002-6001"> </A> if
+for each state q in Q; each input symbol a in <FONT FACE="SYMBOL">S</FONT>; and each pushdown symbol Z in <FONT FACE="SYMBOL">G</FONT>, the
+union <FONT FACE="SYMBOL">d</FONT>(q, a, Z) <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">d</FONT>(q, a, <FONT FACE="SYMBOL">e</FONT>) <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">d</FONT>(q, <FONT FACE="SYMBOL">e</FONT>, Z) <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">d</FONT>(q, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>), is a multiset that contains at most one
+element.
+   <P >Intuitively, M is deterministic if the state and the top pushdown symbol are sufficient
+for determining whether or not a symbol is to be read from the input, and the state, the top
+pushdown symbol, and the input to be read are sufficient for determining which transition
+rule is to be used.
+   <P >A pushdown transducer is said to be <I>nondeterministic</I><A NAME="40002-6002"> </A> if it is not a deterministic
+pushdown transducer.
+   <P ><STRONG>Example 3.2.7</STRONG> <A 
+   NAME="40002-6003t3.2.7"> </A> 
+Let M<SUB>1</SUB> be the pushdown transducer whose transition diagram is given in Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A>.
+   <P >In a move from state q<SUB>1</SUB>, the pushdown transducer M<SUB>1</SUB> reads an input symbol if and
+only if the topmost pushdown symbol is not Z<SUB>0</SUB>. If the symbol is not Z<SUB>0</SUB>, then the next
+symbol in the input uniquely determines which transition rule is to be used in the move. If
+the topmost pushdown symbol is Z<SUB>0</SUB>, then M<SUB>1</SUB> must use the transition rule that leads to
+q<SUB>2</SUB>. Consequently, the moves that originate at state q<SUB>1</SUB> can be fully determined
+&#34;locally.&#34;
+   <P >On the other hand, the moves from state q<SUB>0</SUB> cannot be determined locally, because the
+topmost pushdown symbol is not sufficient for determining if an input symbol is to be read
+in the move.
+   <P >It follows that M<SUB>1</SUB> is a nondeterministic pushdown transducer. However, the
+pushdown transducer M<SUB>2</SUB> whose transition diagram is given in Figure <A 
+ HREF="#40002-6004r3.2.7">3.2.7</A> is
+deterministic.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-6004r3.2.7"> </A>
+<A 
+   NAME="40002-6004r3.2.7"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-7.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.7 </STRONG></NOBR></TD><TD  
+>A deterministic pushdown transducer.                                                                         </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >To move from state q<SUB>0</SUB> the pushdown transducer M<SUB>2</SUB> has to read an input symbol. If it
+reads the symbol a, then the move takes M<SUB>2</SUB> to state q<SUB>a</SUB>. If it reads the symbol b, then the
+move takes M<SUB>2</SUB> to state q<SUB>b</SUB>.
+   <P >The topmost symbol in the pushdown store determines whether M<SUB>2</SUB> must enter state q<SUB>0</SUB>
+or state q<SUB>a</SUB> on a move that originates at state q<SUB>a</SUB>. If the topmost symbol is Z<SUB>0</SUB>, then M
+moves to state q<SUB>0</SUB>. If the topmost symbol is a, then M moves to state q<SUB>a</SUB>. In the latter case
+M uses the transition rule (q<SUB>a</SUB>, a, a, q<SUB>a</SUB>, aa, c) if the input symbol to be read is a, and
+it uses the transition rule (q<SUB>a</SUB>, b, a, q<SUB>a</SUB>, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>) if the symbol to be read is b. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="40002-7000"> </A><A 
+ HREF="#Q2-40002-7"  NAME="Q1-40002-7">Computations of Pushdown Transducers</A></EM>
+   <P >The computations of the pushdown transducers are also defined like the computations
+of the finite-state transducers. An <I>accepting<A NAME="40002-7001"> </A> computation</I> of a pushdown transducer M is a
+sequence of moves of M that starts at an initial configuration and ends at an accepting one.
+A <I>nonaccepting</I><A NAME="40002-7002"> </A>, or <I>rejecting</I>, <I>computation</I> of M is a sequence of moves on an input x, for
+which the following conditions hold.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="40002-7003xa"> </A>The sequence starts from the initial configuration of M on input x.
+     <LI><A 
+   NAME="40002-7004xb"> </A>If  the  sequence  is  finite,  it  ends  at  a  configuration  from  which  no  move  is
+     possible.
+     <LI><A 
+   NAME="40002-7005xc"> </A>M has no accepting computation on input x.</OL>
+Each accepting computation and each nonaccepting computation of M is said to be a
+<I>computation</I><A NAME="40002-7006"> </A> of M.
+   <P >A computation is said to be a <I>halting<A NAME="40002-7007"> </A> computation</I> if it consists of a finite number of
+moves.
+   <P ><STRONG>Example 3.2.8</STRONG> <A 
+   NAME="40002-7008t3.2.8"> </A> 
+Consider the pushdown transducer M whose transition diagram is given in Figure <A 
+ HREF="#40002-6004r3.2.7">3.2.7</A>.
+The pushdown transducer has accepting computations only on those inputs that have the
+same number of a's as b's. On each input w in which the pushdown transducer has an
+accepting computation, it writes the string c<SUP>i</SUP> onto the output tape, where i = (the number of
+a's in w) = (the number of b's in w).
+   <P >The pushdown transducer enters state q<SUB>0</SUB> whenever the portion of the input read so far
+contains the same number of a's and b's. The pushdown transducer enters state q<SUB>a</SUB>
+whenever the portion of the input read so far contains more a's than b's. Similarly, the
+pushdown transducer enters state q<SUB>b</SUB> whenever the portion of the input read so
+far contains more b's than a's. The pushdown store is used for recording the
+difference between the number of a's and the number of b's, at any given instant of a
+computation.
+   <P >On input aabbba the pushdown transducer M has only one computation. M starts the
+computation by moving from state q<SUB>0</SUB> to state q<SUB>a</SUB>, while reading a, writing c, and
+pushing a into the pushdown store. In the second move M reads a, writes c, pushes a
+into the pushdown store, and goes back to q<SUB>a</SUB>. In the third and fourth moves M
+reads b, pops a from the pushdown store, and goes back to state q<SUB>a</SUB>. In the fifth
+move M goes to state q<SUB>0</SUB> without reading, writing, or changing the content of the
+pushdown store. In the sixth move M reads b, pushes b into the pushdown store, and
+moves to state q<SUB>b</SUB>. In its seventh move M reads a, pops b from the pushdown
+store, writes c, and goes back to q<SUB>b</SUB>. The computation terminates in an accepting
+configuration by a move from state q<SUB>b</SUB> to state q<SUB>0</SUB> in which no input is read, no output
+is written, and no change is made in the content of the pushdown store. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >By definition, each move in each computation must be on a transition rule that keeps
+the computation in a path, that eventually causes the computation to read all the input and
+halt in an accepting state. Whenever more than one such alternative in the set of feasible
+transition rules exists, then any of these alternatives can be chosen. Similarly, whenever
+none of the feasible transition rules satisfies the conditions above, then any of these
+transition rules can be chosen. This observation suggests that we view the computations of
+the pushdown transducers as also being executed by imaginary agents with magical
+power.
+   <P >An input x is said to be <I>accepted</I><A NAME="40002-7009"> </A>, or <I>recognized</I>, by a pushdown transducer M if M
+has an accepting computation on x. An accepting computation on x that terminates in a
+configuration of the form (xq<SUB>f</SUB>, z, w) is said to have an <I>output</I><A NAME="40002-7010"> </A> w. The output of a
+nonaccepting computation is assumed to be undefined.<A NAME="40002-7011"> </A>
+   <P ><STRONG>Example 3.2.9</STRONG> <A 
+   NAME="40002-7012t3.2.9"> </A> 
+Consider the pushdown transducer M, whose transition diagram is given in Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A>.
+The pushdown transducer accepts exactly those inputs that have even length. In each
+accepting computation the pushdown transducer outputs the second half of the
+input.
+   <P >As long as the pushdown transducer is in state q<SUB>0</SUB>, it repeatedly reads an input symbol
+and stores c in the pushdown store. Alternatively, as long as the pushdown transducer is
+in state q<SUB>1</SUB>, it repeatedly reads an input symbol and pops c from the pushdown
+store.
+   <P >Upon reaching an empty pushdown store, the pushdown transducer makes a
+transition from state q<SUB>1</SUB> to state q<SUB>2</SUB> to verify that the end of the input has been
+reached. Consequently, in its accepting computations, the pushdown transducer
+must make a transition from state q<SUB>0</SUB> to state q<SUB>1</SUB> upon reaching the middle of its
+inputs.
+   <P >On input abbb the pushdown transducer starts (its computation) with two moves,
+reading the first two input symbols, pushing two c's into the pushdown store, and returning
+to state q<SUB>0</SUB>. In its third move the pushdown transducer makes a transition from state q<SUB>0</SUB> to
+state q<SUB>1</SUB>.
+   <P >The pushdown transducer continues with two moves, reading the last two symbols in
+the input, popping two c's from the pushdown store, and copying the input being read onto
+the output tape.
+   <P >The pushdown concludes its computation on input abbb by moving from state q<SUB>1</SUB> to
+state q<SUB>2</SUB>.
+   <P >If M on input abbb reads more than two input symbols in the moves that originate at
+state q<SUB>0</SUB>, it halts in state q<SUB>1</SUB> because of an excess of symbols in the pushdown store. If M on
+input abbb reads fewer than two input symbols in the moves that originates at
+state q<SUB>1</SUB>, it halts in state q<SUB>1</SUB> because of a lack of symbols in the pushdown store.
+In either case the sequences of moves do not define computations of M. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >This example shows that, on inputs accepted by a pushdown transducer, the transducer
+may also have executable sequences of transition rules which are not considered to be
+computations.<A NAME="40002-7013"> </A>
+   <P >Other definitions, such as those of the relations computable by pushdown transducers,
+the languages accepted by pushdown transducers, and the languages decided by
+pushdown transducers, are similar to those given for finite-state transducers in
+Section 2.2.
+   <P ><STRONG>Example 3.2.10</STRONG> <A 
+   NAME="40002-7014t3.2.10"> </A> 
+The pushdown transducer M<SUB>1</SUB>, whose transition diagram is given in Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A>, computes
+the relation { (xy, y) | xy is in {a, b}*, and |x| = |y| }.
+   <P >The pushdown transducer M<SUB>2</SUB>, whose transition diagram is given in Figure <A 
+ HREF="#40002-6004r3.2.7">3.2.7</A>
+computes the relation { (x, c<SUP>i</SUP>) | x is in {a, b}*, and i = (number of a's in x) = (number of
+b's in x) }. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="40002-8000"> </A><A 
+ HREF="#Q2-40002-8"  NAME="Q1-40002-8">From Recursive Finite-Domain Programs to Pushdown
+<BR>Transducers</A></EM>
+<A NAME="40002-8001"> </A>
+   <P >The simulation of recursive finite-domain programs by pushdown transducers is
+similar to the simulation of the finite-memory programs by the finite-state transducers, as
+long as no call and return instructions are encountered. In such a case the pushdown
+transducers just trace across the states of the programs without using the pushdown
+store.
+   <P >Upon reaching the call instructions, the pushdown transducers use their store
+to record the states from which the calls originate. Upon reaching the return
+instructions, the pushdown transducers retrieve from the store the states that
+activated the corresponding calls, and use this information to simulate the return
+instructions.
+   <P >Specifically, consider any recursive finite-domain program P. Assume that P has m
+variables <TT>x</TT><SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , <TT>x</TT><SUB>m</SUB>, and k instruction segments I<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , I<SUB>k</SUB>. Denote the initial value with <IMG
+SRC="cmsy10-c.gif" ALT=" o. "> in the
+domain of the variables of P. Let a <I>state</I><A NAME="40002-8002"> </A> of P be an (m + 1)-tuple [i, v<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, v<SUB>m</SUB>], where i is a
+positive integer no greater than k and v<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , v<SUB>m</SUB> are values from the domain of the variables
+of P.
+   <P >The computational behavior of P can be modeled by a pushdown transducer
+M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, Z<SUB>0</SUB>, F&gt; whose states are used for recording the states of P,
+whose transition rules are used for simulating the transitions between the states of P, and
+whose pushdown store is used for recording the states of P which activated those
+executions of the procedures that have not been deactivated yet. Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, Z<SUB>0</SUB>, and
+F are defined in the following manner.
+     <DL><DT><STRONG>
+Q </STRONG><DD 
+>is a set containing of all those states that P can reach.
+     <DT><STRONG>
+<FONT FACE="SYMBOL">S</FONT> </STRONG><DD 
+>is a set consisting of all those input values that P can read.
+     <DT><STRONG>
+<FONT FACE="SYMBOL">G</FONT> </STRONG><DD 
+>is a set containing Z<SUB>0</SUB> and all the call states in Q. Z<SUB>0</SUB> is assumed to be a new
+     element not in Q, and a call state is assumed to be a state that corresponds to
+     a call instruction.
+     <DT><STRONG>
+<FONT FACE="SYMBOL">D</FONT> </STRONG><DD 
+>is a set containing all the output values that P can write.
+     <DT><STRONG>
+q<SUB>0</SUB> </STRONG><DD 
+>denotes the state [1, <IMG
+SRC="cmsy10-c.gif" ALT=" o. ">,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG
+SRC="cmsy10-c.gif" ALT=" o. ">] of P.
+     <DT><STRONG>
+F </STRONG><DD 
+>denotes the set of all those states in Q corresponding to an instruction of the form
+     <B>if</B> <I>eof</I> <B>then accept</B>.
+     <DT><STRONG>
+<FONT FACE="SYMBOL">d</FONT> </STRONG><DD 
+>contains a transition rule of the form (q, <FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>, <FONT FACE="SYMBOL">r</FONT>) if and only if q = [i, u<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, u<SUB>m</SUB>] and
+     p = [j, v<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, v<SUB>m</SUB>] are states in Q that satisfy the following conditions.
+         <OL TYPE="a" 
+>
+         <LI><A 
+   NAME="40002-8003xa"> </A>By  executing  the  instruction  segment  I<SUB>i</SUB>,  the  program  P (with  values
+         u<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , u<SUB>m</SUB>  in  its  variables  <TT>x</TT><SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , <TT>x</TT><SUB>m</SUB>,  respectively)  can  read  <FONT FACE="SYMBOL">a</FONT>,  write  <FONT FACE="SYMBOL">r</FONT>,
+         and reach instruction segment I<SUB>j</SUB>  with respective values v<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , v<SUB>m</SUB>  in  its
+         variables.
+         <LI><A 
+   NAME="40002-8004xb"> </A>If I<SUB>i</SUB> is neither a call instruction nor a return instruction, then <FONT FACE="SYMBOL">b</FONT> = <FONT FACE="SYMBOL">g</FONT> = <FONT FACE="SYMBOL">e</FONT>.
+         That is, the pushdown store is ignored.
+         <LI><A 
+   NAME="40002-8005xc"> </A>If I<SUB>i</SUB> is a call instruction, then <FONT FACE="SYMBOL">b</FONT> = <FONT FACE="SYMBOL">e</FONT> and <FONT FACE="SYMBOL">g</FONT> = q. That is, the state q of P
+         prior to invoking the procedure is pushed on top of the store. The state is
+         recorded to allow the simulation of a return instruction that deactivates
+         the procedure's activation caused by I<SUB>i</SUB>.
+         <LI><A 
+   NAME="40002-8006xd"> </A>If I<SUB>i</SUB> is a return, instruction then <FONT FACE="SYMBOL">b</FONT> is assumed to be a state of P, and the
+         transition from state q to state p is assumed to deactivate a call made at
+         state <FONT FACE="SYMBOL">b</FONT>. In such a case <FONT FACE="SYMBOL">g</FONT> = <FONT FACE="SYMBOL">e</FONT>.</OL>
+     </DL>
+   <P >
+<STRONG>Example 3.2.11</STRONG> <A 
+   NAME="40002-8007t3.2.11"> </A> 
+Consider the recursive finite-domain program P in Figure <A 
+ HREF="theory-bk-threese1.html#40001-2007r3.1.1">3.1.1</A> with {0, 1} as the domain
+of its variables. The program is abstracted by the pushdown transducer whose transition
+diagram is given in Figure <A 
+ HREF="#40002-8008r3.2.8">3.2.8</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-8008r3.2.8"> </A>
+<A 
+   NAME="40002-8008r3.2.8"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-8.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.8 </STRONG></NOBR></TD><TD  
+>The transition diagram of a pushdown transducer that characterizes the recursive
+finite-domain program of Figure <A 
+ HREF="theory-bk-threese1.html#40001-2007r3.1.1">3.1.1</A>.                                                                         </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>In the transition diagram, a state [i, x, y, z] corresponds to instruction segment I<SUB>i</SUB> with
+values x, y, and z in the variables <TT>x</TT>, <TT>y</TT>, and <TT>z</TT>, respectively.
+   <P >On moving from state [3, 0, 0, 0] to state [4, 0, 0, 0], the pushdown transducer reads the
+value 0 into <TT>x</TT>. On moving from state [3, 0, 0, 0] to state [4, 1, 0, 0], the pushdown
+transducer reads the value 1 into <TT>x</TT>.
+   <P >Each move from state [5, 1, 0, 0] to state [7, 1, 1, 0] corresponds to a call instruction,
+and each such move stores the state [5, 1, 0, 0] in the pushdown store. In each such move,
+the value of <TT>y</TT> in state [7, 1, 1, 0] is determined by the value of <TT>x</TT> in state [5, 1, 0, 0], and the
+values of <TT>x</TT> and <TT>z</TT> in [7, 1, 1, 0] are determined by the values of <TT>x</TT> and <TT>z</TT> in state
+[5, 1, 0, 0].
+   <P >Each move from state [10, 1, 1, 0] to state [6, 1, 0, 0] that uses the transition rule
+([10, 1, 1, 0], <FONT FACE="SYMBOL">e</FONT>, [5, 1, 0, 0], [6, 1, 0, 0], <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>) corresponds to an execution of a
+return instruction for a call that has been originated in state [5, 1, 0, 0]. The value
+of <TT>x</TT> in state [6, 1, 0, 0] is determined by the value of <TT>y</TT> in state [10, 1, 1, 0]. The
+values of <TT>y</TT> and <TT>z</TT> state [6, 1, 0, 0] are determined by values of <TT>y</TT> and <TT>z</TT> in state
+[5, 1, 0, 0].
+   <P >The pushdown transducer has the following computation on input 0011.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-three7x.gif" ALT=" ([1,0,0,0]0011,Z0,e) |- ([2,0,0,0]0011,Z0,e)
+                |- ([3,0,0,0]0011,Z0,e)
+                |- (0[5,0,0,0]011,Z0,0)
+                |-  |- (0(0[[78,0,0,,00,0,0]]010111,,ZZ0[5[5,,0,0,00,,0]0],,0)0)
+                |- (00[9,0,0,0]11,Z00[5,0,0,0],0)
+                |- (00[11,0,0,0]11,Z0[5,0,0,0],0)
+                |- (00[7,0,0,0]11,Z0[5,0,0,0][11,0,0,0],0)
+                |-  |- (0(000[18,[90,,00,,00,]111]1,,ZZ0[5[5,,0,0,00,,0]0][1[111,,00,0,0,,00],],00))
+                |- (001[10,0,0,1]1,0Z0[5,0,0,0][11,0,0,0],0)
+                |- (001[12,0,0,0]1,Z0[5,0,0,0],0)
+                |- (001[7,0,0,0]1,Z0[5,0,0,0],0)
+                |-  |- (0(00011[81,[90,,00,,00,]11,],ZZ0[5[5,,0,0,00,,0]0],,0)0)
+                |- (0011[10,0,0,1],0Z0[5,0,0,0],0)
+                |- (0011[6,0,0,0],Z0,0)
+                |- (0011[1,0,0,0],Z0,0)"></PRE></CENTER>
+   <P >                                                                                                             <IMG 
+SRC="theory-bk-three8x.gif" ALT="PICT" >
+   <P >
+   <P ><EM><A 
+   NAME="40002-9000"> </A><A 
+ HREF="#Q2-40002-9"  NAME="Q1-40002-9">From Pushdown Transducers to Recursive Finite-Domain
+<BR>Programs</A></EM>
+   <P >Using the previous discussion, we conclude that there is an algorithm that translates
+any given recursive finite-domain program into an equivalent pushdown transducer.
+Conversely, there is also an algorithm that derives an equivalent recursive finite-domain
+program from any given pushdown transducer M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, Z<SUB>0</SUB>, F&gt;. The
+recursive finite-domain program can be a table-driven program of the form shown in
+Figure <A 
+ HREF="#40002-9001r3.2.9">3.2.9</A>. The program simulates the pushdown transducer in a manner similar to that
+of simulating a finite-state transducer by a finite-memory program as shown
+in Section 2.2. The main difference is in simulating the effect of the pushdown
+store.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-9001r3.2.9"> </A>
+   <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE><TT>state</TT> := q<SUB>0</SUB>
+<B>do</B>
+    <TT>top</TT> := Z<SUB>0</SUB>
+    <B>call</B> RP(<TT>top</TT>)                        /* Record the bottom pushdown symbol Z<SUB>0</SUB>. */
+<B>until</B> false
+<B>procedure</B> RP(<TT>top</TT>)
+    <B>do</B>
+        /* Accept if an accepting state of M is reached at the end of the input.   
+     */
+        <B>if</B> F(<TT>state</TT>) <B>then</B>
+            <B>if</B> <I>eof</I> <B>then accept</B>
+        /* Nondeterministically find the entries of the transition rule (q, <FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>, <FONT FACE="SYMBOL">r</FONT>)
+        that M uses in the next simulated move.                                                 */
+        <B>do</B> <TT>in</TT> := e <B>or</B> <B>read</B> <TT>in</TT> <B>until</B> true                      /*              <TT>in</TT> := <FONT FACE="SYMBOL">a</FONT> */
+        <B>do</B> <TT>pop</TT> := e <B>or</B> <TT>pop</TT> := <TT>top</TT> <B>until</B> true                /*           <TT>pop</TT> := <FONT FACE="SYMBOL">b</FONT> */
+        <TT>next_ state</TT> := ?                                          /* <TT>next_ state</TT> := p */
+        <TT>push</TT> := ?                                                 /*         <TT>push</TT> := <FONT FACE="SYMBOL">g</FONT> */
+        <TT>out</TT> := ?                                                   /*            <TT>out</TT> := <FONT FACE="SYMBOL">r</FONT> */
+        <B>if</B> not <FONT FACE="SYMBOL">d</FONT>(<TT>state,in,pop,next_ state,push,out</TT>) <B>then reject</B>
+        /* Simulate the next move of M. */
+        <TT>state</TT> := <TT>next_ state</TT>
+        <B>if</B> <TT>out</TT><IMG 
+SRC="theory-bk-three9x.gif" ALT="/="ALIGN="MIDDLE" > e <B>then</B> <B>write</B> <TT>out</TT>
+        <B>if</B> <TT>pop</TT><IMG 
+SRC="theory-bk-three10x.gif" ALT="/="ALIGN="MIDDLE" > e <B>then return</B>
+        <B>if</B> <TT>push</TT><IMG 
+SRC="theory-bk-three11x.gif" ALT="/="ALIGN="MIDDLE" > e <B>then call</B> RP(<TT>push</TT>)
+    <B>until</B> false
+<B>end</B>                                                                                                                    </PRE></TD></TR></TABLE>
+<A 
+   NAME="40002-9001r3.2.9"> </A>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.9 </STRONG></NOBR></TD><TD  
+>A   table-driven   recursive   finite-domain   program   for   simulating   pushdown
+transducers.                                                                                                                  </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >The program uses the variable <TT>state</TT> for recording the states that M leaves in its moves,
+the variable <TT>top</TT> for recording the topmost symbol in the pushdown store, the variable <TT>in</TT>
+for recording inputs that M consumes in its moves, the variable <TT>next_ state</TT> for
+recording the states that M enters in its moves, the variable <TT>pop</TT> for recording
+the substrings that are replaced on top of the pushdown store, the variable <TT>push</TT>
+for recording the changes that have to be made on top of the pushdown store,
+and a variable <TT>out</TT> for recording the outputs that have to be written in the moves
+of M.
+   <P >The content of the pushdown store is recorded indirectly through recursion. Each
+pushing of a symbol is simulated by a recursive call, and each popping of a symbol is
+simulated by a return.
+   <P >The main program initializes the variable <TT>state</TT> to q<SUB>0</SUB>, and calls RP to record a
+pushdown store containing only Z<SUB>0</SUB>.
+   <P >The body of the recursive procedure RP consists of an infinite loop. Each iteration of
+the loop starts by checking whether an accepting state of M has been reached at the end of
+the input. If such is the case, the program halts in an accepting configuration. Otherwise,
+the program simulates a single move of M. The predicate F is used to determine whether
+<TT>state</TT> holds an accepting state.
+   <P >The simulation of each move of M is done in a nondeterministic manner. The program
+guesses the input to be read, the top portion of the pushdown store to be replaced, the state
+to be reached, the replacement to the top of the store, and the output to be written. Then
+the program uses the predicate <FONT FACE="SYMBOL">d</FONT> for determining the appropriateness of the guessed
+values. The program aborts the simulation if it determines that the guesses are
+inappropriate. Otherwise, the program records the changes that have to be done as a result
+of the guessed transition rule.
+   <P >The variables of the program are assumed to have the domain Q <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">G</FONT> <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">D</FONT> <FONT FACE="SYMBOL">È</FONT> {e},
+with e being a new symbol. In addition, with no loss of generality, it is assumed that each
+transition rule (q, <FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>, <FONT FACE="SYMBOL">r</FONT>) of M satisfies either |<FONT FACE="SYMBOL">b</FONT>| + |<FONT FACE="SYMBOL">g</FONT>| = 1 or <FONT FACE="SYMBOL">b</FONT> = <FONT FACE="SYMBOL">g</FONT> = Z<SUB>0</SUB>. The
+latter assumptions are made to avoid the situation in which both a removal and an addition
+of a symbol in the pushdown store are to be simulated for the same move of
+M.
+   <P ><STRONG>Example 3.2.12</STRONG> <A 
+   NAME="40002-9002t3.2.12"> </A> 
+For the pushdown transducer of Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A> the table-driven program has the domain of
+variables equal to {a, b, Z<SUB>0</SUB>, c, q<SUB>0</SUB>, q<SUB>1</SUB>, q<SUB>2</SUB>, e}. The truth values of the predicates F and <FONT FACE="SYMBOL">d</FONT> are
+defined by the corresponding tables in Figure <A 
+ HREF="#40002-9003r3.2.10">3.2.10</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-9003r3.2.10"> </A>
+<A 
+   NAME="40002-9003r3.2.10"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-10.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.10 </STRONG></NOBR></TD><TD  
+>Tables  for  a  table-driven  recursive  finite-domain  program  that  simulates  the
+pushdown transducer of Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A>.                                                                           </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>(F and <FONT FACE="SYMBOL">d</FONT> are assumed to have the value false for arguments that are not specified in the
+tables.)
+   <P >The pushdown transducer can be simulated also by the non-table-driven program of
+Figure <A 
+ HREF="#40002-9004r3.2.11">3.2.11</A>. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" *** " 
+ >
+   <P >
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-9004r3.2.11"> </A>
+             <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE><TT>state</TT> := q<SUB>0</SUB>
+<TT>next_ top</TT> := Z<SUB>0</SUB>
+<B>call</B> RP(<TT>next_ top</TT>)
+<B>procedure</B> RP(<TT>top</TT>)
+    <B>do</B>
+        <B>if</B> <TT>state</TT> = q<SUB>0</SUB> <B>then</B>
+            <B>do</B>
+                <B>read</B> <TT>in</TT>
+                <B>if</B> (<TT>in</TT><IMG 
+SRC="theory-bk-three12x.gif" ALT="/="ALIGN="MIDDLE" > a) <B>and</B> (<TT>in</TT><IMG 
+SRC="theory-bk-three13x.gif" ALT="/="ALIGN="MIDDLE" > b) <B>then reject</B>
+                <TT>next_ top</TT> := c
+            <B>call</B> RP(<TT>next_ top</TT>)
+            <B>or</B>
+                <TT>state</TT> := q<SUB>1</SUB>
+           <B>until</B> true
+      <B>if</B> <TT>state</TT> = q<SUB>1</SUB> <B>then</B>
+            <B>do</B>
+                <B>if</B> <TT>top</TT> = Z<SUB>0</SUB> <B>then</B> <TT>state</TT> := q<SUB>2</SUB>
+               <B>if</B> <TT>top</TT> = c <B>then</B>
+                    <B>do</B>
+                        <B>read</B> <TT>in</TT>
+                        <B>if</B> (<TT>in</TT><IMG 
+SRC="theory-bk-three14x.gif" ALT="/="ALIGN="MIDDLE" > a) <B>and</B> (<TT>in</TT><IMG 
+SRC="theory-bk-three15x.gif" ALT="/="ALIGN="MIDDLE" > b) <B>then reject</B>
+                        <B>write</B> <TT>in</TT>
+                        <B>return</B>
+                    <B>until</B> true
+        <B>until</B> false
+      <B>if</B> <TT>state</TT> = q<SUB>2</SUB> <B>then</B>
+            <B>if</B> <I>eof</I> <B>then accept</B>
+    <B>until</B> false
+<B>end</B>                                                                          </PRE></TD></TR></TABLE>
+<A 
+   NAME="40002-9004r3.2.11"> </A>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.11 </STRONG></NOBR></TD><TD  
+>A non-table-driven recursive finite-domain program for simulating the pushdown
+transducer of Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A>.                                                                                            </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >In a manner similar to the one discussed in Section 2.2 for finite-state transducers, the
+recursive finite-domain program can be modified to be deterministic whenever the given
+pushdown transducer is deterministic.
+   <P >A formalization of the previous discussion implies the following theorem.
+   <P ><STRONG>Theorem 3.2.1</STRONG> <A 
+   NAME="40002-9005t3.2.1"> </A> 
+A relation is computable by a nondeterministic (respectively, deterministic) recursive
+finite-domain program if and only if it is computable by a nondeterministic (respectively,
+deterministic) pushdown transducer.
+   <P >
+<A NAME="40002-9006"> </A>
+   <P ><EM><A 
+   NAME="40002-10000"> </A><A 
+ HREF="#Q2-40002-10"  NAME="Q1-40002-10">Pushdown Automata</A></EM>
+   <P >Pushdown transducers whose output components are ignored are called pushdown
+automata. Formally, a <I>pushdown<A NAME="40002-10001"> </A> automaton</I> is a tuple &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, Z<SUB>0</SUB>, F&gt;, where Q,
+<FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, q<SUB>0</SUB>, Z<SUB>0</SUB>, and F are defined as for pushdown transducers, and <FONT FACE="SYMBOL">d</FONT> is a relation from
+Q × (<FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> {<FONT FACE="SYMBOL">e</FONT>}) × (<FONT FACE="SYMBOL">G</FONT> <FONT FACE="SYMBOL">È</FONT> {<FONT FACE="SYMBOL">e</FONT>})   to   Q × <FONT FACE="SYMBOL">G</FONT>*.
+   <P >As in the case for pushdown transducers, the following conditions are assumed for
+each transition rule (q, <FONT FACE="SYMBOL">a</FONT>, <FONT FACE="SYMBOL">b</FONT>, p, <FONT FACE="SYMBOL">g</FONT>) of a pushdown automaton.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="40002-10002xa"> </A>If <FONT FACE="SYMBOL">b</FONT> = Z<SUB>0</SUB>, then Z<SUB>0</SUB> is a prefix of <FONT FACE="SYMBOL">g</FONT>.
+     <LI><A 
+   NAME="40002-10003xb"> </A><FONT FACE="SYMBOL">g</FONT> is a string of length 2 at most.
+     <LI><A 
+   NAME="40002-10004xc"> </A>If <FONT FACE="SYMBOL">g</FONT> is a string of length 2, then <FONT FACE="SYMBOL">b</FONT> is equal to the first symbol in <FONT FACE="SYMBOL">g</FONT>.</OL>
+Transition diagrams similar to those used for representing pushdown transducers can be
+used to represent pushdown automata. The only difference is that the labels of the edges do
+not contain entries for outputs.
+   <P ><STRONG>Example 3.2.13</STRONG> <A 
+   NAME="40002-10005t3.2.13"> </A> 
+The pushdown automaton M that is induced by the pushdown transducer
+of Figure <A 
+ HREF="#40002-4024r3.2.3">3.2.3</A> is &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, F&gt;, where Q = {q<SUB>0</SUB>, q<SUB>1</SUB>, q<SUB>2</SUB>}, <FONT FACE="SYMBOL">S</FONT> = {a, b},
+<FONT FACE="SYMBOL">G</FONT> = {Z<SUB>0</SUB>, c}, <FONT FACE="SYMBOL">d</FONT> = {(q<SUB>0</SUB>, a, <FONT FACE="SYMBOL">e</FONT>, q<SUB>0</SUB>, c), (q<SUB>0</SUB>, b, <FONT FACE="SYMBOL">e</FONT>, q<SUB>0</SUB>, c), (q<SUB>0</SUB>, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>, q<SUB>1</SUB>, <FONT FACE="SYMBOL">e</FONT>), (q<SUB>1</SUB>, a, c, q<SUB>1</SUB>, <FONT FACE="SYMBOL">e</FONT>),
+(q<SUB>1</SUB>, b, c, q<SUB>1</SUB>, <FONT FACE="SYMBOL">e</FONT>), (q<SUB>1</SUB>, <FONT FACE="SYMBOL">e</FONT>, Z<SUB>0</SUB>, q<SUB>2</SUB>, Z<SUB>0</SUB>)}, and F = {q<SUB>2</SUB>}. The pushdown automaton is
+represented by the transition diagram of Figure <A 
+ HREF="#40002-10006r3.2.12">3.2.12</A>. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" *** " 
+ >
+   <P >
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-10006r3.2.12"> </A>
+<A 
+   NAME="40002-10006r3.2.12"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-12.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.12 </STRONG></NOBR></TD><TD  
+>A transition diagram of a pushdown automaton.                                                         </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >The pushdown automaton is said to be <I>deterministic</I><A NAME="40002-10007"> </A> if for each state q in
+Q, each input symbol a in <FONT FACE="SYMBOL">S</FONT>, and each pushdown symbol Z in <FONT FACE="SYMBOL">G</FONT> the union
+<FONT FACE="SYMBOL">d</FONT>(q, a, Z) <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">d</FONT>(q, a, <FONT FACE="SYMBOL">e</FONT>) <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">d</FONT>(q, <FONT FACE="SYMBOL">e</FONT>, Z) <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">d</FONT>(q, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>) is a multiset that contains at most one
+element. The pushdown automaton is said to be <I>nondeterministic</I><A NAME="40002-10008"> </A> if it is not a deterministic
+pushdown automaton.
+   <P >A <I>configuration</I><A NAME="40002-10009"> </A>, or an <I>instantaneous description</I>, of the pushdown automaton is a pair
+(uqv, z), where q is a state in Q, uv is a string in <FONT FACE="SYMBOL">S</FONT>*, and z is a string in <FONT FACE="SYMBOL">G</FONT>*. Other
+definitions, such as those for initial and final configurations, <IMG
+SRC="cmsy10-60.gif" ALT=" |- "><SUB> M </SUB>, <IMG
+SRC="cmsy10-60.gif" ALT=" |- ">, <IMG
+SRC="cmsy10-60.gif" ALT=" |- "><SUB> M </SUB>*, <IMG
+SRC="cmsy10-60.gif" ALT=" |- ">*; and
+acceptance, recognition, and decidability of a language by a pushdown automaton, are
+similar to those given for pushdown transducers.
+   <P ><STRONG>Example 3.2.14</STRONG> <A 
+   NAME="40002-10010t3.2.14"> </A> 
+The transition diagram in Figure <A 
+ HREF="#40002-10011r3.2.13">3.2.13</A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-10011r3.2.13"> </A>
+<A 
+   NAME="40002-10011r3.2.13"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-13.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.13 </STRONG></NOBR></TD><TD  
+>Transition diagram of a deterministic pushdown automaton that accepts { a<SUP>i</SUP>b<SUP>i</SUP> | i <FONT FACE="SYMBOL">³</FONT>
+0 }.                                                                                                                                </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>represents the deterministic pushdown automaton &lt;{q<SUB>0</SUB>, q<SUB>1</SUB>, q<SUB>2</SUB>, q<SUB>3</SUB>}, {a, b}, {a, Z<SUB>0</SUB>}, {(q<SUB>0</SUB>, <FONT FACE="SYMBOL">e</FONT>, <FONT FACE="SYMBOL">e</FONT>, q<SUB>1</SUB>, <FONT FACE="SYMBOL">e</FONT>), (q<SUB>1</SUB>, a, <FONT FACE="SYMBOL">e</FONT>,
+q<SUB>1</SUB>, a), (q<SUB>1</SUB>, b, a, q<SUB>2</SUB>, <FONT FACE="SYMBOL">e</FONT>), (q<SUB>2</SUB>, b, a, q<SUB>2</SUB>, <FONT FACE="SYMBOL">e</FONT>), (q<SUB>2</SUB>, <FONT FACE="SYMBOL">e</FONT>, Z<SUB>0</SUB>, q<SUB>3</SUB>, Z<SUB>0</SUB>)}, q<SUB>0</SUB>, Z<SUB>0</SUB>, {q<SUB>3</SUB>}&gt;. The pushdown
+automaton accepts the language { a<SUP>i</SUP>b<SUP>i</SUP> | i <FONT FACE="SYMBOL">³</FONT> 0 }. The pushdown automaton reads the a's
+from the input and pushes them into the pushdown store as long as it is in state q<SUB>1</SUB>. Then, it
+reads the b's from the input, while removing one a from the pushdown store for each b that
+is read. As long as it reads b's, the pushdown automaton stays in state q<SUB>2</SUB>. The pushdown
+automaton enters the accepting state q<SUB>3</SUB> once it has read the same number of b's as
+a's.
+   <P >The transition diagram in Figure <A 
+ HREF="#40002-10012r3.2.14">3.2.14</A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="40002-10012r3.2.14"> </A>
+<A 
+   NAME="40002-10012r3.2.14"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-three-3-2-14.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 3.2.14 </STRONG></NOBR></TD><TD  
+>Transition   diagram   of   a   nondeterministic   pushdown   automaton   that   accepts
+{ ww<SUP>rev</SUP> | w is in {a, b}* }.                                                                                          </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>is of a nondeterministic pushdown automaton that accepts the language { ww<SUP>rev</SUP> | w is in
+{a, b}* }. In state q<SUB>0</SUB> the pushdown automaton reads w and records it in the pushdown
+store in reverse order. On the other hand, in state q<SUB>1</SUB> the pushdown automaton
+reads w<SUP>rev</SUP> and compares it with the string recorded in the pushdown store. <IMG 
+SRC="theory-bk-three1x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >
+   <P >[<A 
+ HREF="theory-bk-threese3.html" >next</A>] [<A 
+ HREF="theory-bk-threese1.html" >prev</A>] [<A 
+ HREF="theory-bk-threese1.html#tailtheory-bk-threese1.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-threese2.html" >front</A>] [<A 
+ HREF="theory-bk-three.html#theory-bk-threese2.html" >up</A>] <A 
+   NAME="tailtheory-bk-threese2.html"> </A></BODY></HTML>

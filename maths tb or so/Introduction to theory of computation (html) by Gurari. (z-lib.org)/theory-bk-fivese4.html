@@ -1,0 +1,347 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-five.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-fivese5.html" >next</A>] [<A 
+ HREF="theory-bk-fivese3.html" >prev</A>] [<A 
+ HREF="theory-bk-fivese3.html#tailtheory-bk-fivese3.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-fivese4.html">tail</A>] [<A 
+ HREF="theory-bk-five.html#theory-bk-fivese4.html" >up</A>]
+<H3>5.4 <A 
+   NAME="60004-210005.4"> </A><A 
+ HREF="theory-bk.html#Q2-60004-21"  NAME="Q1-60004-21">More <I>NP</I>-Complete Problems</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-60004-22"  NAME="Q2-60004-22">The 0 - 1 Knapsack Problem</A>
+<BR>         <A 
+ HREF="#Q1-60004-23"  NAME="Q2-60004-23">From Boolean Expression to a System of Linear Equations</A>
+<BR>         <A 
+ HREF="#Q1-60004-24"  NAME="Q2-60004-24">From a System of Linear Equations to an Instance of the 0 - 1 Knapsack Problem</A>
+<BR>         <A 
+ HREF="#Q1-60004-25"  NAME="Q2-60004-25">The Clique Problem</A>
+   <P >The <I>NP</I>-hardness of the satisfiability problem was demonstrated by exhibiting the
+existence of a polynomial time reduction, from each problem in <I>NP</I> to the satisfiability
+problem. A similar approach was used for showing the <I>NP</I>-hardness of the 3-satisfiability
+problem. However, in general the proof of the <I>NP</I>-hardness of a given problem need not be
+generic in nature, but can be accomplished by polynomial time reduction from another
+<I>NP</I>-hard problem.
+   <P >A proof by reduction is possible because the composition<A NAME="60004-21001"> </A> of polynomial time
+reductions is also a polynomial time reduction. That is, if a problem K<SUB>a</SUB> is reducible to a
+problem K<SUB>b</SUB> in T<SUB>1</SUB>(n) time, and K<SUB>b</SUB> is reducible to a problem K<SUB>c</SUB> in T<SUB>2</SUB>(n) time, then K<SUB>a</SUB>
+is reducible to K<SUB>c</SUB> in T<SUB>2</SUB>(T<SUB>1</SUB>(n)) time. Moreover, T<SUB>2</SUB>(T<SUB>1</SUB>(n)) is polynomial if T<SUB>1</SUB>(n) and
+T<SUB>2</SUB>(n) are so.
+   <P ><EM><A 
+   NAME="60004-22000"> </A><A 
+ HREF="#Q2-60004-22"  NAME="Q1-60004-22">The 0 - 1 Knapsack Problem</A></EM>
+   <P >The proofs of the following two theorems exhibit the <I>NP</I>-hardness of the problems in
+question by means of reduction.
+   <P ><STRONG>Theorem 5.4.1</STRONG> <A 
+   NAME="60004-22001t5.4.1"> </A> 
+The problem defined by the following pair, called the <I>0 - 1 knapsack<A NAME="60004-22002"> </A> problem</I>, is an
+<I>NP</I>-complete problem.
+      <DL><DT><STRONG>
+  <STRONG>Domain:  </STRONG> </STRONG><DD 
+>{ (a<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, a<SUB>N </SUB>, b) | N <FONT FACE="SYMBOL">³</FONT> 1, and a<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , a<SUB>N </SUB>, b are natural numbers }.
+      <DT><STRONG>
+  <STRONG>Question:</STRONG> </STRONG><DD 
+>Are there v<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , v<SUB>N </SUB> in {0, 1} such that a<SUB>1</SUB>v<SUB>1</SUB> + · · · + a<SUB>N </SUB>v<SUB>N </SUB> = b for the
+      given instance (a<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, a<SUB>N </SUB>, b)?</DL>
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60004-22003t"> </A> 
+Consider a Turing machine M that on any given instance (a<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, a<SUB>N </SUB>, b) of the
+problem nondeterministically assigns values from {0, 1} to v<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , v<SUB>N </SUB>, checks whether
+a<SUB>1</SUB>v<SUB>1</SUB> + · · · + a<SUB>N </SUB>v<SUB>N </SUB> = b, and accepts the input if and only if the equality holds. M can
+be of polynomial time complexity. Therefore the 0 - 1 knapsack problem is in
+<I>NP</I>.
+   <P >To show that the 0 - 1 knapsack problem is <I>NP</I>-hard consider any instance E of the
+3-satisfiability problem. Let x<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , x<SUB>m</SUB> denote the variables in the Boolean expression E. E
+is a conjunction c<SUB>1</SUB> <FONT FACE="SYMBOL">Ù</FONT> · · · <FONT FACE="SYMBOL">Ù</FONT> c<SUB>k</SUB> of some clauses c<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , c<SUB>k</SUB>. Each C<SUB>i</SUB> is a disjunction
+c<SUB>i 1</SUB> <FONT FACE="SYMBOL">Ú</FONT> c<SUB>i 2</SUB> <FONT FACE="SYMBOL">Ú</FONT> c<SUB>i 3</SUB> of some literals c<SUB>i 1</SUB>, c<SUB>i 2</SUB>, c<SUB>i 3</SUB>. Each c<SUB>i j</SUB> is a variable x<SUB>t</SUB>, or a negation ¬x<SUB>t</SUB> of
+a variable x<SUB>t</SUB>, for some 1 <FONT FACE="SYMBOL">£</FONT> t <FONT FACE="SYMBOL">£</FONT> m.
+   <P ><EM><A 
+   NAME="60004-23000"> </A><A 
+ HREF="#Q2-60004-23"  NAME="Q1-60004-23">From Boolean Expression to a System of Linear Equations</A></EM>
+   <P >From the Boolean expression E a system S of linear equations of the following form
+can be constructed.  <CENTER>
+                                <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>  x<SUB>1</SUB> +  <IMG 
+SRC="theory-bk-five35x.gif" ALT="--
+x"><SUB>1</SUB></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>1</TD>                 <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+><IMG 
+SRC="theory-bk-five36x.gif" ALT="..
+."></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+></TD>                  <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                                </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+> x<SUB>m</SUB> + <IMG 
+SRC="theory-bk-five37x.gif" ALT="x-"><SUB>m</SUB></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>1</TD>                 <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                 </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>c<SUB>1 1</SUB> + c<SUB>1 2</SUB> + c<SUB>1 3</SUB> + y<SUB>1 1</SUB> + y<SUB>1 2</SUB></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>3</TD>                 <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+><IMG 
+SRC="theory-bk-five38x.gif" ALT=".
+.."></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+></TD>                  <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                                        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                 </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>c<SUB>k 1</SUB> + c<SUB>k 2</SUB> + c<SUB>k 3</SUB> +y<SUB>k 1</SUB> +y<SUB>k 2</SUB></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>3</TD>                 <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>
+   <P >The system S has the variables x<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , x<SUB>m</SUB>,   <IMG 
+SRC="theory-bk-five39x.gif" ALT="--
+x"><SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , <IMG 
+SRC="theory-bk-five40x.gif" ALT="--
+x"><SUB>m</SUB>,  y<SUB>1 1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , y<SUB>k 2</SUB>. The variable x<SUB>t</SUB> in S
+corresponds to the literal x<SUB>t</SUB> in E. The variable <IMG 
+SRC="theory-bk-five41x.gif" ALT="--
+x"><SUB>t</SUB> in S corresponds to the literal ¬x<SUB>t</SUB> in E.
+c<SUB>i j</SUB> stands for the variable x<SUB>t</SUB> in S, if x<SUB>t</SUB> is the <I>j</I>th literal in C<SUB>i</SUB>. c<SUB>i j</SUB> stands for the variable
+<IMG 
+SRC="theory-bk-five42x.gif" ALT="--
+x"><SUB>
+t</SUB> in S, if ¬x<SUB>t</SUB> is the <I>j</I>th literal in C<SUB>i</SUB>.
+   <P >Each equation of the form x<SUB>i</SUB> + <IMG 
+SRC="theory-bk-five43x.gif" ALT="--
+x"><SUB>i</SUB> = 1 has a solution over {0, 1} if and only if
+either x<SUB>i</SUB> = 1 and <IMG 
+SRC="theory-bk-five44x.gif" ALT="--
+x"><SUB>i</SUB> = 0, or x<SUB>i</SUB> = 0 and <IMG 
+SRC="theory-bk-five45x.gif" ALT="--
+x"><SUB>i</SUB> = 1. Each equation of the form
+c<SUB>i 1</SUB> + c<SUB>i 2</SUB> + c<SUB>i 3</SUB> + y<SUB>i 1</SUB> + y<SUB>i 2</SUB> = 3 has a solution over {0, 1} if and only if at least
+one of the equalities c<SUB>i 1</SUB> = 1, c<SUB>i 2</SUB> = 1, and c<SUB>i 3</SUB> = 1 holds. It follows that the
+system S has a solution over {0, 1} if and only if the Boolean expression E is
+satisfiable.
+   <P ><EM><A 
+   NAME="60004-24000"> </A><A 
+ HREF="#Q2-60004-24"  NAME="Q1-60004-24">From a System of Linear Equations to an Instance of the 0 - 1 Knapsack Problem</A></EM>
+   <P >The system S can be represented in a vector form as follows.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-five46x.gif" ALT=" (   a11  )           (   a12m+2k  )          (   b1  )
+     .                      .                     .
+     ..     z1 + ···+        ..       z2m+2k =      ..
+   am+k1                am+k2m+2k               bm+k"></PRE></CENTER>
+   <P >The variables z<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , z<SUB>2m+2k</SUB> in the vector form stand for the variables x<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , x<SUB>m</SUB>,   <IMG 
+SRC="theory-bk-five47x.gif" ALT="x-"><SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , <IMG 
+SRC="theory-bk-five48x.gif" ALT="x-"><SUB>m</SUB>,
+y<SUB>1 1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , y<SUB>k 2</SUB> of S, respectively. a<SUB>i j</SUB> is assumed to be the coefficient of z<SUB>j</SUB> in the <I>i</I>th equation
+of S. b<SUB>i</SUB> is assumed to be the constant in the right-hand side of the <I>i</I>th equation in
+S.
+   <P >Similarly, the system S can also be represented by the equation H of the following
+form.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-five49x.gif" ALT=" a1z1 + ···+ a2m+2kz2m+2k = b"></PRE></CENTER>
+   <P >In H, each a<SUB>j</SUB> stands for the integer whose decimal representation is a<SUB>1 j</SUB> · · · a<SUB>m+k j</SUB>.
+Similarly, b stands for the integer whose decimal representation is b<SUB>1</SUB> · · · b<SUB>m+k</SUB>. The
+representation is possible because the sum a<SUB>i 1</SUB> + · · · + a<SUB>i 2m+2k</SUB> is either equal to 2 or to 5
+for each 1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> m + k. That is, the <I>i</I>th digit in the sum c = a<SUB>1</SUB> + · · · + a<SUB>2m+2k</SUB> depends
+only on the <I>i</I>th digits of a<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , a<SUB>2m+2k</SUB>. It follows that S is satisfiable over {0, 1} if and only
+if H is satisfiable over {0, 1}.
+   <P >As a result, the instance E of the 3-satisfiability problem is satisfiable if and only if the
+instance (a<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, a<SUB>2m+2k</SUB>, b) of the 0 - 1 knapsack problem has a positive solution.
+Moreover, a polynomially time-bounded, deterministic Turing transducer can similarly
+construct corresponding instance of the 0 - 1 knapsack problem, from each instance
+E of the 3-satisfiability problem. Consequently, the <I>NP</I>-hardness of the 0 - 1
+knapsack problem follows from the <I>NP</I>-hardness of the 3-satisfiability problem. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><STRONG>Example 5.4.1</STRONG> <A 
+   NAME="60004-24001t5.4.1"> </A> 
+Consider the Boolean expression E of the form (x<SUB>1</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>2</SUB><FONT FACE="SYMBOL">Ú</FONT>¬x<SUB>3</SUB>)<FONT FACE="SYMBOL">Ù</FONT>(¬x<SUB>2</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>3</SUB><FONT FACE="SYMBOL">Ú</FONT>¬x<SUB>4</SUB>)<FONT FACE="SYMBOL">Ù</FONT>(x<SUB>1</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>3</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>4</SUB>)<FONT FACE="SYMBOL">Ù</FONT>(¬x<SUB>1</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>2</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>4</SUB>).
+E is an instance of the 3-satisfiability problem. The Boolean expression is satisfiable if and
+only if the following system S of linear equations has a solution over {0, 1}.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-five50x.gif" ALT=" - -    - -    --|    --|    --    - -    - -    - -
+|10|    |01|    00 |    00 |    10|    |01|    |00|    |00|
+|0|    |0|    1 |    0 |    0|--  |0--   |1--   |0--
+|01x1 + |01x2 + 00 x3 + 10 x4 + 00|x1 +|00x2 + |01x3 + |10x4 +
+|0|    |0|    1 |    0 |    0|    |1|    |0|    |1|
+-10-    -01-    10-|    11-|    01-    -00-    -00-    -00-
+- -    - -    --|    --|    --    - -    - -    - -      --
+|0|    |0|    0 |    0 |    0|    |0|    |0|    |0|      1|
+|00|    |00|    00 |    00 |    00|    |00|    |00|    |00|      11|
+|0y11+ |0y12+ 0 y21+ 0 y22+  0|y3 1+ |0y32+ |0y41+ |0y42 =  1|
+|10|    |10|    01 |    01 |    00|    |00|    |00|    |00|      33|
+|0|    |0|    0 |    0 |    1|    |1|    |0|    |0|      3|
+-0-    -0-    0-     0-     0-    -0-    -1-    -1-      3-"></PRE></CENTER>
+   <P >On the other hand, the system S has a solution over {0, 1} if and only if the equation
+H of the following form has a solution over {0, 1}. The leading zeros are ignored in the
+constants of H.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-five51x.gif" ALT="   10001010 x1+1001001x2+100110x3+10011 x4
++10000001 x1+1000100x2+101000x3+10100 x4
++    1000 y11+  1000y12
++     100 y21+   100y22
++     10 y31+    10y32
++        y41+      y42                  =11113333"></PRE></CENTER>
+   <P >The expression E is satisfiable if and only if the instance (10001010, 1001001,
+100110, 10011, 10000001, 1000100, 101000, 10100, 1000, 1000, 100, 100, 10,
+10, 1, 1, 11113333) of the 0 - 1 knapsack problem has a positive solution.<IMG 
+SRC="theory-bk-five0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="60004-25000"> </A><A 
+ HREF="#Q2-60004-25"  NAME="Q1-60004-25">The Clique Problem</A></EM>
+   <P >The previous examples of <I>NP</I>-complete problems deal with Boolean expressions and
+linear equations. The following example deals with graphs.
+   <P ><STRONG>Theorem 5.4.2</STRONG> <A 
+   NAME="60004-25001t5.4.2"> </A> 
+The problem defined by the following pair, called the <I>clique<A NAME="60004-25002"> </A> problem</I>, is an <I>NP</I>-complete
+problem.
+      <DL><DT><STRONG>
+  <STRONG>Domain:  </STRONG> </STRONG><DD 
+>{ (G, k) | G is a graph and k is a natural number }.
+      <DT><STRONG>
+  <STRONG>Question:</STRONG> </STRONG><DD 
+>Does G has a clique of size k for the given instance (G, k)?
+      (A <I>clique</I> is a subgraph with an edge between each pair of nodes. The number
+      of nodes in a clique is called the <I>size of the clique</I>.)</DL>
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60004-25003t"> </A> 
+Consider a Turing machine M that on a given instance (G, k) of the clique problem
+proceeds as follows. M starts by nondeterministically choosing k nodes in G.
+Then it determines whether there is an edge in G between each pair of the k
+chosen nodes. If so, then M accepts the input; otherwise it rejects the input.
+M is of polynomial time complexity. Consequently the clique problem is in
+<I>NP</I>.
+   <P >To show the <I>NP</I>-hardnes of the clique problem consider any instance E of the
+3-satisfiability problem. As in the proof of the previous result, let x<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , x<SUB>m</SUB> denote the
+variables in the Boolean expression E. E is a conjunction c<SUB>1</SUB> <FONT FACE="SYMBOL">Ù</FONT> · · · <FONT FACE="SYMBOL">Ù</FONT> c<SUB>k</SUB> of some
+clauses c<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , c<SUB>k</SUB>. Each C<SUB>i</SUB> is a disjunction c<SUB>i 1</SUB> <FONT FACE="SYMBOL">Ú</FONT> c<SUB>i 2</SUB> <FONT FACE="SYMBOL">Ú</FONT> c<SUB>i 3</SUB> of some literals c<SUB>i 1</SUB>,
+c<SUB>i 2</SUB>, c<SUB>i 3</SUB>. Each c<SUB>i j</SUB> is a variable x<SUB>t</SUB>, or a negation ¬x<SUB>t</SUB> of a variable x<SUB>t</SUB>, for some
+1 <FONT FACE="SYMBOL">£</FONT> t <FONT FACE="SYMBOL">£</FONT> m. From the Boolean expression E a graph G of the following form can be
+constructed.
+   <P >The graph G has a node corresponding to each pair (c<SUB>i</SUB>, (d<SUB>1</SUB>, d<SUB>2</SUB>, d<SUB>3</SUB>)) of an assignment
+(d<SUB>1</SUB>, d<SUB>2</SUB>, d<SUB>3</SUB>) that satisfies a clause C<SUB>i</SUB>. The node that corresponds to a pair (c<SUB>i</SUB>, (d<SUB>1</SUB>, d<SUB>2</SUB>, d<SUB>3</SUB>))
+is labeled by the set {x<SUB>i 1</SUB> = d<SUB>1</SUB>, x<SUB>i 2</SUB> = d<SUB>2</SUB>, x<SUB>i 3</SUB> = d<SUB>3</SUB>}, where x<SUB>i 1</SUB>, x<SUB>i 2</SUB>, x<SUB>i 3</SUB> are assumed to
+be the variables used in c<SUB>i 1</SUB>, c<SUB>i 2</SUB>, c<SUB>i 3</SUB>, respectively. It follows that for each C<SUB>i</SUB>, the graph G
+has seven associated nodes.
+   <P >The graph G has an edge between a node labeled by a set {x<SUB>i 1</SUB> = d<SUB>1</SUB>, x<SUB>i 2</SUB> = d<SUB>2</SUB>, x<SUB>i 3</SUB> = d<SUB>3</SUB>}
+and a node labeled by a set {x<SUB>j 1</SUB> = d'<SUB>1</SUB>, x<SUB>j 2</SUB> = d'<SUB>2</SUB>, x<SUB>j 3</SUB> = d'<SUB>3</SUB>} if and only if no variable
+x<SUB>t</SUB> has conflicting assignments in the two sets, 1 <FONT FACE="SYMBOL">£</FONT> t <FONT FACE="SYMBOL">£</FONT> m.
+   <P >By construction, no pair of nodes associated with the same clause C<SUB>i</SUB> have an edge
+between them. On the other hand, the edges between the nodes that correspond to each
+pair of clauses, relate exactly those assignments to the variables that satisfy both clauses
+simultaneously. Consequently, the Boolean expression E is satisfiable if and only if G has
+a clique of size k.
+   <P >A polynomially time-bounded, deterministic Turing transducer can in a similar way
+determine a corresponding instance (G, k) of the clique problem for each instance E of
+the 3-satisfiability problem. Therefore, implying the <I>NP</I>-hardness of the clique problem. <IMG 
+SRC="theory-bk-five0x.gif" ALT="
+*** " 
+ >
+   <P >
+   <P ><STRONG>Example 5.4.2</STRONG> <A 
+   NAME="60004-25004t5.4.2"> </A> 
+Let E be the Boolean expression (x<SUB>1</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>2</SUB><FONT FACE="SYMBOL">Ú</FONT>¬x<SUB>3</SUB>)<FONT FACE="SYMBOL">Ù</FONT>(¬x<SUB>2</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>3</SUB><FONT FACE="SYMBOL">Ú</FONT>¬x<SUB>4</SUB>)<FONT FACE="SYMBOL">Ù</FONT>(x<SUB>1</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>3</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>4</SUB>)<FONT FACE="SYMBOL">Ù</FONT>(¬x<SUB>1</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>2</SUB><FONT FACE="SYMBOL">Ú</FONT>x<SUB>4</SUB>).
+Let G be the graph in Figure <A 
+ HREF="#60004-25005r5.4.1">5.4.1</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60004-25005r5.4.1"> </A>
+<A 
+   NAME="60004-25005r5.4.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-4-1.jpg" ALT="[PICT]" 
+>
+<BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure                                                                                                                  5.4.1
+</STRONG></NOBR></TD><TD  
+>A graph G which relates the assignments that satisfy the clauses of the Boolean
+expression
+   (x<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> x<SUB>2</SUB> <FONT FACE="SYMBOL">Ú</FONT> ¬x<SUB>3</SUB>) <FONT FACE="SYMBOL">Ù</FONT> (¬x<SUB>2</SUB> <FONT FACE="SYMBOL">Ú</FONT> x<SUB>3</SUB> <FONT FACE="SYMBOL">Ú</FONT> ¬x<SUB>4</SUB>) <FONT FACE="SYMBOL">Ù</FONT> (x<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> x<SUB>3</SUB> <FONT FACE="SYMBOL">Ú</FONT> x<SUB>4</SUB>) <FONT FACE="SYMBOL">Ù</FONT> (¬x<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> x<SUB>2</SUB> <FONT FACE="SYMBOL">Ú</FONT> x<SUB>4</SUB>).   </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>Then by the proof of the last theorem, E is satisfiable if and only if (G, 4) is satisfiable.
+The assignment (x<SUB>1</SUB>, x<SUB>2</SUB>, x<SUB>3</SUB>, x<SUB>4</SUB>) = (1, 0, 0, 1) that satisfies E corresponds to the clique in
+G whose nodes are shaded. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >From the definition of <I>NP</I>-completeness, it follows that <I>P</I> is equal to <I>NP</I> if and only if
+there is an <I>NP</I>-complete problem in <I>P</I>.
+   <P >It should be noticed that all the known algorithms, for the <I>NP</I>-complete problems, are
+in essence based on exhaustive search over some domain. For instance, in the case of the
+satisfiability problem, an exhaustive search is made for an assignment to the variables that
+satisfies the given expression. In the case of the 0 - 1 knapsack problem, the exhaustive
+search is made for a subset of a given multiset {a<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, a<SUB>N </SUB>}, whose values sum up to some
+given value b. In the case of the clique problem, the exhaustive search is made for a
+clique of the desired size. In all of these cases the search is over a domain of
+exponential size, and so far it seems this is the best possible for the <I>NP</I>-complete
+problems.<A NAME="60004-25006"> </A>
+   <P >
+   <P >[<A 
+ HREF="theory-bk-fivese5.html" >next</A>] [<A 
+ HREF="theory-bk-fivese3.html" >prev</A>] [<A 
+ HREF="theory-bk-fivese3.html#tailtheory-bk-fivese3.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-fivese4.html" >front</A>] [<A 
+ HREF="theory-bk-five.html#theory-bk-fivese4.html" >up</A>] <A 
+   NAME="tailtheory-bk-fivese4.html"> </A></BODY></HTML>

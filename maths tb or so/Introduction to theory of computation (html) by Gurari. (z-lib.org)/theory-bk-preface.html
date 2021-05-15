@@ -1,0 +1,149 @@
+
+   <HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-preface.tex--> 
+ <TITLE>theory-bk-preface.html</TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">
+[<A 
+ HREF="theory-bk-one.html" >next</A>] [<A 
+ HREF="#tailtheory-bk-preface.html">tail</A>] [<A 
+ HREF="theory-bk.html" >up</A>]
+<H2><A 
+   NAME="10000-1000"> </A><A 
+ HREF="theory-bk.html#Q2-10000-1"  NAME="Q1-10000-1">Preface</A></H2>
+Computations are designed to solve problems. Programs are descriptions of computations
+written for execution on computers. The field of computer science is concerned with the
+development of methodologies for designing programs, and with the development of
+computers for executing programs. It is therefore of central importance for those
+involved in the field that the characteristics of programs, computers, problems, and
+computation be fully understood. Moreover, to clearly and accurately communicate
+intuitive thoughts about these subjects, a precise and well-defined terminology is
+required.
+   <P >This book explores some of the more important terminologies and questions
+concerning programs, computers, problems, and computation. The exploration reduces in
+many cases to a study of mathematical theories, such as those of automata and formal
+languages; theories that are interesting also in their own right. These theories provide
+abstract models that are easier to explore, because their formalisms avoid irrelevant
+details.
+   <P >Organized into seven chapters, the material in this book gradually increases in
+complexity. In many cases, new topics are treated as refinements of old ones, and their
+study is motivated through their association to programs.
+   <P >Chapter 1 is concerned with the definition of some basic concepts. It starts by
+considering the notion of strings, and the role that strings have in presenting information.
+Then it relates the concept of languages to the notion of strings, and introduces grammars
+for characterizing languages. The chapter continues by introducing a class of
+programs. The choice is made for a class, which on one hand is general enough to
+model all programs, and on the other hand is primitive enough to simplify the
+specific investigation of programs. In particular, the notion of nondeterminism is
+introduced through programs. The chapter concludes by considering the notion of
+problems, the relationship between problems and programs, and some other related
+notions.
+   <P >Chapter 2 studies finite-memory programs. The notion of a state is introduced as an
+abstraction for a location in a finite-memory program as well as an assignment to the
+variables of the program. The notion of state is used to show how finite-memory programs
+can be modeled by abstract computing machines, called finite-state transducers. The
+transducers are essentially sets of states with rules for transition between the states.
+The inputs that can be recognized by finite-memory programs are characterized
+in terms of a class of grammars, called regular grammars. The limitations of
+finite-memory programs, closure properties for simplifying the job of writing
+finite-memory programs, and decidable properties of such programs are also
+studied.
+   <P >Chapter 3 considers the introduction of recursion to finite-memory programs. The
+treatment of the new programs, called recursive finite-domain programs, resembles that for
+finite-memory programs in Chapter 2. Specifically, the recursive finite-domain programs
+are modeled by abstract computing machines, called pushdown transducers. Each
+pushdown transducer is essentially a finite-state transducer that can access an
+auxiliary memory that behaves like a pushdown storage of unlimited size. The inputs
+that can be recognized by recursive finite-domain programs are characterized in
+terms of a generalization of regular grammars, called context-free grammars.
+Finally, limitations, closure properties, and decidable properties of recursive
+finite-domain programs are derived using techniques similar to those for finite-memory
+programs.
+   <P >Chapter 4 deals with the general class of programs. Abstract computing machines,
+called Turing transducers, are introduced as generalizations of pushdown transducers that
+place no restriction on the auxiliary memory. The Turing transducers are proposed for
+characterizing the programs in general, and computability in particular. It is shown that a
+function is computable by a Turing transducer if and only if it is computable by a
+deterministic Turing transducer. In addition, it is shown that there exists a universal Turing
+transducer that can simulate any given deterministic Turing transducer. The limitations of
+Turing transducers are studied, and they are used to demonstrate some undecidable
+problems. A grammatical characterization for the inputs that Turing transducers recognize
+is also offered.
+   <P >Chapter 5 considers the role of time and space in computations. It shows
+that problems can be classified into an infinite hierarchy according to their time
+requirements. It discusses the feasibility of those computations that can be carried out
+in &#34;polynomial time&#34; and the infeasibility of those computations that require
+&#34;exponential time.&#34; Then it considers the role of &#34;nondeterministic polynomial
+time.&#34; &#34;Easiest&#34; hard problems are identified, and their usefulness for detecting
+hard problems is exhibited. Finally, the relationship between time and space is
+examined.
+   <P >Chapter 6 introduces instructions that allow random choices in programs.
+Deterministic programs with such instructions are called probabilistic programs.
+The usefulness of these programs is considered, and then probabilistic Turing
+transducers are introduced as abstractions of such programs. Finally, some interesting
+classes of problems that are solvable probabilistically in polynomial time are
+studied.
+   <P >Chapter 7 is devoted to parallelism. It starts by considering parallel programs in which
+the communication cost is ignored. Then it introduces &#34;high-level&#34; abstractions for parallel
+programs, called PRAM's, which take into account the cost of communication. It
+continues by offering a class of &#34;hardware-level&#34; abstractions, called uniform
+families of circuits, which allow for a rigorous analysis of the complexity of parallel
+computations. The relationship between the two classes of abstractions is detailed,
+and the applicability of parallelism in speeding up sequential computations is
+considered.
+   <P >The motivation for adding this text to the many already in the field originated from
+the desire to provide an approach that would be more appealing to readers with
+a background in programming. A unified treatment of the subject is therefore
+provided, which links the development of the mathematical theories to the study of
+programs.
+   <P >The only cost of this approach occurs in the introduction of transducers, instead of
+restricting the attention to abstract computing machines that produce no output. The cost,
+however, is minimal because there is negligible variation between these corresponding
+kinds of computing machines.
+   <P >On the other hand, the benefit is extensive. This approach helps considerably in
+illustrating the importance of the field, and it allows for a new treatment of some topics
+that is more attractive to those readers whose main background is in programming. For
+instance, the notions of nondeterminism, acceptance, and abstract computing machines are
+introduced here through programs in a natural way. Similarly, the characterization of
+pushdown automata in terms of context-free languages is shown here indirectly through
+recursive finite-domain programs, by a proof that is less tedious than the direct
+one.
+   <P >The choice of topics for the text and their organization are generally in line with what
+is the standard in the field. The exposition, however, is not always standard. For instance,
+transition diagrams are offered as representations of pushdown transducers and
+Turing transducers. These representations enable a significant simplification in
+the design and analysis of such abstract machines, and consequently provide
+the opportunity to illustrate many more ideas using meaningful examples and
+exercises.
+   <P >As a natural outcome, the text also treats the topics of probabilistic and parallel
+computations. These important topics have matured quite recently, and so far have not
+been treated in other texts.
+   <P >The level of the material is intended to provide the reader with introductory tools
+for understanding and using formal specifications in computer science. As a
+result, in many cases ideas are stressed more than detailed argumentation, with
+the objective of developing the reader's intuition toward the subject as much as
+possible.
+   <P >This book is intended for undergraduate students at advanced stages of their studies,
+and for graduate students. The reader is assumed to have some experience as a
+programmer, as well as in handling mathematical concepts. Otherwise no specific
+prerequisite is necessary.
+   <P >The entire text represents a one-year course load. For a lighter load some of the
+material may be just sketched, or even skipped, without loss of continuity. For instance,
+most of the proofs in Section 2.6, the end of Section 3.5, and Section 3.6, may be so
+treated.
+   <P >Theorems, Figures, Exercises, and other items in the text are labeled with triple
+numbers. An item that is labeled with a triple <I>i.j.k</I> is assumed to be the <I>k</I>th item of its type
+in Section <I>j</I> of Chapter i.
+   <P >Finally, I am indebted to Elizabeth Zwicky<A NAME="10000-1001"> </A> for helping me with the computer facilities
+at Ohio State University, and to Linda Davoli<A NAME="10000-1002"> </A> and Sonia DiVittorio<A NAME="10000-1003"> </A> for their editing work. I
+would like to thank my colleagues Ming Li<A NAME="10000-1004"> </A>, Tim Long<A NAME="10000-1005"> </A>, and Yaacov Yesha<A NAME="10000-1006"> </A> for helping me
+with the difficulties I had with some of the topics, for their useful comments, and for
+allowing me the opportunities to teach the material. I am also very grateful to an
+anonymous referee and to many students whose feedback guided me to the current
+exposition of the subject. <P>
+   <P >[<A 
+ HREF="theory-bk-one.html" >next</A>] [<A 
+ HREF="theory-bk-preface.html" >front</A>] [<A 
+ HREF="theory-bk.html" >up</A>] <A 
+   NAME="tailtheory-bk-preface.html"> </A> 
+</BODY></HTML>
+

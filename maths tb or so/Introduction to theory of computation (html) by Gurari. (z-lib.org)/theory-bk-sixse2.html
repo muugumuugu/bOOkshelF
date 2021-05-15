@@ -1,0 +1,952 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-six.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-sixse3.html" >next</A>] [<A 
+ HREF="theory-bk-sixse1.html" >prev</A>] [<A 
+ HREF="theory-bk-sixse1.html#tailtheory-bk-sixse1.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-sixse2.html">tail</A>] [<A 
+ HREF="theory-bk-six.html#theory-bk-sixse2.html" >up</A>]
+<H3>6.2 <A 
+   NAME="70002-30006.2"> </A><A 
+ HREF="theory-bk.html#Q2-70002-3"  NAME="Q1-70002-3">Probabilistic Programs That Might Err</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-70002-4"  NAME="Q2-70002-4">Error Probability of Repeatedly Executed Probabilistic Programs</A>
+<BR>         <A 
+ HREF="#Q1-70002-5"  NAME="Q2-70002-5">Outputs of Probabilistic Programs</A>
+   <P >For many practical reasons programs might be allowed a small probability of erring on
+some inputs.
+   <P ><STRONG>Example 6.2.1</STRONG> <A 
+   NAME="70002-3001t6.2.1"> </A> 
+A brute-force algorithm for solving the nonprimality<A NAME="70002-3002"> </A> problem takes
+exponential time (see Example <A 
+ HREF="theory-bk-fivese1.html#60001-3011t5.1.3">5.1.3</A>). The program in Figure <A 
+ HREF="#70002-3003r6.2.1">6.2.1</A> is an example of a
+probabilistic program that determines the nonprimality of numbers in polynomial expected
+time.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="70002-3003r6.2.1"> </A>
+             <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE><B>read</B> <TT>x</TT>
+<TT>y</TT> := random({2,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-six41x.gif" ALT="r -
+  x" > })
+<B>if</B> <TT>x</TT> is divisible by <TT>y</TT> <B>then</B>
+    <TT>answer</TT> := yes       /* not a prime number */
+<B>else</B> <TT>answer</TT> := no                                  </PRE></TD></TR></TABLE>
+<A 
+   NAME="70002-3003r6.2.1"> </A>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 6.2.1 </STRONG></NOBR></TD><TD  
+>An undesirable probabilistic program for the nonprimality problem.                         </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>
+   <P >The program has zero probability for an error on inputs that are prime numbers.
+However, for infinitely many nonprime numbers the program has a high probability of
+giving a wrong answer. Specifically, the probability for an error on a nonprime
+number m is 1 - s/(<IMG 
+SRC="theory-bk-six42x.gif" ALT="rm--" > - 1), where s is assumed to be the number of distinct
+divisors of m in {2,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-six43x.gif" ALT="rm-" > }. In particular, the probability for an error reaches
+the value of 1 - 1/(<IMG 
+SRC="theory-bk-six44x.gif" ALT="rm-" > - 1) for those numbers m that are a square of a prime
+number.
+   <P >The probability of getting a wrong answer for a given number m can be reduced by
+executing the program k times. In such a case, the number m is declared to be nonprime
+with full confidence, if in any of k executions the answer yes is obtained. Otherwise, m is
+determined to be prime with probability of at most (1 - 1/(<IMG 
+SRC="theory-bk-six45x.gif" ALT="rm-" > - 1))<SUP>k
+  </SUP> for an error. With
+k = c(<IMG 
+SRC="theory-bk-six46x.gif" ALT="rm--" > - 1) this probability approaches the value of (1/<IMG ALIGN="MIDDLE"
+SRC="cmmi10-25.gif" ALT="r"> )<SUP>c
+  </SUP> &lt; 0.37<SUP>c</SUP> as m increases,
+where <IMG ALIGN="MIDDLE"
+SRC="cmmi10-25.gif" ALT="r"> is the constant 2.71828<FONT FACE="SYMBOL">¼</FONT>  However, such a value for k is forbidingly
+high, because it is exponential in the length of the representation of m, that is, in
+log m.
+   <P >An improved probabilistic program can be obtained by using the following known
+result.
+   <DL><DT><STRONG>
+    </STRONG><DD 
+>
+   <P ><STRONG>Result </STRONG> <A 
+   NAME="70002-3004t6.2.1"> </A> 
+   Let W<SUB>m</SUB>(b) be a predicate that is true if and only if either of the following
+   two conditions holds.
+       <OL TYPE="a" 
+>
+       <LI><A 
+   NAME="70002-3005xa"> </A>(b<SUP>m-1</SUP> - 1) mod m<IMG 
+SRC="theory-bk-six47x.gif" ALT="/="ALIGN="MIDDLE" > 0.
+       <LI><A 
+   NAME="70002-3006xb"> </A>1 &lt; gcd (b<SUP>t</SUP> - 1, m) &lt; m for some t and i such that m - 1 = t · 2<SUP>i</SUP>.</OL>
+   Then for each integer m <FONT FACE="SYMBOL">³</FONT> 2 the conditions below hold.
+       <OL TYPE="a" 
+>
+       <LI><A 
+   NAME="70002-3007xa"> </A>m is a prime number if and only if W<SUB>m</SUB>(b) is false for all b such that
+       2 <FONT FACE="SYMBOL">£</FONT> b &lt; m.
+       <LI><A 
+   NAME="70002-3008xb"> </A>If m is not prime, then the set { b | 2 <FONT FACE="SYMBOL">£</FONT> b &lt; m, and W<SUB>m</SUB>(b) holds } is
+       of cardinality (3/4)(m - 1) at least.</OL>
+   </DL>
+   <P >
+The result implies the probabilistic program in Figure <A 
+ HREF="#70002-3009r6.2.2">6.2.2</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="70002-3009r6.2.2"> </A>
+                    <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE><B>read</B> <TT>x</TT>
+<TT>y</TT> := random{2,<FONT FACE="SYMBOL"> ¼</FONT>, <TT>x</TT> - 1}
+<B>if</B> W<SUB><TT>x</TT></SUB>(<TT>y</TT>) <B>then</B> <TT>answer</TT> := yes
+<B>else</B> <TT>answer</TT> := no             </PRE></TD></TR></TABLE>
+<A 
+   NAME="70002-3009r6.2.2"> </A>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 6.2.2 </STRONG></NOBR></TD><TD  
+>A good probabilistic program for the nonprimality problem.                                      </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>
+For prime numbers m the program always provides the right answers. On the other hand,
+for nonprime numbers m, the program provides the right answer with probability of at
+most 1 - (3/4)(m - 1)/(m - 2) <FONT FACE="SYMBOL">£</FONT> 1/4 for an error.
+   <P >The probability for a wrong answer can be reduced to any desired constant <FONT FACE="SYMBOL">e</FONT> by
+executing the program for k <FONT FACE="SYMBOL">³</FONT> log<SUB>1/4</SUB> <FONT FACE="SYMBOL">e</FONT> times. That is, the number of times k that the
+program has to be executed is independent of the input m.
+   <P >Checking for the condition (b<SUP>m-1</SUP> - 1) mod m<IMG 
+SRC="theory-bk-six48x.gif" ALT="/="ALIGN="MIDDLE" > 0 can be done in <A NAME="70002-3010"> </A>polynomial time by
+using the relation (a + b) mod m = ( (a mod m) + (b mod m) ) mod m and the relation
+(ab) mod m = ((a mod m)(b mod m)) mod m. Checking for the condition gcd (b<SUP>t</SUP> - 1, m)
+can be done in polynomial time by using Euclid's algorithm (see Exercise <A 
+ HREF="theory-bk-fiveli1.html#60007-34002r5.1.1">5.1.1</A>).
+Consequently, the program in Figure <A 
+ HREF="#70002-3009r6.2.2">6.2.2</A> is of polynomial time complexity.<A NAME="70002-3011"> </A> <IMG 
+SRC="theory-bk-six40x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><STRONG>Example 6.2.2</STRONG> <A 
+   NAME="70002-3012t6.2.2"> </A> 
+Consider the problem of deciding for any given matrices A, B, and C whether AB<IMG 
+SRC="theory-bk-six49x.gif" ALT="/="ALIGN="MIDDLE" > C. A
+brute-force algorithm to decide the problem can compute D = AB, and E = D - C, and
+check whether   <CENTER>
+     <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>                             E</TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+><IMG 
+SRC="theory-bk-six50x.gif" ALT="/="ALIGN="MIDDLE" ></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six51x.gif" ALT="( 0  ··· 0 )
+   ...  ...  ...
+  0  ··· 0"ALIGN="MIDDLE" >                              </TD>     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>A brute-force multiplication of A and B requires O(N<SUP>3</SUP>) time (under the uniform cost
+criteria), if A and B are of dimension N × N. Therefore, the brute-force algorithm for
+deciding whether AB<IMG 
+SRC="theory-bk-six52x.gif" ALT="/="ALIGN="MIDDLE" > C also takes O(N<SUP>3</SUP>) time.
+   <P >The inequality AB<IMG 
+SRC="theory-bk-six53x.gif" ALT="/="ALIGN="MIDDLE" > C holds if and only if the inequality <CENTER>
+                <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>(AB - C)<IMG 
+SRC="theory-bk-six54x.gif" ALT="(      )
+   x^1.
+    ..
+   ^xN"ALIGN="MIDDLE" ></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+><IMG 
+SRC="theory-bk-six55x.gif" ALT="/="ALIGN="MIDDLE" ></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six56x.gif" ALT="(    )
+   0.
+   ..
+   0"ALIGN="MIDDLE" >      </TD>                <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>holds for some vector <CENTER>
+    <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>                             <IMG 
+SRC="theory-bk-six57x.gif" ALT="^x"></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six58x.gif" ALT="(     )
+   ^x1.
+    ..
+  x^N"ALIGN="MIDDLE" >                                         </TD>    <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>Consequently, the inequality AB<IMG 
+SRC="theory-bk-six59x.gif" ALT="/="ALIGN="MIDDLE" > C can be determined by a probabilistic program that
+determines
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="70002-3013xa"> </A>A column vector <CENTER>
+     <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>                             <IMG 
+SRC="theory-bk-six60x.gif" ALT="^x"></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six61x.gif" ALT="(     )
+   ^x1..
+    .
+   ^xN"ALIGN="MIDDLE" >                                                 </TD><TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+     </TR></TABLE>
+     </CENTER>of random numbers from {-1, 1}.
+     <LI><A 
+   NAME="70002-3014xb"> </A>The value of the vector <IMG 
+SRC="theory-bk-six62x.gif" ALT="^y"> = B<IMG 
+SRC="theory-bk-six63x.gif" ALT="^x">.
+     <LI><A 
+   NAME="70002-3015xc"> </A>The value of the vector <IMG 
+SRC="theory-bk-six64x.gif" ALT="^z"> = A<IMG 
+SRC="theory-bk-six65x.gif" ALT="^y">.
+     <LI><A 
+   NAME="70002-3016xd"> </A>The value of the vector û = C<IMG 
+SRC="theory-bk-six66x.gif" ALT="^x">.
+     <LI><A 
+   NAME="70002-3017xe"> </A>The value of the vector <CENTER>
+     <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>                              <IMG 
+SRC="theory-bk-six67x.gif" ALT="^v"></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six68x.gif" ALT="^z"> - û                                                         </TD><TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>A<IMG 
+SRC="theory-bk-six69x.gif" ALT="^y"> - C<IMG 
+SRC="theory-bk-six70x.gif" ALT="^x"></TD>                               <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>A<IMG 
+SRC="theory-bk-six71x.gif" ALT="B^^x"> - C<IMG 
+SRC="theory-bk-six72x.gif" ALT="^x"></TD>                              <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(AB - C)<IMG 
+SRC="theory-bk-six73x.gif" ALT="^x"></TD>                             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six74x.gif" ALT="(                )
+   d1.1  ·.··  d1.N
+    ..    ..   ..
+   dN1  ··· dN N"ALIGN="MIDDLE" > <IMG 
+SRC="theory-bk-six75x.gif" ALT="(     )
+   ^x.1
+   ..
+  ^xN"ALIGN="MIDDLE" > </TD>           <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six76x.gif" ALT="(                      )
+   d11 ^x1 + ··.·+ d1N ^xN
+            ..
+   dN1 ^x1 + ···+dN N ^xN"ALIGN="MIDDLE" > </TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                    </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+></TD>                                       <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+     </TR></TABLE>
+     </CENTER></OL>
+If some of the entries in the vector <CENTER>
+     <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>                              <IMG 
+SRC="theory-bk-six77x.gif" ALT="^v"></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six78x.gif" ALT="(                      )
+   d11 ^x1 + ··· + d1N ^xN
+            ...
+   dN1x^1 + ···+ dN N ^xN"ALIGN="MIDDLE" >              </TD>     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>are nonzeros, then the probabilistic program reports that the inequality AB<IMG 
+SRC="theory-bk-six79x.gif" ALT="/="ALIGN="MIDDLE" > C must
+hold. Otherwise, the program reports that AB = C with probability of at most 1/2 for an
+error. The program takes O(N<SUP>2</SUP>) time.
+   <P >The analysis of the program for its error probability relies on the following
+result.
+   <DL><DT><STRONG>
+    </STRONG><DD 
+>
+   <P ><STRONG>Result </STRONG> <A 
+   NAME="70002-3018t6.2.2"> </A> 
+   Let d<SUB>1</SUB>x<SUB>1</SUB> + · · · + d<SUB>N </SUB>x<SUB>N </SUB> = 0 be a linear equation with coefficients that satisfy the
+   inequality (d<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, d<SUB>N </SUB>)<IMG 
+SRC="theory-bk-six80x.gif" ALT="/="ALIGN="MIDDLE" > (0,<FONT FACE="SYMBOL"> ¼</FONT>, 0). Then the linear equation has at most 2<SUP>N-1</SUP>
+   solutions (<IMG 
+SRC="theory-bk-six81x.gif" ALT="^x"><SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-six82x.gif" ALT="^x"><SUB>N </SUB>) over {-1, 1}.
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="70002-3019t"> </A> 
+   Consider any linear equation d<SUB>1</SUB>x<SUB>1</SUB> + · · · + d<SUB>N </SUB>x<SUB>N </SUB> = 0. With no loss of generality
+   assume that d<SUB>1</SUB> &gt; 0.
+   <P >If (<IMG 
+SRC="theory-bk-six83x.gif" ALT="^x"><SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-six84x.gif" ALT="^x"><SUB>N </SUB>) is a solution to the linear equation over {-1, 1} then (-<IMG 
+SRC="theory-bk-six85x.gif" ALT="^x"><SUB>1</SUB>, <IMG 
+SRC="theory-bk-six86x.gif" ALT="^x"><SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-six87x.gif" ALT="^x"><SUB>N </SUB>)
+   does not solve the equation. On the other hand, if both (<IMG 
+SRC="theory-bk-six88x.gif" ALT="^x"><SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-six89x.gif" ALT="x^"><SUB>N </SUB>) and (<IMG 
+SRC="theory-bk-six90x.gif" ALT="~x"><SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-six91x.gif" ALT="~x"><SUB>N </SUB>) solve
+   the equation over {-1, 1}, then the inequality (-<IMG 
+SRC="theory-bk-six92x.gif" ALT="^x"><SUB>1</SUB>, <IMG 
+SRC="theory-bk-six93x.gif" ALT="^x"><SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-six94x.gif" ALT="x^"><SUB>N </SUB>)<IMG 
+SRC="theory-bk-six95x.gif" ALT="/="ALIGN="MIDDLE" > (-<IMG 
+SRC="theory-bk-six96x.gif" ALT="x~"><SUB>1</SUB>, <IMG 
+SRC="theory-bk-six97x.gif" ALT="~x"><SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-six98x.gif" ALT="~x"><SUB>N </SUB>)
+   holds whenever (<IMG 
+SRC="theory-bk-six99x.gif" ALT="^x"><SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-six100x.gif" ALT="^x"><SUB>N </SUB>)<IMG 
+SRC="theory-bk-six101x.gif" ALT="/="ALIGN="MIDDLE" > (<IMG 
+SRC="theory-bk-six102x.gif" ALT="~x"><SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, <IMG 
+SRC="theory-bk-six103x.gif" ALT="x~"><SUB>N </SUB>).
+   <P >As a result, each solution to the equation has an associated assignment that does
+   not solve the equation. That is, at most half of the possible assignments
+   over {-1, 1} to (x<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, x<SUB>N </SUB>) can serve as solutions to the equation. <IMG 
+SRC="theory-bk-six40x.gif" ALT=" ***
+   " 
+ >
+   <P >
+   </DL>
+The probabilistic program can be executed k times on any given triplet A, B, and C. In
+such a case, if any of the executions results in a nonzero vector <IMG 
+SRC="theory-bk-six104x.gif" ALT="^v"> then AB<IMG 
+SRC="theory-bk-six105x.gif" ALT="/="ALIGN="MIDDLE" > C must
+hold. Otherwise, AB = C with probability of at most (1/2)<SUP>k</SUP> for an error. That
+is, by repeatedly executing the probabilistic program, one can reduce the error
+probability to any desired magnitude. Moreover, the resulting error probability of
+(1/2)<SUP>k</SUP> is guaranteed for all the possible choices of matrices A, B, and C. <IMG 
+SRC="theory-bk-six40x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="70002-4000"> </A><A 
+ HREF="#Q2-70002-4"  NAME="Q1-70002-4">Error Probability of Repeatedly Executed Probabilistic Programs</A></EM>
+   <P >The probabilistic programs in the previous two examples exhibit the property of
+one-sided error probability. Specifically, their yes answers are always correct. On the other
+hand, their no answers might sometimes be correct and sometimes wrong. In general,
+however, probabilistic programs might err on more than one kind of an answer. In such a
+case, the answer can be arrived at by taking the majority of answers obtained in repeated
+computations on the given instance.
+   <P >The following lemma analyzes the probability of error in repeated computations to
+establish an answer by absolute majority.
+   <P ><STRONG>Lemma 6.2.1</STRONG> <A 
+   NAME="70002-4001t6.2.1"> </A> 
+Consider any probabilistic program P. Assume that P has probability e of providing an
+output that differs from y on input x. Then P has probability
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-six106x.gif" ALT="          N
+F(N, e) = å  (2N+1 )e2N+1- k(1 - e)k
+         k=0  k"></PRE></CENTER>
+   <P >of having at least N + 1 computations with outputs that differ from y in any sequence
+of 2N + 1 computations of P on input x.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="70002-4002t"> </A> 
+Let P, x, y, and e be as in the statement of the lemma. Let <FONT FACE="SYMBOL">j</FONT>(N, e, k) denote the
+probability that, in a sequence of 2N + 1 computations on input x, P will have exactly k
+computations with an output that is equal to y. Let <FONT FACE="SYMBOL">F</FONT>(N, e) denote the probability that, in a
+sequence of 2N + 1 computations on input x, P will have at least N + 1 computations
+with outputs that differ from y.
+   <P >By definition,
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-six107x.gif" ALT=" F(N, e)  =   (Probabilitythatinexactly2N + 1 computationstheoutput
+             willnotequaly)
+             +  (Probabilitythatin exactly 2N computationstheoutput
+                willnotequaly)
+             ...
+             + (Probability thatinexactlyN + 1 computationsthe
+               outputwillnotequaly)
+         =   (Probabilitythatinexactly0 computations theoutputwill
+             equaly)
+             +  (Probabilitythatin exactly 1computationthe outputwill
+                equaly)
+             ...
+             + (Probability thatinexactlyN computationstheoutput
+               willequaly)
+             Nå
+         =   k=0 j(N,e,k)."></PRE></CENTER>
+   <P >The probability of having the answer y at and only at the <I>i<SUB>1</SUB></I>st,  <FONT FACE="SYMBOL">¼</FONT> , <I>i<SUB>k</SUB></I>th computations, in a
+sequence of 2N + 1 computations of P on input x, is equal to
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-six108x.gif" ALT="  i1-1       i2-i1- 1      i3-i2-1         ik-ik- 1-1      2N+1 -ik
+e   (1- e)e     (1- e)e      (1 - e)··· e       (1- e)e
+                      = (1- e)ke2N+1 -k"></PRE></CENTER>
+   <P >i<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , i<SUB>k</SUB> are assumed to satisfy 1 <FONT FACE="SYMBOL">£</FONT> i<SUB>1</SUB> &lt; i<SUB>2</SUB> &lt; · · ·  &lt; i<SUB>k</SUB> <FONT FACE="SYMBOL">£</FONT> 2N + 1.
+   <P >Each collection {C<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, C<SUB>2N+1</SUB>} of 2N + 1 computations of P has
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-six109x.gif" ALT="                                         -(2N+1)!-
+(2N + 1)(2N)(2N - 1)···(2N + 1- k+ 1) =  (2N+1-k)!"></PRE></CENTER>
+   <P >possible arrangements C<SUB>i<SUB>1</SUB></SUB> · · · C<SUB>i<SUB>k</SUB></SUB>  of  k computations.  In  these  arrangements
+only
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-six110x.gif" ALT=" --(2N+1)!-- = (2N+1)
+k!(2N+1 -k)!      k"></PRE></CENTER>
+   <P >satisfy the condition i<SUB>1</SUB> &lt; · · ·  &lt; i<SUB>k</SUB>. Consequently, in each sequence of 2N + 1
+computations of P there are <IMG 
+SRC="theory-bk-six111x.gif" ALT="(2N+1 )
+  k"> possible ways to obtain the output y for exactly k
+times.
+   <P >The result follows because <FONT FACE="SYMBOL">j</FONT>(N, e, k) = (the number of possible sequences of 2N + 1
+computations in which exactly k computations have the output y) times (the probability of
+having a sequence of 2N + 1 computations with exactly k outputs of y). <IMG 
+SRC="theory-bk-six40x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >In general, we are interested only in probabilistic programs which run in
+polynomial time, and which have error probability that can be reduced to a desired
+constant by executing the program for some polynomial number of times. The
+following theorem considers the usefulness of probabilistic programs that might
+err.
+   <P ><STRONG>Theorem 6.2.1</STRONG> <A 
+   NAME="70002-4003t6.2.1"> </A> 
+Let <FONT FACE="SYMBOL">F</FONT>(N, e) be as in the statement of Lemma <A 
+ HREF="#70002-4001t6.2.1">6.2.1</A>. Then <FONT FACE="SYMBOL">F</FONT>(N, e) has the following
+properties.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="70002-4004xa"> </A><FONT FACE="SYMBOL">F</FONT>(N, <IMG 
+SRC="theory-bk-six112x.gif" ALT="1
+2">) = 1/2 for all N.
+     <LI><A 
+   NAME="70002-4005xb"> </A><FONT FACE="SYMBOL">F</FONT>(N, e) approaches 0 for each constant e &lt; 1/2, when N approaches <FONT FACE="SYMBOL">¥</FONT>.
+     <LI><A 
+   NAME="70002-4006xc"> </A><FONT FACE="SYMBOL">F</FONT>(N, <IMG 
+SRC="theory-bk-six113x.gif" ALT="12"> - <IMG 
+SRC="theory-bk-six114x.gif" ALT="1N-">) approaches a constant that is greater than 1/(2<IMG ALIGN="MIDDLE"
+SRC="cmmi10-25.gif" ALT="r"> <SUP>6</SUP>), when N
+     approaches <FONT FACE="SYMBOL">¥</FONT>.</OL>
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="70002-4007t"> </A> 
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="70002-4008xa"> </A>The equality <FONT FACE="SYMBOL">F</FONT>(N, <IMG 
+SRC="theory-bk-six115x.gif" ALT="1
+2">) = 1/2 for all N is implied from the following relations.
+     <CENTER>
+           <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>2<FONT FACE="SYMBOL">F</FONT>(N, <IMG 
+SRC="theory-bk-six116x.gif" ALT="12">)</TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>2 <IMG 
+SRC="theory-bk-six117x.gif" ALT="Nå  (    )( )2N+1 -k(    )k
+    2N+k1   12        1- 12
+k=0"></TD>            <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six118x.gif" ALT="åN (    )( )2N+1-k(     )k
+    2N+k1  12        1 - 12
+k=0"></TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> + <IMG 
+SRC="theory-bk-six119x.gif" ALT="2Nå+1 (    )( )2N+1-k(     )k
+      2N+k1  12        1-  12
+k=N+1"></TD>         <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six120x.gif" ALT="(1 + (1- 1))
+ 2       2"ALIGN="MIDDLE" ><SUP> 2N+1</SUP></TD>                       <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>1                                                 </TD>       <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+     </TR></TABLE>
+     </CENTER>
+     <LI><A 
+   NAME="70002-4009xb"> </A>The equality
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-six121x.gif" ALT=" 2Nå+1(2N+1) = 22N+1
+ k=0    k"></PRE></CENTER>
+     <P >implies the following inequality for 0 <FONT FACE="SYMBOL">£</FONT> k <FONT FACE="SYMBOL">£</FONT> 2N + 1.
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-six122x.gif" ALT=" (2N+1) £ 22N+1
+   k"></PRE></CENTER>
+     <P >Consequently, the result is implied from the following relations that hold for
+     e = 1/2 - <FONT FACE="SYMBOL">d</FONT>.
+     <P ><CENTER>
+             <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+><FONT FACE="SYMBOL">F</FONT>(N, e)</TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six123x.gif" ALT="Nå  (    )
+    2N+k1 e2N+1- k(1 - e)k
+k=0"></TD>                <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(N + 1)<IMG 
+SRC="theory-bk-six124x.gif" ALT="(2N+1 )
+  N">e<SUP>N+1</SUP>(1 - e)<SUP>N </SUP></TD>               <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(N + 1)2<SUP>2N+1</SUP>e<SUP>N+1</SUP>(1 - e)<SUP>N </SUP></TD>                <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(N + 1)2<SUP>2N+1</SUP><IMG 
+SRC="theory-bk-six125x.gif" ALT="(1 - d)
+ 2"ALIGN="MIDDLE" ><SUP> N+1</SUP><IMG 
+SRC="theory-bk-six126x.gif" ALT="(1 + d)
+ 2"ALIGN="MIDDLE" ><SUP> N </SUP></TD>         <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>2<IMG 
+SRC="theory-bk-six127x.gif" ALT="(1- d)
+ 2"ALIGN="MIDDLE" > (N + 1)(1 - 2<FONT FACE="SYMBOL">d</FONT>)<SUP>N </SUP>(1 + 2<FONT FACE="SYMBOL">d</FONT>)<SUP>N </SUP></TD>        <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>2e(N + 1)(1 - 4<FONT FACE="SYMBOL">d</FONT><SUP>2</SUP>)<SUP>N </SUP></TD>                     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+></TD>                                       <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+     </TR></TABLE>
+     </CENTER>
+     <LI><A 
+   NAME="70002-4010xc"> </A>The result follows from the following relations because <IMG 
+SRC="theory-bk-six128x.gif" ALT="(1- 2/N)"ALIGN="MIDDLE" ><SUP> N/2</SUP> approaches
+     1/<IMG ALIGN="MIDDLE"
+SRC="cmmi10-25.gif" ALT="r"> with N.
+     <P ><CENTER>
+       <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+><FONT FACE="SYMBOL">F</FONT><IMG 
+SRC="theory-bk-six129x.gif" ALT="(   1   1)
+ N, 2-  N"ALIGN="MIDDLE" ></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six130x.gif" ALT="åN (2N+1)(1   1)2N+1-k(   (1   1-))k
+      k   2-  N        1-  2 - N
+k=0"></TD>    <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six131x.gif" ALT="åN (2N+1)(1   1)2N+1-k(1   1)k
+      k   2-  N        2 + N
+k=0"></TD>         <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six132x.gif" ALT="(     )
+ 12 - 1N-"ALIGN="MIDDLE" ><SUP> 2N+1</SUP> <FONT FACE="SYMBOL">å</FONT>
+     <SUB> k=0</SUB><SUP>N </SUP><IMG 
+SRC="theory-bk-six133x.gif" ALT="(    )
+ 2N+k1"><IMG 
+SRC="theory-bk-six134x.gif" ALT="(        )
+  11/2/2+--11/N/N-"ALIGN="MIDDLE" ><SUP> k</SUP></TD>   <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> &gt;</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six135x.gif" ALT="(1 - 1)
+ 2   N"ALIGN="MIDDLE" ><SUP> 2N+1</SUP> <FONT FACE="SYMBOL">å</FONT>
+     <SUB> k=0</SUB><SUP>N </SUP><IMG 
+SRC="theory-bk-six136x.gif" ALT="(2N+1)
+   k"></TD>              <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six137x.gif" ALT="1
+2"><IMG 
+SRC="theory-bk-six138x.gif" ALT="(1   1-)
+ 2 - N"ALIGN="MIDDLE" ><SUP> 2N+1</SUP> <FONT FACE="SYMBOL">å</FONT>
+     <SUB> k=0</SUB><SUP>2N+1</SUP><IMG 
+SRC="theory-bk-six139x.gif" ALT="(2N+1)
+   k"></TD>          <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six140x.gif" ALT="1
+2"><IMG 
+SRC="theory-bk-six141x.gif" ALT="(1   1-)
+ 2 - N"ALIGN="MIDDLE" ><SUP> 2N+1</SUP>(1 + 1)<SUP>2N+1</SUP></TD>                <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six142x.gif" ALT="1
+2"><IMG 
+SRC="theory-bk-six143x.gif" ALT="(    2)
+ 1 - N"ALIGN="MIDDLE" ><SUP> 2N+1</SUP></TD>                          <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six144x.gif" ALT="1
+2"><IMG 
+SRC="theory-bk-six145x.gif" ALT="((    2)N/2)
+  1-  N"ALIGN="MIDDLE" ><SUP> (4+2/N)</SUP></TD>                    <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+                   </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">³</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six146x.gif" ALT="1
+2"><IMG 
+SRC="theory-bk-six147x.gif" ALT="((    2)N/2)
+  1-  N"ALIGN="MIDDLE" ><SUP> 6</SUP></TD>                         <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+     </TR></TABLE>
+     </CENTER>                                                                                                               <IMG 
+SRC="theory-bk-six148x.gif" ALT="PICT" >
+                                                                                                                   </OL>
+   <P >
+   <P >According to Theorem <A 
+ HREF="#70002-4003t6.2.1">6.2.1</A>(a), a probabilistic program must have an error probability
+e(x) smaller than 1/2, in order to reduce in the probability of obtaining a wrong solution
+through repeatedly running the program. According to Theorem <A 
+ HREF="#70002-4003t6.2.1">6.2.1</A>(b), error probability
+e(x) smaller than some constant <FONT FACE="SYMBOL">e</FONT> &lt; 1/2 allows a reduction to a desired magnitude in
+speed that is independent from the given input x. On the other hand, by Theorem <A 
+ HREF="#70002-4003t6.2.1">6.2.1</A>(c)
+the required speed of reduction is bounded below by f(x) = 1/( (1/2) - e(x) ), because
+the probability <FONT FACE="SYMBOL">F</FONT><IMG 
+SRC="theory-bk-six149x.gif" ALT="(f(x),e(x))"ALIGN="MIDDLE" > of obtaining a wrong solution through repeatedly running
+the program for f(x) times is greater than 1/(2<IMG ALIGN="MIDDLE"
+SRC="cmmi10-25.gif" ALT="r"> <SUP>6</SUP>). In particular, when f(x) is
+more than a polynomial in |x|, then the required speed of reduction is similarly
+greater.
+   <P ><EM><A 
+   NAME="70002-5000"> </A><A 
+ HREF="#Q2-70002-5"  NAME="Q1-70002-5">Outputs of Probabilistic Programs</A></EM>
+   <P >The previous theorems motivate the following definitions.
+   <P >A probabilistic program P is said to have an <I>output</I><A NAME="70002-5001"> </A> y on input x, if the probability of P
+having a computation with output y on input x is greater than 1/2. If no such y exists, then
+the output of P on input x is undefined.<A NAME="70002-5002"> </A>
+   <P >A probabilistic program P is said to <I>compute<A NAME="70002-5003"> </A> a function</I> f(x) if P on each
+input x has probability 1 - e(x) for an accepting computation with output f(x),
+where
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="70002-5004xa"> </A>e(x) &lt; 1/2 whenever f(x) is defined.
+     <LI><A 
+   NAME="70002-5005xb"> </A>e(x) is undefined whenever f(x) is undefined.</OL>
+e(x) is said to be the <I>error<A NAME="70002-5006"> </A> probability</I> of P. The error probability e(x) is said to be a
+<I>bounded-error<A NAME="70002-5007"> </A> probability</I> if there exists a constant <FONT FACE="SYMBOL">e</FONT> &lt; 1/2 such that e(x) <FONT FACE="SYMBOL">£</FONT> <FONT FACE="SYMBOL">e</FONT> for all x on
+which e(x) is defined. P is said to be a <I>bounded-error<A NAME="70002-5008"> </A> probabilistic program</I> if it has a
+bounded-error probability.
+   <P >By the previous discussion it follows that the probabilistic programs, which have
+both polynomial time complexity and bounded-error probability, are &#34;good&#34;
+programs.
+   <P >
+   <P >[<A 
+ HREF="theory-bk-sixse3.html" >next</A>] [<A 
+ HREF="theory-bk-sixse1.html" >prev</A>] [<A 
+ HREF="theory-bk-sixse1.html#tailtheory-bk-sixse1.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-sixse2.html" >front</A>] [<A 
+ HREF="theory-bk-six.html#theory-bk-sixse2.html" >up</A>] <A 
+   NAME="tailtheory-bk-sixse2.html"> </A></BODY></HTML>

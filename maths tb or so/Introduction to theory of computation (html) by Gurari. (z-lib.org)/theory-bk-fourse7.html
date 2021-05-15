@@ -1,0 +1,361 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-four.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-fourli1.html" >next</A>] [<A 
+ HREF="#tailtheory-bk-fourse7.html">tail</A>] [<A 
+ HREF="theory-bk-four.html#theory-bk-fourse7.html" >up</A>]
+<H3>4.7 <A 
+   NAME="50007-220004.7"> </A><A 
+ HREF="theory-bk.html#Q2-50007-22"  NAME="Q1-50007-22">Post's Correspondence Problem</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-50007-23"  NAME="Q2-50007-23">The Undecidability of Post's Correspondence Problem</A>
+<BR>         <A 
+ HREF="#Q1-50007-24"  NAME="Q2-50007-24">Applications of Post's Correspondence Problem</A>
+   <P >The <I>Post's<A NAME="50007-22001"> </A> Correspondence Problem</I>, or PCP for short, consists of the following
+domain and question.
+      <DL><DT><STRONG>
+  <STRONG>Domain:  </STRONG> </STRONG><DD 
+>{ &lt;(x<SUB>1</SUB>, y<SUB>1</SUB>),<FONT FACE="SYMBOL"> ¼</FONT>, (x<SUB>k</SUB>, y<SUB>k</SUB>)&gt; | k <FONT FACE="SYMBOL">³</FONT> 1 and x<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , x<SUB>k</SUB>, y<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , y<SUB>k</SUB> are strings over
+      some alphabet. }
+      <DT><STRONG>
+  <STRONG>Question:</STRONG> </STRONG><DD 
+>Are there an integer n <FONT FACE="SYMBOL">³</FONT> 1 and indices i<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , i<SUB>n</SUB> for the given instance
+      &lt;(x<SUB>1</SUB>, y<SUB>1</SUB>),<FONT FACE="SYMBOL"> ¼</FONT>, (x<SUB>k</SUB>, y<SUB>k</SUB>)&gt; such that x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB>   =   y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>n</SUB></SUB>? Each sequence
+      i<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , i<SUB>n</SUB> that provides a yes answer is said to be a <I>witness</I> for a positive solution
+      to the given instance of PCP.</DL>
+The problem can be formulated also as a &#34;domino&#34; problem of the following
+form.
+      <DL><DT><STRONG>
+  <STRONG>Domain:  </STRONG> </STRONG><DD 
+>{ <IMG 
+SRC="theory-bk-four84x.gif" ALT="( |-|    |-|)
+  x1|    xk|
+  y1-,...,yk-"ALIGN="MIDDLE" >  | k <FONT FACE="SYMBOL">³</FONT> 1, and each  <IMG 
+SRC="theory-bk-four85x.gif" ALT="PICT" >
+      is a domino card with the string x<SUB>i</SUB> on its top and the string y<SUB>i</SUB> on its bottom,
+      1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> k. }
+      <DT><STRONG>
+  <STRONG>Question:</STRONG> </STRONG><DD 
+>Given k <FONT FACE="SYMBOL">³</FONT> 1 piles of cards
+      <P ><CENTER>
+      <PRE><IMG 
+SRC="theory-bk-four86x.gif" ALT=" |x1|   |xk|
+-y1 ,...,yk"></PRE></CENTER>
+      <P >with infinitely many cards in each pile, can one draw a sequence of n <FONT FACE="SYMBOL">³</FONT> 1
+      cards
+      <P ><CENTER>
+      <PRE><IMG 
+SRC="theory-bk-four87x.gif" ALT=" xi1|   |xin|
+yi1 ,...,yin"></PRE></CENTER>
+      <P >from these piles, so that the string x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB> formed on the top of the cards will
+      equal the string y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>n</SUB></SUB>  formed  on  the  bottom?  </DL>
+<STRONG>Example 4.7.1</STRONG> <A 
+   NAME="50007-22002t4.7.1"> </A> 
+PCP has the solution of yes for the instance &lt;(01, 0), (110010, 0), (1, 1111), (11, 01)&gt; or,
+equivalently, for the following instance in the case of the domino problem.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four88x.gif" ALT=" (|01||110010||-1-||11-)
+ -0-,---0--,1111 ,-01|"></PRE></CENTER>
+   <P >The tuple (i<SUB>1</SUB>, i<SUB>2</SUB>, i<SUB>3</SUB>, i<SUB>4</SUB>, i<SUB>5</SUB>, i<SUB>6</SUB>) = (1, 3, 2, 4, 4, 3) is a witness for a positive solution
+because x<SUB>1</SUB>x<SUB>3</SUB>x<SUB>2</SUB>x<SUB>4</SUB>x<SUB>4</SUB>x<SUB>3</SUB> = y<SUB>1</SUB>y<SUB>3</SUB>y<SUB>2</SUB>y<SUB>4</SUB>y<SUB>4</SUB>y<SUB>3</SUB> = 01111001011111. The positive solution has
+also the witnesses (1, 3, 2, 4, 4, 3, 1, 3, 2, 4, 4, 3), (1, 3, 2, 4, 4,3,1,3,2,4,4,3,1,3,2, 4, 4, 3),
+etc. On the other hand, the PCP has the solution no for &lt;(0, 10), (01, 1)&gt;. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="50007-23000"> </A><A 
+ HREF="#Q2-50007-23"  NAME="Q1-50007-23">The Undecidability of Post's Correspondence Problem</A></EM>
+<A NAME="50007-23001"> </A>
+   <P >Post's correspondence problem is very useful for showing the undecidability of many
+other problems by means of reducibility. Its undecidability follows from its capacity for
+simulating the computations of Turing machines, as exhibited indirectly in the following
+proof through derivations in Type 0 grammars.
+   <P ><STRONG>Theorem 4.7.1</STRONG> <A 
+   NAME="50007-23002t4.7.1"> </A> 
+The PCP is an undecidable problem.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="50007-23003t"> </A> 
+By Corollary <A 
+ HREF="theory-bk-fourse6.html#50006-21032t4.6.1">4.6.1</A> the membership problem is undecidable for Type 0 grammars. Thus, it
+is sufficient to show how from each instance (G, w) of the membership problem for Type
+0 grammars, an instance I can be constructed, such that the PCP has a positive solution at
+I if and only if w is in L(G).
+   <P >For the purpose of the proof consider any Type 0 grammar G = &lt;N, <FONT FACE="SYMBOL">S</FONT>, P, S&gt; and
+any string w in <FONT FACE="SYMBOL">S</FONT>*. With no loss of generality assume that #, ¢, and $ are new symbols not
+in N <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">S</FONT>. Then let the corresponding instance I = &lt;(x<SUB>1</SUB>, y<SUB>1</SUB>),<FONT FACE="SYMBOL"> ¼</FONT>, (x<SUB>k</SUB>, y<SUB>k</SUB>)&gt; of PCP be of the
+following form.
+   <P >PCP has a positive solution at I if and only if I can trace a derivation that starts at S
+and ends at w.
+   <P >For each derivation in G of the form S <FONT FACE="SYMBOL">Þ</FONT> <FONT FACE="SYMBOL">g</FONT><SUB>1</SUB> <FONT FACE="SYMBOL">Þ</FONT> · · · <FONT FACE="SYMBOL">Þ</FONT> <FONT FACE="SYMBOL">g</FONT><SUB>m</SUB> <FONT FACE="SYMBOL">Þ</FONT> w, the instance I has a
+witness (i<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, i<SUB>n</SUB>) of a positive solution such that either
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four89x.gif" ALT="                       |
+xi1···xin = yi1···yin = cS#g1#g2#g3#g4 ···gm#w$-"></PRE></CENTER>
+   <P >or
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-four90x.gif" ALT="                       |
+xi1 ···xin = yi1···yin = cS#S#g1#g2#g3#g4--··· gm#w$,"></PRE></CENTER>
+   <P >depending on whether m is even or odd, respectively.
+   <P >On the other hand, each witness (i<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, i<SUB>n</SUB>) of a positive solution for PCP at I
+has a smallest integer t <FONT FACE="SYMBOL">³</FONT> 1 such that x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>t</SUB></SUB>  =  y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>t</SUB></SUB>. In such a case,
+x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>t</SUB></SUB>  =  y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>t</SUB></SUB>  =  ¢S<IMG 
+SRC="theory-bk-four91x.gif" ALT="#g1
+----">#<FONT FACE="SYMBOL">g</FONT><SUB>2</SUB><IMG 
+SRC="theory-bk-four92x.gif" ALT="#g3
+----">#<FONT FACE="SYMBOL">g</FONT><SUB>4</SUB> · · · <FONT FACE="SYMBOL">g</FONT><SUB>m</SUB><IMG 
+SRC="theory-bk-four93x.gif" ALT="#w
+---"> for some derivation
+S <FONT FACE="SYMBOL">Þ</FONT>* <FONT FACE="SYMBOL">g</FONT><SUB>1</SUB> <FONT FACE="SYMBOL">Þ</FONT>* <FONT FACE="SYMBOL">g</FONT><SUB>2</SUB> <FONT FACE="SYMBOL">Þ</FONT>*  · · · <FONT FACE="SYMBOL">Þ</FONT>* <FONT FACE="SYMBOL">g</FONT><SUB>m</SUB> <FONT FACE="SYMBOL">Þ</FONT>* w.
+   <P >The instance I consists of pairs of the following form
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="50007-23004xa"> </A>A pair of the form (¢S<IMG 
+SRC="theory-bk-four94x.gif" ALT="#
+--">, ¢).
+     <LI><A 
+   NAME="50007-23005xb"> </A>A pair of the form ($, <IMG 
+SRC="theory-bk-four95x.gif" ALT="#w-">$).
+     <LI><A 
+   NAME="50007-23006xc"> </A>A pair of the form (X, <IMG 
+SRC="theory-bk-four96x.gif" ALT="X
+--">), and a pair of the form (<IMG 
+SRC="theory-bk-four97x.gif" ALT="X
+--">, X), for each symbol X
+     in <FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> N <FONT FACE="SYMBOL">È</FONT> {#}.
+     <LI><A 
+   NAME="50007-23007xd"> </A>A pair of the form (<FONT FACE="SYMBOL">b</FONT>, <IMG 
+SRC="theory-bk-four98x.gif" ALT="a-">), and a pair of the form (<IMG 
+SRC="theory-bk-four99x.gif" ALT="b-">, <FONT FACE="SYMBOL">a</FONT>), for each production
+     rule <FONT FACE="SYMBOL">a</FONT> <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">b</FONT> in G that satisfies <FONT FACE="SYMBOL">b</FONT><IMG 
+SRC="theory-bk-four100x.gif" ALT="/="ALIGN="MIDDLE" > <FONT FACE="SYMBOL">e</FONT>.
+     <LI><A 
+   NAME="50007-23008xe"> </A>A  pair  of  the  form  (X, <IMG 
+SRC="theory-bk-four101x.gif" ALT="Xa
+---">),  and  a  pair  of  the  form  (<IMG 
+SRC="theory-bk-four102x.gif" ALT="X
+--">, X<FONT FACE="SYMBOL">a</FONT>),  for  each
+     production rule <FONT FACE="SYMBOL">a</FONT> <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">e</FONT> in G and for each X in <FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> N <FONT FACE="SYMBOL">È</FONT> {#}.</OL>
+The underlined symbols are introduced to allow only (¢S<IMG 
+SRC="theory-bk-four103x.gif" ALT="#-">, ¢) as a first pair, and ($, <IMG 
+SRC="theory-bk-four104x.gif" ALT="#w-">$) as
+a last pair, for each witness of a positive solution. The pair (¢S<IMG 
+SRC="theory-bk-four105x.gif" ALT="#-">, ¢) in (a) is used to start the
+tracing of a derivation at S. The pair ($, <IMG 
+SRC="theory-bk-four106x.gif" ALT="#w-">$) in (b) is used to end the tracing of a
+derivation at w.
+   <P >The other pairs are used to force the tracing to go from each given sentential form <FONT FACE="SYMBOL">g</FONT> to
+a sentential form <FONT FACE="SYMBOL">g</FONT>', such that <FONT FACE="SYMBOL">g</FONT> <FONT FACE="SYMBOL">Þ</FONT>* <FONT FACE="SYMBOL">g</FONT>'. The tracing is possible because each of the pairs
+(x<SUB>i</SUB>, y<SUB>i</SUB>) is defined so that y<SUB>i</SUB> provides a &#34;window&#34; into <FONT FACE="SYMBOL">g</FONT>, whereas x<SUB>i</SUB> provides an
+appropriate replacement for y<SUB>i</SUB> in <FONT FACE="SYMBOL">g</FONT>'.
+   <P >The pairs of the form (X, <IMG 
+SRC="theory-bk-four107x.gif" ALT="X-">) and (<IMG 
+SRC="theory-bk-four108x.gif" ALT="X-">, X) in (c) are used for copying substrings
+from <FONT FACE="SYMBOL">g</FONT> to <FONT FACE="SYMBOL">g</FONT>'. The pairs of the form (<FONT FACE="SYMBOL">b</FONT>, <IMG 
+SRC="theory-bk-four109x.gif" ALT="a-">) and (<IMG 
+SRC="theory-bk-four110x.gif" ALT="b-">, <FONT FACE="SYMBOL">a</FONT>), <FONT FACE="SYMBOL">b</FONT><IMG 
+SRC="theory-bk-four111x.gif" ALT="/="ALIGN="MIDDLE" > <FONT FACE="SYMBOL">e</FONT>, in (d) are used for
+replacing substrings <FONT FACE="SYMBOL">a</FONT> in <FONT FACE="SYMBOL">g</FONT> by substrings <FONT FACE="SYMBOL">b</FONT> in <FONT FACE="SYMBOL">g</FONT>'. The pairs of the form (X, <IMG 
+SRC="theory-bk-four112x.gif" ALT="Xa-">) and
+(<IMG 
+SRC="theory-bk-four113x.gif" ALT="X-">, X<FONT FACE="SYMBOL">a</FONT>) in (e) are used for replacing substrings <FONT FACE="SYMBOL">a</FONT> in <FONT FACE="SYMBOL">g</FONT> by the empty string <FONT FACE="SYMBOL">e</FONT> in
+<FONT FACE="SYMBOL">g</FONT>'.
+   <P >The window is provided because for each 1 <FONT FACE="SYMBOL">£</FONT> i<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, i<SUB>j</SUB> <FONT FACE="SYMBOL">£</FONT> k, the strings x = x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>j</SUB></SUB>
+and y = y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>j</SUB></SUB> satisfy the following properties.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="50007-23009xa"> </A>If x is a prefix of y, then x = y. Otherwise there would have been a least l
+     such that x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>l</SUB></SUB> is a proper prefix of y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>l</SUB></SUB>. In which case (x<SUB>i<SUB>l</SUB></SUB>, y<SUB>i<SUB>l</SUB></SUB>)
+     would be equal to (v, uvv') for some nonempty strings v and v'. However, by
+     definition, no pair of such a form exists in I.
+     <LI><A 
+   NAME="50007-23010xb"> </A>If y is a proper prefix of x, then the sum of the number of appearances of
+     the  symbols  # and  <IMG 
+SRC="theory-bk-four114x.gif" ALT="#-">  in  x  is  equal  to  one  plus  the  sum  of  the  number  of
+     appearances of # and <IMG 
+SRC="theory-bk-four115x.gif" ALT="#-"> in y. Otherwise, there would be a least l &gt; 1 for
+     which x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>l</SUB></SUB> and y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>l</SUB></SUB>  do  not  satisfy  the  property.  In  such  a  case,
+     because of the minimality of l, x<SUB>i<SUB>l</SUB></SUB>  and y<SUB>i<SUB>l</SUB></SUB>  would have to differ in the number
+     of # and <IMG 
+SRC="theory-bk-four116x.gif" ALT="#-"> they contain. That is, by definition of I, (x<SUB>i<SUB>l</SUB></SUB>, y<SUB>i<SUB>l</SUB></SUB>) would have to
+     equal either ($, <IMG 
+SRC="theory-bk-four117x.gif" ALT="#w-">$) or (¢<IMG 
+SRC="theory-bk-four118x.gif" ALT="S#-">, ¢). However, ($, <IMG 
+SRC="theory-bk-four119x.gif" ALT="#w-">) is an impossible choice
+     because it implies that x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>l</SUB></SUB>  =  y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>l</SUB></SUB>, and (¢<IMG 
+SRC="theory-bk-four120x.gif" ALT="S#-">, ¢) is an impossible
+     choice because it implies that x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>l-1</SUB></SUB> = y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>l-1</SUB></SUB> (and hence that the
+     property holds).</OL>
+The correctness of the construction can be shown by induction on the number of
+production rules used in the derivation under consideration or, equivalently, on the number
+of pairs of type (d) and (e) used in the given witness for a positive solution. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P ><STRONG>Example 4.7.2</STRONG> <A 
+   NAME="50007-23011t4.7.2"> </A> 
+If G is a grammar whose set of production rules is {S <FONT FACE="SYMBOL">®</FONT> aSaSaS, aS <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">e</FONT>},
+then the instance of the PCP that corresponds to (G, <FONT FACE="SYMBOL">e</FONT>) as determined by the
+proof of Theorem <A 
+ HREF="#50007-23002t4.7.1">4.7.1</A>, is &lt;(¢S<IMG 
+SRC="theory-bk-four121x.gif" ALT="#-">, ¢), (<IMG 
+SRC="theory-bk-four122x.gif" ALT="aSaSaS-">, S), (aSaSaS, <IMG 
+SRC="theory-bk-four123x.gif" ALT="S-">), (<IMG 
+SRC="theory-bk-four124x.gif" ALT="#-">, #aS),
+(#, <IMG 
+SRC="theory-bk-four125x.gif" ALT="#aS-">), (<IMG 
+SRC="theory-bk-four126x.gif" ALT="a">, aaS), (a, <IMG 
+SRC="theory-bk-four127x.gif" ALT="aaS">), (<IMG 
+SRC="theory-bk-four128x.gif" ALT="S-">, SaS), (S, <IMG 
+SRC="theory-bk-four129x.gif" ALT="SaS-">), (#, <IMG 
+SRC="theory-bk-four130x.gif" ALT="#-">), (<IMG 
+SRC="theory-bk-four131x.gif" ALT="#-">, #), (a, <IMG 
+SRC="theory-bk-four132x.gif" ALT="a">), (<IMG 
+SRC="theory-bk-four133x.gif" ALT="a">, a), (S, <IMG 
+SRC="theory-bk-four134x.gif" ALT="S-">),
+(<IMG 
+SRC="theory-bk-four135x.gif" ALT="S-">, S), ($, <IMG 
+SRC="theory-bk-four136x.gif" ALT="#-">$)&gt;.
+   <P >The instance has a positive solution with a witness that corresponds to the arrangement
+in Figure <A 
+ HREF="#50007-23012r4.7.1">4.7.1</A>.
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50007-23012r4.7.1"> </A>
+<A 
+   NAME="50007-23012r4.7.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-7-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 4.7.1 </STRONG></NOBR></TD><TD  
+>An arrangement of PCP cards for describing a derivation for <FONT FACE="SYMBOL">e</FONT>, in the grammar that
+consists of the production rules S <FONT FACE="SYMBOL">®</FONT> aSaSaS and aS <FONT FACE="SYMBOL">®</FONT> <FONT FACE="SYMBOL">e</FONT>.                                      </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>The witness also corresponds to the derivation S <FONT FACE="SYMBOL">Þ</FONT>* S <FONT FACE="SYMBOL">Þ</FONT> aSaSaS <FONT FACE="SYMBOL">Þ</FONT> aSaS <FONT FACE="SYMBOL">Þ</FONT> aS <FONT FACE="SYMBOL">Þ</FONT> <FONT FACE="SYMBOL">e</FONT>
+in G. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="50007-24000"> </A><A 
+ HREF="#Q2-50007-24"  NAME="Q1-50007-24">Applications of Post's Correspondence Problem</A></EM>
+   <P >The following corollary exhibits how Post's correspondence problem can be used to
+show the undecidability of some other problems by means of reducibility.
+   <P ><STRONG>Corollary 4.7.1</STRONG> <A 
+   NAME="50007-24001t4.7.1"> </A> 
+The equivalence problem is undecidable for finite-state<A NAME="50007-24002"> </A> transducers.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="50007-24003t"> </A> 
+Consider any instance &lt;(x<SUB>1</SUB>, y<SUB>1</SUB>),<FONT FACE="SYMBOL"> ¼</FONT>, (x<SUB>k</SUB>, y<SUB>k</SUB>)&gt; of PCP. Let <FONT FACE="SYMBOL">D</FONT> be the minimal alphabet such
+that x<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , x<SUB>k</SUB>, y<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , y<SUB>k</SUB> are all in <FONT FACE="SYMBOL">D</FONT>*. With no loss of generality assume that <FONT FACE="SYMBOL">S</FONT> = {1,<FONT FACE="SYMBOL"> ¼</FONT>, k} is an
+alphabet.
+   <P >Let M<SUB>1</SUB> = &lt;Q<SUB>1</SUB>, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT><SUB>1</SUB>, q<SUB>0</SUB>, F<SUB>1</SUB>&gt; be a finite-state transducer that computes the
+relation <FONT FACE="SYMBOL">S</FONT>* × <FONT FACE="SYMBOL">D</FONT>*, that is, a finite-state transducer that accepts all inputs over <FONT FACE="SYMBOL">S</FONT>, and on
+each such input can output any string over <FONT FACE="SYMBOL">D</FONT>.
+   <P >Let M<SUB>2</SUB> = &lt;Q<SUB>2</SUB>, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">D</FONT>, <FONT FACE="SYMBOL">d</FONT><SUB>2</SUB>, q<SUB>0</SUB>, F<SUB>2</SUB>&gt; be a finite-state transducer that on input i<SUB>1</SUB> · · · i<SUB>n</SUB>
+outputs some w such that either w<IMG 
+SRC="theory-bk-four137x.gif" ALT="/="ALIGN="MIDDLE" > x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB> or w<IMG 
+SRC="theory-bk-four138x.gif" ALT="/="ALIGN="MIDDLE" > y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>n</SUB></SUB>. Thus, M<SUB>2</SUB> on input
+i<SUB>1</SUB> · · · i<SUB>n</SUB> can output any string in <FONT FACE="SYMBOL">D</FONT>* if x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB><IMG 
+SRC="theory-bk-four139x.gif" ALT="/="ALIGN="MIDDLE" >  y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>n</SUB></SUB>. On the other hand, if
+x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB>  =  y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>n</SUB></SUB>, then M<SUB>2</SUB> on such an input i<SUB>1</SUB> · · · i<SUB>n</SUB> can output any string in <FONT FACE="SYMBOL">D</FONT>*,
+except for x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB>.
+   <P >It follows that M<SUB>1</SUB> is equivalent to M<SUB>2</SUB> if and only if the PCP has a negative answer at
+the given instance &lt;(x<SUB>1</SUB>, y<SUB>1</SUB>),<FONT FACE="SYMBOL"> ¼</FONT>, (x<SUB>k</SUB>, y<SUB>k</SUB>)&gt;. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><STRONG>Example 4.7.3</STRONG> <A 
+   NAME="50007-24004t4.7.3"> </A> 
+Consider the instance &lt;(x<SUB>1</SUB>, y<SUB>1</SUB>), (x<SUB>2</SUB>, y<SUB>2</SUB>)&gt; = &lt;(0, 10), (01, 1)&gt; of PCP. Using the
+terminology in the proof of Corollary <A 
+ HREF="#50007-24001t4.7.1">4.7.1</A>, <FONT FACE="SYMBOL">D</FONT> = {0, 1} and <FONT FACE="SYMBOL">S</FONT> = {1, 2}. The finite-state
+transducer M<SUB>1</SUB> can be as in Figure <A 
+ HREF="#50007-24005r4.7.2">4.7.2</A>(a),
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="50007-24005r4.7.2"> </A>
+<A 
+   NAME="50007-24005r4.7.2"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-four-4-7-2.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 4.7.2 </STRONG></NOBR></TD><TD  
+>The finite-state transducer in (a) is equivalent to the finite-state transducer in (b) if
+and only if the PCP has a positive solution at &lt;(0, 10), (01, 1)&gt;.                              </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>and the finite-state transducer M<SUB>2</SUB> can be as in Figure <A 
+ HREF="#50007-24005r4.7.2">4.7.2</A>(b).
+   <P >M<SUB>2</SUB> on a given input i<SUB>1</SUB> · · · i<SUB>n</SUB> nondeterministically chooses between its components
+M<SUB>x</SUB> and M<SUB>y</SUB>. In M<SUB>x</SUB> it outputs a prefix of x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB>, and in M<SUB>y</SUB> it outputs a
+prefix of y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>n</SUB></SUB>. Then M<SUB>2</SUB> nondeterministically switches to M<SUB>&gt;</SUB>, M<SUB>&lt;</SUB>, or
+M<SUB><IMG 
+SRC="theory-bk-four140x.gif" ALT="/="ALIGN="MIDDLE" ></SUB>.
+   <P >M<SUB>2</SUB> switches from M<SUB>x</SUB> to M<SUB>&gt;</SUB> to obtain an output that has x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB> as a proper
+prefix. M<SUB>2</SUB> switches from M<SUB>x</SUB> to M<SUB>&lt;</SUB> to obtain an output that is proper prefix of
+x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB>. M<SUB>2</SUB> switches from M<SUB>x</SUB> to M<SUB><IMG 
+SRC="theory-bk-four141x.gif" ALT="/="ALIGN="MIDDLE" ></SUB> to obtain an output that differs from x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB>
+within the first |x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB>| symbols.
+   <P >M<SUB>2</SUB> switches from M<SUB>y</SUB> to M<SUB>&gt;</SUB>, M<SUB>&lt;</SUB>, M<SUB><IMG 
+SRC="theory-bk-four142x.gif" ALT="/="ALIGN="MIDDLE" ></SUB> for similar reasons, respectively. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >The following corollary has a proof similar to that given for the previous
+one.
+   <P ><STRONG>Corollary 4.7.2</STRONG> <A 
+   NAME="50007-24006t4.7.2"> </A> 
+<A NAME="50007-24007"> </A>
+<A NAME="50007-24008"> </A>
+The equivalence problem is undecidable for pushdown automata.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="50007-24009t"> </A> 
+Consider any instance &lt;(x<SUB>1</SUB>, y<SUB>1</SUB>),<FONT FACE="SYMBOL"> ¼</FONT>, (x<SUB>k</SUB>, y<SUB>k</SUB>)&gt; of PCP. Let <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB> be the minimal alphabet such
+that x<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , x<SUB>k</SUB>, y<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , y<SUB>k</SUB> are all in <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB>*. With no loss of generality assume that <FONT FACE="SYMBOL">S</FONT><SUB>2</SUB> = {1,<FONT FACE="SYMBOL"> ¼</FONT>, k} is
+an alphabet, that <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB> and <FONT FACE="SYMBOL">S</FONT><SUB>2</SUB> are mutually disjoint, and that Z<SUB>0</SUB> is a new symbol not in
+<FONT FACE="SYMBOL">S</FONT><SUB>1</SUB>.
+   <P >Let M<SUB>1</SUB> = &lt;Q<SUB>1</SUB>, <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB> <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">S</FONT><SUB>2</SUB>, <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB> <FONT FACE="SYMBOL">È</FONT> Z<SUB>0</SUB>, <FONT FACE="SYMBOL">d</FONT><SUB>1</SUB>, q<SUB>0</SUB>, Z<SUB>0</SUB>, F<SUB>1</SUB>&gt; be a pushdown automaton
+that accepts all the strings in (<FONT FACE="SYMBOL">S</FONT><SUB>1</SUB> <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">S</FONT><SUB>2</SUB>)*. (In fact, M<SUB>1</SUB> can also be a finite-state
+automaton.)
+   <P >Let M<SUB>2</SUB> = &lt;Q<SUB>2</SUB>, <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB> <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">S</FONT><SUB>2</SUB>, <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB> <FONT FACE="SYMBOL">È</FONT> Z<SUB>0</SUB>, <FONT FACE="SYMBOL">d</FONT><SUB>2</SUB>, q<SUB>0</SUB>, Z<SUB>0</SUB>, F<SUB>2</SUB>&gt; be a pushdown automaton that
+accepts an input w if and only if it is of the form i<SUB>n</SUB> · · · i<SUB>1</SUB>u, for some i<SUB>1</SUB> · · · i<SUB>n</SUB> in <FONT FACE="SYMBOL">S</FONT><SUB>1</SUB>* and
+some u in <FONT FACE="SYMBOL">S</FONT><SUB>2</SUB>*, such that either u<IMG 
+SRC="theory-bk-four143x.gif" ALT="/="ALIGN="MIDDLE" > x<SUB>i<SUB>1</SUB></SUB> · · · x<SUB>i<SUB>n</SUB></SUB>  or  u<IMG 
+SRC="theory-bk-four144x.gif" ALT="/="ALIGN="MIDDLE" > y<SUB>i<SUB>1</SUB></SUB> · · · y<SUB>i<SUB>n</SUB></SUB>.
+   <P >It follows that M<SUB>1</SUB> and M<SUB>2</SUB> are equivalent if and only if the PCP has a negative answer
+at the given instance. <IMG 
+SRC="theory-bk-four0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >The pushdown automaton M<SUB>2</SUB> in the proof of Corollary <A 
+ HREF="#50007-24006t4.7.2">4.7.2</A> can be constructed to halt
+on a given input if and only if it accepts the input. The constructed pushdown automaton
+halts on all inputs if and only if the PCP has a negative solution at the given
+instance. Hence, the following corollary is also implied from the undecidability of
+PCP.
+   <P ><STRONG>Corollary 4.7.3</STRONG> <A 
+   NAME="50007-24010t4.7.3"> </A> 
+The uniform halting problem is undecidable for pushdown automata.<A NAME="50007-24011"> </A>
+   <P >
+   <P >PCP is a partially decidable problem because given an instance &lt;(x<SUB>1</SUB>, y<SUB>1</SUB>),<FONT FACE="SYMBOL"> ¼</FONT>, (x<SUB>k</SUB>, y<SUB>k</SUB>)&gt;
+of the problem one can search exhaustively for a witness of a positive solution, for
+example, in {1,<FONT FACE="SYMBOL"> ¼</FONT>, k}* in canonical order. With such an algorithm a witness will eventually
+be found if the instance has a positive solution. Alternatively, if the instance has a negative
+solution, then the search will never terminate. <A NAME="50007-24012"> </A>
+   <P >
+   <P >[<A 
+ HREF="theory-bk-fourli1.html" >next</A>] [<A 
+ HREF="theory-bk-fourse7.html" >front</A>] [<A 
+ HREF="theory-bk-four.html#theory-bk-fourse7.html" >up</A>] <A 
+   NAME="tailtheory-bk-fourse7.html"> </A></BODY></HTML>

@@ -1,0 +1,197 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-seven.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-sevenli2.html" >next</A>] [<A 
+ HREF="theory-bk-sevense6.html" >prev</A>] [<A 
+ HREF="theory-bk-sevense6.html#tailtheory-bk-sevense6.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-sevenli1.html">tail</A>] [<A 
+ HREF="theory-bk-seven.html#theory-bk-sevenli1.html" >up</A>]
+<H3><A 
+   NAME="80007-27000"> </A><A 
+ HREF="theory-bk.html#Q2-80007-27"  NAME="Q1-80007-27">Exercises</A></H3>
+<A 
+   NAME="80007-27001r7.1"> </A><A 
+   NAME="80007-27002r7.1.1"> </A>
+     <DL><DT><STRONG>
+7.1.1 </STRONG><DD 
+> Let Q be the problem of determining the number of times the value 0 appears
+     in any given sequence. Describe a parallel program <IMG 
+SRC="theory-bk-seven95x.gif" ALT="^P"> = &lt;P, <TT>X</TT>, <TT>Y</TT>&gt; of depth
+     complexity D(N) = O(log N) that solves Q. The parallel program should
+     allow  each  sequential  program  P<SUB>i</SUB>  to  communicate  with  at  most  one  other
+     sequential program P<SUB>j</SUB> in each step.
+<A 
+   NAME="80007-27003r7.2"> </A><A 
+   NAME="80007-27004r7.2.1"> </A>
+     <DT><STRONG>
+7.2.1 </STRONG><DD 
+>Show  that  a  CREW  PRAM  of  linear  size  complexity  and  O(log n)  depth
+     complexity, can output the sum of its input values.
+<A 
+   NAME="80007-27005r7.2.2"> </A>
+     <DT><STRONG>
+7.2.2 </STRONG><DD 
+>Show that a COMMON PRAM of linear size complexity, under the uniform
+     cost criterion, can determine in O(1) time whether an input consists only of
+     values that are equal to 1.
+<A 
+   NAME="80007-27006r7.2.3"> </A>
+     <DT><STRONG>
+7.2.3 </STRONG><DD 
+>Show that for each of the following statements there is a PRIORITY PRAM which
+     can, under the uniform cost criterion, determine in O(1) time whether the statement
+     holds.
+         <OL TYPE="a" 
+>
+         <LI><A 
+   NAME="80007-27007xa"> </A>The number of distinct values in the input is greater than two.
+         <LI><A 
+   NAME="80007-27008xb"> </A>The input values can be sorted into a sequence of consecutive numbers
+         starting at 1.</OL>
+<A 
+   NAME="80007-27009r7.2.4"> </A>
+     <DT><STRONG>
+7.2.4 </STRONG><DD 
+>Show that one step of a PRIORITY PRAM can be simulated in constant depth
+     by a COMMON PRAM.
+<A 
+   NAME="80007-27010r7.2.5"> </A>
+     <DT><STRONG>
+7.2.5 </STRONG><DD 
+>A TOLERANT PRAM<A NAME="80007-27011"> </A> is a PRAM that resolves the write conflicts in favor
+     of  no  processor,  that  is,  it  leaves  unchanged  the  content  of  the  memory
+     cells  being  involved  in  the  conflicts.  Show  that  each  TOLERANT  PRAM
+     of size complexity Z(n) and depth complexity D(n) can be simulated by a
+     PRIORITY PRAM of size complexity Z(n) and depth complexity O(D(n)).
+<A 
+   NAME="80007-27012r7.3"> </A><A 
+   NAME="80007-27013r7.3.1"> </A>
+     <DT><STRONG>
+7.3.1 </STRONG><DD 
+>Show that { x | x is in {0,1}*, and 1 appears exactly once in x } is decidable
+     by  a  family  of  circuits  of  size  complexity  O(n)  and  depth  complexity
+     O(log n).
+<A 
+   NAME="80007-27014r7.3.2"> </A>
+     <DT><STRONG>
+7.3.2 </STRONG><DD 
+>Show that each circuit of size Z(n) and depth D(n) has an equivalent circuit,
+     of size at most Z<SUP>2</SUP>(n) and depth at most D(n)log Z(n), whose gates all have
+     outdegree of at most 2.
+<A 
+   NAME="80007-27015r7.4"> </A><A 
+   NAME="80007-27016r7.4.1"> </A>
+     <DT><STRONG>
+7.4.1 </STRONG><DD 
+>Provide a table look-up circuit that accepts the language L = {1011, 0100,
+     1101, 1001}.
+<A 
+   NAME="80007-27017r7.4.2"> </A>
+     <DT><STRONG>
+7.4.2 </STRONG><DD 
+>Show that each of the following languages is decidable by a uniform family of
+     circuits of linear size complexity and O(log n) depth complexity.
+         <OL TYPE="a" 
+>
+         <LI><A 
+   NAME="80007-27018xa"> </A>{ 0<SUP>i</SUP>1<SUP>i</SUP>0<SUP>i</SUP> | i <FONT FACE="SYMBOL">³</FONT> 1 }.
+         <LI><A 
+   NAME="80007-27019xb"> </A>{ 0<SUP>i</SUP>1<SUP>j</SUP> | i <FONT FACE="SYMBOL">£</FONT> j }.
+         </OL>
+     <P >
+     </DL>
+   <P >
+A gate g' is said to be the predecessor of a gate g in a circuit c<SUB>n</SUB> with respect to a path <FONT FACE="SYMBOL">p</FONT> if
+any of the following cases holds.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="80007-27020xa"> </A><FONT FACE="SYMBOL">p</FONT> = <FONT FACE="SYMBOL">e</FONT> and g' = g.
+     <LI><A 
+   NAME="80007-27021xb"> </A><FONT FACE="SYMBOL">p</FONT> is in {L, R}, and (g, t, g<SUB>L</SUB>, g<SUB>R</SUB>) is in c<SUB>n</SUB> for g<SUB><FONT FACE="SYMBOL">p</FONT></SUB> = g''.
+     <LI><A 
+   NAME="80007-27022xc"> </A><FONT FACE="SYMBOL">p</FONT> = <FONT FACE="SYMBOL">p</FONT><SUB>1</SUB><FONT FACE="SYMBOL">p</FONT><SUB>2</SUB> for some g'' such that g'' is the predecessor of g in c<SUB>n</SUB> with respect
+     to <FONT FACE="SYMBOL">p</FONT><SUB>1</SUB>, and g' is the predecessor of g'' in c<SUB>n</SUB> with respect to <FONT FACE="SYMBOL">p</FONT><SUB>2</SUB>.</OL>
+The <I>connection<A NAME="80007-27023"> </A> language</I> L<SUB>C</SUB> for a family C = (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) of circuits is the language
+{ (g, g', <FONT FACE="SYMBOL">p</FONT>, <FONT FACE="SYMBOL">t</FONT>, n) | <FONT FACE="SYMBOL">p</FONT> is in {L, R}*. |<FONT FACE="SYMBOL">p</FONT>| <FONT FACE="SYMBOL">£</FONT> O(log (size of c<SUB>n</SUB>)). g' is the predecessor of g in
+c<SUB>n</SUB> with respect to <FONT FACE="SYMBOL">p</FONT>. If g' is a gate of type t in {¬, <FONT FACE="SYMBOL">Ú</FONT>, <FONT FACE="SYMBOL">Ù</FONT>} or a constant node t in {0, 1},
+then <FONT FACE="SYMBOL">t</FONT> = t, otherwise <FONT FACE="SYMBOL">t</FONT> = <FONT FACE="SYMBOL">L</FONT> }.
+   <P ><STRONG>Example </STRONG> <A 
+   NAME="80007-27024t"> </A> 
+Consider the circuit c<SUB>2</SUB> of the following form.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-seven96x.gif" ALT=" (4,¬ ,2,2)(5,Ù,1,4)(6,Ù,1,3)(7,Ù,2,1)(8,Ù,3,1)(9,Ù,5,6)(10,Ù,7,8)(11,Ú ,9,10)(11)"></PRE></CENTER>
+   <P >The gate g' = 9 of c<SUB>2</SUB> is the predecessor of the gate g = 11 with respect to <FONT FACE="SYMBOL">p</FONT> = L, and
+g' = 2 is the predecessor of g = 9 with respect to <FONT FACE="SYMBOL">p</FONT> = LRR (see Example <A 
+ HREF="theory-bk-sevense3.html#80003-6002t7.3.5">7.3.5</A> and
+Figure <A 
+ HREF="theory-bk-sevense3.html#80003-6003r7.3.3">7.3.3</A>).
+   <P >For a family of circuits C that contains the circuit c<SUB>2</SUB>, both (11, 9, L, <FONT FACE="SYMBOL">Ù</FONT>, 2) and
+(9, 2, LRR, <FONT FACE="SYMBOL">L</FONT>, 2) are in L<SUB>C</SUB>.<IMG 
+SRC="theory-bk-seven15x.gif" ALT=" *** " 
+ >
+   <P >A family C = (c<SUB>0</SUB>, c<SUB>1</SUB>, c<SUB>2</SUB>,<FONT FACE="SYMBOL"> ¼</FONT> ) of circuits is said to be <I>uniform<SUB>E</SUB></I> if there exists a
+deterministic Turing machine<A NAME="80007-27025"> </A> that accepts the language L<SUB>C</SUB>, and on any given input
+(g, g', <FONT FACE="SYMBOL">p</FONT>, <FONT FACE="SYMBOL">t</FONT>, n) the Turing machine halts in O(log ( size of c<SUB>n</SUB>)) time.
+<A 
+   NAME="80007-27026r7.4.3"> </A>
+     <DL><DT><STRONG>
+7.4.3 </STRONG><DD 
+>Show  that  every  uniform<SUB>E</SUB>  family  of  circuits  is  also  a  uniform  family  of
+     circuits.
+<A 
+   NAME="80007-27027r7.5"> </A><A 
+   NAME="80007-27028r7.5.1"> </A>
+     <DT><STRONG>
+7.5.1 </STRONG><DD 
+>Find SUBTAPE _MODIFIER for Example <A 
+ HREF="theory-bk-sevense5.html#80005-16001t7.5.1">7.5.1</A>.
+<A 
+   NAME="80007-27029r7.5.2"> </A>
+     <DT><STRONG>
+7.5.2 </STRONG><DD 
+>Analyze the depth of c<SUB>n</SUB> in the proof of Lemma <A 
+ HREF="theory-bk-sevense5.html#80005-12001t7.5.1">7.5.1</A>.
+<A 
+   NAME="80007-27030r7.5.3"> </A>
+     <DT><STRONG>
+7.5.3 </STRONG><DD 
+>Show that the containment <I>U_DEPTH</I> (D(n)) <FONT FACE="SYMBOL">Í</FONT> <I>DSPACE</I> (D(n))<A NAME="80007-27031"> </A> holds for
+     fully space-constructible functions D(n).
+     <P ><I>Hint</I>:   A circuit that recognizes a language has the following properties.
+         <OL TYPE="a" 
+>
+         <LI><A 
+   NAME="80007-27032xa"> </A>The depth d of the circuit provides the upper bound of 2<SUP>d</SUP> on the size of
+         the circuit.
+         <LI><A 
+   NAME="80007-27033xb"> </A>Each node in the circuit can be represented by a path, given in reverse,
+         from the node in question to the output node.</OL>
+<A 
+   NAME="80007-27034r7.5.4"> </A>
+     <DT><STRONG>
+7.5.4 </STRONG><DD 
+>Show   that   <I>U_NC</I><SUP>1</SUP>   contains   <I>NSPACE</I> (1),<A NAME="80007-27035"> </A>   that   is,   the   class   of   regular
+     languages.
+<A 
+   NAME="80007-27036r7.5.5"> </A>
+     <DT><STRONG>
+7.5.5 </STRONG><DD 
+>Show that for each k <FONT FACE="SYMBOL">³</FONT> 0 there are languages that are not in <I>SIZE</I> (n<SUP>k</SUP>).<A NAME="80007-27037"> </A>
+<A 
+   NAME="80007-27038r7.5.6"> </A>
+     <DT><STRONG>
+7.5.6 </STRONG><DD 
+>Show that <I>RP</I> <FONT FACE="SYMBOL">Í</FONT> <FONT FACE="SYMBOL">È</FONT><SUB>k<FONT FACE="SYMBOL">³</FONT>0</SUB><I>SIZE</I> (n<SUP>k</SUP>).<A NAME="80007-27039"> </A>
+     </DL>
+   <P >
+   <P >
+   <P >[<A 
+ HREF="theory-bk-sevenli2.html" >next</A>] [<A 
+ HREF="theory-bk-sevense6.html" >prev</A>] [<A 
+ HREF="theory-bk-sevense6.html#tailtheory-bk-sevense6.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-sevenli1.html" >front</A>] [<A 
+ HREF="theory-bk-seven.html#theory-bk-sevenli1.html" >up</A>] <A 
+   NAME="tailtheory-bk-sevenli1.html"> </A></BODY></HTML>

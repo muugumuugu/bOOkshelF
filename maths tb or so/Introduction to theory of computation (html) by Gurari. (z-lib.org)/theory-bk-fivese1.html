@@ -1,0 +1,460 @@
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-five.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-fivese2.html" >next</A>] [<A 
+ HREF="#tailtheory-bk-fivese1.html">tail</A>] [<A 
+ HREF="theory-bk-five.html#theory-bk-fivese1.html" >up</A>]
+<H3>5.1 <A 
+   NAME="60001-20005.1"> </A><A 
+ HREF="theory-bk.html#Q2-60001-2"  NAME="Q1-60001-2">Time and Space</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-60001-3"  NAME="Q2-60001-3">Random Access Machines</A>
+<BR>         <A 
+ HREF="#Q1-60001-4"  NAME="Q2-60001-4">Time and Space on Turing Transducers</A>
+<BR>         <A 
+ HREF="#Q1-60001-5"  NAME="Q2-60001-5">Complexity of Problems</A>
+<BR>         <A 
+ HREF="#Q1-60001-6"  NAME="Q2-60001-6">Complexity Classes</A>
+<BR>         <A 
+ HREF="#Q1-60001-7"  NAME="Q2-60001-7">Time and Space on Universal Turing Transducers</A>
+<A NAME="60001-2001"> </A>
+   <P >The time and space requirements of a given program depend on the program itself and
+on the agent executing it.
+   <P >Each agent has its own sets of primitive data items and primitive operations. Each
+primitive data item of a given agent requires some fixed amount of memory space.
+Similarly, each primitive operation requires some fixed amount of execution
+time.
+   <P >Moreover, each pair of agents that execute the same program are relatively primitive.
+That is, each primitive data item of one agent can be represented by some fixed number of
+primitive data items of the other agent. Similarly, each primitive operation of one
+agent can be simulated by some fixed number of primitive operations of the other
+agent.
+   <P >When executing a given program, an agent represents the elements the program
+processes with its own primitive data items. Similarly, the agent simulates with its own
+primitive operations the instructions the program uses.
+   <P >As a result, each computation of a given program requires some c<SUB>1</SUB>s space and some
+c<SUB>2</SUB>t time, where s and t depend only on the program and c<SUB>1</SUB> and c<SUB>2</SUB> depend only on the
+agent. c<SUB>1</SUB> represents the packing power of the agent; c<SUB>2</SUB> represents the speed of the agent
+and the simulation power of its operations.
+   <P >Since different agents differ in their implied constants c<SUB>1</SUB> and c<SUB>2</SUB>, and since the study of
+computation aims at the development of a general theory, then one can, with no loss of
+generality, restrict the study of time and space to behavioral analyses. That is, to analyses
+in which the required accuracy is only up to some linear factor from the time and memory
+requirements of the actual agents. Such analyses can be carried out by employing models
+of computing machines, such as the random access machines and Turing transducers used
+here.<A NAME="60001-2002"> </A>
+   <P ><EM><A 
+   NAME="60001-3000"> </A><A 
+ HREF="#Q2-60001-3"  NAME="Q1-60001-3">Random Access Machines</A></EM>
+<A NAME="60001-3001"> </A>
+   <P >In general, programs are written for execution on computers. Consequently,
+abstractions of computers are of central interest when considering the resources that
+programs require. A conventional computer can be viewed as having an input tape, an
+output tape, a fixed program, and a memory (see Figure <A 
+ HREF="#60001-3002r5.1.1">5.1.1</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60001-3002r5.1.1"> </A>
+<A 
+   NAME="60001-3002r5.1.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-1-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.1.1 </STRONG></NOBR></TD><TD  
+>The structure of a computer.                                                                                        </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>   <P >The input and output tapes are one-way sequential tapes used for holding the input
+values and the output values, respectively. The memory consists of cells that can
+be accessed in any order. Each cell can hold values from a domain that has a
+binary representation. The number of cells can be assumed to be unbounded,
+because of the availability of giant memories for computers. Similarly, because
+of the large variety of values that can be stored in each cell, the size of each
+cell can be assumed to be unbounded. The fixed program can consist of any
+&#34;standard&#34; kind of deterministic instructions (e.g., read, write, add, subtract,
+goto).
+   <P >Such abstract computers are called <I>random access machines</I>, or simply RAM's. In
+what follows, RAM's will be identified with deterministic programs of similar
+characteristics. In particular, the programs will be assumed to have domains of variables
+that are equal to the set of natural numbers, and variables that can be viewed as
+one-dimensional arrays. Each entry <TT>A</TT>(l) of an array <TT>A</TT> will be assumed to be accessed
+through an indexing operator whose parameters are <TT>A</TT> and l.
+   <P ><STRONG>Example 5.1.1</STRONG> <A 
+   NAME="60001-3003t5.1.1"> </A> 
+The RAM in Figure <A 
+ HREF="#60001-3004r5.1.2">5.1.2</A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60001-3004r5.1.2"> </A>
+              <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE><B>read</B> <TT>K</TT>
+<B>for</B> <TT>i</TT> := 1 <B>up to</B> <TT>K</TT> <B>do read</B> <TT>A(i)</TT>
+<B>for</B> <TT>i</TT> := 2 <B>up to</B> <TT>K</TT> <B>do</B>
+    <B>for</B> <TT>j</TT> := <TT>i</TT> <B>down to</B> 2 <B>do</B>
+        <B>if</B> <TT>A</TT>(<TT>j</TT>) &lt; <TT>A</TT>(<TT>j</TT> - 1) <B>then</B> <TT>A</TT>(<TT>j</TT>) <FONT FACE="SYMBOL">«</FONT> <TT>A</TT>(<TT>j</TT> - 1)
+<B>for</B> <TT>i</TT> := 1 <B>up to</B> <TT>K</TT> <B>do write</B> <TT>A</TT>(<TT>i</TT>)                  </PRE></TD></TR></TABLE>
+<A 
+   NAME="60001-3004r5.1.2"> </A>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.1.2 </STRONG></NOBR></TD><TD  
+>A RAM that sorts any given set of numbers.                                                               </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>sorts any given set of natural numbers. It is represented by a deterministic program of free
+format and employs the variables <TT>i</TT>, <TT>j</TT>, <TT>K</TT>, and <TT>A</TT>.
+   <P >The RAM reads into <TT>K</TT> the cardinality N of the set to be sorted, and into <TT>A</TT>(1), <FONT FACE="SYMBOL">¼</FONT> , <TT>A</TT>(N)
+the N elements to be sorted. Then the RAM sorts the set incrementally, starting with the
+trivially sorted subset that consists only of the element in <TT>A</TT>(1). At each stage the element
+in the next entry <TT>A</TT>(l) of <TT>A</TT> is added to the sorted subset and placed in its appropriate
+position. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** ">
+   <P >
+   <P >In<A NAME="60001-3005"> </A> the case of RAM's there are two common kinds of cost criteria for the space and
+time analyses: the logarithmic and the uniform cost criteria. <A NAME="60001-3006"> </A>
+   <P >Under the <I>logarithmic<A NAME="60001-3007"> </A> cost criterion</I> the following assumptions are made. The
+primitive data items are the bits in the binary representations of the natural numbers being
+used. The primitive operations are the bit operations needed for executing the instructions
+of the RAM's. The memory needed in a computation of a given RAM is equal to that
+required by the entries of the variables. The memory required by a given entry of a
+variable, in turn, is equal to the length of the binary representation of the largest value v
+being stored in it, that is, to <FONT FACE="SYMBOL">é</FONT>log (v + 1)<FONT FACE="SYMBOL">ù</FONT> if v<IMG 
+SRC="theory-bk-five1x.gif" ALT="/="ALIGN="MIDDLE" > 0 and to 1 if v = 0. The time needed by
+the computation is equal to the number of bit operations needed for executing the
+instructions.
+   <P >The <I>uniform<A NAME="60001-3008"> </A> cost criterion</I> is a degeneration of the logarithmic cost criterion in which
+the following assumptions are made. Each value is a primitive data item, the memory
+required by a given variable is equal to the number of entries in the array that it represents,
+the memory required by a RAM is equal to the total memory required by its variables,
+and the time required by a RAM is equal to the number of instructions being
+executed.
+   <P ><STRONG>Example 5.1.2</STRONG> <A 
+   NAME="60001-3009t5.1.2"> </A> 
+Consider the RAM of Example <A 
+ HREF="#60001-3003t5.1.1">5.1.1</A> (see Figure <A 
+ HREF="#60001-3004r5.1.2">5.1.2</A>). On input N, v<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , v<SUB>N </SUB> the
+RAM requires 1 unit of space for <TT>K </TT>, one unit for <TT>i</TT>, one for <TT>j</TT>, and N units for
+<TT>A </TT>, under the uniform cost criterion. On the other hand, under the logarithmic
+cost criterion, the RAM requires <FONT FACE="SYMBOL">é</FONT>log N<FONT FACE="SYMBOL">ù</FONT> units of space for <TT>K</TT>, <FONT FACE="SYMBOL">é</FONT>log N<FONT FACE="SYMBOL">ù</FONT> units for
+<TT>i</TT>, <FONT FACE="SYMBOL">é</FONT>log N<FONT FACE="SYMBOL">ù</FONT> for <TT>j</TT>, and Nmax(<FONT FACE="SYMBOL">é</FONT>log v<SUB>1</SUB><FONT FACE="SYMBOL">ù</FONT>,<FONT FACE="SYMBOL"> ¼</FONT>, <FONT FACE="SYMBOL">é</FONT>log v<SUB>N </SUB><FONT FACE="SYMBOL">ù</FONT>) units of space for <TT>A</TT>. (In this
+example <FONT FACE="SYMBOL">é</FONT>log <FONT FACE="SYMBOL">a</FONT><FONT FACE="SYMBOL">ù</FONT> is assumed to equal <FONT FACE="SYMBOL">é</FONT>log (<FONT FACE="SYMBOL">a</FONT> + 1)<FONT FACE="SYMBOL">ù</FONT> if <FONT FACE="SYMBOL">a</FONT><IMG 
+SRC="theory-bk-five2x.gif" ALT="/="ALIGN="MIDDLE" > 0 and to equal 1 if
+<FONT FACE="SYMBOL">a</FONT> = 0.)
+   <P >The <B>read</B> <TT>K</TT> instruction takes one unit of time under the uniform cost criterion, and
+<FONT FACE="SYMBOL">é</FONT>log N<FONT FACE="SYMBOL">ù</FONT> units under the logarithmic cost criterion.
+   <P >If <TT>i</TT> holds the value l then the instruction <B>read</B> <TT>A</TT>(<TT>i</TT>) takes 2 units of time under the
+uniform cost criterion: one unit for accessing the value l of <TT>i</TT>, and one unit for accessing
+the value of <TT>A</TT>(l). Under the logarithmic cost criterion the instruction requires
+<FONT FACE="SYMBOL">é</FONT>log l<FONT FACE="SYMBOL">ù</FONT> + <FONT FACE="SYMBOL">é</FONT>log v<SUB>l</SUB><FONT FACE="SYMBOL">ù</FONT> units of time. Similarly, in such a case the instruction <B>write</B> <TT>A</TT>(<TT>i</TT>) takes 2
+units of time under the uniform cost criterion, and <FONT FACE="SYMBOL">é</FONT>log l<FONT FACE="SYMBOL">ù</FONT> + <FONT FACE="SYMBOL">é</FONT>log (the <I>l</I>th smallest value in
+{v<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, v<SUB>N </SUB>})<FONT FACE="SYMBOL">ù</FONT> units under the logarithmic cost criterion.
+   <P >The code segments <B>for</B> <TT>i</TT> := 1 <B>up to</B> <TT>K</TT> <B>do read</B> <TT>A(i)</TT> and  <B>for</B> <TT>i</TT> := 1 <B>up to</B> <TT>K</TT> <B>do write</B> <TT>A</TT>(<TT>i</TT>)
+take time that is linear in N under the uniform cost criterion, and that is linear in
+(1 + log v<SUB>1</SUB>) + (log 2 + log v<SUB>2</SUB>) + · · · + (log N + log v<SUB>N </SUB>) <FONT FACE="SYMBOL">£</FONT> Nlog N + log (v<SUB>1</SUB> · · · v<SUB>N </SUB>)
+under the logarithmic cost criterion.
+   <P >The RAM requires space that is linear in N under the uniform cost criterion,
+and linear in Nlog m under the logarithmic cost criterion. m denotes the largest
+value in the input. The RAM requires time that is linear in N<SUP>2</SUP> under the uniform
+cost criterion, and linear in N<SUP>2</SUP>log m under the logarithmic cost criterion. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" ***
+" 
+ >
+   <P >
+   <P >In general, both the time and the space required for finding a solution to a problem at a
+given instance increase with the length of the representation of the instance. Consequently,
+the time and space requirements of computing machines are specified by functions of the
+length of the inputs.<A NAME="60001-3010"> </A>
+   <P >In what follows, n will be used for denoting the length of the instances in
+question.
+   <P ><STRONG>Example 5.1.3</STRONG> <A 
+   NAME="60001-3011t5.1.3"> </A> 
+A natural number greater than 1 and divisible only by 1 and itself, is called a <I>prime<A NAME="60001-3012"> </A>
+number</I>. The <I>primality<A NAME="60001-3013"> </A> problem</I> asks for any given positive integer number m whether it is
+prime. The RAM in Figure <A 
+ HREF="#60001-3014r5.1.3">5.1.3</A>,
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60001-3014r5.1.3"> </A>
+             <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE><B>read</B> <TT>x</TT>
+<B>if</B> <TT>x</TT> &lt; 2 <B>then halt</B> with answer no
+<B>if</B> <TT>x</TT> = 2 <B>then halt</B> with answer yes
+<TT>y</TT> := <FONT FACE="SYMBOL">é</FONT><IMG 
+SRC="theory-bk-five3x.gif" ALT="r --
+  x" > <FONT FACE="SYMBOL">ù</FONT>
+<B>do</B>
+    <B>if</B> <TT>x</TT> is divisible by <TT>y</TT> <B>then halt</B> with answer no
+   <TT>y</TT> := <TT>y</TT> - 1
+<B>until</B> <TT>y</TT> = 1
+<B>halt</B> with answer yes                               </PRE></TD></TR></TABLE>
+<A 
+   NAME="60001-3014r5.1.3"> </A>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.1.3 </STRONG></NOBR></TD><TD  
+>A RAM that solves the primality problem.                                                                  </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>represented by a deterministic program in free format, solves the primality problem using
+a brute-force approach.
+   <P >An input m can be given to the RAM in a unary or binary representation, whereas the
+variables can hold their values only in binary. A unary representation for m has length
+n = m, and a binary representation for m has length n = <FONT FACE="SYMBOL">é</FONT>log (m + 1)<FONT FACE="SYMBOL">ù</FONT> if m<IMG 
+SRC="theory-bk-five4x.gif" ALT="/="ALIGN="MIDDLE" > 0 and
+length n = 1 if m = 0.
+   <P >With a unary representation for a given instance m of the problem, under the uniform
+cost criterion, the RAM requires a constant space, and time linear in n. On the other
+hand, under the logarithmic cost criterion, the RAM requires space linear in log n
+and time linear in n(log n)<SUP>k</SUP> for some k &gt; 0. A linear time in n is required for
+reading the input m and storing it in binary (see Exercise <A 
+ HREF="theory-bk-fiveli1.html#60007-34006r5.1.2">5.1.2</A>), and a polynomial
+time in log n is required for checking the divisibility of m by an integer i, where
+2 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> <IMG 
+SRC="theory-bk-five5x.gif" ALT="r --
+  m" >.
+   <P >With a binary representation for a given instance m of the problem, the RAM requires
+a constant space under the uniform cost criterion, and space linear in n under the
+logarithmic cost criterion. But the algorithm requires time polynomial in m, or in 2<SUP>n</SUP>, under
+both the uniform and logarithmic cost criteria. <A NAME="60001-3015"> </A> <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="60001-4000"> </A><A 
+ HREF="#Q2-60001-4"  NAME="Q1-60001-4">Time and Space on Turing Transducers</A></EM>
+<A NAME="60001-4001"> </A>
+   <P >In the case of Turing transducers we assume the following. The transition rules are the
+primitive operations, and the characters of the alphabets are the primitive data items. Each
+move takes one unit of time, and the time a computation takes is equal to the number of
+moves made during the computation. The space that a computation requires is equal to the
+number of locations visited in the auxiliary work tape, which has the maximal such
+number. (A possible alternative for the space measurement could be the sum of the
+number of locations visited over all the auxiliary work tapes. However, since the
+number of auxiliary work tapes is fixed for a given Turing transducer, and since
+constant factors are ignored in the analyses performed here, we use the traditional
+definition.)
+   <P >A Turing transducer M is said to be a <I>T(n) time-bounded Turing transducer</I>, or of
+<I>time complexity T(n)</I>, if all the possible computations of M on each input x of length n
+take no more than T(n) time. M is said to be <I>polynomially<A NAME="60001-4002"> </A> time-bounded</I>, or of
+<I>polynomial time complexity</I>, if T(n) is a polynomial in n. The Turing transducer M is said
+to be an <I>S(n) space-bounded Turing transducer</I>, or of <I>space complexity S(n)</I>, if all the
+possible computations of M on each input x of length n take no more than S(n) space. M
+is said to be <I>polynomially space-bounded</I>, or of <I>polynomial space complexity</I>, if S(n) is a
+polynomial in n. M is said to be <I>logspace-bounded</I><A NAME="60001-4003"> </A>, or of <I>logspace complexity</I>, if
+S(n) = c log n for some constant c. Similar definitions also hold for Turing machines,
+RAM's, and other classes of computing machines.
+   <P >The following statement adds a refinement to Church's thesis. As in the case
+of the original thesis, the refinement cannot be proved to be correct. However,
+here too one can intuitively be convinced of the correctness of the statement, by
+showing the existence of translations between the different classes of models
+of computation under which the result is invariant. The translations between
+RAM's and deterministic Turing transducers can be similar to those exhibited in
+Section 4.2.
+   <P ><STRONG>The Sequential Computation Thesis<A NAME="60001-4004"> </A> </STRONG> <A 
+   NAME="60001-4005t"> </A> 
+A function is computable (or, respectively, partially computable) by an algorithm A only if
+it is computable (or, respectively, partially computable) by a deterministic Turing
+transducer that satisfies the following conditions: A on a given input has a computation that
+takes T(n) time and S(n) space only if on such an input the Turing transducer has a
+computation that takes p(T(n)) time and p(S(n)) space, where p() is some fixed
+polynomial not dependent on the input.
+   <P ><EM><A 
+   NAME="60001-5000"> </A><A 
+ HREF="#Q2-60001-5"  NAME="Q1-60001-5">Complexity of Problems</A></EM>
+   <P >With no loss of generality, in what follows it is assumed that a time-bound T(n) is
+equal to max(n, <FONT FACE="SYMBOL">é</FONT>T(n)<FONT FACE="SYMBOL">ù</FONT>), that is, is equal to at least the time needed to read all the input.
+In addition, a space-bound S(n) is assumed to equal max(1, <FONT FACE="SYMBOL">é</FONT>S(n)<FONT FACE="SYMBOL">ù</FONT>). log 0<A NAME="60001-5001"> </A> is
+assumed to equal l. f(n) is assumed to equal <FONT FACE="SYMBOL">é</FONT>f(n)<FONT FACE="SYMBOL">ù</FONT> for all the other functions
+f(n).
+   <P >The <I>big O<A NAME="60001-5002"> </A> notation</I> f(n) = O(g(n)) will be used for specifying that there exist a
+constant c &gt; 0 and n<SUB>0</SUB> such that f(n) <FONT FACE="SYMBOL">£</FONT> cg(n) for all n <FONT FACE="SYMBOL">³</FONT> n<SUB>0</SUB>. In such a case, f(n) will be
+said to be <I>of<A NAME="60001-5003"> </A> order</I> g(n).
+   <P >A problem will be said to be of <I>time complexity</I> T(n) if it is solvable by a T(n)
+time-bounded, deterministic Turing transducer. The problem will be said to be of
+<I>nondeterministic time complexity</I> T(n) if it is solvable by a T(n) time-bounded Turing
+transducer. The problem will be said to be of <I>space complexity</I> S(n) if it is solvable by an
+S(n) space-bounded, deterministic Turing transducer. The problem will be said to be of
+<I>nondeterministic space complexity</I> S(n) if it is solvable by an S(n) space-bounded Turing
+transducer.
+   <P >Similarly, a language will be said to be of <I>time complexity</I> T(n) if it is accepted by a
+T(n) time-bounded, deterministic Turing machine. The language will be said to be of
+<I>nondeterministic time complexity</I> T(n) if it is accepted by a T(n) time-bounded,
+nondeterministic Turing machine. The language will be said to be of <I>space complexity</I>
+S(n) if it is accepted by an S(n) space-bounded, deterministic Turing machine. The
+language will be said to be of <I>nondeterministic space</I> complexity S(n) if it is accepted by
+an S(n) space-bounded, nondeterministic Turing machine.
+   <P ><EM><A 
+   NAME="60001-6000"> </A><A 
+ HREF="#Q2-60001-6"  NAME="Q1-60001-6">Complexity Classes</A></EM>
+   <P >The following classes are important to our study of time and space.
+     <DL><DT><STRONG>
+<I>DTIME</I> (T(n))  </STRONG><DD 
+>--   <P >the class<A NAME="60001-6001"> </A> of languages that have time complexity O(T(n)).
+     <DT><STRONG>
+<I>NTIME</I> (T(n))  </STRONG><DD 
+>--   <P >the   class   of   <A NAME="60001-6002"> </A>languages   that   have   nondeterministic   time
+complexity O(T(n)).
+     <DT><STRONG>
+<I>DSPACE</I> (S(n)) </STRONG><DD 
+>--   <P >the   class   of<A NAME="60001-6003"> </A>   languages   that   have   deterministic   space
+complexity O(S(n)).
+     <DT><STRONG>
+<I>NSPACE</I> (S(n)) </STRONG><DD 
+>--   <P >the  class  of  <A NAME="60001-6004"> </A>languages  that  have  nondeterministic  space
+complexity O(S(n)).
+     <DT><STRONG>
+<I>P</I>  </STRONG><DD 
+>--   the class of membership<A NAME="60001-6005"> </A> problems for the languages in
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-five6x.gif" ALT="  È
+   DTIME  (p(n))
+p(n)"></PRE></CENTER>
+     <P >(p(n) stands for a polynomial in n.)
+     <DT><STRONG>
+<I>NP</I> </STRONG><DD 
+>--   the<A NAME="60001-6006"> </A> class of membership problems for the languages in
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-five7x.gif" ALT="  È
+    NTIME (p(n)).
+p(n)"></PRE></CENTER>
+     <DT><STRONG>
+<I>EXPTIME</I> </STRONG><DD 
+>--   the class of<A NAME="60001-6007"> </A> membership problems for the languages in
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-five8x.gif" ALT="  È  DTIME (2p(n)).
+p(n)"></PRE></CENTER>
+     <DT><STRONG>
+<I>PSPACE</I>  </STRONG><DD 
+>--   the class<A NAME="60001-6008"> </A> of membership problems for the languages in
+     <P ><CENTER>
+     <PRE><IMG 
+SRC="theory-bk-five9x.gif" ALT="  È
+    DSPACE (p(n)).
+p(n)"></PRE></CENTER>
+     <DT><STRONG>
+<I>NLOG</I> </STRONG><DD 
+>--   the class of<A NAME="60001-6009"> </A> membership problems for the languages in <I>NSPACE</I> (log n).
+     <DT><STRONG>
+<I>DLOG</I> </STRONG><DD 
+>--   the class of<A NAME="60001-6010"> </A> membership problems for the languages in <I>DSPACE</I> (log n).</DL>
+So<A NAME="60001-6011"> </A> that our analyses of the complexity of problems will be meaningful, only &#34;natural&#34;
+representations are assumed for their instances. The &#34;naturalness&#34; is considered with
+respect to the resources being analyzed.<A NAME="60001-6012"> </A>
+   <P ><STRONG>Example 5.1.4</STRONG> <A 
+   NAME="60001-6013t5.1.4"> </A> 
+The primality problem can be solved by a deterministic Turing transducer in
+polynomial time if the instances are given in unary representations, and in exponential
+time if the instances are given in nonunary representations (see Example <A 
+ HREF="#60001-3011t5.1.3">5.1.3</A>).
+However, for a given instance m both approaches require time that is polynomial in
+m.
+   <P >When considering the complexity of the primality problem, a nonunary representation
+for the instances is considered natural and a unary representation for the instances is
+considered unnatural. The specific choice of the cardinality d of a nonunary representation
+is of no importance, because the lengths of such different representations of a number m
+are equal up to a constant factor. Specifically, a length <A NAME="60001-6014"> </A>log<SUB>d<SUB>1</SUB></SUB>m<A NAME="60001-6015"> </A> and a length log<SUB>d<SUB>2</SUB></SUB>m, for a
+pair of representations of m, satisfy the relation log<SUB>d<SUB>1</SUB></SUB>m = (log<SUB>d<SUB>1</SUB></SUB>d<SUB>2</SUB>)log<SUB>d<SUB>2</SUB></SUB>m when d<SUB>1</SUB> and
+d<SUB>2</SUB> are greater than 1.
+   <P >Consequently, the RAM in Figure <A 
+ HREF="#60001-3014r5.1.3">5.1.3</A> and the sequential computation thesis imply
+that the primality problem is of exponential time complexity. <A NAME="60001-6016"> </A><A NAME="60001-6017"> </A> <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="60001-7000"> </A><A 
+ HREF="#Q2-60001-7"  NAME="Q1-60001-7">Time and Space on Universal Turing Transducers</A></EM>
+<A NAME="60001-7001"> </A>
+   <P >An analysis of the proof of Theorem <A 
+ HREF="theory-bk-fourse4.html#50004-17001t4.4.1">4.4.1</A> provides the following lemma.
+   <P ><STRONG>Lemma 5.1.1</STRONG> <A 
+   NAME="60001-7002t5.1.1"> </A> 
+The universal Turing transducer U of Theorem <A 
+ HREF="theory-bk-fourse4.html#50004-17001t4.4.1">4.4.1</A> on a given input (M, x), of a
+deterministic Turing transducer M and an input x for M,
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60001-7003xa"> </A>Halts within c<SUB>M </SUB>t<SUP>2</SUP> moves, if M halts within t moves on input x and t <FONT FACE="SYMBOL">³</FONT> |x|.
+     <LI><A 
+   NAME="60001-7004xb"> </A>Visits at most c<SUB>M </SUB>s locations in each of the auxiliary work tapes, if M visits
+     no more than s locations in each of its auxiliary work tapes and s <FONT FACE="SYMBOL">³</FONT> log |x|.</OL>
+c<SUB>M </SUB> is assumed to be some polynomial in the length of the representation of M. (The
+polynomial does not depend on M.)
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60001-7005t"> </A> 
+Assume the notations in the proof of Theorem <A 
+ HREF="theory-bk-fourse4.html#50004-17001t4.4.1">4.4.1</A>. The number of moves that U needs to
+check for proper input (M, x) is at most some constant times |x|, where the constant
+depends only on the length of the representation of M.
+   <P >Specifically, U needs |E(M)| + 3 moves for finding E(M). |E(M)| moves for
+scanning E(M), and 3 moves for determining the 01 that follows the suffix 01
+of E(M).
+   <P >Checking for a proper representation E(M) of a Turing transducer M takes a number
+of moves, which is linear in |E(M)|, that is,
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60001-7006xa"> </A>|E(M)| moves for determining the number m of auxiliary work tapes of M,
+     and for verifying that each transition rule <FONT FACE="SYMBOL">t</FONT> = (q, a, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>, p, d<SUB>0</SUB>, c<SUB>1</SUB>, d<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, c<SUB>m</SUB>,
+     d<SUB>m</SUB>, <FONT FACE="SYMBOL">r</FONT>) of M contains 3m + 5 entries. Each transition rule <FONT FACE="SYMBOL">t</FONT> is represented
+     in E(M) by a substring E(<FONT FACE="SYMBOL">t</FONT>) that is enclosed between two separators of the
+     form 01. The substring E(<FONT FACE="SYMBOL">t</FONT>) must contain exactly 3m + 5 0's.
+     <LI><A 
+   NAME="60001-7007xb"> </A>|E(M)| moves for determining that the head movements d<SUB>i</SUB> in the transition
+     rules are represented by binary strings of the form E(-1) = 011, E(0) =
+     0111, and E(+1) = 01111.
+     <LI><A 
+   NAME="60001-7008xc"> </A>|E(M)| moves for determining that the transition rules refer to the blank
+     symbol B of M only in the auxiliary work tapes, and to the left endmarker ¢
+     and the right endmarker $ only in the input tape.
+     <LI><A 
+   NAME="60001-7009xd"> </A>|E(M)| moves for determining that none of the states of M is represented by
+     the binary string 0.</OL>
+Checking that M is deterministic takes a number of moves that is linear in |E(M)|<SUP>2</SUP>. The
+checking can be done by copying E(M) to an auxiliary work tape of U, and then
+comparing each transition rule <FONT FACE="SYMBOL">t</FONT> in the auxiliary work tape of U against each of the
+transition rules that follows <FONT FACE="SYMBOL">t</FONT> in the input tape of U.
+   <P >Checking for a proper input x for the Turing transducer M requires time that is linear
+in |E(M)|(|E(M)| + |x|). Specifically, U in time that is linear in |E(M)|<SUP>2</SUP> determines
+the input symbols of M and stores them in an auxiliary work tape. Then U in
+|E(M)| · |x| time checks that only symbols from the auxiliary work tape are in
+x.
+   <P >U requires log |x| + |E(M)|(ms + 1) + 2m + 3 <FONT FACE="SYMBOL">£</FONT> <IMG 
+SRC="theory-bk-five10x.gif" ALT="~c">s locations in the auxiliary work
+tapes for recording the strings #E(q)#|u|#E(u<SUB>1</SUB>)#E(v<SUB>1</SUB>)# · · · #E(u<SUB>m</SUB>)#
+E(v<SUB>m</SUB>)# which represent the configurations (uqv, u<SUB>1</SUB>qv<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, u<SUB>m</SUB>qv<SUB>m</SUB>, w) of M, where
+<IMG 
+SRC="theory-bk-five11x.gif" ALT="~c"> = 8|E(M)|m. U requires log |x| locations for |u|, |E(M)| locations for q, |E(M)|
+locations for each symbol in each u<SUB>i</SUB>, |E(M)| locations for each symbol in each v<SUB>i</SUB>, and
+2m + 3 locations for the symbols #.
+   <P >Given a string  #E(q)#|u|#E(u<SUB>1</SUB>)#E(v<SUB>1</SUB>)# · · · #E(u<SUB>m</SUB>)#E(v<SUB>m</SUB>)#, the universal
+Turing transducer U can determine in at most <IMG 
+SRC="theory-bk-five12x.gif" ALT="^c">(s + |x|) <FONT FACE="SYMBOL">£</FONT> <IMG 
+SRC="theory-bk-five13x.gif" ALT="^c">t moves the first m + 2
+elements q, a, b<SUB>1</SUB>, <FONT FACE="SYMBOL">¼</FONT> , b<SUB>m</SUB> of the transition rule <FONT FACE="SYMBOL">t</FONT> = (q, a, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>, p, d<SUB>0</SUB>, c<SUB>1</SUB>, d<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, c<SUB>m</SUB>, d<SUB>m</SUB>, <FONT FACE="SYMBOL">r</FONT>)
+to be used in the next simulated move of M, where <IMG 
+SRC="theory-bk-five14x.gif" ALT="^c"> is some constant whose
+magnitude is linear in |E(M)| and b<SUB>i</SUB> denotes the first symbol in v<SUB>i</SUB>B. The
+transducer takes at most <IMG 
+SRC="theory-bk-five15x.gif" ALT="^c">s moves for extracting |u|, E(q), E(b<SUB>1</SUB>), <FONT FACE="SYMBOL">¼</FONT> , E(b<SUB>m</SUB>) from
+#E(q)#|u|#E(u<SUB>1</SUB>)#E(v<SUB>1</SUB>)# · · · #E(u<SUB>m</SUB>)#E(v<SUB>m</SUB>)#. In particular, 6|u| moves are
+needed over the string representing |u| for counting down from |u| to 0 (see
+Exercise <A 
+ HREF="theory-bk-fiveli1.html#60007-34006r5.1.2">5.1.2</A>), and |E(M)| + |01| + |E(u)| moves are needed for extracting the symbol a
+from the input tape.
+   <P >Given the first m + 2 elements (q, a, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>) in <FONT FACE="SYMBOL">t</FONT>, the universal Turing transducer U
+can determine the tuple (p, d<SUB>0</SUB>, c<SUB>1</SUB>, d<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, c<SUB>m</SUB>, d<SUB>m</SUB>, <FONT FACE="SYMBOL">r</FONT>) in a single sweep over the input tape.
+Having such a tuple, U can also modify the recorded configuration of M in a single
+sweep.
+   <P >Consequently, the total number of moves that U needs for simulating the moves of M
+is no greater than ct<SUP>2</SUP>. c is some polynomial (independent of M) in the length of the
+standard binary representation of M. <A NAME="60001-7010"> </A><IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >
+   <P >[<A 
+ HREF="theory-bk-fivese2.html" >next</A>] [<A 
+ HREF="theory-bk-fivese1.html" >front</A>] [<A 
+ HREF="theory-bk-five.html#theory-bk-fivese1.html" >up</A>] <A 
+   NAME="tailtheory-bk-fivese1.html"> </A></BODY></HTML>

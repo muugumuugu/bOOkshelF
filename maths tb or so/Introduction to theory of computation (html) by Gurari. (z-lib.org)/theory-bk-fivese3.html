@@ -1,0 +1,679 @@
+
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-five.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-fivese4.html" >next</A>] [<A 
+ HREF="theory-bk-fivese2.html" >prev</A>] [<A 
+ HREF="theory-bk-fivese2.html#tailtheory-bk-fivese2.html" >prev-tail</A>] [<A 
+ HREF="#tailtheory-bk-fivese3.html">tail</A>] [<A 
+ HREF="theory-bk-five.html#theory-bk-fivese3.html" >up</A>]
+<H3>5.3 <A 
+   NAME="60003-110005.3"> </A><A 
+ HREF="theory-bk.html#Q2-60003-11"  NAME="Q1-60003-11">Nondeterministic Polynomial Time</A></H3>
+   <P >
+      <A 
+ HREF="#Q1-60003-12"  NAME="Q2-60003-12">From Nondeterministic to Deterministic Time</A>
+<BR>         <A 
+ HREF="#Q1-60003-13"  NAME="Q2-60003-13">The Satisfiability Problem</A>
+<BR>         <A 
+ HREF="#Q1-60003-14"  NAME="Q2-60003-14">The Structure of E<SUB>x</SUB></A>
+<BR>         <A 
+ HREF="#Q1-60003-15"  NAME="Q2-60003-15">The Variables of E<SUB>x</SUB></A>
+<BR>         <A 
+ HREF="#Q1-60003-16"  NAME="Q2-60003-16">The Structure of E<SUB>conf<SUB>i</SUB></SUB></A>
+<BR>         <A 
+ HREF="#Q1-60003-17"  NAME="Q2-60003-17">The Structure of E<SUB>init</SUB></A>
+<BR>         <A 
+ HREF="#Q1-60003-18"  NAME="Q2-60003-18">The Structure of E<SUB>rule<SUB>i</SUB></SUB> and E<SUB>accept</SUB> </A>
+<BR>         <A 
+ HREF="#Q1-60003-19"  NAME="Q2-60003-19">The Structure of E<SUB>follow<SUB>i</SUB></SUB></A>
+<BR>         <A 
+ HREF="#Q1-60003-20"  NAME="Q2-60003-20">The 3-Satisfiability Problem</A>
+   <P >The subclass <I>NP</I><A NAME="60003-11001"> </A>, of the class of problems that can be solved nondeterministically in
+polynomial time, seems to play a central role in the investigation of intractability. By
+definition, <I>NP</I> contains the class <I>P</I> of those problems that can be decided deterministically
+in polynomial time, and by Corollary <A 
+ HREF="#60003-12001t5.3.1">5.3.1</A> the class <I>NP</I> is contained in the class
+<I>EXPTIME</I><A NAME="60003-11002"> </A> of those problems that can be decided deterministically in exponential
+time. Moreover, by Theorem <A 
+ HREF="theory-bk-fivese2.html#60002-8010t5.2.1">5.2.1</A>, <I>P</I><A NAME="60003-11003"> </A> is properly contained in <I>EXPTIME</I> (see
+Figure <A 
+ HREF="#60003-11004r5.3.1">5.3.1</A>).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60003-11004r5.3.1"> </A>
+<A 
+   NAME="60003-11004r5.3.1"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-3-1.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.3.1 </STRONG></NOBR></TD><TD  
+>A classification of the decidable problems.                                                                 </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>However, it is not known whether <I>P</I> is properly contained in <I>NP</I> and whether <I>NP</I> is
+properly contained in <I>EXPTIME</I>. Consequently, the importance of <I>NP</I> arises from the
+refinement that it may offer to the boundary between the tractability and intractability of
+problems.
+   <P >In particular, if it is discovered that <I>NP</I> is not equal to <I>P</I>, as is widely being
+conjectured, then <I>NP</I> is likely to provide some of the easiest problems (namely, the
+<I>NP</I>-complete problems) for proving the intractability of new problems by means of
+reducibility. On the other hand, if <I>NP</I> is discovered to equal <I>P</I>, then many important
+problems, worked on without success for several decades, will turn out to be solvable in
+polynomial time.
+   <P ><EM><A 
+   NAME="60003-12000"> </A><A 
+ HREF="#Q2-60003-12"  NAME="Q1-60003-12">From Nondeterministic to Deterministic Time</A></EM>
+   <P >An analysis of the proof of Theorem <A 
+ HREF="theory-bk-twose3.html#30003-13001t2.3.1">2.3.1</A> implies an exponential increase in the
+number of states a deterministic finite-state automaton needs for simulating a
+nondeterministic finite-state automaton. The following corollary implies a similar
+exponential increase in the number of moves that a deterministic Turing machine requires
+for simulating a nondeterministic Turing machine.
+   <P ><STRONG>Corollary 5.3.1</STRONG> <A 
+   NAME="60003-12001t5.3.1"> </A> 
+For each nondeterministic Turing transducer M<SUB>1</SUB> there exists an equivalent deterministic
+Turing transducer M<SUB>2</SUB> with the following characteristics. If M<SUB>1</SUB> halts on a given input x in
+t moves, then M<SUB>2</SUB> on such an input halts within 2<SUP>ct</SUP> moves, where c is some constant that
+depends only on M<SUB>1</SUB>. Moreover, in such a case M<SUB>2</SUB> visits at most 2t locations on each of
+its auxiliary work tapes.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60003-12002t"> </A> 
+Let M<SUB>1</SUB> and M<SUB>2</SUB> be the Turing Transducers M<SUB>1</SUB> and M<SUB>2</SUB> of Theorem <A 
+ HREF="theory-bk-fourse3.html#50003-13001t4.3.1">4.3.1</A>. Assume that
+M<SUB>1</SUB> halts on input x in t steps. Then M<SUB>2</SUB> needs to consider only the strings <FONT FACE="SYMBOL">a</FONT> in
+{1,<FONT FACE="SYMBOL"> ¼</FONT>, r}* whose lengths are no greater than t or t + 1, depending on whether M<SUB>1</SUB>
+accepts or rejects x, respectively. The number of such strings <FONT FACE="SYMBOL">a</FONT> is no greater than
+(r + 1)<SUP>t+1</SUP>.
+   <P >For each string <FONT FACE="SYMBOL">a</FONT> = i<SUB>1</SUB> · · · i<SUB>j</SUB> in {1,<FONT FACE="SYMBOL"> ¼</FONT>, r}* the Turing transducer M<SUB>2</SUB> uses some number
+of moves linear in j to derive <FONT FACE="SYMBOL">a</FONT> and to try simulating a sequence of moves of the form
+C<SUB><FONT FACE="SYMBOL">e</FONT></SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> · · · <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB><FONT FACE="SYMBOL">a</FONT></SUB>. Consequently, M<SUB>2</SUB> needs some number of moves linear in (r + 1)<SUP>t+1</SUP>t. 2<SUP>ct</SUP>
+is therefore a bound on the number of moves, because v = 2<SUP>log v</SUP> for every positive integer
+value v.
+   <P >Similarly, for each string <FONT FACE="SYMBOL">a</FONT> = i<SUB>1</SUB> · · · i<SUB>j</SUB> the Turing transducer M<SUB>2</SUB> needs j locations in
+the first auxiliary work tape for storing <FONT FACE="SYMBOL">a</FONT>, and at most j locations in each of the other
+auxiliary work tapes for recording the content of the corresponding tapes of M<SUB>1</SUB>. By
+setting the heads of the auxiliary work tapes at their initial positions before starting the
+simulation of M<SUB>1</SUB> on <FONT FACE="SYMBOL">a</FONT>, it is assured that the heads do not depart more than t locations
+from their initial positions. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="60003-13000"> </A><A 
+ HREF="#Q2-60003-13"  NAME="Q1-60003-13">The Satisfiability Problem</A></EM>
+   <P >The following theorem shows the existence of <I>NP</I>-complete problems through
+example.
+   <P ><STRONG>Definitions </STRONG> <A 
+   NAME="60003-13001t"> </A> 
+A <I>Boolean<A NAME="60003-13002"> </A> expression</I> is an expression defined inductively in the following way.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60003-13003xa"> </A>The constants 0 (false) and 1 (true) are Boolean expressions.
+     <LI><A 
+   NAME="60003-13004xb"> </A>Each variable x is a Boolean expression.
+     <LI><A 
+   NAME="60003-13005xc"> </A>If  E<SUB>1</SUB> and  E<SUB>2</SUB> are  Boolean  expressions,  then  so  are  the  negation  ¬E<SUB>1</SUB>,  the
+     conjunction E<SUB>1</SUB> <FONT FACE="SYMBOL">Ù</FONT> E<SUB>2</SUB>, the disjunction E<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> E<SUB>2</SUB>, and the parenthesizing (E<SUB>1</SUB>).</OL>
+Each assignment of 0's and 1's to the variables of a Boolean expression provides a value
+to the expression. If E is a Boolean expression, then (E) has the same value as E. ¬E has
+the value 0 if E has the value 1, and ¬E has the value 1 if E has the value 0. If E<SUB>1</SUB>
+and E<SUB>2</SUB> are Boolean expressions, then E<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> E<SUB>2</SUB> has the value 1 whenever E<SUB>1</SUB> or
+E<SUB>2</SUB> has the value 1. E<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> E<SUB>2</SUB> has the value 0 whenever both E<SUB>1</SUB> and E<SUB>2</SUB> have the
+value 0. The value of E<SUB>1</SUB> <FONT FACE="SYMBOL">Ù</FONT> E<SUB>2</SUB> is 1 if both E<SUB>1</SUB> and E<SUB>2</SUB> have the value 1, otherwise
+E<SUB>1</SUB> <FONT FACE="SYMBOL">Ù</FONT> E<SUB>2</SUB> has the value 0. It is assumed that among the Boolean operations of
+¬, <FONT FACE="SYMBOL">Ù</FONT>,  and  <FONT FACE="SYMBOL">Ú</FONT>, the operation ¬ has the highest precedence, followed by <FONT FACE="SYMBOL">Ù</FONT>, and
+then <FONT FACE="SYMBOL">Ú</FONT>.
+   <P >A Boolean expression is said to be <I>satisfiable</I> if its variables can be assigned 0's and 1's
+so as to provide the value 1 to the expression. The <I>satisfiability<A NAME="60003-13006"> </A> problem</I> asks for any given
+Boolean expression whether it is satisfiable, that is, whether the instance is in the set
+L<SUB>sat</SUB> = { E | E is a satisfiable Boolean expression }.
+   <P ><STRONG>Example 5.3.1</STRONG> <A 
+   NAME="60003-13007t5.3.1"> </A> 
+The Boolean expression E = x<SUB>2</SUB> <FONT FACE="SYMBOL">Ù</FONT> x<SUB>3</SUB> <FONT FACE="SYMBOL">Ú</FONT> (¬x<SUB>1</SUB> <FONT FACE="SYMBOL">Ù</FONT> x<SUB>2</SUB>) is satisfiable by each assignment in
+which x<SUB>2</SUB> = 1 and x<SUB>3</SUB> = 1, as well as by each assignment in which x<SUB>1</SUB> = 0 and x<SUB>2</SUB> = 1. All
+the other assignments provide a 0 value to E. (x<SUB>2</SUB> <FONT FACE="SYMBOL">Ù</FONT> x<SUB>3</SUB>) <FONT FACE="SYMBOL">Ú</FONT> ((¬x<SUB>1</SUB>) <FONT FACE="SYMBOL">Ù</FONT> x<SUB>2</SUB>) is a fully
+parenthesized version of E.
+   <P >x <FONT FACE="SYMBOL">Ù</FONT> ¬x is an example of an unsatisfiable Boolean expression. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P >The proof of the following theorem uses a generic approach.
+   <P ><STRONG>Theorem 5.3.1</STRONG> <A 
+   NAME="60003-13008t5.3.1"> </A> 
+The satisfiability problem is <I>NP</I>-complete.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60003-13009t"> </A> 
+The satisfiability of any Boolean expression can be checked in polynomial time by
+nondeterministically assigning some values to the variables of the given expression and
+then evaluating the expression for such an assignment. Consequently, the problem is in
+<I>NP</I>.
+   <P >To show that the satisfiability problem is <I>NP</I>-hard, it is sufficient to demonstrate that
+each problem K in <I>NP</I> has a polynomially time-bounded, deterministic Turing transducer
+T<SUB>K</SUB>, such that T<SUB>K</SUB> reduces K to the satisfiability problem. For the purpose of the proof
+consider any problem K in <I>NP</I>. Assume that M = &lt;Q, <FONT FACE="SYMBOL">S</FONT>, <FONT FACE="SYMBOL">G</FONT>, <FONT FACE="SYMBOL">d</FONT>, q<SUB>0</SUB>, B, F&gt; is a
+nondeterministic Turing machine with Q <FONT FACE="SYMBOL">Ç</FONT> (<FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> <FONT FACE="SYMBOL">G</FONT> <FONT FACE="SYMBOL">È</FONT> {¢, $}) = Ø that decides K in
+T(n) = O(n<SUP>k</SUP>) time. Let m denote the number of auxiliary work tapes of M; then T<SUB>K</SUB> can
+be a Turing transducer that on input x outputs a Boolean expression E<SUB>x</SUB> of the following
+form.
+   <P ><EM><A 
+   NAME="60003-14000"> </A><A 
+ HREF="#Q2-60003-14"  NAME="Q1-60003-14">The Structure of E<SUB>x</SUB></A></EM>
+   <P >The Boolean expression E<SUB>x</SUB> describes how an accepting computation of M on input x
+should look. E<SUB>x</SUB> is satisfiable by a given assignment if and only if the assignment
+corresponds to an accepting computation C<SUB>0</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> · · ·  <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB>T(|x|)</SUB> of M on input x. The
+expression has the following structure, where t = T(|x|).
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-five27x.gif" ALT=" Econf0Ù···ÙEconftÙ EinitÙErule1Ù···ÙEruletÙ EacceptÙ Efollow1Ù ···ÙEfollowt"></PRE></CENTER>
+   <P >E<SUB>conf<SUB>0</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> · · · <FONT FACE="SYMBOL">Ù</FONT> E<SUB>conf<SUB>t</SUB></SUB>  states  that  an  accepting  computation  consists  of  a  sequence
+C<SUB>0</SUB>, <FONT FACE="SYMBOL">¼</FONT> , C<SUB>t</SUB> of t + 1 configurations. E<SUB>init</SUB> states that C<SUB>0</SUB> is an initial configuration.
+   <P >E<SUB>rule<SUB>1</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> · · · <FONT FACE="SYMBOL">Ù</FONT> E<SUB>rule<SUB>t</SUB></SUB>  states  that  an  accepting  computation  uses  a  sequence  <FONT FACE="SYMBOL">Y</FONT>  of  t
+transition rules. E<SUB>accept</SUB> states that the last transition rule in <FONT FACE="SYMBOL">Y</FONT> enters an accepting state.
+With no loss of generality it is assumed that a transition rule can also be &#34;null&#34;, that is, a
+transition rule on which M can have a move without a change in its configuration. Such an
+assumption allows us to restrict the consideration only to computations that consist of
+exactly T(|x|) moves.
+   <P >E<SUB>follow<SUB>i</SUB></SUB> states that M by using the <I>i</I>th transition rule in <FONT FACE="SYMBOL">Y</FONT> reaches configuration C<SUB>i</SUB>
+from configuration C<SUB>i-1</SUB>, 1 <FONT FACE="SYMBOL">£</FONT> i <FONT FACE="SYMBOL">£</FONT> t.
+   <P ><EM><A 
+   NAME="60003-15000"> </A><A 
+ HREF="#Q2-60003-15"  NAME="Q1-60003-15">The Variables of E<SUB>x</SUB></A></EM>
+   <P >The Boolean expression E<SUB>x</SUB> uses variables of the form w<SUB>i,r,j,X</SUB> and variables of the
+form w<SUB>i,<FONT FACE="SYMBOL">t</FONT> </SUB>. Each variable provides a statement about a possible property of an
+accepting computation. An assignment that satisfies E<SUB>x</SUB> provides the value 1
+to those variables whose statements hold for the computation in question, and
+provides the value 0 to those variables whose statements do not hold for that
+computation.
+   <P >w<SUB>i,r,j,X</SUB> states that X is the <I>j</I>th character of the <I>r</I>th tape in the <I>i</I>th configuration,
+0 <FONT FACE="SYMBOL">£</FONT> r <FONT FACE="SYMBOL">£</FONT> m. r = 0 refers to the input tape, and 1 <FONT FACE="SYMBOL">£</FONT> r <FONT FACE="SYMBOL">£</FONT> m refers to the <I>r</I>th auxiliary work
+tape.
+   <P >w<SUB>i,<FONT FACE="SYMBOL">t</FONT> </SUB> states that <FONT FACE="SYMBOL">t</FONT> is the transition rule in the <I>i</I>th move of the computation.
+   <P ><EM><A 
+   NAME="60003-16000"> </A><A 
+ HREF="#Q2-60003-16"  NAME="Q1-60003-16">The Structure of E<SUB>conf<SUB>i</SUB></SUB></A></EM>
+   <P >The expression E<SUB>conf<SUB>i</SUB></SUB>  is the conjunction of the following Boolean expressions.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60003-16001xa"> </A><FONT FACE="SYMBOL">Ú</FONT> { w<SUB>i,0,j,X</SUB> | X is in <FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> {¢, $} <FONT FACE="SYMBOL">È</FONT> Q }   for 1 <FONT FACE="SYMBOL">£</FONT> j <FONT FACE="SYMBOL">£</FONT> |x| + 3.
+     <P >This expression states that a configuration has an input segment with |x| + 3
+     entries, with each entry having at least one symbol from <FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> {¢, $} <FONT FACE="SYMBOL">È</FONT> Q.
+     <LI><A 
+   NAME="60003-16002xb"> </A><FONT FACE="SYMBOL">Ù</FONT> { ¬(w<SUB>i,0,j,X</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i,0,j,Y </SUB>) | X and Y are in <FONT FACE="SYMBOL">S</FONT> <FONT FACE="SYMBOL">È</FONT> {¢, $} <FONT FACE="SYMBOL">È</FONT> Q and X<IMG 
+SRC="theory-bk-five28x.gif" ALT="/="ALIGN="MIDDLE" > Y }   for
+     1 <FONT FACE="SYMBOL">£</FONT> j <FONT FACE="SYMBOL">£</FONT> |x| + 3.
+     <P >This expression states that each entry in the input segment has at most one
+     symbol.
+     <LI><A 
+   NAME="60003-16003xc"> </A><FONT FACE="SYMBOL">Ú</FONT> { w<SUB>i,r,j,X</SUB> | X is in <FONT FACE="SYMBOL">G</FONT> <FONT FACE="SYMBOL">È</FONT> Q }   for 1 <FONT FACE="SYMBOL">£</FONT> r <FONT FACE="SYMBOL">£</FONT> m and 1 <FONT FACE="SYMBOL">£</FONT> j <FONT FACE="SYMBOL">£</FONT> t + 1.
+     <P >This  expression  states  that  a  configuration  has  m  auxiliary  work-tape
+     segments, each segment having t + 1 entries, and each entry having at least
+     one symbol from <FONT FACE="SYMBOL">G</FONT> <FONT FACE="SYMBOL">È</FONT> Q.
+     <LI><A 
+   NAME="60003-16004xd"> </A><FONT FACE="SYMBOL">Ù</FONT> { ¬(w<SUB>i,r,j,X</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i,r,j,Y </SUB>)  |  X and  Y  are  in  <FONT FACE="SYMBOL">G</FONT> <FONT FACE="SYMBOL">È</FONT> Q and X<IMG 
+SRC="theory-bk-five29x.gif" ALT="/="ALIGN="MIDDLE" >  Y }   for
+     1 <FONT FACE="SYMBOL">£</FONT> r <FONT FACE="SYMBOL">£</FONT> m and 1 <FONT FACE="SYMBOL">£</FONT> j <FONT FACE="SYMBOL">£</FONT> t + 1.
+     <P >This expression states that each entry in an auxiliary work-tape segment has
+     at most one symbol.</OL>
+Each assignment that satisfies the expressions in parts (a) and (b) above implies a string of
+length |x| + 3. The string corresponds to the input tape of M, and consists of
+input symbols, endmarker symbols ¢ and $, and state symbols. In particular, the
+symbol X is at location j in the string if and only if w<SUB>i,0,j,X</SUB> is assigned the
+value 1.
+   <P >Similarly, each assignment that satisfies the expressions in parts (c) and (d) above for a
+specific value r, provides a string of length t + 1 that corresponds to the <I>r</I>th auxiliary work
+tape of M. The string consists of auxiliary work tape symbols and state symbols. In
+particular, the string consists of the symbol X at location j if and only if w<SUB>i,r,j,X</SUB> is
+assigned the value 1.
+   <P ><EM><A 
+   NAME="60003-17000"> </A><A 
+ HREF="#Q2-60003-17"  NAME="Q1-60003-17">The Structure of E<SUB>init</SUB></A></EM>
+   <P >The expression E<SUB>init</SUB> is the conjunction of the following three Boolean expressions.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60003-17001xa"> </A>w<SUB>0,0,1,<IMG 
+SRC="theory-bk-five30x.gif" ALT="PICT" ></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,0,2,q<SUB>0</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> { w<SUB>0,0,j+2,a<SUB>j</SUB></SUB>  |  1  <FONT FACE="SYMBOL">£</FONT>  j <FONT FACE="SYMBOL">£</FONT>  |x| }<FONT FACE="SYMBOL">Ù</FONT>w<SUB>0,0,|x|+3,$</SUB>.
+     <P >This  expression  states  that  in  the  initial  configuration  the  input  segment
+     consists of the string ¢q<SUB>0</SUB>a<SUB>1</SUB> · · · a<SUB>n</SUB>$, where a<SUB>j</SUB> denotes the <I>j</I>th input symbol in x.
+     <LI><A 
+   NAME="60003-17002xb"> </A><FONT FACE="SYMBOL">Ú</FONT>{ w<SUB>0,r,j,q<SUB>0</SUB></SUB> | 1 <FONT FACE="SYMBOL">£</FONT> j <FONT FACE="SYMBOL">£</FONT> t + 1 }   for 1 <FONT FACE="SYMBOL">£</FONT> r <FONT FACE="SYMBOL">£</FONT> m.
+     <P >This expression states that in the initial configuration each auxiliary work-tape
+     segment contains the initial state q<SUB>0</SUB>.
+     <LI><A 
+   NAME="60003-17003xc"> </A>w<SUB>0,r,j,B</SUB><FONT FACE="SYMBOL">Ú</FONT>w<SUB>0,r,j,q<SUB>0</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> { w<SUB>0,r,s,B</SUB> | 1 <FONT FACE="SYMBOL">£</FONT> s <FONT FACE="SYMBOL">£</FONT> t+1 and s<IMG 
+SRC="theory-bk-five31x.gif" ALT="/="ALIGN="MIDDLE" > j }   for 1 <FONT FACE="SYMBOL">£</FONT> j <FONT FACE="SYMBOL">£</FONT> t+1
+     and 1 <FONT FACE="SYMBOL">£</FONT> r <FONT FACE="SYMBOL">£</FONT> m.
+     <P >This expression states that in the initial configuration each auxiliary work-tape
+     segment consists of blank symbols B and at most one appearance of q<SUB>0</SUB>.</OL>
+Each assignment that satisfies E<SUB>init</SUB> corresponds to an initial configuration of M on input
+x. Moreover, each also satisfies E<SUB>conf<SUB>0</SUB></SUB>.
+   <P ><EM><A 
+   NAME="60003-18000"> </A><A 
+ HREF="#Q2-60003-18"  NAME="Q1-60003-18">The Structure of E<SUB>rule<SUB>i</SUB></SUB> and E<SUB>accept</SUB> </A></EM>
+   <P >The expression E<SUB>rule<SUB>i</SUB></SUB> is the conjunction of the following two Boolean expressions.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60003-18001xa"> </A><FONT FACE="SYMBOL">Ú</FONT> { w<SUB>i,<FONT FACE="SYMBOL">t</FONT> </SUB> | <FONT FACE="SYMBOL">t</FONT> is in <FONT FACE="SYMBOL">d</FONT> }
+     <LI><A 
+   NAME="60003-18002xb"> </A><FONT FACE="SYMBOL">Ù</FONT> { ¬(w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>1</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>2</SUB></SUB>) | <FONT FACE="SYMBOL">t</FONT><SUB>1</SUB>, <FONT FACE="SYMBOL">t</FONT><SUB>2</SUB> are in <FONT FACE="SYMBOL">d</FONT> and <FONT FACE="SYMBOL">t</FONT><SUB>1</SUB><IMG 
+SRC="theory-bk-five32x.gif" ALT="/="ALIGN="MIDDLE" > <FONT FACE="SYMBOL">t</FONT><SUB>2</SUB> }.</OL>
+The expression in part (a) implies, that for each assignment that satisfies E<SUB>rule<SUB>i</SUB></SUB>, at least
+one of the variables w<SUB>i,<FONT FACE="SYMBOL">t</FONT> </SUB> has the value 1. The expression in part (b) implies, that for each
+assignment that satisfies E<SUB>rule<SUB>i</SUB></SUB>, at most one of the variables w<SUB>i,<FONT FACE="SYMBOL">t</FONT> </SUB> has a value 1. Hence,
+each assignment that satisfies E<SUB>rule<SUB>i</SUB></SUB>  assigns the value 1 to exactly one of the variables
+w<SUB>i,<FONT FACE="SYMBOL">t</FONT> </SUB>, namely, to the variable that corresponds to the transition rule <FONT FACE="SYMBOL">t</FONT> used in the <I>i</I>th move
+of the computation in question.
+   <P >The expression E<SUB>accept</SUB> is of the form <FONT FACE="SYMBOL">Ú</FONT> { w<SUB>t,<FONT FACE="SYMBOL">t</FONT> </SUB> | <FONT FACE="SYMBOL">t</FONT> takes M into an accepting
+state }.
+   <P ><EM><A 
+   NAME="60003-19000"> </A><A 
+ HREF="#Q2-60003-19"  NAME="Q1-60003-19">The Structure of E<SUB>follow<SUB>i</SUB></SUB></A></EM>
+   <P >The expression E<SUB>follow<SUB>i</SUB></SUB>  is the conjunction of the following Boolean expressions.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60003-19001xa"> </A><FONT FACE="SYMBOL">Ú</FONT> { (w<SUB>i,0,j,X</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i-1,0,j-1,Y </SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i-1,0,j,Z</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i-1,0,j+1,W </SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i,<FONT FACE="SYMBOL">t</FONT> </SUB>) | X, Y, Z,
+     W, and <FONT FACE="SYMBOL">t</FONT> such that X = f<SUB>0</SUB>(Y, Z, W, <FONT FACE="SYMBOL">t</FONT>) }   for 1 <FONT FACE="SYMBOL">£</FONT> j <FONT FACE="SYMBOL">£</FONT> |x| + 3.
+     <LI><A 
+   NAME="60003-19002xb"> </A><FONT FACE="SYMBOL">Ú</FONT> { (w<SUB>i,r,j,X</SUB><FONT FACE="SYMBOL">Ù</FONT>w<SUB>i-1,r,j-1,Y </SUB><FONT FACE="SYMBOL">Ù</FONT>w<SUB>i-1,r,j,Z</SUB><FONT FACE="SYMBOL">Ù</FONT>w<SUB>i-1,r,j+1,W </SUB><FONT FACE="SYMBOL">Ù</FONT>w<SUB>i,<FONT FACE="SYMBOL">t</FONT> </SUB>) | X, Y, Z, W,
+     and <FONT FACE="SYMBOL">t</FONT> such that X = f<SUB>r</SUB>(Y, Z, W, <FONT FACE="SYMBOL">t</FONT>) }   for 1 <FONT FACE="SYMBOL">£</FONT> r <FONT FACE="SYMBOL">£</FONT> m and 1 <FONT FACE="SYMBOL">£</FONT> j <FONT FACE="SYMBOL">£</FONT> t + 1.</OL>
+where
+     <DL><DT><STRONG>
+f<SUB>r</SUB>(Y, Z, W, <FONT FACE="SYMBOL">t</FONT>) </STRONG><DD 
+>is a function that determines the replacement X for a symbol Z in a
+     configuration, resulting from the application of the transition rule <FONT FACE="SYMBOL">t</FONT> (see
+     Figure <A 
+ HREF="#60003-19003r5.3.2">5.3.2</A>).
+     <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60003-19003r5.3.2"> </A>
+<A 
+   NAME="60003-19003r5.3.2"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-3-2.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.3.2 </STRONG></NOBR></TD><TD  
+>The value X of f<SUB>r</SUB>(Y, Z, W, <FONT FACE="SYMBOL">t</FONT>).                                                                                   </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>     Z is assumed to be enclosed between Y on its left and W on its right.
+     <DT><STRONG>
+w<SUB>i-1,0,0,Y </SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, w<SUB>i-1,m,0,Y </SUB>, w<SUB>i-1,0,|x|+4,W </SUB>, w<SUB>i-1,1,t+2,W </SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, w<SUB>i-1,m,t+2,W </SUB> </STRONG><DD 
+>              are
+     new variables. They are introduced to handle the boundary cases in which the
+     symbol Z in f<SUB>r</SUB>(Y, Z, W, <FONT FACE="SYMBOL">t</FONT>) corresponds to an extreme (i.e., leftmost or rightmost)
+     symbol for a tape.</DL>
+If <FONT FACE="SYMBOL">t</FONT> = (q, a, b<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, b<SUB>m</SUB>, p, d<SUB>0</SUB>, c<SUB>1</SUB>, d<SUB>1</SUB>,<FONT FACE="SYMBOL"> ¼</FONT>, c<SUB>m</SUB>, d<SUB>m</SUB>), then the value X of the function
+f<SUB>r</SUB>(Y, Z, W, <FONT FACE="SYMBOL">t</FONT>) satisfies X = p whenever one of the following cases holds.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60003-19004xa"> </A>Z  = q and d<SUB>r</SUB> = 0.
+     <LI><A 
+   NAME="60003-19005xb"> </A>Y  = q and d<SUB>r</SUB> = +1.
+     <LI><A 
+   NAME="60003-19006xc"> </A>W = q and d<SUB>r</SUB> = -1.</OL>
+Similarly, X = c<SUB>r</SUB> whenever one of the following cases holds, 1 <FONT FACE="SYMBOL">£</FONT> r <FONT FACE="SYMBOL">£</FONT> m.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60003-19007xa"> </A>Z = q, W = b<SUB>r</SUB>, and d<SUB>r</SUB> = +1.
+     <LI><A 
+   NAME="60003-19008xb"> </A>Y  = q,  Z = b<SUB>r</SUB>, and d<SUB>r</SUB> = 0.
+     <LI><A 
+   NAME="60003-19009xc"> </A>Y  = q,  Z = b<SUB>r</SUB>, and d<SUB>r</SUB> = -1.</OL>
+On the other hand,
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60003-19010xa"> </A>X = W whenever Z = q, r = 0, and d<SUB>0</SUB> = +1.
+     <LI><A 
+   NAME="60003-19011xb"> </A>X = Y  whenever Z = q and d<SUB>r</SUB> = -1.</OL>
+In all the other cases X = Z because the head of the <I>r</I>th tape is &#34;too far&#34; from Z.
+   <P >The result now follows because T<SUB>K</SUB> on input x can compute t = T(|x|) in polynomial
+time and then output (the string that represents) E<SUB>x</SUB>. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><STRONG>Example 5.3.2</STRONG> <A 
+   NAME="60003-19012t5.3.2"> </A> 
+Let M be the Turing machine in Figure <A 
+ HREF="#60003-19013r5.3.3">5.3.3</A>(a).
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="60003-19013r5.3.3"> </A>
+<A 
+   NAME="60003-19013r5.3.3"> </A>
+<BR><IMG 
+SRC="draw-pic/theory-bk-five-5-3-3.jpg" ALT="[PICT]" 
+>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 5.3.3 </STRONG></NOBR></TD><TD  
+>(a)  A  Turing  machine  M.  (b)  The  effect  that  <FONT FACE="SYMBOL">t</FONT><SUB>1</SUB>,  <FONT FACE="SYMBOL">t</FONT><SUB>2</SUB>,  <FONT FACE="SYMBOL">t</FONT><SUB>3</SUB>,  and  <FONT FACE="SYMBOL">t</FONT><SUB>4</SUB>  have  on  the
+configurations of M.                                                                                                     </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>The time complexity of M is T(n) = n + 2. On input x = ab the Turing machine has an
+accepting computation C<SUB>0</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB>1</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB>2</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB>3</SUB> <IMG
+SRC="cmsy10-60.gif" ALT=" |- "> C<SUB>4</SUB> of t = 4 moves, where each C<SUB>i</SUB> is a
+configuration (uqv, u'qv') that satisfies uv = ¢ab$ and |u'v'| <FONT FACE="SYMBOL">£</FONT> t.
+   <P >Using the notation in the proof of Theorem <A 
+ HREF="#60003-13008t5.3.1">5.3.1</A>, the following equalities hold for the
+M and x above.
+   <P ><CENTER>
+  <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>E<SUB>init</SUB></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>w<SUB>0,0,1,<IMG 
+SRC="theory-bk-five33x.gif" ALT="PICT" ></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,0,2,q<SUB>0</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,0,3,a</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,0,4,b</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,0,5,$</SUB></TD>             <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  (w<SUB>0,1,1,<SUB>q<SUB>
+0</SUB></SUB></SUB><FONT FACE="SYMBOL">Ú</FONT> w<SUB>0,1,2,q<SUB>0</SUB></SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>0,1,3,<SUB>q<SUB>
+0</SUB></SUB></SUB><FONT FACE="SYMBOL">Ú</FONT> w<SUB>0,1,4,<SUB>q<SUB>
+0</SUB></SUB></SUB><FONT FACE="SYMBOL">Ú</FONT> w<SUB>0,1,5,q<SUB>0</SUB></SUB>)</TD>        <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  (w<SUB>0,1,1,B</SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>0,1,1,q<SUB>0</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,2,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,3,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,4,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,5,B</SUB>)</TD><TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  (w<SUB>0,1,2,B</SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>0,1,2,q<SUB>0</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,1,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,3,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,4,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,5,B</SUB>)</TD><TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  (w<SUB>0,1,3,B</SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>0,1,3,q<SUB>0</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,1,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,2,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,4,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,5,B</SUB>)</TD><TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  (w<SUB>0,1,4,B</SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>0,1,4,q<SUB>0</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,1,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,2,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,3,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,5,B</SUB>)</TD><TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  (w<SUB>0,1,5,B</SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>0,1,5,q<SUB>0</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,1,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,2,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,3,B</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>0,1,4,B</SUB>)</TD><TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+></TD>                                                     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+ </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>E<SUB>rule<SUB>i</SUB></SUB></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+>  =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>(w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>1</SUB></SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>2</SUB></SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>3</SUB></SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>4</SUB></SUB>)</TD>                            <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  ¬(w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>1</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>2</SUB></SUB>)</TD>                                     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  ¬(w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>1</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>3</SUB></SUB>)</TD>                                     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  ¬(w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>1</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>4</SUB></SUB>)</TD>                                     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  ¬(w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>2</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>3</SUB></SUB>)</TD>                                     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  ¬(w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>2</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>4</SUB></SUB>)</TD>                                     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> <FONT FACE="SYMBOL">Ù</FONT>  ¬(w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>3</SUB></SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>i,<FONT FACE="SYMBOL">t</FONT><SUB>4</SUB></SUB>)</TD>                                     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+></TD>                                                     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>E<SUB>accept</SUB></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> =</TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>w<SUB>4,<FONT FACE="SYMBOL">t</FONT><SUB>4</SUB></SUB></TD>                                                <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+      </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+></TD>                                                     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-five34x.gif" ALT=" f0(q1, b ,W,t3) =  q1
+f0(Y ,q1, b ,t3) = b
+f0(Y ,Z ,q1,t3) =   Z
+f0(Y ,Z ,W,t3) =   Z  } For allY,Z, W in{a,b,B,c,$}
+f1(q1, a ,W,t3) =  B    (seeFigure5.3.3(b)- t3).
+f1(Y ,q1, a,t3) =  Y
+f1(Y ,Z ,q1,t3) =   q1
+f1(Y ,Z ,W,t3) =   Z"></PRE></CENTER>
+   <P >Figure <A 
+ HREF="#60003-19013r5.3.3">5.3.3</A>(b) illustrates the changes in the configurations of M due to the transition
+rules <FONT FACE="SYMBOL">t</FONT><SUB>1</SUB>, <FONT FACE="SYMBOL">t</FONT><SUB>2</SUB>, <FONT FACE="SYMBOL">t</FONT><SUB>3</SUB>, and <FONT FACE="SYMBOL">t</FONT><SUB>4</SUB>. <IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ >
+   <P >
+   <P ><EM><A 
+   NAME="60003-20000"> </A><A 
+ HREF="#Q2-60003-20"  NAME="Q1-60003-20">The 3-Satisfiability Problem</A></EM>
+   <P >A slight modification to the the previous proof implies the <I>NP</I>-completeness of the
+following restricted version of the satisfiability problem.
+   <P ><STRONG>Definitions </STRONG> <A 
+   NAME="60003-20001t"> </A> 
+A Boolean expression is said to be a <I>literal</I> if it is a variable or a negation of a variable. A
+Boolean expression is said to be a <I>clause</I> if it is a disjunction of literals. A Boolean
+expression is said to be in <I>conjunctive<A NAME="60003-20002"> </A> normal form</I> if it is a conjunction of clauses. A
+Boolean expression is said to be in <I>k-conjunctive normal form</I> if it is in conjunctive
+normal form and each of its clauses consists of exactly k literals. The <I>k-satisfiability<A NAME="60003-20003"> </A>
+problem</I> asks for any given Boolean expression in k-conjunctive normal form whether the
+expression is satisfiable.
+   <P >With no loss of generality, in what follows it is assumed that no variable can appear
+more than once in any given clause.
+   <P ><STRONG>Theorem 5.3.2</STRONG> <A 
+   NAME="60003-20004t5.3.2"> </A> 
+The 3-satisfiability problem is <I>NP</I>-complete.
+   <P >
+   <P ><STRONG>Proof </STRONG> <A 
+   NAME="60003-20005t"> </A> 
+The expression E<SUB>x</SUB> in the proof of Theorem <A 
+ HREF="#60003-13008t5.3.1">5.3.1</A> needs only slight modifications to have a
+3-conjunctive normal form.
+     <OL TYPE="a" 
+>
+     <LI><A 
+   NAME="60003-20006xa"> </A>Except  for  the  expressions  E<SUB>follow<SUB>i</SUB></SUB>   and  part  (c)  of  E<SUB>init</SUB>,  all  the  other
+     expressions can be modified to be in conjunctive normal form by using the
+     equivalence ¬(w<SUB>1</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>2</SUB>) <FONT FACE="SYMBOL">º</FONT> (¬w<SUB>1</SUB>) <FONT FACE="SYMBOL">Ú</FONT> (¬w<SUB>2</SUB>).
+     <LI><A 
+   NAME="60003-20007xb"> </A>Each  expression  in  E<SUB>follow<SUB>i</SUB></SUB>   and  part  (c)  of  E<SUB>init</SUB>  can  be  modified  to  be
+     in  conjunctive  normal  form  by  using  the  equivalence  w<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> (w<SUB>2</SUB> <FONT FACE="SYMBOL">Ù</FONT> w<SUB>3</SUB>)  <FONT FACE="SYMBOL">º</FONT>
+     (w<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>2</SUB>) <FONT FACE="SYMBOL">Ù</FONT> (w<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>3</SUB>).
+     <LI><A 
+   NAME="60003-20008xc"> </A>Each disjunction w<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> · · · <FONT FACE="SYMBOL">Ú</FONT> w<SUB>s</SUB>  with  s &gt; 3 clauses can be modified to be
+     in 3-conjunctive normal form by repeatedly replacing subexpressions of the
+     form w<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> · · · <FONT FACE="SYMBOL">Ú</FONT> w<SUB>s</SUB> with subexpressions of the form (w<SUB>1</SUB> <FONT FACE="SYMBOL">Ú</FONT> w<SUB>2</SUB> <FONT FACE="SYMBOL">Ú</FONT> w) <FONT FACE="SYMBOL">Ù</FONT> (¬w <FONT FACE="SYMBOL">Ú</FONT>
+     w<SUB>3</SUB> <FONT FACE="SYMBOL">Ú</FONT> · · · <FONT FACE="SYMBOL">Ú</FONT> w<SUB>s</SUB>), where the w's are new variables.<IMG 
+SRC="theory-bk-five0x.gif" ALT=" *** " 
+ ></OL>
+   <P >
+   <P >The <I>NP</I>-completeness result for the satisfiability problem is of importance in the study
+of problems for two reasons. First, it exhibits the existence of an <I>NP</I>-complete
+problem. And, second, it is useful in showing the <I>NP</I>-hardness of some other
+problems.
+   <P >
+   <P >[<A 
+ HREF="theory-bk-fivese4.html" >next</A>] [<A 
+ HREF="theory-bk-fivese2.html" >prev</A>] [<A 
+ HREF="theory-bk-fivese2.html#tailtheory-bk-fivese2.html" >prev-tail</A>] [<A 
+ HREF="theory-bk-fivese3.html" >front</A>] [<A 
+ HREF="theory-bk-five.html#theory-bk-fivese3.html" >up</A>] <A 
+   NAME="tailtheory-bk-fivese3.html"> </A></BODY></HTML>

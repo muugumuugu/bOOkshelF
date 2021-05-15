@@ -1,0 +1,439 @@
+<HTML  
+><HEAD> <!--Created by TeX4ht from theory-bk-six.tex--><TITLE></TITLE></HEAD><BODY 
+ BGCOLOR="ffffff">[<A 
+ HREF="theory-bk-sixse2.html" >next</A>] [<A 
+ HREF="#tailtheory-bk-sixse1.html">tail</A>] [<A 
+ HREF="theory-bk-six.html#theory-bk-sixse1.html" >up</A>]
+<H3>6.1 <A 
+   NAME="70001-20006.1"> </A><A 
+ HREF="theory-bk.html#Q2-70001-2"  NAME="Q1-70001-2">Error-Free Probabilistic Programs</A></H3>
+   <P >
+<A NAME="70001-2001"> </A>
+   <P >Randomization is an important programming tool. Intuitively, its power stems from
+choice. The ability to make &#34;random choices&#34; can be viewed as a derivation of the ability
+to make &#34;nondeterministic choices.&#34;
+   <P >In the nondeterministic case, each execution of an instruction must choose between a
+number of options. Some of the options might be &#34;good&#34;, and others &#34;bad.&#34; The
+choice must be for a good option, whenever it exists. The problem is that it does
+not generally seem possible to make nondeterministic choices in an efficient
+manner.
+   <P >The options in the case for random choices are similar to those for the nondeterministic
+case, however, no restriction is made on the nature of the option to be chosen. Instead,
+each of the good and bad options is assumed to have an equal probability of being chosen.
+Consequently, the lack of bias among the different options enables the efficient execution
+of choices. The burden of increasing the probability of obtaining good choices is placed on
+the programmer.
+   <P >Here random choices are introduced to programs through <I>random<A NAME="70001-2002"> </A> assignment
+instructions</I> of the form <TT>x</TT> := random(S), where S can be any finite set. An execution of a
+random assignment instruction <TT>x</TT> := random(S) assigns to <TT>x</TT> an element from S, where
+each of the elements in S is assumed to have an equal probability of being chosen.
+Programs with random assignment instructions, and no nondeterministic instructions, are
+called <I>probabilistic<A NAME="70001-2003"> </A> programs</I>.
+   <P >Each execution sequence of a probabilistic program is assumed to be a <I>computation</I><A NAME="70001-2004"> </A>.
+On a given input a probabilistic program might have both accepting and nonaccepting
+computations.
+   <P >The execution of a random assignment instruction <TT>x</TT> := random(S) is assumed to take
+one unit of time under the uniform cost criteria, and |v| + log |S| time under the
+logarithmic cost criteria. |v| is assumed to be the length of the representation
+of the value v chosen from S, and |S| is assumed to denote the cardinality of
+S.
+   <P >A probabilistic program P is said to have an <I>expected<A NAME="70001-2005"> </A> time complexity <IMG 
+SRC="theory-bk-six0x.gif" ALT="-
+t">(x) on input x</I>
+if <IMG 
+SRC="theory-bk-six1x.gif" ALT="-
+t">(x) is equal to p<SUB>0</SUB>(x) · 0 + p<SUB>1</SUB>(x) · 1 + p<SUB>2</SUB>(x) · 2 + · · · . The function p<SUB>i</SUB>(x) is assumed to
+be the probability for the program P to have on input x a computation that takes exactly i
+units of time.
+   <P >The program P is said to have an <I>expected time complexity</I> <IMG 
+SRC="theory-bk-six2x.gif" ALT="--
+T">(n) if <IMG 
+SRC="theory-bk-six3x.gif" ALT="--
+T">(|x|) <FONT FACE="SYMBOL">³</FONT> <IMG 
+SRC="theory-bk-six4x.gif" ALT="-
+t">(x) for
+each x.
+   <P >The following example shows how probabilism can be used to guarantee an improved
+behavior (on average) for each input.
+   <P ><STRONG>Example 6.1.1</STRONG> <A 
+   NAME="70001-2006t6.1.1"> </A> 
+Consider the deterministic program in Figure <A 
+ HREF="#70001-2007r6.1.1">6.1.1</A>
+   <HR><CENTER><TABLE><TR><TD ><A 
+   NAME="70001-2007r6.1.1"> </A>
+             <TABLE  
+CELLPADDING="0" BORDER="0" CELLSPACING="0" 
+WIDTH="100%"><TR><TD 
+><PRE><B>call</B> SELECT(k, S)
+<B>procedure</B> SELECT(<TT>k</TT>,<TT>S</TT>)
+    <TT>x</TT>   := first element in <TT>S</TT>
+    <TT>S</TT><SUB>1</SUB> := { y | y is in S, and y &lt; <TT>x</TT> }
+   <TT>n</TT><SUB>1</SUB> := cardinality of the set stored in <TT>S</TT><SUB>1</SUB>
+    <TT>S</TT><SUB>2</SUB> := { y | y is in S, and y &gt; <TT>x</TT> }
+   <TT>n</TT><SUB>2</SUB> := cardinality of the set stored in <TT>S</TT><SUB>2</SUB>
+    <TT>n</TT><SUB>3</SUB> := (cardinality of the set stored in <TT>S</TT>) - <TT>n</TT><SUB>2</SUB>
+    <B>case</B>
+                 <TT>k</TT> <FONT FACE="SYMBOL">£</FONT> <TT>n</TT><SUB>1</SUB>: <TT>SELECT</TT>(<TT>k</TT>, <TT>S</TT><SUB>1</SUB>)
+           <TT>n</TT><SUB>3</SUB> &lt; <TT>k</TT>  : <TT>SELECT</TT>(<TT>k</TT> - <TT>n</TT><SUB>3</SUB>, <TT>S</TT><SUB>2</SUB>)
+      <TT>n</TT><SUB>1</SUB> &lt; <TT>k</TT> <FONT FACE="SYMBOL">£</FONT> <TT>n</TT><SUB>3</SUB>: <TT>x</TT> holds the desired element
+    <B>end</B>
+<B>end</B>                                                                        </PRE></TD></TR></TABLE>
+<A 
+   NAME="70001-2007r6.1.1"> </A>
+    <BR><TABLE  
+><TR VALIGN="BASELINE"><TD><NOBR><STRONG>Figure 6.1.1 </STRONG></NOBR></TD><TD  
+>A program that selects the kth smallest element in S.                                                 </TD></TR></TABLE></CENTER>
+</TD></TR></TABLE></CENTER><HR>(given in a free format using recursion). The program selects the <I>k</I>th smallest element in
+any given set S of finite cardinality.
+   <P >Let T(n) denote the time (under the uniform cost criteria) that the program takes to
+select an element from a set of cardinality n. T(n) satisfies, for some constant c and some
+integer m &lt; n, the following inequalities.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-six5x.gif" ALT="         { T (m) + cn    ifn &gt; 1
+T (n) £
+          c            ifn£ 1"></PRE></CENTER>
+   <P >From the inequalities above <CENTER>
+           <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+>T(n)</TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>T(n - 1) + cn</TD>                               <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+               </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+               </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>T(n - 2) + c<IMG 
+SRC="theory-bk-six6x.gif" ALT="(         )
+ n+ (n - 1)"ALIGN="MIDDLE" > </TD>                     <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+               </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+               </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>T(n - 3) + c<IMG 
+SRC="theory-bk-six7x.gif" ALT="(                 )
+ n+ (n - 1) + (n - 2)"ALIGN="MIDDLE" > </TD>            <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+               </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+               </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+> · · · </TD>                                        <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+               </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+               </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>T(1) + c<IMG 
+SRC="theory-bk-six8x.gif" ALT="(                  )
+ n + (n- 1)+ ···+ 2"ALIGN="MIDDLE" >         </TD>           <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+               </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+               </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>cn<SUP>2</SUP>.</TD>                                       <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>That is, the program is of time complexity O(n<SUP>2</SUP>).
+   <P >The time requirement of the program is sensitive to the ordering of the elements
+in the sets in question. For instance, when searching for the smallest element,
+O(n) time is sufficient if the elements of the set are given in nondecreasing order.
+Alternatively, the program uses O(n<SUP>2</SUP>) time when the elements are given in nonincreasing
+order.
+   <P >This sensitivity to the order of the elements can be eliminated by assigning a random
+element from <TT>S</TT> to <TT>x</TT>, instead of the first element of <TT>S</TT>. In such a case, the expected time
+complexity <IMG 
+SRC="theory-bk-six9x.gif" ALT="--
+T">(n) of the program satisfies the following inequalities, for some constant
+c.
+   <P ><CENTER>
+<PRE><IMG 
+SRC="theory-bk-six10x.gif" ALT="           1 (--    --         --     )
+--      { n  T(0)+ T(1)+ ···+ T(n- 1) + cn    ifn &gt; 1
+T (n) £
+          c                                   ifn £ 1"></PRE></CENTER>
+   <P >From the inequalities above
+   <P ><CENTER>
+    <TABLE  
+><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+><IMG 
+SRC="theory-bk-six11x.gif" ALT="--
+T">(n)</TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six12x.gif" ALT="1n"><IMG 
+SRC="theory-bk-six13x.gif" ALT="(--        --      )
+ T(0)+ ···+ T (n - 1)"ALIGN="MIDDLE" > + cn</TD>                        <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six14x.gif" ALT="1n"><IMG 
+SRC="theory-bk-six15x.gif" ALT="(--         --     )
+ T(0)+ ···+ T(n- 2)"ALIGN="MIDDLE" > </TD>                            <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> + <IMG 
+SRC="theory-bk-six16x.gif" ALT="1n"><IMG 
+SRC="theory-bk-six17x.gif" ALT="(    (-         --     ))
+ n1-1 T (0)+ ···+ T (n - 2)"ALIGN="MIDDLE" > + <IMG 
+SRC="theory-bk-six18x.gif" ALT="1n"><IMG 
+SRC="theory-bk-six19x.gif" ALT="(       )
+ c(n- 1)"ALIGN="MIDDLE" > + cn</TD>    <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six20x.gif" ALT="1n"><IMG 
+SRC="theory-bk-six21x.gif" ALT="(      )
+ 1+ n1-1"ALIGN="MIDDLE" > <IMG 
+SRC="theory-bk-six22x.gif" ALT="( --        --      )
+  T(0)+ ···+ T (n - 2)"ALIGN="MIDDLE" > + c(1 - <IMG 
+SRC="theory-bk-six23x.gif" ALT="1n">) + cn</TD>      <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six24x.gif" ALT="n1-1"><IMG 
+SRC="theory-bk-six25x.gif" ALT="(--        --      )
+ T(0)+ ···+ T (n - 2)"ALIGN="MIDDLE" > + c + cn</TD>                   <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six26x.gif" ALT="n1-1"><IMG 
+SRC="theory-bk-six27x.gif" ALT="(--        --      )
+ T(0)+ ···+ T (n - 3)"ALIGN="MIDDLE" > </TD>                          <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> + <IMG 
+SRC="theory-bk-six28x.gif" ALT="n-11"><IMG 
+SRC="theory-bk-six29x.gif" ALT="(    (-         --     ))
+ n1-2 T (0) + ···+ T(n - 3)"ALIGN="MIDDLE" > </TD>                  <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>   <TD 
+NOWRAP ALIGN="CENTER"  
+></TD>   <TD 
+NOWRAP ALIGN="LEFT "  
+> + <IMG 
+SRC="theory-bk-six30x.gif" ALT="n-11"><IMG 
+SRC="theory-bk-six31x.gif" ALT="(       )
+ c(n - 2)"ALIGN="MIDDLE" > + c + cn</TD>                            <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six32x.gif" ALT="n1-1"><IMG 
+SRC="theory-bk-six33x.gif" ALT="(      )
+ 1+ n1-2"ALIGN="MIDDLE" > <IMG 
+SRC="theory-bk-six34x.gif" ALT="( --        --      )
+  T(0)+ ···+ T (n - 3)"ALIGN="MIDDLE" > + 2c + cn</TD>         <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six35x.gif" ALT="n1-2"><IMG 
+SRC="theory-bk-six36x.gif" ALT="(--        --      )
+ T(0)+ ···+ T (n - 3)"ALIGN="MIDDLE" > + 2c + cn</TD>                  <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six37x.gif" ALT="n1-3"><IMG 
+SRC="theory-bk-six38x.gif" ALT="(--        --      )
+ T(0)+ ···+ T (n - 4)"ALIGN="MIDDLE" > + 3c + cn</TD>                  <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+> · · · </TD>                                               <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+><IMG 
+SRC="theory-bk-six39x.gif" ALT="--
+T">(1) + (n - 1)c + cn</TD>                                 <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+        </TR><TR VALIGN="BASELINE"><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>  <TD 
+NOWRAP ALIGN="CENTER"  
+> <FONT FACE="SYMBOL">£</FONT></TD>  <TD 
+NOWRAP ALIGN="LEFT "  
+>2cn.</TD>                                              <TD 
+WIDTH="10"></TD><TD 
+NOWRAP ALIGN="RIGHT"  
+></TD>
+</TR></TABLE>
+</CENTER>
+   <P >That is, the modified program is probabilistic and its expected time complexity is
+O(n). For every given input (k, S) with S of cardinality |S|, the probabilistic program is
+guaranteed to find the <I>k</I>th smallest element in S within O(|S|<SUP>2</SUP>) time. However, on
+average it requires O(|S|) time for a given input. <IMG 
+SRC="theory-bk-six40x.gif" ALT=" *** ">
+   <P >
+<A NAME="70001-2008"> </A>
+   <P >
+   <P >[<A 
+ HREF="theory-bk-sixse2.html" >next</A>] [<A 
+ HREF="theory-bk-sixse1.html" >front</A>] [<A 
+ HREF="theory-bk-six.html#theory-bk-sixse1.html" >up</A>] <A 
+   NAME="tailtheory-bk-sixse1.html"> </A></BODY></HTML>
