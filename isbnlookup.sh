@@ -100,7 +100,9 @@ if [ -z "$search" ] && [ -n "$filename" ]; then
    # echo -n "search ISBN in file: $filename"
     isbn=`extract_first_pages "${filename}" | find_first_isbn_number`
     if [ ${#isbn} -eq 0 ]; then
-        error " ... no isbn found"
+       # error " ... isbn not found"
+       pal=0;
+       isbn="isbn10 00000000"
     fi
     echo " ... $isbn"
     infofile=`fetch_google_books_info "${isbn##* }"`

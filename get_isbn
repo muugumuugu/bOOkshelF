@@ -1,6 +1,0 @@
-for f in *.pdf; do
-	echo $f ","  >> isbntable.csv;
-	bash isbnlookup.sh "$f" >> isbntable.csv;
-done;
-
-sed  -i -z "s/,\n/,/g" isbntable.csv
