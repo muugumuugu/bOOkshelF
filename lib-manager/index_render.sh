@@ -1,0 +1,1 @@
+for f in */; do cd "$f" ; bash ../lib-manager/shelver.sh ; cd ../;done;

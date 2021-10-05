@@ -1,0 +1,1 @@
+find . -name "*.pdf"  -o -name "*.epub"  -o -name "*.djvu" > books

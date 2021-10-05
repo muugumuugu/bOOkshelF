@@ -1,1 +1,0 @@
-for f in */; do cd "$f" ; bash ../shelver.sh ; cd ../;done;
