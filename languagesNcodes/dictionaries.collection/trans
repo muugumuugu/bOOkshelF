@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sindhi — Devanagari to Arabic script Transliterator</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Transliterate from Devanagari script of Sindhi to its Arabic script">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Fahad Maqsood Qazi">
+        <meta name="keywords" content="sindhi, sindhi language, sindhi transliterator, transliterate sindhi, devanagari to arabic script, sindhi devanagari to arabic, arabic script, devanagari script">
+
+        <style>
+            .center {
+                text-align: center;
+            }
+            .textareas-container {
+                width: 100%;
+            }
+            .textareas-container textarea {
+                width: 49%;
+                height: 225px;
+            }
+
+            .submit-btn-container {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1 class="center">Sindhi — Devanagari to Arabic script Transliterator</h1>
+        
+        <div class="textareas-container center">
+            <textarea id="transliteration-input" placeholder="Type in Devanagari Script here...."></textarea>
+            <textarea id="transliteration-output" dir="rtl" placeholder="Text will be converted to Arabic Script here..."></textarea>
+        </div>
+
+        <div class="center submit-btn-container">
+            <button type="submit" id="transliterate">Transliterate</button>
+        </div>
+
+        <script>
+            const select = function (selector) {return document.querySelectorAll(selector); }
+
+
+            select("#transliterate")[0].addEventListener("click", function(e) {
+                input = select("#transliteration-input")[0].value;
+                
+                input = input.toLowerCase();
+
+                //normalizing the latin script
+                input = normalizeLatinScript(input);
+
+                //changing predefined sounds
+                input = input.replace(/ऐं/g, "۽")
+                input = input.replace(/men/g, "۾")
+                input = input.replace(/lãe/g, "لاءِ")
+                input = input.replace(/pehenje/g, "پنهنجي")
+                
+                // removing vowels
+                input = replaceLettersWithDiacritic(input)
+                //input = separateJoinedLetters(input)
+                input = removeVowels(input)
+                input = replaceLettersWithDiacritic(input)
+                
+                //replacing letters
+                input = replaceHardSoundingLetters(input)
+                input = replaceUniqueSoundingLetters(input)
+                input = replaceNormalLetters(input)
+                input = replaceRemaining(input)
+
+                //removing duplicate letters from words
+                split = input.split(" ")
+
+                for (let i =0; i <= split.length - 1; i++) {
+                    split[i] = removeDuplicates(split[i])
+                }
+
+                input = split.join(" ")
+
+                input = replacePunctuations(input)
+                
+                select("#transliteration-output")[0].value = input;
+            }, false);
+            
+
+            function normalizeLatinScript(str) {
+                str = str.replace(/ã/g, "ã")
+                str = str.replace(/ḍ/g, "ḍ")
+                str = str.replace(/ë/g, "ë")
+                str = str.replace(/ǵ/g, "ǵ")
+                str = str.replace(/ň/g, "ň")
+                str = str.replace(/ř/g, "ř")
+                str = str.replace(/ẗ/g, "ẗ")
+
+                return str;
+            }
+
+
+            function separateJoinedLetters(str) {
+                str = str.replace(/्/g, "");
+                return str
+            }
+
+            function isVowel(letter) {
+                return ["आ", "ा", "इ", "ि", "ई", "ए", "े", "ऐ", "ै", "ो", "ऊ", "ू", "ी", "उ", "ु", "औ", "ौ", "a", "ã", "e", "ë", "i", "o", "u"].includes(letter);
+            }
+
+            function isDevanagari(letter) {
+                return new RegExp(/[\u0900-\u097F]/g).test(letter)
+            }
+
+            function isLetter(letter) {
+                if(isVowel(letter))
+                    return true;
+                else if (new RegExp(/[a-zA-Z]+/g).test(letter))
+                    return true;
+                else if (new RegExp(/[\u0600-\u06FF]+/gi))
+                    return true;
+                else if(isDevanagari(letter))
+                    return true
+                else if (new RegExp(/[ãǎb́çd̬ḍëǵg̈j́j̈ňřẗ]+/gi).test(letter))
+                    return true;
+
+                return false
+            }
+
+            function removeVowels(str) {
+                new_str = str
+                word_list = str.split(" ")
+
+                word_count = 0
+                for(word of word_list) {
+
+                    letter_count = 0
+                    new_word = ""
+
+                    for (letter of word) {
+                        
+                        previous_letter = word[letter_count - 1]
+                        next_letter = word[letter_count + 1]
+
+                        if(isVowel(letter)) {
+                            switch (letter) {
+                                case "आ":    
+                                    new_word += "آ"
+                                    break;
+                                case "ा":
+                                    new_word += "ا" 
+                                    break;
+                                case "ि":
+                                    break;
+                                case "इ":
+                                    new_word += "ا"
+                                    break;
+                                case "े":
+                                    new_word += "ي"
+                                    break;
+                                case "ए":
+                                    if(letter_count == 0)
+                                        new_word += "اي"
+                                    else
+                                        new_word += "ئي"
+                                    break;
+                                case "ऐ":
+                                    new_word += "ائي"
+                                    break;
+                                case "ै":
+                                    new_word += "ي"
+                                    break;
+                                case "ई":
+                                    if(letter_count == 0)
+                                        new_word += "اي"
+                                    else
+                                        new_word += "ئي"
+                                    break;
+                                case "ी":
+                                    new_word += "ي"
+                                    break;
+                                case "उ":
+                                    new_word += "اُ"
+                                    break;
+                                case "ु":
+                                    break;
+                                case "ऊ":
+                                    new_word += "اُو"
+                                    break;
+                                case "ो":
+                                case "ू":
+                                    new_word += "و"
+                                    break;
+                                case "औ":
+                                    new_word += "ائو"
+                                    break;
+                                case "ौ":
+                                    new_word += "ئو"
+                                    break;
+                                default:
+                                    new_word += letter
+                                    break;
+                            }
+                        } else {
+                            new_word += letter
+                        }
+
+                        letter_count++
+                    }
+                    
+                    new_word = new_word.replace(/्/g, "")
+                    
+                    word_list[word_count] = new_word
+                    word_count++
+                }
+                
+                return word_list.join(" ")
+            }
+
+            function replaceHardSoundingLetters(str) {
+                str = str.replace(/भ/g, "ڀ")  
+                str = str.replace(/छ/g, "ڇ")  
+                str = str.replace(/ध/g, "ڌ")  
+                str = str.replace(/ढ/g, "ڍ")  
+                str = str.replace(/घ/g, "گھ")  
+                str = str.replace(/झ/g, "جھ")  
+                str = str.replace(/ख/g, "ک")  
+                str = str.replace(/फ/g, "ڦ") 
+                str = str.replace(/ष/g, "ش") 
+                str = str.replace(/श/g, "ش")  
+                str = str.replace(/ठ/g, "ٺ")  
+                str = str.replace(/थ/g, "ٿ")  
+
+                return str;
+            }
+
+            function replaceUniqueSoundingLetters(str) {
+                str = str.replace(/अ/g, "ا")
+                str = str.replace(/ॿ/g, "ٻ")
+                str = str.replace(/ॾ/g, "ڏ")
+                str = str.replace(/ॻ/g, "ڳ")
+                str = str.replace(/ङ/g, "ڱ")
+                str = str.replace(/ॼ/g, "ڄ")
+                str = str.replace(/ञ/g, "ڃ")
+                str = str.replace(/ण/g, "ڻ")
+
+                return str;
+            }
+
+            function replaceLettersWithDiacritic(str) {
+                str = str.replace(/ढ़/g, "ڙ")
+                str = str.replace(/ड़/g, "ڙ")
+                str = str.replace(/ड़/g, "ڙ")
+                str = str.replace(/ख़/g, "خ")
+                str = str.replace(/फ़/g, "ف")
+                str = str.replace(/ग़/g, "غ")
+                str = str.replace(/क़/g, "ق")
+                str = str.replace(/ज़/g, "ز")
+                str = str.replace(/ज़/g, "ز")
+
+                return str;
+            }
+
+            function replaceNormalLetters(str) {
+                str = str.replace(/ा/g, "ا")
+                str = str.replace(/ब/g, "ب")
+                str = str.replace(/च/g, "چ")
+                str = str.replace(/द/g, "د")
+                str = str.replace(/ड/g, "ڊ")
+                str = str.replace(/े/g, "اي")
+                str = str.replace(/ग/g, "گ")
+                str = str.replace(/ह/g, "ه")
+                str = str.replace(/ज/g, "ج")
+                str = str.replace(/क/g, "ڪ")
+                str = str.replace(/ल/g, "ل")
+                str = str.replace(/म/g, "م")
+                str = str.replace(/ं/g, "ن")
+                str = str.replace(/न/g, "ن")
+                //str = str.replace(/व/g, "o")
+                str = str.replace(/प/g, "پ")
+                str = str.replace(/ृ/g, "ر")
+                str = str.replace(/र/g, "ر")
+                str = str.replace(/स/g, "س")
+                str = str.replace(/त/g, "ت")
+                str = str.replace(/ट/g, "ٽ")
+                str = str.replace(/व/g, "و")
+                str = str.replace(/य/g, "ي")
+
+                return str
+            }
+
+            function replaceRemaining(str) {
+                str = str.replace(/आ/g, "آ")
+                str = str.replace(/ऊ/g, "او")
+
+                return str
+            }
+
+            function replacePunctuations(str) {
+                str = str.replace(/।/g, ".")
+
+                return str
+            }
+
+            function removeDuplicates(string) {
+
+                new_word = ""
+
+                for (let count = 0; count <= string.length; count++) {
+                    letter = string.charAt(count);
+
+                    if(isLetter(letter)) {
+                        if(string[count - 1] != letter) {
+                            new_word += letter
+                        }
+                    } else {
+                        new_word += letter
+                    }
+                }
+                
+                new_word = new_word.replace(/ /g, "")
+
+                return new_word
+            }
+
+            
+        </script>
+        
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166877763-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-166877763-1');
+        </script>
+
+        
+    </body>
+</html>
